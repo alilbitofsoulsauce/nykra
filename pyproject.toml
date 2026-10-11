@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nykra"
+version = "0.25.0"
+description = "Local-first, agent-agnostic exploration history and replay infrastructure"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Nykra contributors" }]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[project.scripts]
+nykra = "nykra.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["nykra*"]
+
+[tool.setuptools.package-data]
+nykra = ["ide_extension/*.json", "ide_extension/*.js", "ide_extension/LICENSE"]

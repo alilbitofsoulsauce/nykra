@@ -1,0 +1,74 @@
+{
+  "schema": "nykra-v24-independent-session-exact-public-receipts-summary-v1",
+  "protocol_sha256": "805237e2005a30cc927fc7be6441d4c2d7e54047c56d56d432d7e3d48e166f9a",
+  "registered_historical_issues": 2,
+  "independent_sessions_per_condition_per_issue": 3,
+  "total_independent_session_runs": 12,
+  "total_new_external_model_proposals": 0,
+  "ordinary_actual_public_docker_calls": 6,
+  "nykra_cached_actual_public_docker_calls": 2,
+  "real_public_tests_avoided": 4,
+  "public_docker_reduction_pct": 66.7,
+  "ordinary_actual_git_apply_calls": 6,
+  "nykra_cached_actual_git_apply_calls": 2,
+  "actual_git_apply_calls_avoided": 4,
+  "nykra_cache_hits": 4,
+  "ordinary_elapsed_seconds": 69.781,
+  "nykra_cache_elapsed_seconds": 32.6652,
+  "observed_seconds_saved": 37.1158,
+  "observed_wall_reduction_pct": 53.2,
+  "independent_hidden_successes_ordinary": 3,
+  "independent_hidden_successes_cached": 3,
+  "historical_patch_outcomes_preserved": true,
+  "general_agent_correctness_advantage_proven": false,
+  "model_token_savings_measured": false,
+  "cache_security": "trusted local cache with input-hash integrity checks; not tamperproof against a process with full local user filesystem access",
+  "scope": "Exact same source/upstream Git/test/evaluator/Docker inputs across independent authorized policy/feedback sessions; no unrelated-task speed guarantee",
+  "limitations": "2 previously used upstream issues, three independent sessions per condition each, 1 replay per issue with counterbalanced condition order; observed wall time includes runtime warmup and hidden grading. This measures engineering duplication, not improved coding model intelligence.",
+  "portable_sessions_sha256": "96c34700eb1d38739828eaa18ce58f249e912ba5774f0f5adbc085eb05cf7faf",
+  "portable_public_receipts_sha256": "7802f03512fbd1812cd095b1c91aa6da2587ca749d003acafdcf0e42aef8ab65",
+  "tasks": [
+    {
+      "task_id": "youtube-dl-27",
+      "raw_path": "docs/evidence/v24_cache_youtube_dl_27.json",
+      "raw_sha256": "4005b97a6ea8d33d242c7864e3cd5e4d41fdf3f5fd9164286c6ef82c2767227d",
+      "conditions": {
+        "cold": {
+          "public_docker_calls": 3,
+          "git_apply_calls": 3,
+          "cache_hits": 0,
+          "hidden_passes": 0,
+          "wall_seconds": 37.8773
+        },
+        "cached": {
+          "public_docker_calls": 1,
+          "git_apply_calls": 1,
+          "cache_hits": 2,
+          "hidden_passes": 0,
+          "wall_seconds": 10.6953
+        }
+      }
+    },
+    {
+      "task_id": "youtube-dl-43",
+      "raw_path": "docs/evidence/v24_cache_youtube_dl_43.json",
+      "raw_sha256": "81bb9b0f113c80323b3f2ea5474e7ad05fb5d7000917d8c403e6bb80c5286174",
+      "conditions": {
+        "cold": {
+          "public_docker_calls": 3,
+          "git_apply_calls": 3,
+          "cache_hits": 0,
+          "hidden_passes": 3,
+          "wall_seconds": 31.9037
+        },
+        "cached": {
+          "public_docker_calls": 1,
+          "git_apply_calls": 1,
+          "cache_hits": 2,
+          "hidden_passes": 3,
+          "wall_seconds": 21.9699
+        }
+      }
+    }
+  ]
+}

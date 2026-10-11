@@ -1,0 +1,40 @@
+{
+  "schema": "nykra-public-receipt-v24",
+  "cache_key": "1fda617e4280be4bac68043b44cdc5670174729c17845f38ce05ab5b73259626",
+  "inputs": {
+    "schema": "nykra-public-cache-key-v24",
+    "task_id": "youtube-dl-43",
+    "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+    "source_sha256": "d4173e70b151af072e34d66d5c4cef98f176a610a4a06a2c1e80f65fd647d1a1",
+    "patch_sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+    "git_original_sha256": "6452e59a02035f4a1c04fb3094adf6f882a1b6c5d741432ae1a2f6beb7a1b793",
+    "git_after_sha256": "e7e96bbd7e7ea5e547330d02bc95fabf58a362b9f54ac7a3a746f7676e2bbc4f",
+    "upstream_buggy_commit": "cecaaf3f58ad9f544dbb79af1e565d9353fa2b2d",
+    "upstream_fixed_commit": "d6c7a367e88096bb17e323954002c084477fe908",
+    "public_test_source_sha256": "11073372483c7a4c72ca2ed1c29c93daf3d649d087b92bb210a94c828b1ebc32",
+    "public_test_selector": "test.test_utils.TestUtil.test_url_basename",
+    "image_id": "sha256:a4ae367e48252c42a50fcb5136b9fdf6fb2544e048494f4004891b3ca38e63e7",
+    "evaluator_code_sha256": {
+      "v21_grader.py": "d50d8796cb971356d32c67ec428fe07aac642dc77061189449c6dba8c7e7bcb0",
+      "v20_grader.py": "d9dce1d4a4d056aa5e9ecf064855915ddd89c5fee8fb53810b2de25bd4dca81b",
+      "repair_feedback.py": "9814a86a21ec5a2ef00c0041e0254901131c8432338f44b60c72401f4fbd5f84",
+      "repository_repair_trial.py": "c193cf58bab92a9f6ceba7da72c997d8efa866c7797a9debf479c48bc5d96d57",
+      "agent_workflow.py": "54afa04b2e260e77fd1c78709375fbe754d68d5ab47c4189b7766699fa006012"
+    }
+  },
+  "patch": "diff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1087,7 +1087,8 @@\n \n \n def url_basename(url):\n-    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n+    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)*([^/?#]+)/?(?:[?#]|$)', url)\n     if not m:\n         return u''\n     return m.group(1)\n+\n",
+  "public": {
+    "status": "ok",
+    "passed": true,
+    "checks": [
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5f4da3a10467ed523d52edf10edfcd360269e31f5319fbb2e3c0632fb4663431"
+      }
+    ],
+    "elapsed_seconds": 4.89
+  },
+  "receipt_sha256": "38ace0b635f9cb625fbd6f0c84a916795c971091c2d634017714a1424e7d706a"
+}

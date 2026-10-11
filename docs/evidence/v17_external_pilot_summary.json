@@ -1,0 +1,108 @@
+{
+  "schema": "nykra-real-bugsinpy-pilot-report-v1",
+  "protocol_sha256": "495453711ee9d89b2a5d0e640eef6feed9b2f472f4926b062ca101f4f9e07658",
+  "model": "gpt-6-luna",
+  "registered": 4,
+  "paired_complete": 3,
+  "excluded": 1,
+  "unfinished": [],
+  "task_successes": {
+    "baseline": 1,
+    "nykra": 1
+  },
+  "nykra_only_wins": 0,
+  "baseline_only_wins": 0,
+  "paired_one_sided_exact_p": 1.0,
+  "official_swebench": false,
+  "separate_hidden_verifier": false,
+  "general_coding_agent_improvement_proven": false,
+  "causal_uplift_established": false,
+  "tasks": [
+    {
+      "id": "youtube-dl-bugsinpy-1",
+      "status": "completed",
+      "path": "docs/evidence/v17_youtube_dl_bugsinpy_1.json",
+      "sha256": "11213c39e72d72537c56620a978d185888e1b1711a77569783ab83ba23216395",
+      "eligible": true,
+      "arms": {
+        "baseline": {
+          "passed": false,
+          "attempts": 4,
+          "model_calls_ok": 4,
+          "tokens_reported": 60258,
+          "model_seconds": 57.1,
+          "branch_resets": 0
+        },
+        "nykra": {
+          "passed": false,
+          "attempts": 4,
+          "model_calls_ok": 4,
+          "tokens_reported": 54457,
+          "model_seconds": 62.16,
+          "branch_resets": 1
+        }
+      }
+    },
+    {
+      "id": "youtube-dl-bugsinpy-10",
+      "status": "infrastructure_excluded",
+      "path": "docs/evidence/v17_youtube_dl_bugsinpy_10.json",
+      "sha256": "0daa73cbb2bcbae522039250ac64fe7ccf4ff204eb1313e31707e3385f94862f",
+      "eligible": false,
+      "eligibility_statuses": {
+        "buggy": "timeout",
+        "reference_fix": "ok"
+      }
+    },
+    {
+      "id": "youtube-dl-bugsinpy-11",
+      "status": "completed",
+      "path": "docs/evidence/v17_youtube_dl_bugsinpy_11.json",
+      "sha256": "8ba816dd6eb13efb76988924b78d911555d3fb1dfde8a50ec5c4508940b65d7a",
+      "eligible": true,
+      "arms": {
+        "baseline": {
+          "passed": true,
+          "attempts": 1,
+          "model_calls_ok": 1,
+          "tokens_reported": 2008,
+          "model_seconds": 6.49,
+          "branch_resets": 0
+        },
+        "nykra": {
+          "passed": true,
+          "attempts": 1,
+          "model_calls_ok": 1,
+          "tokens_reported": 15062,
+          "model_seconds": 6.57,
+          "branch_resets": 0
+        }
+      }
+    },
+    {
+      "id": "youtube-dl-bugsinpy-13",
+      "status": "completed",
+      "path": "docs/evidence/v17_youtube_dl_bugsinpy_13.json",
+      "sha256": "907f15286d57adb85aa70fa2f729fa46d388462965fb149a585bae96f8938a0f",
+      "eligible": true,
+      "arms": {
+        "baseline": {
+          "passed": false,
+          "attempts": 4,
+          "model_calls_ok": 4,
+          "tokens_reported": 35157,
+          "model_seconds": 33.37,
+          "branch_resets": 0
+        },
+        "nykra": {
+          "passed": false,
+          "attempts": 4,
+          "model_calls_ok": 4,
+          "tokens_reported": 21989,
+          "model_seconds": 35.51,
+          "branch_resets": 1
+        }
+      }
+    }
+  ]
+}

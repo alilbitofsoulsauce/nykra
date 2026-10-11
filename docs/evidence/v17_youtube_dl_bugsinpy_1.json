@@ -1,0 +1,208 @@
+{
+  "id": "youtube-dl-bugsinpy-1",
+  "protocol_sha256": "495453711ee9d89b2a5d0e640eef6feed9b2f472f4926b062ca101f4f9e07658",
+  "source_commit": "99036a1298089068dcf80c0985bfcc3f8c24f281",
+  "status": "completed",
+  "model": "gpt-6-luna",
+  "arms": [
+    {
+      "arm": "baseline",
+      "status": "completed",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def _match_one(filter_part, dct):\n    COMPARISON_OPERATORS = {\n        '<': operator.lt,\n        '<=': operator.le,\n        '>': operator.gt,\n        '>=': operator.ge,\n        '=': operator.eq,\n        '!=': operator.ne,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<key>[a-z_]+)\n        \\s*(?P<op>%s)(?P<none_inclusive>\\s*\\?)?\\s*\n        (?:(?P<intval>[0-9.]+(?:[kKmMgGtTpPeEzZyY]i?[Bb]?)?)|\n            (?P<quote>[\"\\'])(?P<quotedstrval>(?:\\\\.|(?!(?P=quote)|\\\\).)+?)(?P=quote)|\n            (?P<strval>(?![0-9.])[a-z0-9A-Z]*))\n        \\s*$\n        ''' % '|'.join(map(re.escape, COMPARISON_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = COMPARISON_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        if (m.group('quotedstrval') is not None or\n                m.group('strval') is not None or\n                (actual_value is not None and\n                 m.group('intval') is not None and\n                 isinstance(actual_value, compat_str))):\n            if m.group('op') not in ('=', '!='):\n                raise ValueError(\n                    'Operator %s does not support string values!' % m.group('op'))\n            comparison_value = (m.group('quotedstrval') or\n                                m.group('strval') or\n                                m.group('intval'))\n            quote = m.group('quote')\n            if quote is not None:\n                comparison_value = comparison_value.replace(r'\\%s' % quote, quote)\n        elif m.group('intval') is not None:\n            try:\n                comparison_value = int(m.group('intval'))\n            except ValueError:\n                comparison_value = parse_filesize(m.group('intval'))\n                if comparison_value is None:\n                    comparison_value = parse_filesize(m.group('intval') + 'B')\n                if comparison_value is None:\n                    raise ValueError(\n                        'Invalid integer value %r in filter part %r' % (\n                            m.group('intval'), filter_part))\n        else:\n            comparison_value = None\n        if actual_value is None:\n            return m.group('none_inclusive')\n        return op(actual_value, comparison_value)\n\n    UNARY_OPERATORS = {\n        '': lambda v: v is not None,\n        '!': lambda v: v is None,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<op>%s)\\s*(?P<key>[a-z_]+)\n        \\s*$\n        ''' % '|'.join(map(re.escape, UNARY_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = UNARY_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        return op(actual_value)\n\n    raise ValueError('Invalid filter part %r' % filter_part)\n",
+          "source_sha256": "bf1abea46cae75dc43f66ced97a520aa9ca3d8143e54b3201daf53a7bfcc38bc",
+          "model_status": "ok",
+          "model_seconds": 15.04,
+          "reported_tokens": 19448,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 15.94,
+            "image_id": "sha256:549ce2a802243589b307857c3d8e2a0dd84e9d877ea418939c08af39285b6e84",
+            "stderr_sha256": "ac317a037d658f65425b192dacf3163903e1720f3919bd5d482bfe12c953d27e",
+            "stderr_bytes": 627
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def _match_one(filter_part, dct):\n    COMPARISON_OPERATORS = {\n        '<': operator.lt,\n        '<=': operator.le,\n        '>': operator.gt,\n        '>=': operator.ge,\n        '=': operator.eq,\n        '!=': operator.ne,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<key>[a-z_]+)\n        \\s*(?P<op>%s)(?P<none_inclusive>\\s*\\?)?\\s*\n        (?:\n            (?P<intval>[0-9.]+(?:[kKmMgGtTpPeEzZyY]i?[Bb]?)?)|\n            (?P<quote>[\"\\'])(?P<quotedstrval>(?:\\\\.|(?!(?P=quote)|\\\\).)+?)(?P=quote)|\n            (?P<strval>(?![0-9.])[a-z0-9A-Z]*)\n        )\n        \\s*$\n        ''' % '|'.join(map(re.escape, COMPARISON_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = COMPARISON_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        if (m.group('quotedstrval') is not None or\n                m.group('strval') is not None or\n                (actual_value is not None and\n                 m.group('intval') is not None and\n                 isinstance(actual_value, compat_str))):\n            if m.group('op') not in ('=', '!='):\n                raise ValueError(\n                    'Operator %s does not support string values!' % m.group('op'))\n            comparison_value = (m.group('quotedstrval') or\n                                m.group('strval') or\n                                m.group('intval'))\n            quote = m.group('quote')\n            if quote is not None:\n                comparison_value = comparison_value.replace(r'\\%s' % quote, quote)\n        elif m.group('intval') is not None:\n            try:\n                comparison_value = int(m.group('intval'))\n            except ValueError:\n                comparison_value = parse_filesize(m.group('intval'))\n                if comparison_value is None:\n                    comparison_value = parse_filesize(m.group('intval') + 'B')\n                if comparison_value is None:\n                    raise ValueError(\n                        'Invalid integer value %r in filter part %r' % (\n                            m.group('intval'), filter_part))\n        else:\n            comparison_value = None\n        if actual_value is None:\n            return m.group('none_inclusive')\n        return op(actual_value, comparison_value)\n\n    UNARY_OPERATORS = {\n        '': lambda v: v is not None,\n        '!': lambda v: v is None,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<op>%s)\\s*(?P<key>[a-z_]+)\n        \\s*$\n        ''' % '|'.join(map(re.escape, UNARY_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = UNARY_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        return op(actual_value)\n\n    raise ValueError('Invalid filter part %r' % filter_part)",
+          "source_sha256": "f1a0f97c42ce644b94081d456ed1ff825e6e4d3b0b8c47f464b8f82e0a3400b4",
+          "model_status": "ok",
+          "model_seconds": 12.27,
+          "reported_tokens": 6268,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 9.46,
+            "image_id": "sha256:f36de129fa4551ff9494b6762fa00f25ccd9f27a6b4a77b53dde04d07280d550",
+            "stderr_sha256": "25d58546bd882c08dd64c2ad34a87fe58aa806ec1d87f3734a410e06fb5fd556",
+            "stderr_bytes": 627
+          }
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "source": "def _match_one(filter_part, dct):\n    COMPARISON_OPERATORS = {\n        '<': operator.lt,\n        '<=': operator.le,\n        '>': operator.gt,\n        '>=': operator.ge,\n        '=': operator.eq,\n        '!=': operator.ne,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<key>[a-z_]+)\n        \\s*(?P<op>%s)(?P<none_inclusive>\\s*\\?)?\\s*\n        (?:\n            (?P<intval>[0-9.]+(?:[kKmMgGtTpPeEzZyY]i?[Bb]?)?)|\n            (?P<quote>[\"\\'])(?P<quotedstrval>(?:\\\\.|(?!(?P=quote)|\\\\).)+?)(?P=quote)|\n            (?P<strval>(?![0-9.])[a-z0-9A-Z]*)\n        )\n        \\s*$\n        ''' % '|'.join(map(re.escape, COMPARISON_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = COMPARISON_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        if (m.group('quotedstrval') is not None or\n                m.group('strval') is not None or\n                actual_value is not None and m.group('intval') is not None and\n                isinstance(actual_value, compat_str)):\n            if m.group('op') not in ('=', '!='):\n                raise ValueError(\n                    'Operator %s does not support string values!' % m.group('op'))\n            comparison_value = (m.group('quotedstrval') or\n                                m.group('strval') or\n                                m.group('intval'))\n            quote = m.group('quote')\n            if quote is not None:\n                comparison_value = comparison_value.replace(r'\\%s' % quote, quote)\n        elif m.group('intval') is not None:\n            try:\n                comparison_value = int(m.group('intval'))\n            except ValueError:\n                comparison_value = parse_filesize(m.group('intval'))\n                if comparison_value is None:\n                    comparison_value = parse_filesize(m.group('intval') + 'B')\n                if comparison_value is None:\n                    raise ValueError(\n                        'Invalid integer value %r in filter part %r' % (\n                            m.group('intval'), filter_part))\n        else:\n            comparison_value = None\n        if actual_value is None:\n            return m.group('none_inclusive')\n        return op(actual_value, comparison_value)\n\n    UNARY_OPERATORS = {\n        '': lambda v: v is not None,\n        '!': lambda v: v is None,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<op>%s)\\s*(?P<key>[a-z_]+)\n        \\s*$\n        ''' % '|'.join(map(re.escape, UNARY_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = UNARY_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        return op(actual_value)\n\n    raise ValueError('Invalid filter part %r' % filter_part)",
+          "source_sha256": "4ac56ece6ccb76094469385091bef165a92fea61b6d1ee4bbe10475f85514cb1",
+          "model_status": "ok",
+          "model_seconds": 10.13,
+          "reported_tokens": 17277,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 9.65,
+            "image_id": "sha256:1d568d6d1d7b18da7b2810e4685fed14260dc84511a7a2fcbbaa10ac02d92437",
+            "stderr_sha256": "ac317a037d658f65425b192dacf3163903e1720f3919bd5d482bfe12c953d27e",
+            "stderr_bytes": 627
+          }
+        },
+        {
+          "id": "attempt-4",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-3",
+          "source": "def _match_one(filter_part, dct):\n    COMPARISON_OPERATORS = {\n        '<': operator.lt,\n        '<=': operator.le,\n        '>': operator.gt,\n        '>=': operator.ge,\n        '=': operator.eq,\n        '!=': operator.ne,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<key>[a-z_]+)\n        \\s*(?P<op>%s)(?P<none_inclusive>\\s*\\?)?\\s*\n        (?:(?P<intval>[0-9.]+(?:[kKmMgGtTpPeEzZyY]i?[Bb]?)?)|\n            (?P<quote>[\"\\'])(?P<quotedstrval>(?:\\\\.|(?!(?P=quote)|\\\\).)+?)(?P=quote)|\n            (?P<strval>(?![0-9.])[a-z0-9A-Z]*))\n        \\s*$\n        ''' % '|'.join(map(re.escape, COMPARISON_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = COMPARISON_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        if (m.group('quotedstrval') is not None or\n                m.group('strval') is not None or\n                actual_value is not None and m.group('intval') is not None and\n                isinstance(actual_value, compat_str)):\n            if m.group('op') not in ('=', '!='):\n                raise ValueError(\n                    'Operator %s does not support string values!' % m.group('op'))\n            comparison_value = (m.group('quotedstrval') or\n                                m.group('strval') or\n                                m.group('intval'))\n            quote = m.group('quote')\n            if quote is not None:\n                comparison_value = comparison_value.replace(r'\\%s' % quote, quote)\n        elif m.group('intval') is not None:\n            try:\n                comparison_value = int(m.group('intval'))\n            except ValueError:\n                comparison_value = parse_filesize(m.group('intval'))\n                if comparison_value is None:\n                    comparison_value = parse_filesize(m.group('intval') + 'B')\n                if comparison_value is None:\n                    raise ValueError(\n                        'Invalid integer value %r in filter part %r' % (\n                            m.group('intval'), filter_part))\n        else:\n            comparison_value = None\n        if actual_value is None:\n            return m.group('none_inclusive')\n        return op(actual_value, comparison_value)\n\n    UNARY_OPERATORS = {\n        '': lambda v: v is not None,\n        '!': lambda v: v is None,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<op>%s)\\s*(?P<key>[a-z_]+)\n        \\s*$\n        ''' % '|'.join(map(re.escape, UNARY_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = UNARY_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        return op(actual_value)\n\n    raise ValueError('Invalid filter part %r' % filter_part)",
+          "source_sha256": "0c8d39f5a1dc83442d2680e68abf52dd960ea16890d99d5c31b16159dcb802ef",
+          "model_status": "ok",
+          "model_seconds": 19.66,
+          "reported_tokens": 17265,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 9.16,
+            "image_id": "sha256:c3821ef922632c926302277500c6db0e9788224ca2299cdb2ac8a503e5f692d1",
+            "stderr_sha256": "ac317a037d658f65425b192dacf3163903e1720f3919bd5d482bfe12c953d27e",
+            "stderr_bytes": 627
+          }
+        }
+      ],
+      "attempts_used": 4,
+      "selected_attempt": null,
+      "regression_test_passed": false,
+      "total_model_seconds": 57.1,
+      "tokens_reported": 60258,
+      "tokens_complete": true,
+      "hidden_evaluation_independent": false
+    },
+    {
+      "arm": "nykra",
+      "status": "completed",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def _match_one(filter_part, dct):\n    COMPARISON_OPERATORS = {\n        '<': operator.lt,\n        '<=': operator.le,\n        '>': operator.gt,\n        '>=': operator.ge,\n        '=': operator.eq,\n        '!=': operator.ne,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<key>[a-z_]+)\n        \\s*(?P<op>%s)(?P<none_inclusive>\\s*\\?)?\\s*\n        (?:\n            (?P<intval>[0-9.]+(?:[kKmMgGtTpPeEzZyY]i?[Bb]?)?)|\n            (?P<quote>[\"\\'])(?P<quotedstrval>(?:\\\\.|(?!(?P=quote)|\\\\).)+?)(?P=quote)|\n            (?P<strval>(?![0-9.])[a-z0-9A-Z]*)\n        )\n        \\s*$\n        ''' % '|'.join(map(re.escape, COMPARISON_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = COMPARISON_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        if (m.group('quotedstrval') is not None or\n                m.group('strval') is not None or\n                actual_value is not None and m.group('intval') is not None and\n                isinstance(actual_value, compat_str)):\n            if m.group('op') not in ('=', '!='):\n                raise ValueError(\n                    'Operator %s does not support string values!' % m.group('op'))\n            comparison_value = (m.group('quotedstrval') or m.group('strval') or\n                                m.group('intval'))\n            quote = m.group('quote')\n            if quote is not None:\n                comparison_value = comparison_value.replace(r'\\%s' % quote, quote)\n        else:\n            try:\n                comparison_value = int(m.group('intval'))\n            except (TypeError, ValueError):\n                comparison_value = parse_filesize(m.group('intval'))\n                if comparison_value is None:\n                    comparison_value = parse_filesize(m.group('intval') + 'B')\n                if comparison_value is None:\n                    raise ValueError(\n                        'Invalid integer value %r in filter part %r' % (\n                            m.group('intval'), filter_part))\n        if actual_value is None:\n            return m.group('none_inclusive')\n        return op(actual_value, comparison_value)\n\n    UNARY_OPERATORS = {\n        '': lambda v: v is not None,\n        '!': lambda v: v is None,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<op>%s)\\s*(?P<key>[a-z_]+)\n        \\s*$\n        ''' % '|'.join(map(re.escape, UNARY_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = UNARY_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        return op(actual_value)\n\n    raise ValueError('Invalid filter part %r' % filter_part)",
+          "source_sha256": "86ad3a9dc1a54e44c19c340f6a92f7394cb41520a400cf1c54a41b6849ea5dc1",
+          "model_status": "ok",
+          "model_seconds": 19.5,
+          "reported_tokens": 16432,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 8.38,
+            "image_id": "sha256:9be814b6c518992edc697d16c82da1e13e266ba8b288c9eb2ec85dda45a11cba",
+            "stderr_sha256": "ac317a037d658f65425b192dacf3163903e1720f3919bd5d482bfe12c953d27e",
+            "stderr_bytes": 627
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def _match_one(filter_part, dct):\n    COMPARISON_OPERATORS = {\n        '<': operator.lt,\n        '<=': operator.le,\n        '>': operator.gt,\n        '>=': operator.ge,\n        '=': operator.eq,\n        '!=': operator.ne,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<key>[a-z_]+)\n        \\s*(?P<op>%s)(?P<none_inclusive>\\s*\\?)?\\s*\n        (?:\n            (?P<intval>[0-9.]+(?:[kKmMgGtTpPeEzZyY]i?[Bb]?)?)|\n            (?P<quote>[\"\\'])(?P<quotedstrval>(?:\\\\.|(?!(?P=quote)|\\\\).)+?)(?P=quote)|\n            (?P<strval>(?![0-9.])[a-z0-9A-Z]*)\n        )\n        \\s*$\n        ''' % '|'.join(map(re.escape, COMPARISON_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = COMPARISON_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        if (m.group('quotedstrval') is not None or\n                m.group('strval') is not None or\n                # Keep numeric comparison values as strings when the original\n                # field is a string. Boolean fields must remain numeric so that\n                # False and True compare as 0 and 1.\n                actual_value is not None and m.group('intval') is not None and\n                isinstance(actual_value, compat_str)):\n            if m.group('op') not in ('=', '!='):\n                raise ValueError(\n                    'Operator %s does not support string values!' % m.group('op'))\n            comparison_value = (m.group('quotedstrval') or m.group('strval') or\n                                m.group('intval'))\n            quote = m.group('quote')\n            if quote is not None:\n                comparison_value = comparison_value.replace(r'\\%s' % quote, quote)\n        else:\n            try:\n                comparison_value = int(m.group('intval'))\n            except (TypeError, ValueError):\n                comparison_value = parse_filesize(m.group('intval'))\n                if comparison_value is None:\n                    comparison_value = parse_filesize(m.group('intval') + 'B')\n                if comparison_value is None:\n                    raise ValueError(\n                        'Invalid integer value %r in filter part %r' % (\n                            m.group('intval'), filter_part))\n        if actual_value is None:\n            return m.group('none_inclusive')\n        return op(actual_value, comparison_value)\n\n    UNARY_OPERATORS = {\n        '': lambda v: v is not None,\n        '!': lambda v: v is None,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<op>%s)\\s*(?P<key>[a-z_]+)\n        \\s*$\n        ''' % '|'.join(map(re.escape, UNARY_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = UNARY_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        return op(actual_value)\n\n    raise ValueError('Invalid filter part %r' % filter_part)",
+          "source_sha256": "6a8ac0b359ef8ca5832bd2186a1e1bd4f69e806f7340db35156ec678f65874bf",
+          "model_status": "ok",
+          "model_seconds": 11.3,
+          "reported_tokens": 17287,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 9.3,
+            "image_id": "sha256:d559bc6e3d77235dc6c575ed73e700952913745f770cd04ec829452dc2bbfc8c",
+            "stderr_sha256": "ac317a037d658f65425b192dacf3163903e1720f3919bd5d482bfe12c953d27e",
+            "stderr_bytes": 627
+          }
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "source": "def _match_one(filter_part, dct):\n    COMPARISON_OPERATORS = {\n        '<': operator.lt,\n        '<=': operator.le,\n        '>': operator.gt,\n        '>=': operator.ge,\n        '=': operator.eq,\n        '!=': operator.ne,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<key>[a-z_]+)\n        \\s*(?P<op>%s)(?P<none_inclusive>\\s*\\?)?\\s*\n        (?:(?P<intval>[0-9.]+(?:[kKmMgGtTpPeEzZyY]i?[Bb]?)?)|\n           (?P<quote>[\"\\'])(?P<quotedstrval>(?:\\\\.|(?!(?P=quote)|\\\\).)+?)(?P=quote)|\n           (?P<strval>(?![0-9.])[a-z0-9A-Z]*))\n        \\s*$\n        ''' % '|'.join(map(re.escape, COMPARISON_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = COMPARISON_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        if (m.group('quotedstrval') is not None or\n                m.group('strval') is not None or\n                actual_value is not None and m.group('intval') is not None and\n                isinstance(actual_value, compat_str)):\n            if m.group('op') not in ('=', '!='):\n                raise ValueError(\n                    'Operator %s does not support string values!' % m.group('op'))\n            comparison_value = (m.group('quotedstrval') or m.group('strval') or\n                                m.group('intval'))\n            quote = m.group('quote')\n            if quote is not None:\n                comparison_value = comparison_value.replace(r'\\%s' % quote, quote)\n        else:\n            try:\n                comparison_value = int(m.group('intval'))\n            except (TypeError, ValueError):\n                comparison_value = parse_filesize(m.group('intval'))\n                if comparison_value is None:\n                    comparison_value = parse_filesize(m.group('intval') + 'B')\n                if comparison_value is None:\n                    raise ValueError(\n                        'Invalid integer value %r in filter part %r' % (\n                            m.group('intval'), filter_part))\n        if actual_value is None:\n            return m.group('none_inclusive')\n        return op(actual_value, comparison_value)\n\n    UNARY_OPERATORS = {\n        '': lambda v: v is not None,\n        '!': lambda v: v is None,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<op>%s)\\s*(?P<key>[a-z_]+)\n        \\s*$\n        ''' % '|'.join(map(re.escape, UNARY_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = UNARY_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        return op(actual_value)\n\n    raise ValueError('Invalid filter part %r' % filter_part)",
+          "source_sha256": "f8140d7f58c86b8bb3a368c3037687c2be9238d8a129f731570b9a42909ef6a5",
+          "model_status": "ok",
+          "model_seconds": 10.55,
+          "reported_tokens": 4219,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 9.63,
+            "image_id": "sha256:acaaffa4e4bdac55b5cac82fd3bd509582be7ac689a51c297ef8d1e60a197334",
+            "stderr_sha256": "ac317a037d658f65425b192dacf3163903e1720f3919bd5d482bfe12c953d27e",
+            "stderr_bytes": 627
+          }
+        },
+        {
+          "id": "attempt-4",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def _match_one(filter_part, dct):\n    COMPARISON_OPERATORS = {\n        '<': operator.lt,\n        '<=': operator.le,\n        '>': operator.gt,\n        '>=': operator.ge,\n        '=': operator.eq,\n        '!=': operator.ne,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<key>[a-z_]+)\n        \\s*(?P<op>%s)(?P<none_inclusive>\\s*\\?)?\\s*\n        (?:\n            (?P<intval>[0-9.]+(?:[kKmMgGtTpPeEzZyY]i?[Bb]?)?)|\n            (?P<quote>[\"\\'])(?P<quotedstrval>(?:\\\\.|(?!(?P=quote)|\\\\).)+?)(?P=quote)|\n            (?P<strval>(?![0-9.])[a-z0-9A-Z]*)\n        )\n        \\s*$\n        ''' % '|'.join(map(re.escape, COMPARISON_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = COMPARISON_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        if (m.group('quotedstrval') is not None or\n                m.group('strval') is not None or\n                actual_value is not None and m.group('intval') is not None and\n                isinstance(actual_value, compat_str)):\n            if m.group('op') not in ('=', '!='):\n                raise ValueError(\n                    'Operator %s does not support string values!' % m.group('op'))\n            comparison_value = (m.group('quotedstrval') or m.group('strval') or\n                                m.group('intval'))\n            quote = m.group('quote')\n            if quote is not None:\n                comparison_value = comparison_value.replace(r'\\%s' % quote, quote)\n        elif isinstance(actual_value, bool):\n            value = m.group('intval')\n            if value not in ('0', '1'):\n                raise ValueError(\n                    'Invalid boolean value %r in filter part %r' % (value, filter_part))\n            comparison_value = bool(int(value))\n        else:\n            try:\n                comparison_value = int(m.group('intval'))\n            except (TypeError, ValueError):\n                comparison_value = parse_filesize(m.group('intval'))\n                if comparison_value is None:\n                    comparison_value = parse_filesize(m.group('intval') + 'B')\n                if comparison_value is None:\n                    raise ValueError(\n                        'Invalid integer value %r in filter part %r' % (\n                            m.group('intval'), filter_part))\n        if actual_value is None:\n            return m.group('none_inclusive')\n        return op(actual_value, comparison_value)\n\n    UNARY_OPERATORS = {\n        '': lambda v: v is not None,\n        '!': lambda v: v is None,\n    }\n    operator_rex = re.compile(r'''(?x)\\s*\n        (?P<op>%s)\\s*(?P<key>[a-z_]+)\n        \\s*$\n        ''' % '|'.join(map(re.escape, UNARY_OPERATORS.keys())))\n    m = operator_rex.search(filter_part)\n    if m:\n        op = UNARY_OPERATORS[m.group('op')]\n        actual_value = dct.get(m.group('key'))\n        return op(actual_value)\n\n    raise ValueError('Invalid filter part %r' % filter_part)",
+          "source_sha256": "ce007fdaad9a2be9a35582fff4789bed1f0f2242a426b5db50d1e9704655f2f5",
+          "model_status": "ok",
+          "model_seconds": 20.81,
+          "reported_tokens": 16519,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 8.84,
+            "image_id": "sha256:4d9ecddc367e9f865440785d1a3b9dcce4a1851082e2e2af9f447e22750c15a6",
+            "stderr_sha256": "25d58546bd882c08dd64c2ad34a87fe58aa806ec1d87f3734a410e06fb5fd556",
+            "stderr_bytes": 627
+          }
+        }
+      ],
+      "attempts_used": 4,
+      "selected_attempt": null,
+      "regression_test_passed": false,
+      "total_model_seconds": 62.16,
+      "tokens_reported": 54457,
+      "tokens_complete": true,
+      "hidden_evaluation_independent": false
+    }
+  ],
+  "prevalidation": {
+    "buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "exit_code": 1,
+      "elapsed": 16.84,
+      "image_id": "sha256:eb0d65fed8aeb7c6170804d724b247336708af0d53b8189248ca09c6801e4e4b",
+      "stderr_sha256": "ee1653f075c9522e508819e1923f80cc8a56920c13821679b385a95b47e3768d",
+      "stderr_bytes": 627
+    },
+    "reference_fix": {
+      "status": "ok",
+      "passed": true,
+      "exit_code": 0,
+      "elapsed": 10.41,
+      "image_id": "sha256:922e2dec96cb9b552b530213bff222e009082a5a6ebf757e5d2796e86bc3f6d8",
+      "stderr_sha256": "b2c17ea8d4ea207f0764277d8333ab89859c42a2a7d2748e8ae14fd91df0812f",
+      "stderr_bytes": 223
+    },
+    "eligible": true
+  }
+}

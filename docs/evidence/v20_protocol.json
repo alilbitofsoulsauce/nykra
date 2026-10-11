@@ -1,0 +1,124 @@
+{
+  "id": "nykra-unseen-cross-project-replication-v1",
+  "frozen_at": "2026-10-11",
+  "model": "gpt-6-luna",
+  "model_reasoning_effort": "low",
+  "grading": "one-function source replacement, true historical buggy repo, recorded upstream public regression; post-inference independent evaluator-owned hidden behavior and unrelated upstream tests; reference prevalidation mandatory",
+  "docker_image_id": "sha256:a4ae367e48252c42a50fcb5136b9fdf6fb2544e048494f4004891b3ca38e63e7",
+  "hidden_source_sha256": "ab1bd4401285691b9036efbd12f7ee23bada9c8f8838fcd033ecd5e30cacfa0a",
+  "tasks": [
+    {
+      "id": "youtube-dl-3",
+      "project": "youtube-dl",
+      "bug_id": 3,
+      "buggy_commit": "f5469da9e6e259c1690c7ef54f1da1c19f65036f",
+      "fixed_commit": "95f3f7c20a05e7ac490e768b8470b20538ef8581",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "unescapeHTML",
+      "issue": "[utils] Fix unescapeHTML for misformed string like \"&a&quot;\" (#13935)",
+      "public_test": "test.test_utils.TestUtil.test_unescape_html",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_date_from_str"
+      ],
+      "arm_order": [
+        "baseline",
+        "nykra"
+      ],
+      "origin": "BugsInPy historical upstream defect"
+    },
+    {
+      "id": "youtube-dl-5",
+      "project": "youtube-dl",
+      "bug_id": 5,
+      "buggy_commit": "b02b960c6bba834d9e7199ac53430c7933079dc8",
+      "fixed_commit": "7dc2a74e0ac9cfa74cc9de6f586ffd5cc8bac0d9",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "unified_timestamp",
+      "issue": "[utils] Fix unified_timestamp for formats parsed by parsedate_tz()",
+      "public_test": "test.test_utils.TestUtil.test_unified_timestamps",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_unified_dates"
+      ],
+      "arm_order": [
+        "nykra",
+        "baseline"
+      ],
+      "origin": "BugsInPy historical upstream defect"
+    },
+    {
+      "id": "youtube-dl-23",
+      "project": "youtube-dl",
+      "bug_id": 23,
+      "buggy_commit": "a22b2fd19bd8c08d50f884d1903486d4f00f76ec",
+      "fixed_commit": "b3ee552e4b918fb720111b23147e24fa5475a74b",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "js_to_json",
+      "issue": "[utils] Handle single-line comments in js_to_json",
+      "public_test": "test.test_utils.TestUtil.test_js_to_json_edgecases",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_js_to_json_realworld"
+      ],
+      "arm_order": [
+        "baseline",
+        "nykra"
+      ],
+      "origin": "BugsInPy historical upstream defect"
+    },
+    {
+      "id": "tqdm-1",
+      "project": "tqdm",
+      "bug_id": 1,
+      "buggy_commit": "8cc777fe8401a05d07f2c97e65d15e4460feab88",
+      "fixed_commit": "c0dcf39b046d1b4ff6de14ac99ad9a1b10487512",
+      "source_file": "tqdm/contrib/__init__.py",
+      "test_file": "tqdm/tests/tests_contrib.py",
+      "function": "tenumerate",
+      "issue": "fix `tenumerate(start)`",
+      "public_test": "tqdm/tests/tests_contrib.py::test_enumerate",
+      "hidden_upstream_tests": [
+        "tqdm/tests/tests_contrib.py::test_zip",
+        "tqdm/tests/tests_contrib.py::test_map"
+      ],
+      "arm_order": [
+        "nykra",
+        "baseline"
+      ],
+      "origin": "BugsInPy historical upstream defect"
+    }
+  ],
+  "previously_used_task_ids": [
+    "youtube-dl-1",
+    "youtube-dl-10",
+    "youtube-dl-11",
+    "youtube-dl-13",
+    "youtube-dl-17",
+    "youtube-dl-20",
+    "youtube-dl-21",
+    "PySnooper-3"
+  ],
+  "shared_prefix_calls": 3,
+  "fork_draws_per_arm": 2,
+  "fork_budget_calls_per_sample": 1,
+  "max_model_seconds_per_call": 70,
+  "soft_reported_tokens_per_draw": 25000,
+  "design": "ONE fresh shared up-to-three-attempt sequence per registered task, graded once; if 3 genuine public failures, force actual divergence at action4. Run 2 independent first-continuation draws per policy from identical frozen prefix. Randomness not seeded: repeat variability measured but not eliminated.",
+  "repeated_draw_interpretation": "Two draws per policy are within-task correlated; compare at task level and separately describe draws; never claim n=draws independent tasks.",
+  "no_hard_token_cap": true,
+  "docker_isolation_certified": false,
+  "official_bugsinpy_harness": false,
+  "official_swebench": false,
+  "post_inference_hidden": "Run once for each public passing repair and never disclose hidden feedback before all draws complete.",
+  "data_leakage_note": "Historical issues may appear in model pretraining despite never used previously by Nykra.",
+  "pre_inference_amendment": {
+    "timestamp": "2026-10-11",
+    "original_protocol_sha256": "5aa9667b4bfeb468029cf5551bc93c1738cbdbcc2bc3cd53e750d3480fb7fa00",
+    "reason": "Ref-only prevalidation uncovered invalid RFC offset hidden oracle on youtube-dl-5 and missing nose==1.3.7 dependency on historical tqdm test; both corrected before ANY model calls",
+    "original_hidden_file": "docs/evidence/v20_hidden_spec_initial.py",
+    "original_prevalidation": "docs/evidence/v20_prevalidation_initial.json",
+    "added_test_image_dependency": "nose==1.3.7",
+    "image_base": "nykra-py38-pytest:v18b"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "nykra-v20-real-task-result-v1",
+  "task_id": "youtube-dl-23",
+  "protocol_sha256": "9eec931522e43e5c3afadeaa592e0a9cbd1b1c7c7639153ad7219b6ad731c2ab",
+  "model": "gpt-6-luna",
+  "prevalidated_eligible": true,
+  "status": "not_forkable",
+  "shared_prefix": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "source": "def js_to_json(code):\n    def fix_kv(m):\n        v = m.group(0)\n        if v in ('true', 'false', 'null'):\n            return v\n        elif v.startswith('/*') or v.startswith('//') or v == ',':\n            return \"\"\n\n        if v[0] in (\"'\", '\"'):\n            v = re.sub(r'(?s)\\\\.|\"', lambda m: {\n                '\"': '\\\\\"',\n                \"\\\\'\": \"'\",\n                '\\\\\n': '',\n                '\\\\x': '\\\\u00',\n            }.get(m.group(0), m.group(0)), v[1:-1])\n\n        INTEGER_TABLE = (\n            (r'^(0[xX][0-9a-fA-F]+)\\s*:?$', 16),\n            (r'^(0+[0-7]+)\\s*:?$', 8),\n        )\n\n        for regex, base in INTEGER_TABLE:\n            im = re.match(regex, v)\n            if im:\n                i = int(im.group(1), base)\n                return '\"%d\":' % i if v.endswith(':') else '%d' % i\n\n        return '\"%s\"' % v\n\n    return re.sub(r'''(?sx)\n        \"(?:[^\"\\\\]*(?:\\\\\\\\|\\\\['\"nurtbfx/\\n]))*[^\"\\\\]*\"|\n        '(?:[^'\\\\]*(?:\\\\\\\\|\\\\['\"nurtbfx/\\n]))*[^'\\\\]*'|\n        /\\*.*?\\*/|//[^\\n\\r]*|,(?=\\s*[\\]}])|\n        [a-zA-Z_][.a-zA-Z_0-9]*|\n        \\b(?:0[xX][0-9a-fA-F]+|0+[0-7]+)(?:\\s*:)?|\n        [0-9]+(?=\\s*:)\n        ''', fix_kv, code)",
+      "source_sha256": "392fb1f840e648174cab0346a91d6e0851277b6ec0d258067d4fd3be374d2cda",
+      "model_status": "ok",
+      "model_seconds": 16.8,
+      "tokens_reported": 1682,
+      "public": {
+        "status": "setup_error",
+        "passed": false,
+        "error_type": "SyntaxError"
+      }
+    }
+  ],
+  "shared_prefix_reason": "infrastructure_or_invalid",
+  "fork_actions": null,
+  "draws": []
+}

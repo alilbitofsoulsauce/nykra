@@ -1,0 +1,59 @@
+{
+  "protocol_id": "nykra-native-codex-matched-pilot-v1",
+  "date": "2026-10-11",
+  "runner": "official-codex-cli-0.160.0-checksum-verified",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "authentication": "existing_chatgpt",
+  "policy_arms": {
+    "baseline": "independent_restart_with_same_public_failure_feedback",
+    "nykra": "depth_revision_with_same_public_failure_feedback"
+  },
+  "task_order": [
+    {
+      "task": "reservation-gaps",
+      "run_order": [
+        "baseline",
+        "nykra"
+      ]
+    },
+    {
+      "task": "ledger-undo",
+      "run_order": [
+        "nykra",
+        "baseline"
+      ]
+    },
+    {
+      "task": "csv-records",
+      "run_order": [
+        "baseline",
+        "nykra"
+      ]
+    },
+    {
+      "task": "normalized-path",
+      "run_order": [
+        "nykra",
+        "baseline"
+      ]
+    }
+  ],
+  "attempt_limit_per_task_arm": 2,
+  "run_timeout_seconds": 75,
+  "model_permissions": "read-only sandbox, ignore user config, approval never, stdin DEVNULL, output-schema JSON",
+  "training_examples_per_task": 14,
+  "heldout_examples_per_task": 32,
+  "heldout_access": "only the external evaluator after selecting the best candidate by training score; never in prompts",
+  "allowed_candidate_code": "one AST-validated Python solve function in restricted coding_worker subprocess",
+  "primary_outcome": "fraction of task arms passing all hidden heldout cases; intent to treat with failed/timeout arms unsuccessful",
+  "secondary_outcomes": [
+    "heldout case pass fraction",
+    "model turns",
+    "tokens used if CLI reports",
+    "wall time seconds",
+    "training scores"
+  ],
+  "comparison": "paired, exploratory descriptive only, n=4 tasks, nonrandomized arm order counterbalanced; do not claim general efficacy or statistical significance",
+  "notes": "First warm-up inference on reservation-gaps was not counted. Fixtures and protocol were written before the formal paired trials; tasks are local synthetic function-level bug repairs rather than SWE-bench repository issues."
+}

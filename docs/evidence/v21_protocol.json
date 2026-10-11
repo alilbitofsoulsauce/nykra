@@ -1,0 +1,145 @@
+{
+  "id": "nykra-v21-actionable-public-feedback-v1",
+  "pre_inference_freeze_date": "2026-10-11",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "comparison": "Bare public status vs bounded actionable public-only diagnostic from identical first model-generated candidate. No exploration-policy difference; both revise that same candidate. Each arm has 1 independent 70 second model call.",
+  "count": 6,
+  "tasks": [
+    {
+      "id": "youtube-dl-24",
+      "project": "youtube-dl",
+      "bug_id": 24,
+      "buggy_commit": "2c6da7df4a4d69ec933688e3c53795fd3436a1c6",
+      "fixed_commit": "e5a088dc4be4fdcc96927a9f1b7284d4cd49c415",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_YoutubeDL.py",
+      "function": "_match_one",
+      "issue": "[utils] Fix --match-filter for int-like strings (closes #11082)",
+      "public_test": "test.test_YoutubeDL.TestYoutubeDL.test_match_filter",
+      "hidden_upstream_tests": [],
+      "arm_order": [
+        "bare",
+        "enriched"
+      ]
+    },
+    {
+      "id": "youtube-dl-25",
+      "project": "youtube-dl",
+      "bug_id": 25,
+      "buggy_commit": "9e5751b9fe72f7425e4cb3f22a56b6a95b59e41d",
+      "fixed_commit": "e4659b45474acb563db0ab4284abdfc80837307e",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "js_to_json",
+      "issue": "[utils] Correct octal/hexadecimal number detection in js_to_json",
+      "public_test": "test.test_utils.TestUtil.test_js_to_json_realworld",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_js_to_json_edgecases"
+      ],
+      "arm_order": [
+        "enriched",
+        "bare"
+      ]
+    },
+    {
+      "id": "youtube-dl-27",
+      "project": "youtube-dl",
+      "bug_id": 27,
+      "buggy_commit": "d631d5f9f27f93767226192e4288990413fa9dbd",
+      "fixed_commit": "db2fe38b5508cbd28b89893219d9cccd41406851",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "parse_dfxp_time_expr",
+      "issue": "[utils] Support alternative timestamp format in TTML",
+      "public_test": "test.test_utils.TestUtil.test_parse_dfxp_time_expr",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_dfxp2srt"
+      ],
+      "arm_order": [
+        "bare",
+        "enriched"
+      ]
+    },
+    {
+      "id": "youtube-dl-28",
+      "project": "youtube-dl",
+      "bug_id": 28,
+      "buggy_commit": "bd1512d19649c280197729814766d590ea6c023b",
+      "fixed_commit": "7aefc49c4013efb5056b2c1237e22c52cb5d3c49",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "_htmlentity_transform",
+      "issue": "[utils] Skip invalid/non HTML entities (Closes #7518)",
+      "public_test": "test.test_utils.TestUtil.test_unescape_html",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_clean_html"
+      ],
+      "arm_order": [
+        "enriched",
+        "bare"
+      ]
+    },
+    {
+      "id": "youtube-dl-29",
+      "project": "youtube-dl",
+      "bug_id": 29,
+      "buggy_commit": "c514b0ec655b23e7804eb18df04daa863d973f32",
+      "fixed_commit": "6a750402787dfc1f39a9ad347f2d78ae1c94c52c",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "unified_strdate",
+      "issue": "[utils] unified_strdate: Return None if the date format can't be recognized (fixes #7340)",
+      "public_test": "test.test_utils.TestUtil.test_unified_dates",
+      "hidden_upstream_tests": [],
+      "arm_order": [
+        "bare",
+        "enriched"
+      ]
+    },
+    {
+      "id": "youtube-dl-43",
+      "project": "youtube-dl",
+      "bug_id": 43,
+      "buggy_commit": "cecaaf3f58ad9f544dbb79af1e565d9353fa2b2d",
+      "fixed_commit": "d6c7a367e88096bb17e323954002c084477fe908",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "url_basename",
+      "issue": "[utils] Fix url_basename",
+      "public_test": "test.test_utils.TestUtil.test_url_basename",
+      "hidden_upstream_tests": [],
+      "arm_order": [
+        "enriched",
+        "bare"
+      ]
+    }
+  ],
+  "docker_image_id": "sha256:a4ae367e48252c42a50fcb5136b9fdf6fb2544e048494f4004891b3ca38e63e7",
+  "hidden_spec_sha256": "c9de172006b10ac2c292e29ed0d1fa466238ddb0d2185d23b45e9c285c9e3810",
+  "previously_used_ids": [
+    "youtube-dl-3",
+    "youtube-dl-5",
+    "youtube-dl-23",
+    "youtube-dl-17",
+    "youtube-dl-20",
+    "youtube-dl-21",
+    "PySnooper-3",
+    "tqdm-1"
+  ],
+  "initial_shared_calls": 1,
+  "continuations_per_arm": 1,
+  "max_seconds_per_call": 70,
+  "soft_reported_token_cap_per_call": 25000,
+  "evaluation": "The original buggy commit must fail public AND hidden, fixed commit must pass both; no model calls before prevalidation. Only publicly passing selected continuation receives hidden grading once after both arms finished.",
+  "prefix_syntax_failure": "Model-invalid syntax/contract may be used as feedback; evaluator image/build/run failures excluded. No hidden feedback to models.",
+  "statistical_limits": "Six issues from one upstream project, historical leakage unknown; no hard token API limit, non-independent model samples, small N, no generalized effect claims.",
+  "pre_inference_amendment": {
+    "original_protocol_sha256": "6534cca67e1294fc43134b7e499f72adfcd17466add16898376c0a9495c9c5b6",
+    "original_protocol": "docs/evidence/v21_protocol_initial.json",
+    "original_hidden_spec": "docs/evidence/v21_hidden_spec_initial.py",
+    "original_prevalidation": "docs/evidence/v21_prevalidation_initial.json",
+    "reason": "Reference-only verification found missing historically named upstream private test methods on 24,29,43, an overlarge numeric entity in hidden 28 produced OverflowError in both versions, and original hidden 25 did not distinguish. Removed nonexistent unrelated private selectors, replaced 28 with supported out-of-range ValueError case, added 25 behavior that must distinguish; all before any Codex inference.",
+    "all_changes_before_new_model_calls": true
+  }
+}

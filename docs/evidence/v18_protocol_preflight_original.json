@@ -1,0 +1,98 @@
+{
+  "schema": "nykra-real-repair-independent-v18",
+  "version": "0.18.0",
+  "frozen_on": "2026-10-11",
+  "model": "gpt-6-luna",
+  "model_reasoning_effort": "low",
+  "image_id": "sha256:f8a5d80318a550cce52994306c24453b07cf25dbaa61a2a299f359e92bec2016",
+  "max_attempts_per_arm": 3,
+  "max_seconds_per_call": 70,
+  "model_seconds_budget_per_arm": 200,
+  "soft_reported_token_budget_per_arm": 42000,
+  "token_cap_note": "No hard in-call API token limit; stop additional calls once reported consumption meets cap, record overshoot or missing counters.",
+  "hidden_spec_sha256": "93e386646f556d65fccea05ce7d66b5cc4afcb78a7a36f7f7b6419fe9766c4b6",
+  "scope": "4 historical BugsInPy issues; strict public/hidden test disjointness; no hidden feedback during proposals; branch selection actual shared policy; not official SWE-bench",
+  "tasks": [
+    {
+      "id": "youtube-dl-17",
+      "project": "youtube-dl",
+      "bug_id": 17,
+      "buggy_commit": "4bf22f7a1014c55e3358b5a419945071b152eafc",
+      "fixed_commit": "5b232f46dcbdc805507c02edd4fd598f31d544d5",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "cli_bool_option",
+      "issue": "[utils] Skip missing params in cli_bool_option (closes #13865)",
+      "public_test": "test.test_utils.TestUtil.test_cli_bool_option",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_get_element_by_class",
+        "test.test_utils.TestUtil.test_get_elements_by_attribute"
+      ],
+      "arm_order": [
+        "baseline",
+        "nykra"
+      ]
+    },
+    {
+      "id": "youtube-dl-20",
+      "project": "youtube-dl",
+      "bug_id": 20,
+      "buggy_commit": "b6c9fe416243373bcb59eb8aa5ef0baca8f3c97c",
+      "fixed_commit": "609ff8ca19f1c4c168a81121074b91cc0f0d4c47",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "get_elements_by_attribute",
+      "issue": "[utils] Support attributes with no values in get_elements_by_attribute()",
+      "public_test": "test.test_utils.TestUtil.test_get_element_by_attribute",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_get_element_by_class",
+        "test.test_utils.TestUtil.test_get_elements_by_class"
+      ],
+      "arm_order": [
+        "nykra",
+        "baseline"
+      ]
+    },
+    {
+      "id": "youtube-dl-21",
+      "project": "youtube-dl",
+      "bug_id": 21,
+      "buggy_commit": "96182695e4e37795a30ab143129c91dab18a9865",
+      "fixed_commit": "4b5de77bdb7765df4797bf068592926285ba709a",
+      "source_file": "youtube_dl/utils.py",
+      "test_file": "test/test_utils.py",
+      "function": "urljoin",
+      "issue": "[utils] Process bytestrings in urljoin (closes #12369)",
+      "public_test": "test.test_utils.TestUtil.test_urljoin",
+      "hidden_upstream_tests": [
+        "test.test_utils.TestUtil.test_get_element_by_attribute",
+        "test.test_utils.TestUtil.test_get_elements_by_class"
+      ],
+      "arm_order": [
+        "baseline",
+        "nykra"
+      ]
+    },
+    {
+      "id": "PySnooper-3",
+      "project": "PySnooper",
+      "bug_id": 3,
+      "buggy_commit": "6e3d797be3fa0a746fb5b1b7c7fea78eb926c208",
+      "fixed_commit": "15555ed760000b049aff8fecc79d29339c1224c3",
+      "source_file": "pysnooper/pysnooper.py",
+      "test_file": "tests/test_pysnooper.py",
+      "function": "get_write_function",
+      "issue": "Fix #2",
+      "public_test": "tests/test_pysnooper.py::test_file_output",
+      "hidden_upstream_tests": [
+        "tests/test_pysnooper.py::test_string_io",
+        "tests/test_pysnooper.py::test_variables",
+        "tests/test_pysnooper.py::test_method_and_prefix"
+      ],
+      "arm_order": [
+        "nykra",
+        "baseline"
+      ]
+    }
+  ]
+}

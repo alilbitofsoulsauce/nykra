@@ -1,0 +1,53 @@
+{
+  "record_type": "nykra-local-agent-runner-probe-v1",
+  "date": "2026-10-11",
+  "workstation_driver": "Rel.AI",
+  "privacy": {
+    "codex_auth_mode": "chatgpt (configuration metadata only)",
+    "credential_values_read": false,
+    "credential_values_saved": false,
+    "explicit_paid_api_fallback": false
+  },
+  "attempts": [
+    {
+      "runner": "OpenCode",
+      "method": "Existing installed CLI, tool-disabled free-model request",
+      "result": "timeout",
+      "verified_model_output": false,
+      "note": "Previous free-model smoke probes did not produce a valid model response."
+    },
+    {
+      "runner": "Codex",
+      "method": "npm isolated prefix @openai/codex version 0.162.1",
+      "result": "timeout",
+      "verified_model_output": false,
+      "duration_seconds": 115,
+      "note": "Interrupted online installation left an invalid Windows binary (WinError 193)."
+    },
+    {
+      "runner": "Codex",
+      "method": "offline npm retry at isolated prefix",
+      "result": "install_exit_zero_but_binary_unavailable",
+      "verified_model_output": false,
+      "note": "Subsequent offline install did not leave a usable native executable."
+    },
+    {
+      "runner": "Codex",
+      "method": "explicit platform alias offline npm installation",
+      "result": "failure",
+      "verified_model_output": false,
+      "note": "Windows platform alias could not be resolved from local cache."
+    },
+    {
+      "runner": "Codex",
+      "method": "official signed checksum-validating standalone PowerShell installer, fixed version 0.162.1",
+      "result": "timeout",
+      "verified_model_output": false,
+      "duration_seconds": 155,
+      "note": "No standalone codex.exe found at the requested isolated path or default current-version locations."
+    }
+  ],
+  "confirmed_native_inference_successes": 0,
+  "controlled_repository_repair_runs": 0,
+  "interpretation": "Runner availability and authentication remain unverified. These are setup diagnostics, not a benchmark of model quality. No result should be reported as a successful Codex or OpenCode completion."
+}

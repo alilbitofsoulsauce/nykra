@@ -1,0 +1,253 @@
+{
+  "schema": "nykra-v23-portable-replay-sessions-v1",
+  "protocol_sha256": "fc6f0b42cd4a2d2153058319cfe34f71ea10e65246ac3acd82450bed5c0e5ed9",
+  "source": "Previously model-generated source replayed with NO new model calls",
+  "sessions": [
+    {
+      "session_id": "2df37e83f6e345bfa1bf543b7f89413f",
+      "task_id": "youtube-dl-27",
+      "mode": "ordinary",
+      "arm": "depth",
+      "files": [
+        {
+          "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/state.json",
+          "bytes": 11125,
+          "sha256": "ccd78a8a79cc2af2e84e5d2de74661ba704a3b6d75c6ecf633289b161ea9c283"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/attempt-1.diff",
+          "bytes": 1174,
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/attempt-2.diff",
+          "bytes": 1167,
+          "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/attempt-3.diff",
+          "bytes": 1169,
+          "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/attempt-4.diff",
+          "bytes": 1169,
+          "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff"
+        }
+      ]
+    },
+    {
+      "session_id": "b689e64486f2446fbd24b60d7d9628e0",
+      "task_id": "youtube-dl-27",
+      "mode": "ordinary",
+      "arm": "adaptive",
+      "files": [
+        {
+          "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/state.json",
+          "bytes": 10723,
+          "sha256": "8f8600c60e0c7a03d567dbd43438b9c3d08cc0308bdcf89690d3bd48422463c1"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/attempt-1.diff",
+          "bytes": 1174,
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/attempt-2.diff",
+          "bytes": 1167,
+          "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/attempt-3.diff",
+          "bytes": 1169,
+          "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/attempt-4.diff",
+          "bytes": 544,
+          "sha256": "53f7a49a5b88d7e80c23e9c303b25bb34ce747fb68e9dd151160bd4b9b3b9a74"
+        }
+      ]
+    },
+    {
+      "session_id": "50c4cfc36aeb44228c380c356f18906e",
+      "task_id": "youtube-dl-27",
+      "mode": "shared",
+      "arm": "depth",
+      "files": [
+        {
+          "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/state.json",
+          "bytes": 11124,
+          "sha256": "2f17c657310d448d935474fb67016195ba09ea834a5683f4379892749e65ce35"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/attempt-1.diff",
+          "bytes": 1174,
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/attempt-2.diff",
+          "bytes": 1167,
+          "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/attempt-3.diff",
+          "bytes": 1169,
+          "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/attempt-4.diff",
+          "bytes": 1169,
+          "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff"
+        }
+      ]
+    },
+    {
+      "session_id": "b3ab813c10b74d40bf91e6a8f0dda030",
+      "task_id": "youtube-dl-27",
+      "mode": "shared",
+      "arm": "adaptive",
+      "files": [
+        {
+          "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/state.json",
+          "bytes": 11071,
+          "sha256": "96b954dce0f1ea9f1442c591f13b94233d093208ad7d2a9d4486b459daf253d6"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/attempt-1.diff",
+          "bytes": 1174,
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/attempt-2.diff",
+          "bytes": 1167,
+          "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/attempt-3.diff",
+          "bytes": 1169,
+          "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/attempt-4.diff",
+          "bytes": 544,
+          "sha256": "53f7a49a5b88d7e80c23e9c303b25bb34ce747fb68e9dd151160bd4b9b3b9a74"
+        }
+      ]
+    },
+    {
+      "session_id": "1a9434bf1a4a4882ab26ea53f4a5f44f",
+      "task_id": "youtube-dl-43",
+      "mode": "ordinary",
+      "arm": "depth",
+      "files": [
+        {
+          "path": "docs/evidence/v23_sessions/1a9434bf1a4a4882ab26ea53f4a5f44f/state.json",
+          "bytes": 5911,
+          "sha256": "4ca66aed6f232ee12f8a0242bcbb9660b4e5685e0be8bbcf549519245a647ada"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/1a9434bf1a4a4882ab26ea53f4a5f44f/attempt-1.diff",
+          "bytes": 189,
+          "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/1a9434bf1a4a4882ab26ea53f4a5f44f/attempt-2.diff",
+          "bytes": 189,
+          "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/1a9434bf1a4a4882ab26ea53f4a5f44f/attempt-3.diff",
+          "bytes": 381,
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e"
+        }
+      ]
+    },
+    {
+      "session_id": "d133d3954d7c48d497606e976044fb42",
+      "task_id": "youtube-dl-43",
+      "mode": "ordinary",
+      "arm": "adaptive",
+      "files": [
+        {
+          "path": "docs/evidence/v23_sessions/d133d3954d7c48d497606e976044fb42/state.json",
+          "bytes": 5914,
+          "sha256": "e1b15f9734014d66ebc88da1b4ce9c14a41c5bffa2e7ebb67662cd57e26bab52"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/d133d3954d7c48d497606e976044fb42/attempt-1.diff",
+          "bytes": 189,
+          "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/d133d3954d7c48d497606e976044fb42/attempt-2.diff",
+          "bytes": 189,
+          "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/d133d3954d7c48d497606e976044fb42/attempt-3.diff",
+          "bytes": 381,
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e"
+        }
+      ]
+    },
+    {
+      "session_id": "97fb52a8f82942b48a50d2f0a49c86ce",
+      "task_id": "youtube-dl-43",
+      "mode": "shared",
+      "arm": "depth",
+      "files": [
+        {
+          "path": "docs/evidence/v23_sessions/97fb52a8f82942b48a50d2f0a49c86ce/state.json",
+          "bytes": 5911,
+          "sha256": "95e3fd0d829bc8872d3605fabcce27a83ddeec167e741daedba8e6619dd706cc"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/97fb52a8f82942b48a50d2f0a49c86ce/attempt-1.diff",
+          "bytes": 189,
+          "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/97fb52a8f82942b48a50d2f0a49c86ce/attempt-2.diff",
+          "bytes": 189,
+          "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/97fb52a8f82942b48a50d2f0a49c86ce/attempt-3.diff",
+          "bytes": 381,
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e"
+        }
+      ]
+    },
+    {
+      "session_id": "f1eb223f48b34778ae0d2c2f055005cb",
+      "task_id": "youtube-dl-43",
+      "mode": "shared",
+      "arm": "adaptive",
+      "files": [
+        {
+          "path": "docs/evidence/v23_sessions/f1eb223f48b34778ae0d2c2f055005cb/state.json",
+          "bytes": 6262,
+          "sha256": "ffc5dff00ab6ef303cd528c1e6853d871289999c83c99a8e224002880dfa3ba2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/f1eb223f48b34778ae0d2c2f055005cb/attempt-1.diff",
+          "bytes": 189,
+          "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/f1eb223f48b34778ae0d2c2f055005cb/attempt-2.diff",
+          "bytes": 189,
+          "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "path": "docs/evidence/v23_sessions/f1eb223f48b34778ae0d2c2f055005cb/attempt-3.diff",
+          "bytes": 381,
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e"
+        }
+      ]
+    }
+  ],
+  "session_count": 8,
+  "file_count": 36
+}

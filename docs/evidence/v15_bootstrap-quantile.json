@@ -1,0 +1,75 @@
+{
+  "protocol": "nykra-git-regression-pilot-v1",
+  "protocol_sha256": "04d42bbde0efabe7dfe234765be3d353400ca8db385ee9f28663a8291863d93f",
+  "task_id": "bootstrap-quantile",
+  "model": "gpt-6-luna",
+  "state": "completed",
+  "arms": [
+    {
+      "arm": "baseline",
+      "task": "bootstrap-quantile",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 1158,
+      "token_reporting_complete": true,
+      "model_seconds": 9.77,
+      "final_diff": "diff --git a/nykra/benchmarks.py b/nykra/benchmarks.py\nindex ed58a2a..2fa4ca3 100644\n--- a/nykra/benchmarks.py\n+++ b/nykra/benchmarks.py\n@@ -95,7 +95,8 @@ def _bootstrap_interval(deltas:list[int], *, seed:int, reps:int=4000)->list[floa\n         means.append(sum(deltas[rng.randrange(length)] for j in range(length))/length)\n     means.sort()\n     return [round(means[int(reps*0.025)],5),\n-            round(means[min(reps-1,int(reps*0.85))],5)]\n+            round(means[min(reps-1,int(reps*0.975))],5)]\n+\n \n \n \n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def _bootstrap_interval(deltas:list[int], *, seed:int, reps:int=4000)->list[float]:\n    if not deltas:\n        raise NykraError(\"cannot calculate CI on an empty benchmark\")\n    rng = random.Random(seed^0x5F3759DF)\n    length=len(deltas)\n    means=[]\n    for _ in range(reps):\n        means.append(sum(deltas[rng.randrange(length)] for j in range(length))/length)\n    means.sort()\n    return [round(means[int(reps*0.025)],5),\n            round(means[min(reps-1,int(reps*0.975))],5)]",
+          "seconds": 9.77,
+          "tokens": 1158,
+          "source_sha256": "9dc085050345f370bcd00f594449e347fced0d9e336150ebef894a0c7da342f9",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/benchmarks.py b/nykra/benchmarks.py\nindex ed58a2a..2fa4ca3 100644\n--- a/nykra/benchmarks.py\n+++ b/nykra/benchmarks.py\n@@ -95,7 +95,8 @@ def _bootstrap_interval(deltas:list[int], *, seed:int, reps:int=4000)->list[floa\n         means.append(sum(deltas[rng.randrange(length)] for j in range(length))/length)\n     means.sort()\n     return [round(means[int(reps*0.025)],5),\n-            round(means[min(reps-1,int(reps*0.85))],5)]\n+            round(means[min(reps-1,int(reps*0.975))],5)]\n+\n \n \n \n",
+          "parent": null
+        }
+      ]
+    },
+    {
+      "arm": "nykra",
+      "task": "bootstrap-quantile",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 15242,
+      "token_reporting_complete": true,
+      "model_seconds": 12.5,
+      "final_diff": "diff --git a/nykra/benchmarks.py b/nykra/benchmarks.py\nindex ed58a2a..2fa4ca3 100644\n--- a/nykra/benchmarks.py\n+++ b/nykra/benchmarks.py\n@@ -95,7 +95,8 @@ def _bootstrap_interval(deltas:list[int], *, seed:int, reps:int=4000)->list[floa\n         means.append(sum(deltas[rng.randrange(length)] for j in range(length))/length)\n     means.sort()\n     return [round(means[int(reps*0.025)],5),\n-            round(means[min(reps-1,int(reps*0.85))],5)]\n+            round(means[min(reps-1,int(reps*0.975))],5)]\n+\n \n \n \n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def _bootstrap_interval(deltas:list[int], *, seed:int, reps:int=4000)->list[float]:\n    if not deltas:\n        raise NykraError(\"cannot calculate CI on an empty benchmark\")\n    rng = random.Random(seed^0x5F3759DF)\n    length=len(deltas)\n    means=[]\n    for _ in range(reps):\n        means.append(sum(deltas[rng.randrange(length)] for j in range(length))/length)\n    means.sort()\n    return [round(means[int(reps*0.025)],5),\n            round(means[min(reps-1,int(reps*0.975))],5)]",
+          "seconds": 12.5,
+          "tokens": 15242,
+          "source_sha256": "9dc085050345f370bcd00f594449e347fced0d9e336150ebef894a0c7da342f9",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/benchmarks.py b/nykra/benchmarks.py\nindex ed58a2a..2fa4ca3 100644\n--- a/nykra/benchmarks.py\n+++ b/nykra/benchmarks.py\n@@ -95,7 +95,8 @@ def _bootstrap_interval(deltas:list[int], *, seed:int, reps:int=4000)->list[floa\n         means.append(sum(deltas[rng.randrange(length)] for j in range(length))/length)\n     means.sort()\n     return [round(means[int(reps*0.025)],5),\n-            round(means[min(reps-1,int(reps*0.85))],5)]\n+            round(means[min(reps-1,int(reps*0.975))],5)]\n+\n \n \n \n",
+          "parent": null
+        }
+      ]
+    }
+  ]
+}

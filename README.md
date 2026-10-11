@@ -1,0 +1,206 @@
+# Nykra
+
+**Agent-agnostic exploration evidence and historical replay.**
+
+Nykra is an independent, local-first open-source project inspired by the historical discovery-tree replay mechanism described in *Dream-RSI: Recursive Self-Improvement through Evolving Worlds* (Zheng et al., 2026). It is not affiliated with Google or Google DeepMind.
+
+**Vision:** Install once and let compatible workstation-based coding agents, IDE agents, and remote agents using MCP-connected execution harnesses benefit from accumulated, objectively evaluated exploration history, without per-agent manual configuration.
+
+**Current source milestone (v0.25.0):** Nykra provides a portable, approval-gated **multi-file Git patch transaction engine**, with safe path allowlists, disposable Git test checkouts, restricted pinned Docker checks, verified tested-byte promotion and rollback tests. The earlier v0.24 result cache reuses exact public Git/Docker results across independently configured agent sessions; in two reused historical repair cases it avoided 4/6 duplicate evaluations, but this is *not* proof that coding models solve more problems. Historical genuine policy comparisons include null replications. An earlier v0.16 background observer can remain installed independently of the source-tree version. Nykra does not claim general autonomous agent reliability, coding ability gains or recursive self-improvement.
+
+## Quick start
+
+Nykra's core is dependency-free and works with Python 3.10+:
+
+~~~bash
+git clone https://github.com/alilbitofsoulsauce/nykra.git
+cd nykra
+python -m pip install -e .
+python -m nykra demo
+python -m unittest discover -s tests -p test_transactional_patch.py -v
+~~~
+
+To inspect the multi-file transaction capability, including the source allowlist, pinned Docker execution and atomic per-file promotion, read [Multi-file patch transactions](docs/MULTIFILE_TRANSACTION.md). This capability **does not need Codex API access**; ChatGPT and Rel.AI can supply the Git diff. To contribute, see [CONTRIBUTING](CONTRIBUTING.md) and [SECURITY](SECURITY.md).
+
+The fresh-clone tests intentionally do not require earlier ignored historical benchmark source clones under experiments/. The full research suite is more demanding and requires those externally fetched upstream repositories and Docker setup.
+
+## Evidence: what Nykra actually demonstrates
+
+All findings, including unsuccessful or inconclusive results, are preserved in the [Evidence Ledger](docs/EVIDENCE.md) and its [SHA-256 evidence manifest](docs/evidence/manifest.json). The links below lead to reproducible metrics and exact task scope, rather than unsupported claims about recursive self-improvement. Verify the recorded hashes and README metrics with `python -m unittest discover -s tests -p test_evidence_registry.py -v`.
+
+| Study | Measured outcome | What it does **not** establish |
+| --- | --- | --- |
+| **Paired reference search (v0.12)** | Goal-directed adaptive search solved **48/48** generated 5×5 mazes versus **19/48** for breadth-first under the same 12-expansion budget; average expansions **5.17 vs 10.50**. [Full report](docs/BENCHMARK_RESULTS.md) · [Raw metrics](docs/evidence/grid_paired_seed20261011.json) | No LLM was involved. This favorable Manhattan-distance heuristic benchmark does **not** prove coding-agent improvement. |
+| **Second reference-search seed (20261012)** | On **48 newly generated solvable mazes**, breadth-first solved **22/48 (45.83%)**, while adaptive solved **47/48 (97.92%)**, both with a 12-expansion cap. The difference was **+52.08 percentage points**; mean expansions **10.17 vs 4.98**. [Raw second run](docs/evidence/grid_paired_seed20261012.json). | Same deterministic worker and heuristic-sensitive task generator; a different random seed is **not** a real-world coding-agent replication or evidence of learned policy improvements. |
+| **Tested multi-file transaction engine (v0.25)** | Two interacting Python-module bugs repaired with a single allowlisted Git patch in a disposable checkout. Tests and opt-in promotion/rollback passed; an actual pinned offline Docker trial passed its 2-file integration check. [Design, reproduction and limitations](docs/MULTIFILE_TRANSACTION.md) · [Docker trial evidence](docs/evidence/v25_multifile_docker_trial.json). | **Functional multi-file safety milestone**, not proof of a real coding-agent pass-rate advantage. Seeded synthetic fixture, candidate constructed by the test harness, and Docker not certified for untrusted hostile code. |
+| **Independent-session persistent public cache (v0.24)** | New explicit `workflow submit --cache-public` reuses actual Git/Docker public verdicts across different authorized agent policies and prompt ancestry when source, original Git, tests, evaluator and Docker image match. Two frozen reused real-issue replays: **6→2 public Docker & Git runs (66.7% avoided)**; **69.78s→32.67s (53.2% locally measured elapsed reduction)**; 12 independent sessions preserve identical hidden results, **zero new model calls**. [Usage and limitations](docs/CONTENT_CACHE_V24.md) · [Audited evidence](docs/evidence/v24_summary.json). | **Exact-source duplicated-work reduction**, not model pass-rate uplift or guaranteed 53% speedup. Host-local trusted receipt cache; opt-in only; historical reused tasks. |
+| **Verified public-evaluation reuse (v0.23)** | Rel.AI-supervised workflows now share actual Git/Docker public-test receipts **only** for identical task, evaluator, source, prompt and ancestry. Frozen two-real-issue replay: **14 → 8 Git/Docker evaluations (42.9% avoided)**, **121.98s → 70.65s** observed wall time (42.1% reduction), public+hidden correctness unchanged; **zero new Codex calls**. [Reproducible report](docs/WORK_SAVINGS_V23.md) · [Machine evidence](docs/evidence/v23_reuse_summary.json). | **Engineering work-duplication improvement**, not general code quality, token, or unrelated-task speed advantage. Two reused historical issues, one run per condition, timing sensitive to warm-up. |
+| **Rel.AI-hosted real Git agent workflow (v0.22)** | A portable JSON `workflow` protocol now supervises real upstream Git-applied patches, Docker public tests and held-out final checks; **8 distinct authenticated Codex completions** yielded **14 verified patch instances** across two reused historical tasks. Depth and adaptive both solved **1/2**; one genuine policy fork failed for both. [Run guide](docs/AGENT_WORKFLOW_V22.md) · [Machine summary](docs/evidence/v22_workflow_summary.json) · [Portable source/patch proofs](docs/evidence/v22_session_export_index.json). | **Actual end-to-end integration smoke, not general coding-agent improvement**. Rel.AI supervises; Codex supplies model inference. Narrow single-function patch API only; no independently verified Claude/Gemini native drivers. |
+| **Actionable public-feedback real repair (v0.21)** | Six previously unused historical youtube-dl defects, five valid reference-tested, one excluded. Three shared first candidates passed separate hidden tests; two genuine paired feedback comparisons: **status-only 0/2, actionable public diagnostic 1/2**, with a hidden-verified `url_basename` fix. [Full methodology](docs/REAL_ISSUE_V21.md) · [Machine summary](docs/evidence/v21_summary.json). | **One enriched-only success, exact paired two-sided p=1.0**. This tests feedback quality, *not Nykra's adaptive policy*. No general uplift or statistically reliable improvement proved. |
+| **Fresh historical-issue policy-fork replication (v0.20)** | Four previously unused upstream defects in youtube-dl/tqdm; all buggy/reference public+hidden preflights valid. **Two genuine forks**, each with two independent calls per arm: **0/4 public or hidden successes for either policy**. One shared tqdm repair passed hidden tests, and one issue stopped on invalid generated Python. [Full report](docs/REAL_ISSUE_V20.md) · [Frozen protocol](docs/evidence/v20_protocol.json) · [Raw summary](docs/evidence/v20_summary.json). | **No replicated policy success uplift** from v0.19. Very small sample; model calls within tasks correlated, and soft token limits. Neither official SWE-bench nor uncontaminated training data. |
+| **Controlled real Codex policy fork (v0.19)** | Shared three-evaluated-attempt prefix with enforced policy difference on fourth action. Natural 4-task cohort: **3 shared early successes**, 1 genuine fork (**Nykra 1/1, baseline 0/1**). Separately, 3 archived stalled-prefix tasks: **Nykra 3/3, baseline 2/3**; all had real fork decisions. [Full report](docs/REAL_ISSUE_V19.md) · [Protocols](docs/evidence/v19_protocol.json) · [Machine audit](docs/evidence/v19_summary.json). | **Tiny, overlapping, failure-conditioned samples**; one non-independent PySnooper win repeated in both cohorts. No statistically established or general causal coding-agent uplift. |
+| **Hidden-verified cross-repository pilot (v0.18)** | Four preregistered BugsInPy issues across youtube-dl and PySnooper; every bug failed and reference fix passed public and separate hidden checks. **Baseline 2/4 versus Nykra 2/4** full issue successes, with one unique win per arm. [Full report](docs/REAL_ISSUE_V18.md) · [Frozen protocol](docs/evidence/v18_protocol.json) · [Raw summary](docs/evidence/v18_summary.json). | **Zero net uplift and zero policy decision divergences** in this three-attempt pilot. Not sufficient for a causal policy claim, a general model effect, or an official leaderboard score. |
+| **Real historical issue repair pilot (v0.17)** | Four preregistered BugsInPy youtube-dl defects: **three eligible paired comparisons**, with **1/3** upstream regression successes for each arm; one timeout exclusion. Nykra reset branches on two failing tasks. [Full methods](docs/REAL_ISSUE_PILOT.md) · [Protocol](docs/evidence/v17_external_pilot_protocol.json) · [Raw summary](docs/evidence/v17_external_pilot_summary.json). | **No task-success uplift.** No separate hidden tests, only one upstream repository, historical contamination possible. Not official SWE-bench. |
+| **Live feedback repair (v0.11)** | One model-authored bracket checker improved from **14/18** training checks to **18/18**, then passed **32/32** held-out checks after feedback. [Session and limitations](docs/RELAI_AUTOPILOT.md) | No equally budgeted, independent no-Nykra model control; the correction cannot be attributed causally to Nykra. |
+| **Model-authored coding tasks (v0.13)** | **8/8** first solutions passed without revision; **144/144** training and **320/320** held-out checks. [Study](docs/REAL_CODING_STUDY.md) · [Per-task results](docs/evidence/v13_coding_study_results.json) · [Frozen model code](docs/evidence/v13_model_authored_first_attempts.json) | A ceiling effect: **zero measurable uplift**, not a randomized proof that Nykra helps or never helps. Tasks were small and not externally blinded. |
+| **Shared-policy Codex wiring and isolation (v0.16)** | One authentic adaptive-policy Codex candidate repaired a trusted Nykra regression and passed **26/26 held-out checks**; shared branch selection passed unit tests. Docker 29.8.2 / WSL2 are responsive and the digest-pinned [restricted Docker smoke](docs/evidence/docker_smoke_2026-10-11.json) passed. At v0.16 arbitrary external execution remained blocked; later opt-in, fixed-task Docker graders in v0.17–v0.19 are separately constrained and **do not unlock arbitrary hostile-code execution**. [Architecture and safety limits](docs/EXTERNAL_EVALUATION.md) · [Raw model run](docs/evidence/v16_real_codex_policy_smoke.json). | Single first-attempt engineering smoke, **no comparison or policy uplift**. Not a verified external-issue benchmark or hardened sandbox. |
+| **Git repository regression pilot (v0.15)** | On six artificially injected bugs in real Nykra Python modules, authenticated Codex fixed **6/6 per arm** and passed **156/156 hidden tests per arm** under matched two-attempt maximums. All fixes succeeded on the first attempt; **no Nykra-guided revisions occurred**. [Complete report](docs/REPOSITORY_REPAIR_PILOT.md) · [Frozen protocol](docs/evidence/v15_repo_pilot_protocol.json) · [Raw summary](docs/evidence/v15_repo_repair_summary.json). | Not independent real GitHub issues; easy target-function-identifiable injected bugs. **Zero observed task-level uplift**, no external benchmark claim. |
+| **Native Codex pilot (v0.14)** | Authenticated **GPT-6 Luna** through Codex 0.160.0; original matched pilot **1/4 solved by each arm**; separately recorded post-hoc retry follow-up **1/4 each**, with **37/128** hidden checks passed by Nykra-guided vs **32/128** baseline. [Full protocol and limitations](docs/NATIVE_CODEX_PILOT.md) · [v1 raw summary](docs/evidence/v14_native_codex_v1_summary.json) · [v2 raw summary](docs/evidence/v14_native_codex_v2_summary.json). Earlier unsuccessful installers remain in the [runner probe log](docs/evidence/native_runner_probes_2026-10-11.json). | Four small synthetic function-level repairs, not SWE-bench or an externally blinded repository issue study. **No improvement in full-task success** and no valid general efficacy claim. |
+
+**New real-issue pilot:** The first externally sourced repair comparison reached **1/3** upstream regression successes in both arms—no observed advantage. [Methods and limitations](docs/REAL_ISSUE_PILOT.md).
+
+**v0.25 multi-file engine:** A conservative Git patch-transaction CLI now tests up to 16 allowlisted text files together in a disposable checkout and can promote exactly tested bytes with rollback. [Hard engineering trial](docs/MULTIFILE_TRANSACTION.md). Results show two interacting bugs fixed by one patch, but this is seeded synthetic engineering validation, not evidence of increased coding-model success.
+
+**New v0.24 broader local cache savings:** Content-addressed Git/Docker public receipts can now be reused across independent authorized agent sessions. In two controlled reused real-issue replays, **6→2** public Docker and Git calls, **37.1 seconds** shorter locally observed runtime, and identical independent hidden results, with no new Codex inference. [Full evidence and constraints](docs/CONTENT_CACHE_V24.md). This is not a general code-quality gain.
+
+**New v0.23 observed work savings:** A trusted matching public-test receipt avoids real duplicate Git and Docker work. On two frozen real Git issue replays: **14 → 8** evaluations, **51.3 seconds** shorter observed elapsed time, with identical success/failure outcomes and **no new model calls**. [Exact evidence and scope](docs/WORK_SAVINGS_V23.md). This is not a generalized coding success-rate gain.
+
+**New v0.22 workflow result:** Rel.AI-hosted, Codex-powered source patches now run through a durable agent-neutral workflow, with actual Git apply, Docker public regression, final hidden grading, 8 model completions and 14 patch instances on two reused historical tasks. Depth and adaptive both solved **1/2**—no uplift. [Integration and source evidence](docs/AGENT_WORKFLOW_V22.md).
+
+**New v0.21 feedback result:** A bounded public-only diagnostic produced one hidden-verified repair where status-only feedback failed, across **two paired tasks**. This is a *feedback-information* result, not demonstrated Nykra policy improvement. [Real evidence and limitations](docs/REAL_ISSUE_V21.md).
+
+**New v0.20 independent replication:** Four previously untested real defects produced two actual shared-history forks. Neither policy repaired either forked issue in two draws each (**0/4 calls per arm**). A shared tqdm repair passed hidden tests, but does not count as policy uplift. [Full transparent evidence](docs/REAL_ISSUE_V20.md).
+
+**New v0.19 mechanism outcome:** An actual controlled fork from identical real Codex histories produced one natural Nykra-only repair and a conditional archival 3/3 versus 2/3 result; these small overlapping cohorts **do not prove** general improvement. [Method, limitations and evidence](docs/REAL_ISSUE_V19.md).
+
+**New v0.18 measured outcome:** On four historical issues across two upstream repositories, both arms passed **2/4** separately hidden-verified repairs, and policy decisions never diverged. [Evidence and limitations](docs/REAL_ISSUE_V18.md).
+
+**Current research conclusion:** Nykra's host-independent breadth/depth/adaptive policy controller is connected to both a durable agent session and a real model proposal runner, but evidence of **general coding-agent effectiveness and recursive self-improvement is still insufficient**. The next meaningful claim requires a genuine same-model, equal-budget repository-repair control study with hidden independent tests.
+
+## Install once on Windows
+
+From the repository, run `python -m nykra install`. The current-user install copies Nykra into local application data, configures a user-owned login startup entry and launches a background observer. **No per-agent MCP or IDE configuration is required for supported Rel.AI observation.** Python 3.10+ is a prerequisite for this development installer; a bundled executable is planned. See [Windows installation and removal](docs/WINDOWS.md).
+
+Check it with `python -m nykra doctor`; stop/resume observation using `python -m nykra background stop` and `python -m nykra background start`; remove the autostart and runtime with `python -m nykra uninstall`. Uninstallation preserves the local history database. No changes are made to the Rel.AI desktop executable or remote MCP connection. For IDE discovery and extension installation, see [IDE integration](docs/IDE.md): `python -m nykra ide scan`, `python -m nykra ide package`, and explicitly `python -m nykra ide install` for compatible detected editors. No per-agent configuration is required.
+
+## Supervised exploration intelligence
+
+Nykra v0.6 adds a strictly opt-in, supervisor-owned candidate controller with actual evaluator callbacks, parent-child records, attempt/time budgets, task-disjoint retrospective analysis and conservative advisory policy selection. It does **not** change a live agent's strategy or treat passive events as quality measurements. See [Exploration intelligence](docs/INTELLIGENCE.md).
+
+Try the independent synthetic example with `python -m nykra intelligence-demo` (disposable data), or analyze genuinely evaluated runs with `python -m nykra assess --evaluator YOUR_METRIC_VERSION --objective maximize --budget 2`.
+
+## Prospective agent experiments (v0.7)
+
+Use `python -m nykra prospective-demo` for a **synthetic** randomized-trial demonstration. A trusted host can use `nykra.prospective.ProspectiveExperiment` to preassign new tasks to `breadth` or `depth`/`adaptive`, invoke its own authorized policy-controllable executor, independently evaluate final outcomes, and preserve failed or over-budget tasks in intent-to-treat results. Once a trial is closed with enough outcomes, Nykra applies a conservative predefined gate and may return an **advisory-only** challenger. It never deploys a strategy or modifies connected agents. See [Prospective experiments](docs/PROSPECTIVE.md) for API, CLI lifecycle and limitations.
+
+## Executable exploration host (v0.8)
+
+Run `python -m nykra agent-benchmark --tasks 40 --budget 12 --approve` to execute genuine new state expansions in separate subprocesses under prospective, assigned search policies. The independent grid verifier measures outcomes and the local trial engine records failures. The reference worker is deliberately **not an LLM** and cannot establish that other AI agents improve. A trusted external agent process can implement the documented JSON request/response contract, but the installed Rel.AI host does not expose a validated policy-controller integration. See [Execution host](docs/EXECUTION_HOST.md).
+
+## Supervised AI coding experiments via Rel.AI (v0.9)
+
+From the existing ChatGPT-to-Rel.AI MCP connection, an agent can author a candidate-pool JSON file in its authorized workspace. Nykra commits a prospective arm assignment before testing selected Python proposals and records independent held-out scores. This requires neither the broken `agyc` launcher nor modification of the running Rel.AI host. See [Rel.AI coding experiments](docs/RELAI_CODING.md).
+
+Use `python -m nykra coding tasks` to view supported fixtures, `python -m nykra coding evaluate --task unique-sorted --candidate-file candidate.py --approve` to test one authorized proposal, and `python -m nykra coding trial --trial TRIAL_ID --task-key TASK_ID --pool-file proposals.json --approve` for supervised prospective exploration. No agent has permission to silently apply a policy change.
+
+The initial live smoke test executed model-authored candidates for three distinct coding tasks. All three happened to receive breadth-first allocation and the closed experiment was **not ready** for a valid comparative statistical test. That is a functional integration proof, not evidence of recursive self-improvement.
+
+## Feedback-driven coding sessions (v0.10)
+
+Start with `python -m nykra iterate start --task balanced-brackets --policy depth --budget 3 --max-seconds 1200 --approve`. Submit the model's solution with `python -m nykra iterate submit --session SESSION_ID --candidate-file candidate.py --approve`. The response reports limited training-test failures and requests either `revise` or `new_root`. After the agent produces a new source version, submit it and complete with `python -m nykra iterate finish --session SESSION_ID --candidate-file best.py --approve` for held-out evaluation. Session state survives process restarts; the external agent keeps its source file because Nykra records only its digest. See [Feedback loop](docs/FEEDBACK_LOOP.md).
+
+A live Rel.AI coding session on October 11, 2026 improved a model-authored bracket checker from 10/18 to 18/18 training tests, then passed 32/32 held-out tests. This is a small supervised correction, not evidence of general model or agent-policy superiority.
+
+## Rel.AI-first agent loop (v0.11)
+
+For a connected Rel.AI coding agent, use `python -m nykra relai-agent start --task balanced-brackets --policy depth --budget 4 --max-seconds 1200 --approve`. Each subsequent `relai-agent submit --session SESSION_ID --candidate-file candidate.py --approve` records an objectively tested candidate and either requests another model-authored root/revision (including the selected parent's source and training failures), **or automatically finalizes the best candidate on held-out tests**. The agent can continue these tool calls within a single user-authorized turn without prompting the user for each revision. See [Rel.AI-first agent instructions](integrations/relai/AGENT_LOOP.md) and [integration limitations](docs/RELAI_AUTOPILOT.md).
+
+Nykra v0.11 temporarily caches bounded candidate source files in its local user profile **only during the session**, clearing cached source on finish/abort; this differs from v0.10's digest-only persistence. It never modifies the installed Rel.AI host, and no independent LLM API is invoked. A live bracket-checking task reached 14/18 training, then 18/18 after a feedback-driven revision and 32/32 held-out, with automatic finalization in the same connected-agent run. This is a supervised agent-in-the-loop demonstration, not evidence of broader model improvement.
+
+## Portable agent drivers and measured comparison (v0.12)
+
+`python -m nykra integrations scan` now reports real integration capability levels rather than simply declaring that a local CLI exists. `nykra.drivers.AgentDriver` defines the shared approved agent-turn protocol; the working Rel.AI adapter uses this interface, while Codex, Claude Code, OpenCode, Cursor and Gemini require separately verified native adapters. No vendor is installed or patched by scanning. See [Driver portability](docs/DRIVERS.md).
+
+Run the **actual paired reference benchmark** with `python -m nykra benchmark paired-grid --tasks 48 --budget 12 --seed 20261011 --approve`. Its task generator creates the same solvable mazes for both breadth-first and adaptive search. Measured results: breadth-first solved **19/48 (39.58%)**, adaptive solved **48/48 (100%)**; the adaptive policy used **5.17 expansions** on average versus **10.5** for breadth-first. The adaptive policy uses a known distance-to-goal heuristic and this is **not a coding-agent benchmark**. The full [evidence report](docs/BENCHMARK_RESULTS.md) and [machine-readable record](docs/evidence/grid_paired_seed20261011.json) include exact comparison details and limitations.
+
+## Actual model-authored coding evidence (v0.13)
+
+The independent [coding study report](docs/REAL_CODING_STUDY.md) and [machine-readable results](docs/evidence/v13_coding_study_results.json) document eight frozen model-authored source implementations, real Python subprocess execution, **144/144 training and 320/320 held-out test cases passed**, and no revisions because every first attempt succeeded. Additional evaluator-integrity checks reject all eight intentionally wrong **non-model** control programs. The train/held-out sets share no input arguments. These are eight small public algorithm challenges, **not blinded repository issue tasks**, so the correct conclusion is a ceiling effect and no measured Nykra uplift, not proof of general effectiveness.
+
+Reproduce without consuming model tokens: `python -m nykra coding-study --candidates-file docs/evidence/v13_model_authored_first_attempts.json --approve`. The candidate sources were authored in an actual ChatGPT turn using Rel.AI, not generated by Nykra or an unattended OpenCode model. Our isolated free-model OpenCode smoke request timed out, and no paid provider was invoked.
+
+## Run the prototype
+
+Requires Python 3.10+. The core uses only the Python standard library. From a checkout:
+
+```sh
+python -m nykra demo
+python -m unittest discover -s tests -v
+python -m nykra status
+python -m nykra activity --limit 20
+python -m nykra watch-relai  # read-only observation of new Rel.AI events
+```
+
+`demo` uses disposable synthetic data and does not modify your normal Nykra history. All actual history remains local in your per-user application data folder (or the optional `--home` directory). There are no cloud API calls.
+
+Create an evaluated run:
+
+```sh
+python -m nykra start --task "Optimize the query" --agent "my-agent" --evaluator "benchmark-v1"
+```
+
+Copy the returned `id` as `RUN_ID`:
+
+```sh
+python -m nykra attempt --run RUN_ID --id candidate-a --score 10 --cost 1
+python -m nykra attempt --run RUN_ID --id candidate-b --parent candidate-a --score 12 --cost 1
+python -m nykra replay --run RUN_ID --policy all --budget 2 --workers 1
+```
+
+A run requires an explicit evaluator ID and objective (`maximize` or `minimize`). Successful attempts require finite measured scores. Failed or invalid attempts may omit the score. Parents must already exist in the same run.
+
+## Local ingestion interface
+
+Start the service:
+
+```sh
+python -m nykra serve
+```
+
+It binds **only** to `127.0.0.1:8765` and creates a random bearer token in the local user data directory. The API's `GET /health` endpoint is unauthenticated and intentionally reveals no workspace data. All other endpoints require `Authorization: Bearer <token>`, and browser-origin requests are rejected. No public MCP endpoint or tunnel is opened.
+
+| Endpoint | Description |
+|---|---|
+| `GET /health` | Process liveness |
+| `GET /v1/status` | Local schema and history counts |
+| `GET /v1/activity` | Recent privacy-minimized tool completion observations |
+| `POST /v1/activity` | Idempotently record one tool completion (not an evaluated candidate) |
+| `POST /v1/runs` | Create a discovery run |
+| `POST /v1/attempts` | Append one evaluated candidate |
+| `POST /v1/replay` | Replay one policy on a recorded run |
+
+See [docs/INTEGRATION.md](docs/INTEGRATION.md), [docs/REL_AI.md](docs/REL_AI.md) and [examples/bridge_client.py](examples/bridge_client.py) for integration examples. With the API service running, execute `python -m examples.bridge_client` from the repository root. The `watch-relai` command uses Nykra's SQLite store directly and **does not require** its HTTP server.
+
+## What a replay result means
+
+Each attempt has an ID, an optional recorded parent, a measured score or failure, and cost/latency observations. Replay initially reveals no attempts. A policy selects only legal recorded children of revealed nodes, and the simulator exposes the stored outcome only once selected. Policies can change order, breadth, depth, batching, and stopping at a budget. **Replays never synthesize a missing candidate or predict a genuinely untried action.** Comparisons on a single collected history are retrospective, not proof of generalization or live improvement.
+
+The built-in policies (`breadth`, `depth`, and a conservative experimental `adaptive` heuristic) are baselines, not reproductions of Google's tuned Dream-RSI controller. All policy improvements must be tested on separate histories and evaluated online before claims of effectiveness.
+
+## Zero-config product roadmap
+
+1. **Done: core** — local SQLite history, structural replay, authenticated loopback ingestion, CLI, synthetic demonstration, regression tests.
+   **Milestone 2: Rel.AI observer** — one host-level subscription to completed tool activity, default-deny raw content, idempotent ingestion, and fail-open behavior. The listener bridge is tested but not activated in the installed host.
+2. **Milestone 3: live compatibility** — verified read-only observation from an actual installed Rel.AI state database, with future-only time filtering. Added a reversible source-checkout host patch and a separately supervised evaluator-callback API. The current installed Rel.AI process is unchanged; scored candidate branching still needs a host-owned supervised exploration runtime.
+3. **Milestone 4: Windows runtime** — per-user developer install, user login autostart, background observer, health reporting and reversible uninstall. Python is still a prerequisite; the actual Rel.AI desktop binary is not patched.
+4. **Milestone 5: IDE observation** — VS Code-family extension package and CLI discovery, an explicit managed installation command, privacy-minimized save/task events, and background inbox ingestion. Not active without installing the extension; no automatic attribution to AI agents.
+5. **Milestone 6: supervised exploration intelligence** — explicit host-owned proposer/evaluator callbacks, recorded branching, task-disjoint retrospective policy assessment and advisory-only recommendation gates. No deployment into live agents.
+6. **Milestone 7: prospective trial protocol** — opt-in task assignment before execution, immutable trial objectives and budgets, separate durable trial store, auditable outcome accounting, post-trial statistical gate and advisory-only reporting. The live execution host remains a future integration.
+7. **Milestone 8: executable reference host** — independently generated search candidates in a trusted subprocess, policy-controlled frontier ordering, strict budgets and a rule-based evaluator, with randomized prospective trials. This proves genuine search control in a reference program, not LLM-agent integration.
+8. **Milestone 9: supervised ChatGPT-to-Rel.AI coding path** — model-authored candidate pools, Nykra-governed breadth/depth/adaptive testing, independent Python fixture evaluations, durable real attempt ancestry and prospective outcomes. It is supervised, not an automatic opaque-agent controller.
+9. **Milestone 10: feedback-driven agent sessions** — durable requests for revisions or roots, measured training failures, independent final held-out scores, and optional prospective assignment, demonstrated through ChatGPT–Rel.AI; candidate generation still needs a connected agent.
+10. **Next: optional unattended model adapter and independent benchmarks** — connect a documented authorized model interface, add stronger code isolation and task diversity before claiming model improvement.
+11. **Then: standalone packaged installer** — bundled or native runtime, packaged updates, repair, crash resilience, signing and clean uninstall without a preinstalled Python interpreter.
+12. **Then: policy improvement** — held-out replay evaluation and guarded online deployment. Separate measured improvements from replay-only scores.
+
+**Important boundary:** An arbitrary agent with filesystem/terminal access does not automatically share its internal planning trace. When a remote agent uses an MCP server, Nykra needs an observation hook in that execution server to capture semantic decisions and exert control. Filesystem watching alone cannot reconstruct every hidden branch, and an MCP service cannot silently force a model to change its own strategy.
+
+## Safety and privacy
+
+Nykra does not read arbitrary files or hook into third-party processes. Its optional background observer reads only whitelisted scalar projections from the supported user's Rel.AI SQLite history and begins with future events. Its API accepts explicit events only; never submit credentials, private prompts, or sensitive repository content as metadata. Use project-scoped permissions in future bridges, and keep any automatic execution optimizations approval-gated and reversible. The per-user token protects the loopback API against untrusted callers that do not have it; it is **not** a privilege boundary against other processes running as the same operating-system user. Back up local history before major upgrades.
+
+## Research and attribution
+
+Research inspiration: Tong Zheng et al., *Dream-RSI: Recursive Self-Improvement through Evolving Worlds* (2026), [research repository](https://github.com/zhengkid/Dream-RSI).
+
+The project is an independently written prototype, not a copy of the research team's code and not an official Dream-RSI implementation. Released under the repository's MIT license.

@@ -1,0 +1,11 @@
+* text=auto
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.diff text eol=lf
+*.sh text eol=lf
+# Historical signed-off SHA-256 evidence is stored with its ORIGINAL bytes.
+# Git line-ending normalization would invalidate 111+ historic receipts.
+docs/evidence/** -text

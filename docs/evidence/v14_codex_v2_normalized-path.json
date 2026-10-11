@@ -1,0 +1,114 @@
+{
+  "protocol_id": "nykra-native-codex-matched-pilot-v2",
+  "task": "normalized-path",
+  "model": "gpt-6-luna",
+  "protocol_sha256": "94445a4375eaa9ccb6d4d0f9fdf3a550aa89da4815dd1e16a74e792a80a3f8a8",
+  "arm_order": [
+    "nykra",
+    "baseline"
+  ],
+  "status": "completed",
+  "arms": [
+    {
+      "task": "normalized-path",
+      "arm": "nykra",
+      "attempt_budget": 2,
+      "attempts_used": 2,
+      "best_attempt": null,
+      "final_training_passed": 0,
+      "final_heldout_passed": 0,
+      "final_heldout_total": 32,
+      "final_heldout_success": false,
+      "total_tokens_reported": 2539,
+      "token_reporting_complete": true,
+      "total_wall_seconds": 22.68,
+      "attempts": [
+        {
+          "status": "invalid_source",
+          "source": "def solve(base, relative):\n    if relative.startswith('/') or '\\\\' in relative:\n        return None\n    parts = []\n    for part in base.split('/'):\n        if part:\n            parts.append(part)\n    for part in relative.split('/'):\n        if not part or part == '.':\n            continue\n        if part == '..':\n            if not parts:\n                return None\n            parts.pop()\n        else:\n            parts.append(part)\n    return '/' + '/'.join(parts)",
+          "source_sha256": "a5bcc1b9960cccef09067ff79282acdfcbc4153c6e3d645f7ca64468b040827f",
+          "elapsed_seconds": 11.84,
+          "tokens_reported": 1164,
+          "validation_error": "ValueError: only restricted built-in calls are allowed",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        },
+        {
+          "status": "invalid_source",
+          "source": "def solve(base, relative):\n    if relative[:1] == '/' or '\\\\' in relative:\n        return None\n    parts = []\n    for part in base.split('/'):\n        if part:\n            parts.append(part)\n    for part in relative.split('/'):\n        if not part or part == '.':\n            continue\n        if part == '..':\n            if not parts:\n                return None\n            parts = parts[:-1]\n        else:\n            parts.append(part)\n    result = ''\n    for part in parts:\n        result += '/' + part\n    if not result:\n        return '/'\n    return result",
+          "source_sha256": "b06fdc5d45a7e9d29f205b9cc2da9ad4dbf87ed9e6c0edd4d9bd2f3ae3cdf4d3",
+          "elapsed_seconds": 10.84,
+          "tokens_reported": 1375,
+          "validation_error": "ValueError: only restricted built-in calls are allowed",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 2,
+          "parent_attempt": 1
+        }
+      ]
+    },
+    {
+      "task": "normalized-path",
+      "arm": "baseline",
+      "attempt_budget": 2,
+      "attempts_used": 2,
+      "best_attempt": null,
+      "final_training_passed": 0,
+      "final_heldout_passed": 0,
+      "final_heldout_total": 32,
+      "final_heldout_success": false,
+      "total_tokens_reported": 2608,
+      "token_reporting_complete": true,
+      "total_wall_seconds": 34.76,
+      "attempts": [
+        {
+          "status": "invalid_source",
+          "source": "def solve(base, relative):\n    if relative.startswith('/') or '\\\\' in relative:\n        return None\n    parts = []\n    if base != '/':\n        for part in base.split('/'):\n            if part:\n                parts.append(part)\n    floor = len(parts)\n    for part in relative.split('/'):\n        if part == '' or part == '.':\n            continue\n        if part == '..':\n            if len(parts) <= floor:\n                return None\n            parts.pop()\n        else:\n            parts.append(part)\n    result = '/' + '/'.join(parts)\n    return result",
+          "source_sha256": "286d64e9603d24959ac60f28303818e21668e55845cba562e1215711bee6347d",
+          "elapsed_seconds": 14.35,
+          "tokens_reported": 1188,
+          "validation_error": "ValueError: only restricted built-in calls are allowed",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        },
+        {
+          "status": "invalid_source",
+          "source": "def solve(base, relative):\n    if relative[:1] == '/' or '\\\\' in relative:\n        return None\n    parts = []\n    if base != '/':\n        for part in base.split('/'):\n            if part:\n                parts.append(part)\n    floor = len(parts)\n    for part in relative.split('/'):\n        if part == '' or part == '.':\n            continue\n        if part == '..':\n            if len(parts) == floor:\n                return None\n            parts = parts[:-1]\n        else:\n            parts.append(part)\n    result = ''\n    for part in parts:\n        result += '/' + part\n    if result == '':\n        return '/'\n    return result",
+          "source_sha256": "db2d6786b6d94aa07bc9a9b3cdf2d253c4748b4f982ac1e6242222efc11fa0ba",
+          "elapsed_seconds": 20.41,
+          "tokens_reported": 1420,
+          "validation_error": "ValueError: only restricted built-in calls are allowed",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 2,
+          "parent_attempt": null
+        }
+      ]
+    }
+  ],
+  "limitations": "post-hoc n=4, function-level rather than SWE-bench, no blind task authoring"
+}

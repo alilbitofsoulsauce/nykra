@@ -1,0 +1,344 @@
+{
+  "schema": "nykra-v20-amended-frozen-preflight-v1",
+  "protocol_sha256": "9eec931522e43e5c3afadeaa592e0a9cbd1b1c7c7639153ad7219b6ad731c2ab",
+  "tasks": [
+    {
+      "id": "youtube-dl-3",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 9.6
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "d20461fe4fe4bc5a1441990647f36d84bca34d56d0916e1ae4a8099b61585d0b",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 9.19
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "2de23fc799c12ad3fcb24045508a73a216cba72ea79ebde84e18e9399d278405",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "4b9b146ae36a496519f370bcc17f1594a6af95ae45364cab45c7b6e79b6148c1",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "hidden",
+          "elapsed_seconds": 9.97
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "740db4a084b7cce6557a4ecc8258820c57689ef73c29298f23cbf67c43a77bf8",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "4b9b146ae36a496519f370bcc17f1594a6af95ae45364cab45c7b6e79b6148c1",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "hidden",
+          "elapsed_seconds": 10.61
+        },
+        "eligible": true
+      }
+    },
+    {
+      "id": "youtube-dl-5",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "1123069f74bdaac70a9d6a60d0aaacdd222c0028b0c7d3fc8511a6e7e6c507e5",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 8.34
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "e6f8ce36e866626ac9d681d820d6e2906312e017cf9f2e5f22b9de362ae5a246",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 7.95
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "cb6d65477036afc532f51607768be6e502aaaa4ecf31fad546651c88cc5bcb0e",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "3986b92bc7517815dda5462ad727e8c9ddcf315d778998265c3c124825111d5e",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "hidden",
+          "elapsed_seconds": 9.64
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "236cd9e644f86e53e6e505612b2f11e6afe16617a8fe96d7807499ad529c3ae5",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "b5b0ad84f9b81dc2fc4c0c7f7a1af566dfecccb8aa28a29b1b7ee523ea87e0af",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "hidden",
+          "elapsed_seconds": 10.14
+        },
+        "eligible": true
+      }
+    },
+    {
+      "id": "youtube-dl-23",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "c8718548d1d32cc1e84d337e4a9dbcee2abebb3f8f841abf81bdf3c6d92948ba",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 9.31
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "eb1e7936a7054bec8cb748952fb04ae35dddecceae4d5711645d43600c063551",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 16.07
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "832539019361719959997bad9ce28d3ef9c952cecba4326c7271ce339883a382",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "eb1e7936a7054bec8cb748952fb04ae35dddecceae4d5711645d43600c063551",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "hidden",
+          "elapsed_seconds": 10.03
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "f0588abbcf8b4dc0e0d9f33a49447dc0aace5207108bcbcc13fb0a2b45a38d5b",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "eb1e7936a7054bec8cb748952fb04ae35dddecceae4d5711645d43600c063551",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "hidden",
+          "elapsed_seconds": 9.62
+        },
+        "eligible": true
+      }
+    },
+    {
+      "id": "tqdm-1",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "8254adfca298ea3bb1789824b5385976c8ce0467506a13c7b4be3e5627cc98c0",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 4.27
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "131c01c93d4b52294ebd9dec4863c752d18e50e28a7bbf766d76e609e68db4fb",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 3.71
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "7e0638ada1370e49353d0ffd247c0750a3eabacfc7ed357c1b0bf18339a5bd73",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "139fe8d234435edc9cae908ea0cf4d4e397c6bf2aa475fe5dc6503a7ff8e32b2",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "f6142b17f55be36e15511042f61a3ec399ca5704cf92638abab47a9fab67f866",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "hidden",
+          "elapsed_seconds": 5.39
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "52bfa097d6c1c8fc2b1ea99195b5efd7b3da5f7efb5a4ee77192503f160735c0",
+              "stderr_preview": null
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "f6142b17f55be36e15511042f61a3ec399ca5704cf92638abab47a9fab67f866",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "hidden",
+          "elapsed_seconds": 5.26
+        },
+        "eligible": true
+      }
+    }
+  ]
+}

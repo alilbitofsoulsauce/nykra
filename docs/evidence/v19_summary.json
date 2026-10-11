@@ -1,0 +1,202 @@
+{
+  "schema": "nykra-controlled-prefix-fork-v19-summary-v1",
+  "natural_protocol_sha256": "d3a6431e2bb636f4790c38c949de77b69b70b89f1752609de11281caed922dde",
+  "stalled_protocol_sha256": "fbe1c8537856ad1bab7e3be441e2518666cb9dc41a53f1a3896181eb4ed3c5d1",
+  "natural": {
+    "registered": 4,
+    "shared_public_solves": 3,
+    "shared_hidden_verified_posthoc": 3,
+    "stats": {
+      "forked_pairs": 1,
+      "nykra_full_successes": 1,
+      "baseline_full_successes": 0,
+      "nykra_only": 1,
+      "baseline_only": 0,
+      "paired_two_sided_exact_sign_p": 1.0,
+      "model_reported_tokens_incremental": {
+        "baseline": 3530,
+        "nykra": 1125
+      }
+    },
+    "tasks": [
+      {
+        "task_id": "youtube-dl-17",
+        "raw_path": "docs/evidence/v19_youtube_dl_17.json",
+        "raw_sha256": "c5968425967fe40d34b04b3a204f81d54106ee9f43f40a215a590fb244c61772",
+        "status": "not_forkable",
+        "shared_prefix_attempts": 1,
+        "shared_prefix_public_solved": true
+      },
+      {
+        "task_id": "youtube-dl-20",
+        "raw_path": "docs/evidence/v19_youtube_dl_20.json",
+        "raw_sha256": "3c7f6d72f2e73167d1a4e8f9e26719f7b06f72fbc34438174e2324ad3f24182b",
+        "status": "not_forkable",
+        "shared_prefix_attempts": 3,
+        "shared_prefix_public_solved": true
+      },
+      {
+        "task_id": "youtube-dl-21",
+        "raw_path": "docs/evidence/v19_youtube_dl_21.json",
+        "raw_sha256": "790dc5417c1598edfd81b5694c5e06d68e39187f53c68e00f5d03303b9e1d94a",
+        "status": "not_forkable",
+        "shared_prefix_attempts": 2,
+        "shared_prefix_public_solved": true
+      },
+      {
+        "task_id": "PySnooper-3",
+        "raw_path": "docs/evidence/v19_pysnooper_3.json",
+        "raw_sha256": "69f4cfef611628c79ef6f685fd598e4bdabdeef6f608096ef02cdb6ecbb82327",
+        "status": "completed",
+        "shared_prefix_attempts": 3,
+        "shared_prefix_public_solved": false,
+        "fork": {
+          "baseline": {
+            "success": false,
+            "public_pass": false,
+            "hidden_pass": false,
+            "calls": 2,
+            "tokens": 3530,
+            "tokens_complete": true,
+            "model_seconds": 12.8,
+            "stop_reason": "attempt_limit"
+          },
+          "nykra": {
+            "success": true,
+            "public_pass": true,
+            "hidden_pass": true,
+            "calls": 1,
+            "tokens": 1125,
+            "tokens_complete": true,
+            "model_seconds": 8.64,
+            "stop_reason": "public_solved"
+          },
+          "identical_shared_prefix_sha256": "da10b0fd74b4c03cf2f36b3b07843e16b5fc5cc66f847721974522c6357a70ae",
+          "verified_policy_fork": true,
+          "natural": true
+        }
+      }
+    ]
+  },
+  "conditional_stalled_history": {
+    "registered": 3,
+    "conditioning": "chosen based on already-observed v18 three-failure histories; not prospectively sampled from unknown tasks",
+    "stats": {
+      "forked_pairs": 3,
+      "nykra_full_successes": 3,
+      "baseline_full_successes": 2,
+      "nykra_only": 1,
+      "baseline_only": 0,
+      "paired_two_sided_exact_sign_p": 1.0,
+      "model_reported_tokens_incremental": {
+        "baseline": 5530,
+        "nykra": 3787
+      }
+    },
+    "tasks": [
+      {
+        "task_id": "youtube-dl-20",
+        "raw_path": "docs/evidence/v19_stalled_yt20.json",
+        "raw_sha256": "1acc4de0d8b4bf54479cda11a08deb9990ab1b9d3b7c2f98f4e47f660df264af",
+        "status": "completed",
+        "prefix_source": "original v18 recorded first 3 model attempts",
+        "fork": {
+          "baseline": {
+            "success": true,
+            "public_pass": true,
+            "hidden_pass": true,
+            "calls": 1,
+            "tokens": 1764,
+            "tokens_complete": true,
+            "model_seconds": 11.97,
+            "stop_reason": "public_solved"
+          },
+          "nykra": {
+            "success": true,
+            "public_pass": true,
+            "hidden_pass": true,
+            "calls": 1,
+            "tokens": 1499,
+            "tokens_complete": true,
+            "model_seconds": 8.15,
+            "stop_reason": "public_solved"
+          },
+          "identical_shared_prefix_sha256": "64060e60633782b1362bbb09234ee59aa23ed375b9277a368cfcaf3ebdfe29e5",
+          "verified_policy_fork": true,
+          "natural": false
+        }
+      },
+      {
+        "task_id": "youtube-dl-21",
+        "raw_path": "docs/evidence/v19_stalled_yt21.json",
+        "raw_sha256": "760e33e85ef5e3bd2bb69a043b9f65e14ee14453e357a1dfec502593a3b4914c",
+        "status": "completed",
+        "prefix_source": "original v18 recorded first 3 model attempts",
+        "fork": {
+          "baseline": {
+            "success": true,
+            "public_pass": true,
+            "hidden_pass": true,
+            "calls": 1,
+            "tokens": 1260,
+            "tokens_complete": true,
+            "model_seconds": 6.89,
+            "stop_reason": "public_solved"
+          },
+          "nykra": {
+            "success": true,
+            "public_pass": true,
+            "hidden_pass": true,
+            "calls": 1,
+            "tokens": 1158,
+            "tokens_complete": true,
+            "model_seconds": 7.57,
+            "stop_reason": "public_solved"
+          },
+          "identical_shared_prefix_sha256": "04de9600cb02286f5946f9a229f0ae6d9b45b202b8c4d9ce92e290ab5a007b5d",
+          "verified_policy_fork": true,
+          "natural": false
+        }
+      },
+      {
+        "task_id": "PySnooper-3",
+        "raw_path": "docs/evidence/v19_stalled_pysnooper3.json",
+        "raw_sha256": "e159b45357da42d3096052451b088722cb426260b9c98caaee2ff154f3aef5da",
+        "status": "completed",
+        "prefix_source": "original v18 recorded first 3 model attempts",
+        "fork": {
+          "baseline": {
+            "success": false,
+            "public_pass": false,
+            "hidden_pass": false,
+            "calls": 2,
+            "tokens": 2506,
+            "tokens_complete": true,
+            "model_seconds": 14.86,
+            "stop_reason": "attempt_limit"
+          },
+          "nykra": {
+            "success": true,
+            "public_pass": true,
+            "hidden_pass": true,
+            "calls": 1,
+            "tokens": 1130,
+            "tokens_complete": true,
+            "model_seconds": 7.45,
+            "stop_reason": "public_solved"
+          },
+          "identical_shared_prefix_sha256": "eecda56bff892b691820e385a8c8317c6ae612d7540510f358c31ed8dab8b608",
+          "verified_policy_fork": true,
+          "natural": false
+        }
+      }
+    ]
+  },
+  "shared_prefix_hidden_audit_path": "docs/evidence/v19_shared_prefix_hidden.json",
+  "shared_prefix_hidden_audit_sha256": "01fd15aa590dcc3814a9d3ba27dabdd59e14a7376dcaa9ee5f2156516c7f1c87",
+  "pooled_effect_estimate_valid": false,
+  "causal_effect_generalized": false,
+  "official_swebench": false,
+  "official_bugsinpy_harness": false,
+  "limitations": "Natural cohort had one forkable issue; secondary cohort deliberately conditions on historical failed samples, includes the same PySnooper bug as natural study, and uses task already seen in v18. One or two model calls per continuation remain stochastic and lack hard per-call token caps. The grader reuses real old issues, with possible training contamination, and Docker is not certified hostile-code isolation."
+}

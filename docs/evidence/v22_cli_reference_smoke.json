@@ -1,0 +1,15 @@
+{
+  "schema": "nykra-v22-cli-independent-process-smoke-v1",
+  "task": "youtube-dl-43",
+  "driver": "relai-supervised-transport",
+  "candidate_origin": "UPSTREAM_REFERENCE_CONTROL_NOT_MODEL_GENERATED",
+  "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "session_id": "ea6210bb11114651a550df97bb654cfc",
+  "source_sha256": "211254a037ab2006aa0c04bed41ae1a6dc5b6d03e7fb3e53ff5166bf4c95917e",
+  "git_patch_sha256": "36822dcb29c2511f3dc26ff080559b12c3550ec905cbb5a7903ea5f3f15b2aba",
+  "public_status": "ok",
+  "hidden_status": "ok",
+  "complete": true,
+  "cli_commands_executed": 5,
+  "no_effectiveness_claim": true
+}

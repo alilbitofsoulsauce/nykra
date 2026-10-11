@@ -1,0 +1,8 @@
+diff --git a/youtube_dl/utils.py b/youtube_dl/utils.py
+--- a/youtube_dl/utils.py
++++ b/youtube_dl/utils.py
+@@ -1091,3 +1091,4 @@
+     if not m:
+         return u''
+     return m.group(1)
++

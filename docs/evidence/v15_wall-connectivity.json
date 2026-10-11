@@ -1,0 +1,75 @@
+{
+  "protocol": "nykra-git-regression-pilot-v1",
+  "protocol_sha256": "04d42bbde0efabe7dfe234765be3d353400ca8db385ee9f28663a8291863d93f",
+  "task_id": "wall-connectivity",
+  "model": "gpt-6-luna",
+  "state": "completed",
+  "arms": [
+    {
+      "arm": "nykra",
+      "task": "wall-connectivity",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 1279,
+      "token_reporting_complete": true,
+      "model_seconds": 10.67,
+      "final_diff": "diff --git a/nykra/benchmarks.py b/nykra/benchmarks.py\nindex b5aee85..c51867d 100644\n--- a/nykra/benchmarks.py\n+++ b/nykra/benchmarks.py\n@@ -30,22 +30,33 @@ def _has_path(board: dict) -> bool:\n     walls = {tuple(w) for w in board[\"walls\"]}\n     start = tuple(board[\"start\"])\n     goal = tuple(board[\"goal\"])\n+    width = board[\"width\"]\n+    height = board[\"height\"]\n+\n+    if start in walls or goal in walls:\n+        return False\n+\n     q = deque([start])\n     seen = {start}\n     while q:\n         x, y = q.popleft()\n         if (x, y) == goal:\n             return True\n-        for dx,dy in ((1,0),(-1,0),(0,1),(0,-1)):\n-            nxt = (x+dx, y+dy)\n-            if (0<=nxt[0]<board[\"width\"] and 0<=nxt[1]<board[\"height\"]\n-                    and nxt not in seen):\n+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n+            nxt = (x + dx, y + dy)\n+            if (\n+                0 <= nxt[0] < width\n+                and 0 <= nxt[1] < height\n+                and nxt not in walls\n+                and nxt not in seen\n+            ):\n                 seen.add(nxt)\n                 q.append(nxt)\n     return False\n \n \n \n+\n def generate_tasks(*, count:int = DEFAULT_COUNT, seed:int = FIXED_SEED) -> list[dict]:\n     if type(count) is not int or not 20 <= count <= 120:\n         raise NykraError(\"paired benchmark requires 20..120 tasks\")\n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def _has_path(board: dict) -> bool:\n    walls = {tuple(w) for w in board[\"walls\"]}\n    start = tuple(board[\"start\"])\n    goal = tuple(board[\"goal\"])\n    width = board[\"width\"]\n    height = board[\"height\"]\n\n    if start in walls or goal in walls:\n        return False\n\n    q = deque([start])\n    seen = {start}\n    while q:\n        x, y = q.popleft()\n        if (x, y) == goal:\n            return True\n        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n            nxt = (x + dx, y + dy)\n            if (\n                0 <= nxt[0] < width\n                and 0 <= nxt[1] < height\n                and nxt not in walls\n                and nxt not in seen\n            ):\n                seen.add(nxt)\n                q.append(nxt)\n    return False",
+          "seconds": 10.67,
+          "tokens": 1279,
+          "source_sha256": "aad81414391641feb7a0c896fb16d42466ba7c1516673b1a6fb99fc53eb9cecb",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/benchmarks.py b/nykra/benchmarks.py\nindex b5aee85..c51867d 100644\n--- a/nykra/benchmarks.py\n+++ b/nykra/benchmarks.py\n@@ -30,22 +30,33 @@ def _has_path(board: dict) -> bool:\n     walls = {tuple(w) for w in board[\"walls\"]}\n     start = tuple(board[\"start\"])\n     goal = tuple(board[\"goal\"])\n+    width = board[\"width\"]\n+    height = board[\"height\"]\n+\n+    if start in walls or goal in walls:\n+        return False\n+\n     q = deque([start])\n     seen = {start}\n     while q:\n         x, y = q.popleft()\n         if (x, y) == goal:\n             return True\n-        for dx,dy in ((1,0),(-1,0),(0,1),(0,-1)):\n-            nxt = (x+dx, y+dy)\n-            if (0<=nxt[0]<board[\"width\"] and 0<=nxt[1]<board[\"height\"]\n-                    and nxt not in seen):\n+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n+            nxt = (x + dx, y + dy)\n+            if (\n+                0 <= nxt[0] < width\n+                and 0 <= nxt[1] < height\n+                and nxt not in walls\n+                and nxt not in seen\n+            ):\n                 seen.add(nxt)\n                 q.append(nxt)\n     return False\n \n \n \n+\n def generate_tasks(*, count:int = DEFAULT_COUNT, seed:int = FIXED_SEED) -> list[dict]:\n     if type(count) is not int or not 20 <= count <= 120:\n         raise NykraError(\"paired benchmark requires 20..120 tasks\")\n",
+          "parent": null
+        }
+      ]
+    },
+    {
+      "arm": "baseline",
+      "task": "wall-connectivity",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 1273,
+      "token_reporting_complete": true,
+      "model_seconds": 10.43,
+      "final_diff": "diff --git a/nykra/benchmarks.py b/nykra/benchmarks.py\nindex b5aee85..721e13c 100644\n--- a/nykra/benchmarks.py\n+++ b/nykra/benchmarks.py\n@@ -30,22 +30,31 @@ def _has_path(board: dict) -> bool:\n     walls = {tuple(w) for w in board[\"walls\"]}\n     start = tuple(board[\"start\"])\n     goal = tuple(board[\"goal\"])\n+    width = board[\"width\"]\n+    height = board[\"height\"]\n+    if start in walls or goal in walls:\n+        return False\n     q = deque([start])\n     seen = {start}\n     while q:\n         x, y = q.popleft()\n         if (x, y) == goal:\n             return True\n-        for dx,dy in ((1,0),(-1,0),(0,1),(0,-1)):\n-            nxt = (x+dx, y+dy)\n-            if (0<=nxt[0]<board[\"width\"] and 0<=nxt[1]<board[\"height\"]\n-                    and nxt not in seen):\n+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n+            nxt = (x + dx, y + dy)\n+            if (\n+                0 <= nxt[0] < width\n+                and 0 <= nxt[1] < height\n+                and nxt not in walls\n+                and nxt not in seen\n+            ):\n                 seen.add(nxt)\n                 q.append(nxt)\n     return False\n \n \n \n+\n def generate_tasks(*, count:int = DEFAULT_COUNT, seed:int = FIXED_SEED) -> list[dict]:\n     if type(count) is not int or not 20 <= count <= 120:\n         raise NykraError(\"paired benchmark requires 20..120 tasks\")\n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def _has_path(board: dict) -> bool:\n    walls = {tuple(w) for w in board[\"walls\"]}\n    start = tuple(board[\"start\"])\n    goal = tuple(board[\"goal\"])\n    width = board[\"width\"]\n    height = board[\"height\"]\n    if start in walls or goal in walls:\n        return False\n    q = deque([start])\n    seen = {start}\n    while q:\n        x, y = q.popleft()\n        if (x, y) == goal:\n            return True\n        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n            nxt = (x + dx, y + dy)\n            if (\n                0 <= nxt[0] < width\n                and 0 <= nxt[1] < height\n                and nxt not in walls\n                and nxt not in seen\n            ):\n                seen.add(nxt)\n                q.append(nxt)\n    return False",
+          "seconds": 10.43,
+          "tokens": 1273,
+          "source_sha256": "7013ad461cab759c2a1bdbaf8cd1736d508cae9892570dc4e0a52cab92948e54",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/benchmarks.py b/nykra/benchmarks.py\nindex b5aee85..721e13c 100644\n--- a/nykra/benchmarks.py\n+++ b/nykra/benchmarks.py\n@@ -30,22 +30,31 @@ def _has_path(board: dict) -> bool:\n     walls = {tuple(w) for w in board[\"walls\"]}\n     start = tuple(board[\"start\"])\n     goal = tuple(board[\"goal\"])\n+    width = board[\"width\"]\n+    height = board[\"height\"]\n+    if start in walls or goal in walls:\n+        return False\n     q = deque([start])\n     seen = {start}\n     while q:\n         x, y = q.popleft()\n         if (x, y) == goal:\n             return True\n-        for dx,dy in ((1,0),(-1,0),(0,1),(0,-1)):\n-            nxt = (x+dx, y+dy)\n-            if (0<=nxt[0]<board[\"width\"] and 0<=nxt[1]<board[\"height\"]\n-                    and nxt not in seen):\n+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n+            nxt = (x + dx, y + dy)\n+            if (\n+                0 <= nxt[0] < width\n+                and 0 <= nxt[1] < height\n+                and nxt not in walls\n+                and nxt not in seen\n+            ):\n                 seen.add(nxt)\n                 q.append(nxt)\n     return False\n \n \n \n+\n def generate_tasks(*, count:int = DEFAULT_COUNT, seed:int = FIXED_SEED) -> list[dict]:\n     if type(count) is not int or not 20 <= count <= 120:\n         raise NykraError(\"paired benchmark requires 20..120 tasks\")\n",
+          "parent": null
+        }
+      ]
+    }
+  ]
+}

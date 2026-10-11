@@ -1,0 +1,24 @@
+{
+  "id": "nykra-real-git-workflow-integration-v1",
+  "frozen_at": "2026-10-11",
+  "v21_evaluator_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "tasks": [
+    "youtube-dl-27",
+    "youtube-dl-43"
+  ],
+  "budget_per_arm": 4,
+  "max_seconds_per_call": 70,
+  "driver": "codex-inference",
+  "host": "relai",
+  "feedback": "same enriched public-only bounded diagnostic for both arms",
+  "policies": [
+    "depth",
+    "adaptive"
+  ],
+  "shared_prefix": "Single identical model completion for both branches until their actual policy decisions diverge",
+  "final_grading": "public Docker regressions each patch; hidden once at terminal for each arm, no earlier hidden feedback",
+  "historical_reuse": true,
+  "claim_limit": "Integration smoke only. Previously evaluated historical defects; does NOT demonstrate general or causal Nykra coding effectiveness. Model steps after divergence stochastic; token budgets not hard equal.",
+  "target": "actual Git apply in temporary original upstream source checkout, canonical byte-verification, source patch hashes, no edits to user upstream repositories",
+  "no_commit_push": true
+}

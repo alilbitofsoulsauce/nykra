@@ -1,0 +1,208 @@
+{
+  "id": "youtube-dl-bugsinpy-13",
+  "protocol_sha256": "495453711ee9d89b2a5d0e640eef6feed9b2f472f4926b062ca101f4f9e07658",
+  "source_commit": "6945b9e78f38284eb4e440b7badea2fc60b66c2f",
+  "status": "completed",
+  "model": "gpt-6-luna",
+  "arms": [
+    {
+      "arm": "nykra",
+      "status": "completed",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def urljoin(base, path):\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str) or not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str):\n        return None\n    if re.match(r'^(?:https?:)?//', base):\n        return compat_urlparse.urljoin(base, path)\n    # urlparse treats the first component of a non-HTTP URL as a scheme,\n    # which causes urljoin to discard the base. Resolve against its path\n    # portion instead, then restore the original scheme/netloc.\n    base_parts = compat_urlparse.urlsplit(base)\n    if not base_parts.scheme:\n        return None\n    path_parts = compat_urlparse.urlsplit(path)\n    if path_parts.scheme or path_parts.netloc:\n        return path\n    joined_path = compat_urlparse.urljoin('/' + base_parts.path.lstrip('/'), path)\n    joined_parts = compat_urlparse.urlsplit(joined_path)\n    return compat_urlparse.urlunsplit((base_parts.scheme, base_parts.netloc, joined_parts.path, path_parts.query, path_parts.fragment))",
+          "source_sha256": "5200934bf9e14485fe9d0bb39e0bc2812f603e0de2ccac0999c8488366ceae71",
+          "model_status": "ok",
+          "model_seconds": 13.08,
+          "reported_tokens": 15359,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 10.94,
+            "image_id": "sha256:90363f2e9eaf604085c0c3920710eab506ad74e8f84adc7c7ad521d17c44746e",
+            "stderr_sha256": "071b03dd25ede02ad59dbdec6b1115f85a59f46a53c2997ff06948dda2252361",
+            "stderr_bytes": 635
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def urljoin(base, path):\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str) or not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str):\n        return None\n    if re.match(r'^(?:https?:)?//', base):\n        return compat_urlparse.urljoin(base, path)\n    # Parse non-HTTP bases without allowing urljoin to treat their path as a scheme.\n    base_parts = compat_urlparse.urlsplit(base)\n    if not base_parts.scheme:\n        return None\n    path_parts = compat_urlparse.urlsplit(path)\n    if path_parts.scheme or path_parts.netloc:\n        return path\n    # Keep the non-HTTP scheme and authority while resolving the path portion.\n    joined_path = compat_urlparse.urljoin(\n        '/' + base_parts.path.lstrip('/'), path)\n    joined_parts = compat_urlparse.urlsplit(joined_path)\n    return compat_urlparse.urlunsplit((\n        base_parts.scheme, base_parts.netloc, joined_parts.path,\n        path_parts.query, path_parts.fragment))",
+          "source_sha256": "a6047ad80d8ba149bb28d8d051d4e8c47705628b5f715d03357266f1cf6ddf09",
+          "model_status": "ok",
+          "model_seconds": 8.79,
+          "reported_tokens": 1682,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 10.03,
+            "image_id": "sha256:71304c3a235fdbee1e7f92671ea80aa7fe7240557b77b7005be5008e37610ead",
+            "stderr_sha256": "071b03dd25ede02ad59dbdec6b1115f85a59f46a53c2997ff06948dda2252361",
+            "stderr_bytes": 635
+          }
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "source": "def urljoin(base, path):\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str) or not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str):\n        return None\n    if re.match(r'^(?:https?:)?//', base):\n        return compat_urlparse.urljoin(base, path)\n    # urljoin treats non-network schemes such as ``s3`` as opaque. Normalize\n    # the base to a path so relative paths are resolved with normal path rules.\n    base_parts = compat_urlparse.urlsplit(base)\n    if not base_parts.scheme:\n        return None\n    path_parts = compat_urlparse.urlsplit(path)\n    if path_parts.scheme or path_parts.netloc:\n        return path\n    joined_path = compat_urlparse.urljoin(\n        '/' + base_parts.path.lstrip('/'), path_parts.path)\n    return compat_urlparse.urlunsplit((\n        base_parts.scheme, base_parts.netloc, joined_path,\n        path_parts.query, path_parts.fragment))",
+          "source_sha256": "81c49924aa6c99d600180267f38ae48aba1c2b347af7a22f14caf64b6c792349",
+          "model_status": "ok",
+          "model_seconds": 6.97,
+          "reported_tokens": 2682,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 9.57,
+            "image_id": "sha256:ededd86cad87ac96358f3cac3693259f46e2d276bcd41dcaf2350355809bc4ee",
+            "stderr_sha256": "071b03dd25ede02ad59dbdec6b1115f85a59f46a53c2997ff06948dda2252361",
+            "stderr_bytes": 635
+          }
+        },
+        {
+          "id": "attempt-4",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def urljoin(base, path):\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str) or not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str) or not base:\n        return None\n    if re.match(r'^(?:https?:)?//', base):\n        return compat_urlparse.urljoin(base, path)\n    if re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:', base):\n        scheme, netloc, base_path, query, fragment = compat_urlparse.urlsplit(base)\n        path = compat_urlparse.urljoin('http://youtube-dl.invalid' + base_path, path)\n        joined_path = compat_urlparse.urlsplit(path).path\n        return compat_urlparse.urlunsplit((scheme, netloc, joined_path, '', ''))\n    return None",
+          "source_sha256": "caba12036baa9520c3acacd87970b7913c347b4268ad1e0d739ea11e2b661e52",
+          "model_status": "ok",
+          "model_seconds": 6.67,
+          "reported_tokens": 2266,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 8.14,
+            "image_id": "sha256:77b9b3a157247d1d6c79862b1827d2c9e4032e333892df9ac2ecb24f751d697a",
+            "stderr_sha256": "071b03dd25ede02ad59dbdec6b1115f85a59f46a53c2997ff06948dda2252361",
+            "stderr_bytes": 635
+          }
+        }
+      ],
+      "attempts_used": 4,
+      "selected_attempt": null,
+      "regression_test_passed": false,
+      "total_model_seconds": 35.51,
+      "tokens_reported": 21989,
+      "tokens_complete": true,
+      "hidden_evaluation_independent": false
+    },
+    {
+      "arm": "baseline",
+      "status": "completed",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def urljoin(base, path):\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str) or not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str) or not re.match(\n            r'^(?:https?:)?//', base):\n        return None\n    # urlparse.urljoin does not join URLs with non-HTTP schemes reliably.\n    # Treat such schemes as a path prefix and use HTTP only for the join.\n    scheme = compat_urlparse.urlparse(base).scheme\n    if scheme and scheme not in ('http', 'https'):\n        base = 'http://%s' % base\n        return compat_urlparse.urljoin(base, path).replace('http://', scheme + '://', 1)\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "8d5031e1e466720de54f363730155fe6e87c29ecbcc053f5c6be0da7e07d9e36",
+          "model_status": "ok",
+          "model_seconds": 8.47,
+          "reported_tokens": 15294,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 11.36,
+            "image_id": "sha256:dccb7893c5059d90908717627d6d279c87e53f57af5e942c853a68a8447b0f2d",
+            "stderr_sha256": "8f205dc4a70a08766a9695ab7c9e07221545f0610364f035636465c8cb8d7eae",
+            "stderr_bytes": 635
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def urljoin(base, path):\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str) or not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str) or not re.match(\n            r'^(?:https?:)?//', base):\n        return None\n    # urlparse.urljoin does not reliably join URLs with non-HTTP schemes.\n    # Substitute an HTTP scheme for the join, then restore the original.\n    parsed_base = compat_urlparse.urlparse(base)\n    if parsed_base.scheme and parsed_base.scheme not in ('http', 'https'):\n        http_base = compat_urlparse.urlunparse(\n            ('http',) + parsed_base[1:])\n        joined = compat_urlparse.urljoin(http_base, path)\n        return compat_urlparse.urlunparse(\n            (parsed_base.scheme,) + compat_urlparse.urlparse(joined)[1:])\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "0d43df30a5830f8447ab934dc3df3b7d822f9ebad23c6d508be74c6f92d2e938",
+          "model_status": "ok",
+          "model_seconds": 7.08,
+          "reported_tokens": 1595,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 8.89,
+            "image_id": "sha256:132f3b4c5e3960e2e8ee603ec2890081cec3d822bd87732fc968cbad840ed9f4",
+            "stderr_sha256": "071b03dd25ede02ad59dbdec6b1115f85a59f46a53c2997ff06948dda2252361",
+            "stderr_bytes": 635
+          }
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "source": "def urljoin(base, path):\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str) or not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str) or not re.match(\n            r'^(?:https?:)?//', base):\n        return None\n    parsed_base = compat_urlparse.urlparse(base)\n    if parsed_base.scheme and parsed_base.scheme not in ('http', 'https'):\n        http_base = compat_urlparse.urlunparse(\n            ('http',) + parsed_base[1:])\n        joined = compat_urlparse.urljoin(http_base, path)\n        parsed_joined = compat_urlparse.urlparse(joined)\n        return compat_urlparse.urlunparse(\n            (parsed_base.scheme,) + parsed_joined[1:])\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "59db645f31f845c6c34e210405881abee9b87d99fcba21fbf1e1b73e46596988",
+          "model_status": "ok",
+          "model_seconds": 6.98,
+          "reported_tokens": 15678,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 10.36,
+            "image_id": "sha256:9bed9b70148b76c80fdbcab822ac11500009dbb1aec1ef4a469967fe01e14d5f",
+            "stderr_sha256": "071b03dd25ede02ad59dbdec6b1115f85a59f46a53c2997ff06948dda2252361",
+            "stderr_bytes": 635
+          }
+        },
+        {
+          "id": "attempt-4",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-3",
+          "source": "def urljoin(base, path):\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str) or not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str) or not re.match(\n            r'^(?:https?:)?//', base):\n        return None\n    parsed_base = compat_urlparse.urlparse(base)\n    if parsed_base.scheme and parsed_base.scheme not in ('http', 'https'):\n        http_base = compat_urlparse.urlunparse(('http',) + parsed_base[1:])\n        joined = compat_urlparse.urljoin(http_base, path)\n        parsed_joined = compat_urlparse.urlparse(joined)\n        return compat_urlparse.urlunparse((parsed_base.scheme,) + parsed_joined[1:])\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "ea69b50c81cbcecd114b7fb564f08e9c3eb94c85f3b5c9a6460b2a7ba214a5e7",
+          "model_status": "ok",
+          "model_seconds": 10.84,
+          "reported_tokens": 2590,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "exit_code": 1,
+            "elapsed": 12.85,
+            "image_id": "sha256:8b50e99d9c10bf51b2e17e0d36120f760440f1158e62fb2b24915e9aee04d2b8",
+            "stderr_sha256": "071b03dd25ede02ad59dbdec6b1115f85a59f46a53c2997ff06948dda2252361",
+            "stderr_bytes": 635
+          }
+        }
+      ],
+      "attempts_used": 4,
+      "selected_attempt": null,
+      "regression_test_passed": false,
+      "total_model_seconds": 33.37,
+      "tokens_reported": 35157,
+      "tokens_complete": true,
+      "hidden_evaluation_independent": false
+    }
+  ],
+  "prevalidation": {
+    "buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "exit_code": 1,
+      "elapsed": 12.71,
+      "image_id": "sha256:a311d2d9da6e856975eb4df0b701898303690ad034af610ccfac1318b93275e9",
+      "stderr_sha256": "071b03dd25ede02ad59dbdec6b1115f85a59f46a53c2997ff06948dda2252361",
+      "stderr_bytes": 635
+    },
+    "reference_fix": {
+      "status": "ok",
+      "passed": true,
+      "exit_code": 0,
+      "elapsed": 9.53,
+      "image_id": "sha256:579441b1a43f76f9c4efb18a5a144f53a7db1b65444bb69dcdc753d5ac2e5774",
+      "stderr_sha256": "4b9b146ae36a496519f370bcc17f1594a6af95ae45364cab45c7b6e79b6148c1",
+      "stderr_bytes": 223
+    },
+    "eligible": true
+  }
+}

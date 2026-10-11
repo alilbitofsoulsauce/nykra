@@ -1,0 +1,104 @@
+{
+  "schema": "nykra-v21-paired-public-feedback-v1",
+  "task_id": "youtube-dl-43",
+  "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "eligible": true,
+  "status": "completed",
+  "shared": {
+    "id": "common-1",
+    "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+    "source_sha256": "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+    "model_status": "ok",
+    "tokens_reported": 1956,
+    "model_seconds": 7.18,
+    "public": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+          "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+        }
+      ],
+      "elapsed_seconds": 5.68,
+      "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+    }
+  },
+  "shared_hidden": null,
+  "arms": [
+    {
+      "arm": "enriched",
+      "prompt_sha256": "904757ba2c74cf9928cd728e778b8189f33a2fb246b6784d8ef52b9a74e1590e",
+      "candidate": {
+        "id": "enriched-1",
+        "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)*([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+        "source_sha256": "d4173e70b151af072e34d66d5c4cef98f176a610a4a06a2c1e80f65fd647d1a1",
+        "model_status": "ok",
+        "tokens_reported": 2090,
+        "model_seconds": 8.49,
+        "public": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045"
+            }
+          ],
+          "elapsed_seconds": 5.01
+        }
+      },
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c"
+          }
+        ],
+        "elapsed_seconds": 4.3
+      },
+      "full_success": true
+    },
+    {
+      "arm": "bare",
+      "prompt_sha256": "300b797b2098fbf9a262a372be41e647bf1893a78bd914ce47c6967eca4a6cff",
+      "candidate": {
+        "id": "bare-1",
+        "source": "def url_basename(url):\n    m = re.match(r'(?:https?:)?//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+        "source_sha256": "a1e79abc632d9cfef7451e7546f960175d6380a239fc98dca831a0bd13b37580",
+        "model_status": "ok",
+        "tokens_reported": 1025,
+        "model_seconds": 7.34,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+              "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+            }
+          ],
+          "elapsed_seconds": 5.7,
+          "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "full_success": false
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "youtube-dl-bugsinpy-10",
+  "protocol_sha256": "495453711ee9d89b2a5d0e640eef6feed9b2f472f4926b062ca101f4f9e07658",
+  "source_commit": "85d586617750d38d742a24f141b099f6b898d269",
+  "status": "infrastructure_excluded",
+  "model": "gpt-6-luna",
+  "arms": [],
+  "prevalidation": {
+    "buggy": {
+      "status": "timeout",
+      "passed": false,
+      "elapsed": 49.16
+    },
+    "reference_fix": {
+      "status": "ok",
+      "passed": true,
+      "exit_code": 0,
+      "elapsed": 7.38,
+      "image_id": "sha256:2e7c832c10aace18223b7de648f23bf0110a0d6afd1662791d409cf392e6bd44",
+      "stderr_sha256": "5f4da3a10467ed523d52edf10edfcd360269e31f5319fbb2e3c0632fb4663431",
+      "stderr_bytes": 96
+    },
+    "eligible": false
+  }
+}

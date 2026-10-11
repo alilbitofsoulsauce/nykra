@@ -1,0 +1,127 @@
+{
+  "schema": "nykra-v20-cross-project-repeated-fork-summary-v1",
+  "protocol_sha256": "9eec931522e43e5c3afadeaa592e0a9cbd1b1c7c7639153ad7219b6ad731c2ab",
+  "registered": 4,
+  "prevalidated_eligible": 4,
+  "task_statuses": {
+    "youtube-dl-3": "completed",
+    "youtube-dl-5": "completed",
+    "youtube-dl-23": "not_forkable",
+    "tqdm-1": "not_forkable"
+  },
+  "genuine_forked_tasks": 2,
+  "repeated_draws_per_arm_per_fork": 2,
+  "shared_prefix_public_solutions": 1,
+  "shared_prefix_posthoc_hidden_successes": 1,
+  "invalid_prefixes": 1,
+  "observed_by_policy": {
+    "baseline": {
+      "task_successes": 0,
+      "sample_successes": 0,
+      "sample_calls": 4,
+      "reported_tokens": 6395
+    },
+    "nykra": {
+      "task_successes": 0,
+      "sample_successes": 0,
+      "sample_calls": 4,
+      "reported_tokens": 18854
+    }
+  },
+  "hidden_audit_sha256": "32d7a032989cb59f12b1cc77ddc7608359f65b69ef17923543f6d092b63b0372",
+  "prevalidation_sha256": "76a9889a3288e3fc59bad066770d559924fee9db60efec3f9038f0efefae0b24",
+  "not_independent_samples": true,
+  "general_causal_improvement_proven": false,
+  "official_bugsinpy_harness": false,
+  "official_swebench": false,
+  "statistical_sign_test": "not applicable with zero discordant issue outcomes",
+  "limitations": "n=4 issues, 2 actual forks; repeated model responses per issue correlated; one early common pass and one invalid candidate prevented forks; historical training contamination unknown; no hard per-call token cap; restricted one-function repair; Docker not certified malicious-code isolation.",
+  "tasks": [
+    {
+      "id": "youtube-dl-3",
+      "project": "youtube-dl",
+      "status": "completed",
+      "reason": "three_public_failures",
+      "raw_path": "docs/evidence/v20_youtube_dl_3.json",
+      "raw_sha256": "a03a097cd35a6934f61ccee08f3c71d37f0faaa3c308aebe6c98a315a0fd4231",
+      "common_attempts": 3,
+      "model_setup_or_patch_failures": 0,
+      "model_syntax_invalid_count": 0,
+      "fork": true,
+      "results": {
+        "baseline": {
+          "draws": 2,
+          "public_passes": 0,
+          "hidden_verified_passes": 0,
+          "any_hidden_pass": false,
+          "reported_tokens": 2237,
+          "missing_token_counters": 0,
+          "tokens_over_soft_cap": 0
+        },
+        "nykra": {
+          "draws": 2,
+          "public_passes": 0,
+          "hidden_verified_passes": 0,
+          "any_hidden_pass": false,
+          "reported_tokens": 16180,
+          "missing_token_counters": 0,
+          "tokens_over_soft_cap": 0
+        }
+      }
+    },
+    {
+      "id": "youtube-dl-5",
+      "project": "youtube-dl",
+      "status": "completed",
+      "reason": "three_public_failures",
+      "raw_path": "docs/evidence/v20_youtube_dl_5.json",
+      "raw_sha256": "65ebaf1317b48be8f0a121dd77deb9a9898c087d37987e4ee6a4fc8e2b3af918",
+      "common_attempts": 3,
+      "model_setup_or_patch_failures": 0,
+      "model_syntax_invalid_count": 0,
+      "fork": true,
+      "results": {
+        "baseline": {
+          "draws": 2,
+          "public_passes": 0,
+          "hidden_verified_passes": 0,
+          "any_hidden_pass": false,
+          "reported_tokens": 4158,
+          "missing_token_counters": 0,
+          "tokens_over_soft_cap": 0
+        },
+        "nykra": {
+          "draws": 2,
+          "public_passes": 0,
+          "hidden_verified_passes": 0,
+          "any_hidden_pass": false,
+          "reported_tokens": 2674,
+          "missing_token_counters": 0,
+          "tokens_over_soft_cap": 0
+        }
+      }
+    },
+    {
+      "id": "youtube-dl-23",
+      "project": "youtube-dl",
+      "status": "not_forkable",
+      "reason": "infrastructure_or_invalid",
+      "raw_path": "docs/evidence/v20_youtube_dl_23.json",
+      "raw_sha256": "ee14e61fce6069ba82d1a7a1bd5d183a8a20d0013a92e0d3eb6034eb088c659b",
+      "common_attempts": 1,
+      "model_setup_or_patch_failures": 1,
+      "model_syntax_invalid_count": 1
+    },
+    {
+      "id": "tqdm-1",
+      "project": "tqdm",
+      "status": "not_forkable",
+      "reason": "public_solved",
+      "raw_path": "docs/evidence/v20_tqdm_1.json",
+      "raw_sha256": "d1533aea1d773d42518aeca0d2c577d433f19c6723e7f5a685ae6a665fd7ec2f",
+      "common_attempts": 1,
+      "model_setup_or_patch_failures": 0,
+      "model_syntax_invalid_count": 0
+    }
+  ]
+}

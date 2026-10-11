@@ -1,0 +1,115 @@
+{
+  "schema": "nykra-v21-actionable-public-feedback-summary-v1",
+  "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "registered": 6,
+  "eligible": 5,
+  "reference_exclusions": [
+    "youtube-dl-25"
+  ],
+  "shared_first_attempt_public_solved": 3,
+  "shared_first_attempt_hidden_verified": 3,
+  "valid_paired_tasks": 2,
+  "enriched_full_successes": 1,
+  "bare_full_successes": 0,
+  "enriched_only": 1,
+  "bare_only": 0,
+  "paired_exact_two_sided_p": 1.0,
+  "reported_revision_tokens": {
+    "bare": 16760,
+    "enriched": 3826
+  },
+  "model_token_counters_complete": true,
+  "not_a_policy_fork_study": true,
+  "general_effectiveness_improvement_proven": false,
+  "official_bugsinpy_harness": false,
+  "official_swebench": false,
+  "preflight_sha256": "d5dd994895e74cda64ee317ebf2ff6a45d2bffe656b931059217280a5884e371",
+  "task_results": [
+    {
+      "id": "youtube-dl-24",
+      "status": "shared_solved",
+      "eligible": true,
+      "raw_path": "docs/evidence/v21_youtube_dl_24.json",
+      "raw_sha256": "e63465ed0d228831c7c699cc2a798262802582c63b1e16568364281170ec5f64",
+      "shared_hidden_verified": true
+    },
+    {
+      "id": "youtube-dl-25",
+      "status": "preflight_excluded",
+      "eligible": false,
+      "raw_path": "docs/evidence/v21_youtube_dl_25.json",
+      "raw_sha256": "651390e8de21df1919d153fff871a846537d8677b69fe156ff577c97c437145d"
+    },
+    {
+      "id": "youtube-dl-27",
+      "status": "completed",
+      "eligible": true,
+      "raw_path": "docs/evidence/v21_youtube_dl_27.json",
+      "raw_sha256": "d06a07374d08484fb0846088935b0b19cd786da9765ff41bb063ab4c6b9ca586",
+      "arms": {
+        "bare": {
+          "public_pass": false,
+          "hidden_pass": false,
+          "full_success": false,
+          "reported_tokens": 15735,
+          "model_seconds": 8.85,
+          "prompt_sha256": "98a2de2d631d3607f1d2744214fab6e5caf3a0ce73c70c67ba868fab54b5a270",
+          "model_status": "ok"
+        },
+        "enriched": {
+          "public_pass": false,
+          "hidden_pass": false,
+          "full_success": false,
+          "reported_tokens": 1736,
+          "model_seconds": 13.52,
+          "prompt_sha256": "b0b18b963efb79a86e93aa8fdeac45116bcbd07ce905114353390044e75923fe",
+          "model_status": "ok"
+        }
+      }
+    },
+    {
+      "id": "youtube-dl-28",
+      "status": "shared_solved",
+      "eligible": true,
+      "raw_path": "docs/evidence/v21_youtube_dl_28.json",
+      "raw_sha256": "cf38334bb09148f28d7c1acaaf4077ec31dd6d8e7f71e6e9fc2cafa85afc1141",
+      "shared_hidden_verified": true
+    },
+    {
+      "id": "youtube-dl-29",
+      "status": "shared_solved",
+      "eligible": true,
+      "raw_path": "docs/evidence/v21_youtube_dl_29.json",
+      "raw_sha256": "94c4c8184dd7fe4e941914bdfb235cb6407c2d5ff9b47c7ff8c13e26e297a7b6",
+      "shared_hidden_verified": true
+    },
+    {
+      "id": "youtube-dl-43",
+      "status": "completed",
+      "eligible": true,
+      "raw_path": "docs/evidence/v21_youtube_dl_43.json",
+      "raw_sha256": "ada8795303a197cb1157605ca9bb09842ca3302297df62377d24d41deead60e6",
+      "arms": {
+        "bare": {
+          "public_pass": false,
+          "hidden_pass": false,
+          "full_success": false,
+          "reported_tokens": 1025,
+          "model_seconds": 7.34,
+          "prompt_sha256": "300b797b2098fbf9a262a372be41e647bf1893a78bd914ce47c6967eca4a6cff",
+          "model_status": "ok"
+        },
+        "enriched": {
+          "public_pass": true,
+          "hidden_pass": true,
+          "full_success": true,
+          "reported_tokens": 2090,
+          "model_seconds": 8.49,
+          "prompt_sha256": "904757ba2c74cf9928cd728e778b8189f33a2fb246b6784d8ef52b9a74e1590e",
+          "model_status": "ok"
+        }
+      }
+    }
+  ],
+  "limitations": "One model, six preregistered tasks all from youtube-dl; five eligible, only two paired, one enriched-only win and three early shared successes; historical pretraining leakage and output randomness unknown, soft token ceiling, one-function-only modifications, noncertified Docker isolation."
+}

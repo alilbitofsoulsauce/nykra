@@ -1,0 +1,81 @@
+{
+  "protocol_id": "nykra-native-codex-matched-pilot-v1",
+  "model": "gpt-6-luna",
+  "task": "ledger-undo",
+  "protocol_sha256": "45666fad1d9758558cbe96a1f434cff4d6bb0553504809299ba0fc4dc6242736",
+  "arm_order": [
+    "nykra",
+    "baseline"
+  ],
+  "runner": "codex-cli-0.160.0-chatgpt-auth",
+  "reasoning_effort": "low",
+  "training_hidden_disjoint": true,
+  "task_scope": "local function-level bug repair; not SWE-bench",
+  "status": "completed",
+  "arms": [
+    {
+      "arm": "nykra",
+      "task": "ledger-undo",
+      "attempt_budget": 2,
+      "attempts_used": 1,
+      "time_seconds": 11.07,
+      "tokens_reported": 15695,
+      "tokens_reporting_complete": true,
+      "best_attempt_number": 1,
+      "final_training_passed": 0,
+      "final_heldout_passed": 0,
+      "final_heldout_total": 32,
+      "final_heldout_success": false,
+      "heldout_score": 0.0,
+      "attempts": [
+        {
+          "status": "invalid_model_output",
+          "elapsed_seconds": 11.07,
+          "source": null,
+          "tokens_reported": 15695,
+          "training": {
+            "status": "no_candidate",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        }
+      ]
+    },
+    {
+      "arm": "baseline",
+      "task": "ledger-undo",
+      "attempt_budget": 2,
+      "attempts_used": 1,
+      "time_seconds": 9.82,
+      "tokens_reported": 15704,
+      "tokens_reporting_complete": true,
+      "best_attempt_number": 1,
+      "final_training_passed": 0,
+      "final_heldout_passed": 0,
+      "final_heldout_total": 32,
+      "final_heldout_success": false,
+      "heldout_score": 0.0,
+      "attempts": [
+        {
+          "status": "invalid_model_output",
+          "elapsed_seconds": 9.82,
+          "source": null,
+          "tokens_reported": 15704,
+          "training": {
+            "status": "no_candidate",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        }
+      ]
+    }
+  ]
+}

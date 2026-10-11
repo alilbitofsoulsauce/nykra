@@ -1,0 +1,35 @@
+{
+  "task_id": "youtube-dl-17",
+  "protocol_sha256": "d3a6431e2bb636f4790c38c949de77b69b70b89f1752609de11281caed922dde",
+  "model": "gpt-6-luna",
+  "status": "not_forkable",
+  "shared_prefix": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "source": "def cli_bool_option(params, command_option, param, true_value='true', false_value='false', separator=None):\n    param = params.get(param)\n    if param is None:\n        return []\n    assert isinstance(param, bool)\n    if separator:\n        return [command_option + separator + (true_value if param else false_value)]\n    return [command_option, true_value if param else false_value]",
+      "source_sha256": "768061f5cc04386a125bbe32e92d9b889c540001b057933869692ee0e71a64dd",
+      "model_status": "ok",
+      "model_seconds": 7.39,
+      "tokens_reported": 15071,
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "d20461fe4fe4bc5a1441990647f36d84bca34d56d0916e1ae4a8099b61585d0b",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 7.69
+      }
+    }
+  ],
+  "shared_prefix_reason": "public_solved",
+  "fork_actions": null,
+  "arms": []
+}

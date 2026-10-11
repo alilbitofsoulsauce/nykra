@@ -1,0 +1,1434 @@
+{
+  "schema": "nykra-public-evidence-manifest-v1",
+  "reviewed_on": "2026-10-11",
+  "claims_scope": "local_nykra_experiments",
+  "reference_search_successes": {
+    "baseline": 19,
+    "adaptive": 48,
+    "total": 48,
+    "is_llm_benchmark": false
+  },
+  "model_coding_study": {
+    "first_attempt_tasks": 8,
+    "solved_first_attempt": 8,
+    "heldout_checks_passed": 320,
+    "heldout_checks_total": 320,
+    "nykra_causal_uplift_established": false
+  },
+  "native_runner_control_study": {
+    "state": "small_exploratory_native_model_pilot_completed",
+    "model_inference_verified": true,
+    "model": "gpt-6-luna",
+    "task_count": 4,
+    "v1_baseline_solved": 1,
+    "v1_nykra_solved": 1,
+    "v2_baseline_solved": 1,
+    "v2_nykra_solved": 1,
+    "v2_baseline_hidden_passed": 32,
+    "v2_nykra_hidden_passed": 37,
+    "native_nykra_general_gain_proven": false,
+    "official_swebench": false,
+    "report_path": "docs/NATIVE_CODEX_PILOT.md",
+    "historical_failed_probe_path": "docs/evidence/native_runner_probes_2026-10-11.json"
+  },
+  "entries": [
+    {
+      "id": "reference_search",
+      "path": "docs/evidence/grid_paired_seed20261011.json",
+      "sha256": "68816375682bf9dbc7cc63f3122979f23cb39ca8dd9e6d7418ce451a5774a734",
+      "runner": "deterministic_reference_worker",
+      "comparison": "paired_same_task_equal_expansion_budget"
+    },
+    {
+      "id": "model_first_attempt",
+      "path": "docs/evidence/v13_coding_study_results.json",
+      "sha256": "8ae6934ac06415b5f0be60f502c2940baa5d119c8c35fe3330f14cfdf857a40e",
+      "runner": "chatgpt_via_relai",
+      "comparison": "no_independent_control"
+    },
+    {
+      "id": "frozen_model_candidates",
+      "path": "docs/evidence/v13_model_authored_first_attempts.json",
+      "sha256": "7afad64e3f2e80f9da855716c2efd41358be2c662c11021cc8a21dcd8a5907b6",
+      "runner": "chatgpt_via_relai",
+      "comparison": "immutable_first_attempt_sources"
+    },
+    {
+      "id": "runner_setup_probes",
+      "path": "docs/evidence/native_runner_probes_2026-10-11.json",
+      "sha256": "a817c623d45d20e6d6ded45cd79ed29912bdd183e29a645a8cd393551b124aa7",
+      "runner": "opencode_and_codex_installation_probes",
+      "comparison": "no_verified_native_model_call"
+    },
+    {
+      "id": "codex_v1_protocol",
+      "path": "docs/evidence/v14_codex_pilot_protocol.json",
+      "sha256": "45666fad1d9758558cbe96a1f434cff4d6bb0553504809299ba0fc4dc6242736",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "registered_repair_experiment"
+    },
+    {
+      "id": "codex_v1_summary",
+      "path": "docs/evidence/v14_native_codex_v1_summary.json",
+      "sha256": "70f2eab05a34438717e9de5edad4b07ce7924eab7ec828d10f401741a1430c5a",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "completed_matched_repair_experiment"
+    },
+    {
+      "id": "codex_v2_protocol",
+      "path": "docs/evidence/v14_codex_pilot_protocol_v2.json",
+      "sha256": "94445a4375eaa9ccb6d4d0f9fdf3a550aa89da4815dd1e16a74e792a80a3f8a8",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "documented_posthoc_followup"
+    },
+    {
+      "id": "codex_v2_summary",
+      "path": "docs/evidence/v14_native_codex_v2_summary.json",
+      "sha256": "a36fda83984d65ab242e4a7081006d08e6fe60c54855b87e47d9e19794a041c3",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "completed_posthoc_followup"
+    },
+    {
+      "id": "codex_v1_reservation-gaps",
+      "path": "docs/evidence/v14_codex_reservation-gaps.json",
+      "sha256": "e7046d56a108c8e289b410c17bae35687867a7d2bada6e27d7d654ae889d6b5e",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "raw_codex_v1"
+    },
+    {
+      "id": "codex_v2_reservation-gaps",
+      "path": "docs/evidence/v14_codex_v2_reservation-gaps.json",
+      "sha256": "dd722d2672c4a12d7069d33385f80175a43cee4a45e65f69ea0b9babcd395036",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "raw_codex_v2"
+    },
+    {
+      "id": "codex_v1_ledger-undo",
+      "path": "docs/evidence/v14_codex_ledger-undo.json",
+      "sha256": "d01914d7246841a44d1441e30ed485b9e1913c407d14fc3c77a9c3fdebc0427f",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "raw_codex_v1"
+    },
+    {
+      "id": "codex_v2_ledger-undo",
+      "path": "docs/evidence/v14_codex_v2_ledger-undo.json",
+      "sha256": "bc162be824a0ec7c242e1cb76b8b957d8d1bb62c10ceead91059df686d020f5a",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "raw_codex_v2"
+    },
+    {
+      "id": "codex_v1_csv-records",
+      "path": "docs/evidence/v14_codex_csv-records.json",
+      "sha256": "b03611afdd18ae66aa98863a1495230a70ef3bd03b6aba9c151cfdebb192c07e",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "raw_codex_v1"
+    },
+    {
+      "id": "codex_v2_csv-records",
+      "path": "docs/evidence/v14_codex_v2_csv-records.json",
+      "sha256": "7fb9586c8b6d2f8de5415a2b988afd0b61ca3909c7080a7f83e8def82849a6f5",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "raw_codex_v2"
+    },
+    {
+      "id": "codex_v1_normalized-path",
+      "path": "docs/evidence/v14_codex_normalized-path.json",
+      "sha256": "6f294eae1861f4635e10f08f072c173649672d618fb82e44c4a988d9553d7f55",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "raw_codex_v1"
+    },
+    {
+      "id": "codex_v2_normalized-path",
+      "path": "docs/evidence/v14_codex_v2_normalized-path.json",
+      "sha256": "354e411bc52b217516b981f92808ff5e8939ef27842d5fdd854e4213a9483aa2",
+      "runner": "official_codex_cli_0.160.0_gpt_6_luna",
+      "comparison": "raw_codex_v2"
+    },
+    {
+      "id": "v15_protocol",
+      "path": "docs/evidence/v15_repo_pilot_protocol.json",
+      "sha256": "04d42bbde0efabe7dfe234765be3d353400ca8db385ee9f28663a8291863d93f",
+      "runner": "codex_0.160.0_gpt_6_luna_read_only_host_patch",
+      "comparison": "paired_synthetic_regression_in_actual_nykra_git_source"
+    },
+    {
+      "id": "v15_summary",
+      "path": "docs/evidence/v15_repo_repair_summary.json",
+      "sha256": "9307cd07cb19b87331ee4468b7d64444324badd92adb76185fa39f78ba1c93fb",
+      "runner": "codex_0.160.0_gpt_6_luna_read_only_host_patch",
+      "comparison": "paired_synthetic_regression_in_actual_nykra_git_source"
+    },
+    {
+      "id": "v15_task_pvalue-tail",
+      "path": "docs/evidence/v15_pvalue-tail.json",
+      "sha256": "40e2e7b97e19a82ebc8aed29bb6f1443c24e6b48bf19c963a87101899cb7c596",
+      "runner": "codex_0.160.0_gpt_6_luna_read_only_host_patch",
+      "comparison": "paired_synthetic_regression_in_actual_nykra_git_source"
+    },
+    {
+      "id": "v15_task_wall-connectivity",
+      "path": "docs/evidence/v15_wall-connectivity.json",
+      "sha256": "e21efb8c61de9109cef5a392cab08e7b3dc69c75f21e0d1abce016b3b74231a1",
+      "runner": "codex_0.160.0_gpt_6_luna_read_only_host_patch",
+      "comparison": "paired_synthetic_regression_in_actual_nykra_git_source"
+    },
+    {
+      "id": "v15_task_bootstrap-quantile",
+      "path": "docs/evidence/v15_bootstrap-quantile.json",
+      "sha256": "d14a5b84e4213df9e693261423244ea6f2bd0720e0a67b5c59e53353fc574c04",
+      "runner": "codex_0.160.0_gpt_6_luna_read_only_host_patch",
+      "comparison": "paired_synthetic_regression_in_actual_nykra_git_source"
+    },
+    {
+      "id": "v15_task_finite-scores",
+      "path": "docs/evidence/v15_finite-scores.json",
+      "sha256": "5bf95c276e936d4788f0c69bc4a877a3a098201ad0cc24463f1a0fc053b8750d",
+      "runner": "codex_0.160.0_gpt_6_luna_read_only_host_patch",
+      "comparison": "paired_synthetic_regression_in_actual_nykra_git_source"
+    },
+    {
+      "id": "v15_task_identifier-validation",
+      "path": "docs/evidence/v15_identifier-validation.json",
+      "sha256": "6bdb1c7d9f9a6cf09dc61e38312cee32f38b183c67ca825a0a8189d830894d60",
+      "runner": "codex_0.160.0_gpt_6_luna_read_only_host_patch",
+      "comparison": "paired_synthetic_regression_in_actual_nykra_git_source"
+    },
+    {
+      "id": "v15_task_driver-capabilities",
+      "path": "docs/evidence/v15_driver-capabilities.json",
+      "sha256": "a874e65ae8783b643024f019d508cd5b8ee9b058fa595a72b35f304abfeece6b",
+      "runner": "codex_0.160.0_gpt_6_luna_read_only_host_patch",
+      "comparison": "paired_synthetic_regression_in_actual_nykra_git_source"
+    },
+    {
+      "id": "v16_shared_policy_model_smoke",
+      "path": "docs/evidence/v16_real_codex_policy_smoke.json",
+      "sha256": "ac9d9ccf5390415c1ac6abd65b760640f10ace99f76a6879e9afcf62f081e88d",
+      "runner": "relai_codex_gpt6_luna_read_only",
+      "comparison": "uncontrolled_single_attempt_engineering_smoke"
+    },
+    {
+      "id": "v16_docker_fixed_smoke",
+      "path": "docs/evidence/docker_smoke_2026-10-11.json",
+      "sha256": "1e3982f8fa4b4257a408b07b0703198e51a5e463c2d1a5b456ffaae3ff1a2d16",
+      "runner": "docker_fixed_script_busybox_digest_pinned",
+      "comparison": "benign_fixed_script_no_external_benchmark"
+    },
+    {
+      "id": "grid_followup_seed20261012",
+      "path": "docs/evidence/grid_paired_seed20261012.json",
+      "sha256": "bfb65bd00aeabad9b827a22a3bb2b915068e8b3e6c9655506a0125920b329d3c",
+      "runner": "deterministic_reference_worker",
+      "comparison": "paired_same_generator_new_seed_equal_budget"
+    },
+    {
+      "id": "v17_real_issue_protocol",
+      "path": "docs/evidence/v17_external_pilot_protocol.json",
+      "sha256": "495453711ee9d89b2a5d0e640eef6feed9b2f472f4926b062ca101f4f9e07658",
+      "runner": "codex_gpt6_luna_docker_pinned_bugsinpy",
+      "comparison": "preregistered_real_upstream_issues"
+    },
+    {
+      "id": "v17_real_issue_1",
+      "path": "docs/evidence/v17_youtube_dl_bugsinpy_1.json",
+      "sha256": "11213c39e72d72537c56620a978d185888e1b1711a77569783ab83ba23216395",
+      "runner": "codex_gpt6_luna_docker_pinned_bugsinpy",
+      "comparison": "completed_paired"
+    },
+    {
+      "id": "v17_real_issue_10",
+      "path": "docs/evidence/v17_youtube_dl_bugsinpy_10.json",
+      "sha256": "0daa73cbb2bcbae522039250ac64fe7ccf4ff204eb1313e31707e3385f94862f",
+      "runner": "codex_gpt6_luna_docker_pinned_bugsinpy",
+      "comparison": "prevalidation_excluded"
+    },
+    {
+      "id": "v17_real_issue_11",
+      "path": "docs/evidence/v17_youtube_dl_bugsinpy_11.json",
+      "sha256": "8ba816dd6eb13efb76988924b78d911555d3fb1dfde8a50ec5c4508940b65d7a",
+      "runner": "codex_gpt6_luna_docker_pinned_bugsinpy",
+      "comparison": "completed_paired"
+    },
+    {
+      "id": "v17_real_issue_13",
+      "path": "docs/evidence/v17_youtube_dl_bugsinpy_13.json",
+      "sha256": "907f15286d57adb85aa70fa2f729fa46d388462965fb149a585bae96f8938a0f",
+      "runner": "codex_gpt6_luna_docker_pinned_bugsinpy",
+      "comparison": "completed_paired"
+    },
+    {
+      "id": "v17_real_issue_summary",
+      "path": "docs/evidence/v17_external_pilot_summary.json",
+      "sha256": "bfa8ff4be5e4c9555c05efad1c7ad3914ef6c56bee84dc2108d8e4038deb60c7",
+      "runner": "codex_gpt6_luna_docker_pinned_bugsinpy",
+      "comparison": "aggregated_task_level_outcomes"
+    },
+    {
+      "id": "v18_original_preflight",
+      "path": "docs/evidence/v18_protocol_preflight_original.json",
+      "sha256": "7a02b088b0cc7e675d2f057fe59edbb5d315d5f3b5829a260044950bcd724613",
+      "runner": "codex_gpt6_luna_v18_offline_cross_repo_hidden",
+      "comparison": "pre_inference_environment_setup"
+    },
+    {
+      "id": "v18_registered_protocol",
+      "path": "docs/evidence/v18_protocol.json",
+      "sha256": "8d52ce33e9906211e3e2a39ab16b65eeb4bd0f3d92b2f0bf6604898f12d954b6",
+      "runner": "codex_gpt6_luna_v18_offline_cross_repo_hidden",
+      "comparison": "prospectively_frozen_after_pre_inference_dependency_amendment"
+    },
+    {
+      "id": "v18_task_yt17",
+      "path": "docs/evidence/v18_youtube_dl_17.json",
+      "sha256": "c0350a58a1153af3d2666a5903e253401621cfb5f381463642ef25ae290b4dac",
+      "runner": "codex_gpt6_luna_v18_offline_cross_repo_hidden",
+      "comparison": "completed_paired_hidden_verified"
+    },
+    {
+      "id": "v18_task_yt20",
+      "path": "docs/evidence/v18_youtube_dl_20.json",
+      "sha256": "e35101e748bcb35885c5e81b746412214022f71f50519107c344f1683853db16",
+      "runner": "codex_gpt6_luna_v18_offline_cross_repo_hidden",
+      "comparison": "completed_paired_public_failure"
+    },
+    {
+      "id": "v18_task_yt21",
+      "path": "docs/evidence/v18_youtube_dl_21.json",
+      "sha256": "91ba4b5165ade37d2a860cc40b26dd1b1479d456f6ece57b11c59a3dc96ec8a6",
+      "runner": "codex_gpt6_luna_v18_offline_cross_repo_hidden",
+      "comparison": "completed_paired_nykra_only_hidden_success"
+    },
+    {
+      "id": "v18_task_pysnooper3",
+      "path": "docs/evidence/v18_pysnooper_3.json",
+      "sha256": "5d7b91173cfcbd36cfb1cd3c19c60f9bf09ebf3650108ad78bf0e1a6246435d4",
+      "runner": "codex_gpt6_luna_v18_offline_cross_repo_hidden",
+      "comparison": "completed_paired_baseline_only_hidden_success"
+    },
+    {
+      "id": "v18_result_summary",
+      "path": "docs/evidence/v18_summary.json",
+      "sha256": "ed96b1a70fd98c6559c6255625ea9b2612e6042aabb5ebf7d7a1bc3109661cc0",
+      "runner": "codex_gpt6_luna_v18_offline_cross_repo_hidden",
+      "comparison": "aggregate_issue_level_null"
+    },
+    {
+      "id": "v19_natural_protocol",
+      "path": "docs/evidence/v19_protocol.json",
+      "sha256": "d3a6431e2bb636f4790c38c949de77b69b70b89f1752609de11281caed922dde",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "preregistered_natural_four_tasks"
+    },
+    {
+      "id": "v19_natural_yt17",
+      "path": "docs/evidence/v19_youtube_dl_17.json",
+      "sha256": "c5968425967fe40d34b04b3a204f81d54106ee9f43f40a215a590fb244c61772",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "shared_prefix_public_and_posthoc_hidden_solved"
+    },
+    {
+      "id": "v19_natural_yt20",
+      "path": "docs/evidence/v19_youtube_dl_20.json",
+      "sha256": "3c7f6d72f2e73167d1a4e8f9e26719f7b06f72fbc34438174e2324ad3f24182b",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "shared_prefix_public_and_posthoc_hidden_solved"
+    },
+    {
+      "id": "v19_natural_yt21",
+      "path": "docs/evidence/v19_youtube_dl_21.json",
+      "sha256": "790dc5417c1598edfd81b5694c5e06d68e39187f53c68e00f5d03303b9e1d94a",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "shared_prefix_public_and_posthoc_hidden_solved"
+    },
+    {
+      "id": "v19_natural_pysnooper",
+      "path": "docs/evidence/v19_pysnooper_3.json",
+      "sha256": "69f4cfef611628c79ef6f685fd598e4bdabdeef6f608096ef02cdb6ecbb82327",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "genuine_fork_nykra_only_success"
+    },
+    {
+      "id": "v19_archived_protocol",
+      "path": "docs/evidence/v19_stalled_protocol.json",
+      "sha256": "fbe1c8537856ad1bab7e3be441e2518666cb9dc41a53f1a3896181eb4ed3c5d1",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "failure_conditioned_secondary_protocol"
+    },
+    {
+      "id": "v19_archived_yt20",
+      "path": "docs/evidence/v19_stalled_yt20.json",
+      "sha256": "1acc4de0d8b4bf54479cda11a08deb9990ab1b9d3b7c2f98f4e47f660df264af",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "two_pass_forked_stalled_history"
+    },
+    {
+      "id": "v19_archived_yt21",
+      "path": "docs/evidence/v19_stalled_yt21.json",
+      "sha256": "760e33e85ef5e3bd2bb69a043b9f65e14ee14453e357a1dfec502593a3b4914c",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "two_pass_forked_stalled_history"
+    },
+    {
+      "id": "v19_archived_pysnooper",
+      "path": "docs/evidence/v19_stalled_pysnooper3.json",
+      "sha256": "e159b45357da42d3096052451b088722cb426260b9c98caaee2ff154f3aef5da",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "nykra_only_forked_stalled_history_overlap"
+    },
+    {
+      "id": "v19_prefix_hidden",
+      "path": "docs/evidence/v19_shared_prefix_hidden.json",
+      "sha256": "01fd15aa590dcc3814a9d3ba27dabdd59e14a7376dcaa9ee5f2156516c7f1c87",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "post_inference_no_feedback_hidden_audit"
+    },
+    {
+      "id": "v19_full_summary",
+      "path": "docs/evidence/v19_summary.json",
+      "sha256": "c2800d49cfbaac9b7c55f5d557b60345e5169c508da93af41f898d422decb024",
+      "runner": "codex_gpt6_luna_v19_shared_prefix_docker",
+      "comparison": "separate_non_pooled_conditional_research_result"
+    },
+    {
+      "id": "v20_initial_protocol",
+      "path": "docs/evidence/v20_protocol_initial.json",
+      "sha256": "5aa9667b4bfeb468029cf5551bc93c1738cbdbcc2bc3cd53e750d3480fb7fa00",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "preserved_pre_inference_protocol"
+    },
+    {
+      "id": "v20_initial_hidden",
+      "path": "docs/evidence/v20_hidden_spec_initial.py",
+      "sha256": "e7e823481ee1599ae9d059deec39e4bba2ebdea7a02b3cc3436813842f6a8ea1",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "preserved_pre_inference_hidden_oracle"
+    },
+    {
+      "id": "v20_initial_failed_reference",
+      "path": "docs/evidence/v20_prevalidation_initial.json",
+      "sha256": "c4e37ee6eee3dd1cf0ca4397c0cb38c1e4d5196c461e1866c6bde834b356290e",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "original_failed_reference_environment"
+    },
+    {
+      "id": "v20_amended_protocol",
+      "path": "docs/evidence/v20_protocol.json",
+      "sha256": "9eec931522e43e5c3afadeaa592e0a9cbd1b1c7c7639153ad7219b6ad731c2ab",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "amended_pre_inference_frozen_cross_project_tasks"
+    },
+    {
+      "id": "v20_final_reference",
+      "path": "docs/evidence/v20_prevalidation.json",
+      "sha256": "76a9889a3288e3fc59bad066770d559924fee9db60efec3f9038f0efefae0b24",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "all_4_public_and_hidden_buggy_fixed_verified"
+    },
+    {
+      "id": "v20_raw_youtube3",
+      "path": "docs/evidence/v20_youtube_dl_3.json",
+      "sha256": "a03a097cd35a6934f61ccee08f3c71d37f0faaa3c308aebe6c98a315a0fd4231",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "real_fork_two_draws_per_arm_zero_success"
+    },
+    {
+      "id": "v20_raw_youtube5",
+      "path": "docs/evidence/v20_youtube_dl_5.json",
+      "sha256": "65ebaf1317b48be8f0a121dd77deb9a9898c087d37987e4ee6a4fc8e2b3af918",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "real_fork_two_draws_per_arm_zero_success"
+    },
+    {
+      "id": "v20_raw_youtube23",
+      "path": "docs/evidence/v20_youtube_dl_23.json",
+      "sha256": "ee14e61fce6069ba82d1a7a1bd5d183a8a20d0013a92e0d3eb6034eb088c659b",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "invalid_model_generated_syntax_no_fork"
+    },
+    {
+      "id": "v20_raw_tqdm1",
+      "path": "docs/evidence/v20_tqdm_1.json",
+      "sha256": "d1533aea1d773d42518aeca0d2c577d433f19c6723e7f5a685ae6a665fd7ec2f",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "early_shared_public_success_no_fork"
+    },
+    {
+      "id": "v20_shared_hidden",
+      "path": "docs/evidence/v20_shared_prefix_hidden.json",
+      "sha256": "32d7a032989cb59f12b1cc77ddc7608359f65b69ef17923543f6d092b63b0372",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "post_inference_shared_success_hidden_pass"
+    },
+    {
+      "id": "v20_machine_summary",
+      "path": "docs/evidence/v20_summary.json",
+      "sha256": "f3585eaee2b71cd10451c428699bf3720f8baffe8bcfeed966e878366158deb2",
+      "runner": "codex_gpt6_luna_v20_repeated_fork_docker",
+      "comparison": "issue_level_null_replication"
+    },
+    {
+      "id": "v21_protocol_initial",
+      "path": "docs/evidence/v21_protocol_initial.json",
+      "sha256": "6534cca67e1294fc43134b7e499f72adfcd17466add16898376c0a9495c9c5b6",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "preserved_before_reference_only_oracle_amendment"
+    },
+    {
+      "id": "v21_hidden_initial",
+      "path": "docs/evidence/v21_hidden_spec_initial.py",
+      "sha256": "94940769196fc8fd5814c8e2fdc7ffbf3703dcdab9458605d8cdc1b5695b7580",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "preserved_private_oracle_before_amendment"
+    },
+    {
+      "id": "v21_preflight_initial",
+      "path": "docs/evidence/v21_prevalidation_initial.json",
+      "sha256": "654a3cc5976b15dbf89db0e81f4fa2861af4a26222b682f28a47da1a3f13c4f6",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "failed_reference_only_oracle_checks"
+    },
+    {
+      "id": "v21_protocol_amended",
+      "path": "docs/evidence/v21_protocol.json",
+      "sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "frozen_before_any_model_inference"
+    },
+    {
+      "id": "v21_reference_preflight",
+      "path": "docs/evidence/v21_prevalidation.json",
+      "sha256": "d5dd994895e74cda64ee317ebf2ff6a45d2bffe656b931059217280a5884e371",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "five_gold_public_and_hidden_verified_one_exclusion"
+    },
+    {
+      "id": "v21_result_24",
+      "path": "docs/evidence/v21_youtube_dl_24.json",
+      "sha256": "e63465ed0d228831c7c699cc2a798262802582c63b1e16568364281170ec5f64",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "shared_first_attempt_hidden_pass"
+    },
+    {
+      "id": "v21_result_25",
+      "path": "docs/evidence/v21_youtube_dl_25.json",
+      "sha256": "651390e8de21df1919d153fff871a846537d8677b69fe156ff577c97c437145d",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "ineligible_reference_hidden_oracle"
+    },
+    {
+      "id": "v21_result_27",
+      "path": "docs/evidence/v21_youtube_dl_27.json",
+      "sha256": "d06a07374d08484fb0846088935b0b19cd786da9765ff41bb063ab4c6b9ca586",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "paired_bare_and_enriched_both_fail"
+    },
+    {
+      "id": "v21_result_28",
+      "path": "docs/evidence/v21_youtube_dl_28.json",
+      "sha256": "cf38334bb09148f28d7c1acaaf4077ec31dd6d8e7f71e6e9fc2cafa85afc1141",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "shared_first_attempt_hidden_pass"
+    },
+    {
+      "id": "v21_result_29",
+      "path": "docs/evidence/v21_youtube_dl_29.json",
+      "sha256": "94c4c8184dd7fe4e941914bdfb235cb6407c2d5ff9b47c7ff8c13e26e297a7b6",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "shared_first_attempt_hidden_pass"
+    },
+    {
+      "id": "v21_result_43",
+      "path": "docs/evidence/v21_youtube_dl_43.json",
+      "sha256": "ada8795303a197cb1157605ca9bb09842ca3302297df62377d24d41deead60e6",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "paired_enriched_only_hidden_verified_pass"
+    },
+    {
+      "id": "v21_machine_summary",
+      "path": "docs/evidence/v21_summary.json",
+      "sha256": "9f94dd19e8f1638838442cf40a5205fdf65170c4688e6dbf48a427ec8a4da9ed",
+      "runner": "codex_gpt6_luna_v21_real_feedback_pair",
+      "comparison": "true_issue_level_paired_feedback_results"
+    },
+    {
+      "id": "v22_workflow_protocol",
+      "path": "docs/evidence/v22_workflow_protocol.json",
+      "sha256": "9ea44d344f46d6c2f99cfff6a37d46bfc53b3a3390023c20cbe4535e8c5bc776",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "frozen_pre_inference_integration_protocol"
+    },
+    {
+      "id": "v22_pair_bug27",
+      "path": "docs/evidence/v22_workflow_pair_youtube_dl_27.json",
+      "sha256": "eee1fac3e3fd8c8416c27b78fc883bb54fcc825287887bb4181295ea8e568c85",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "three_shared_model_calls_then_actual_policy_fork_both_fail"
+    },
+    {
+      "id": "v22_pair_bug43",
+      "path": "docs/evidence/v22_workflow_pair_youtube_dl_43.json",
+      "sha256": "53b64fa02757ad5deb2d8014378c6f969145385d33e98d98ea522e2412fae390",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "three_shared_model_calls_both_hidden_pass_no_fork"
+    },
+    {
+      "id": "v22_cli_control",
+      "path": "docs/evidence/v22_cli_reference_smoke.json",
+      "sha256": "2effb01d3fa89fbb50b9fbc51741b31397f4ca67b7796466c3e2959bfd27d204",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "reference_fixed_function_cli_transport_check_not_model"
+    },
+    {
+      "id": "v22_machine_summary",
+      "path": "docs/evidence/v22_workflow_summary.json",
+      "sha256": "9e78e00d556560c041e469a4a79d29891d1b1aae4f01b002a9e0b0f265536962",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "audited_reused_historical_issue_null_comparison"
+    },
+    {
+      "id": "v22_portable_sessions",
+      "path": "docs/evidence/v22_session_export_index.json",
+      "sha256": "003cce233547817b7b8a1676663e0cc22a48e240226b5dc13d4cc24c0eb6c4f3",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "portable_model_generated_source_and_git_patch_sha_proofs"
+    },
+    {
+      "id": "v22_portable_16ebcd0ed4804a36bbfbc5364f8b1a57_state_json",
+      "path": "docs/evidence/v22_sessions/16ebcd0ed4804a36bbfbc5364f8b1a57/state.json",
+      "sha256": "c5c60b6e142b0a1c431797c56ebb9759c52587a2e7d36b00265e89900ed23c8e",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_16ebcd0ed4804a36bbfbc5364f8b1a57_attempt-1_diff",
+      "path": "docs/evidence/v22_sessions/16ebcd0ed4804a36bbfbc5364f8b1a57/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_16ebcd0ed4804a36bbfbc5364f8b1a57_attempt-2_diff",
+      "path": "docs/evidence/v22_sessions/16ebcd0ed4804a36bbfbc5364f8b1a57/attempt-2.diff",
+      "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_16ebcd0ed4804a36bbfbc5364f8b1a57_attempt-3_diff",
+      "path": "docs/evidence/v22_sessions/16ebcd0ed4804a36bbfbc5364f8b1a57/attempt-3.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_16ebcd0ed4804a36bbfbc5364f8b1a57_attempt-4_diff",
+      "path": "docs/evidence/v22_sessions/16ebcd0ed4804a36bbfbc5364f8b1a57/attempt-4.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_b2ff113a4fb247b6ab09297f23a1431f_state_json",
+      "path": "docs/evidence/v22_sessions/b2ff113a4fb247b6ab09297f23a1431f/state.json",
+      "sha256": "6fa2800d60b86bdacc578cd18f085f207f0c80b49ae8067ed2e5fed724b94cb2",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_b2ff113a4fb247b6ab09297f23a1431f_attempt-1_diff",
+      "path": "docs/evidence/v22_sessions/b2ff113a4fb247b6ab09297f23a1431f/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_b2ff113a4fb247b6ab09297f23a1431f_attempt-2_diff",
+      "path": "docs/evidence/v22_sessions/b2ff113a4fb247b6ab09297f23a1431f/attempt-2.diff",
+      "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_b2ff113a4fb247b6ab09297f23a1431f_attempt-3_diff",
+      "path": "docs/evidence/v22_sessions/b2ff113a4fb247b6ab09297f23a1431f/attempt-3.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_b2ff113a4fb247b6ab09297f23a1431f_attempt-4_diff",
+      "path": "docs/evidence/v22_sessions/b2ff113a4fb247b6ab09297f23a1431f/attempt-4.diff",
+      "sha256": "53f7a49a5b88d7e80c23e9c303b25bb34ce747fb68e9dd151160bd4b9b3b9a74",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_5f9257c820e6492b9f384f649220c181_state_json",
+      "path": "docs/evidence/v22_sessions/5f9257c820e6492b9f384f649220c181/state.json",
+      "sha256": "85918cec3c0b25da75b108a3e68ccc648aaef74e345a117005ebb81c9241a231",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_5f9257c820e6492b9f384f649220c181_attempt-1_diff",
+      "path": "docs/evidence/v22_sessions/5f9257c820e6492b9f384f649220c181/attempt-1.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_5f9257c820e6492b9f384f649220c181_attempt-2_diff",
+      "path": "docs/evidence/v22_sessions/5f9257c820e6492b9f384f649220c181/attempt-2.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_5f9257c820e6492b9f384f649220c181_attempt-3_diff",
+      "path": "docs/evidence/v22_sessions/5f9257c820e6492b9f384f649220c181/attempt-3.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_6fc99fbd8b4648ada3cfda0ec0435a91_state_json",
+      "path": "docs/evidence/v22_sessions/6fc99fbd8b4648ada3cfda0ec0435a91/state.json",
+      "sha256": "1b682adc0b7f835b468cab3f377d722e8b37d5d77566ebace7e7a413fee31df1",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_6fc99fbd8b4648ada3cfda0ec0435a91_attempt-1_diff",
+      "path": "docs/evidence/v22_sessions/6fc99fbd8b4648ada3cfda0ec0435a91/attempt-1.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_6fc99fbd8b4648ada3cfda0ec0435a91_attempt-2_diff",
+      "path": "docs/evidence/v22_sessions/6fc99fbd8b4648ada3cfda0ec0435a91/attempt-2.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_6fc99fbd8b4648ada3cfda0ec0435a91_attempt-3_diff",
+      "path": "docs/evidence/v22_sessions/6fc99fbd8b4648ada3cfda0ec0435a91/attempt-3.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "codex_model_trial"
+    },
+    {
+      "id": "v22_portable_ea6210bb11114651a550df97bb654cfc_state_json",
+      "path": "docs/evidence/v22_sessions/ea6210bb11114651a550df97bb654cfc/state.json",
+      "sha256": "1e2917fd5b7d9d7c7ae415ae6a6fdb39f56b91db981279e06212804edf1a62aa",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "reference_control"
+    },
+    {
+      "id": "v22_portable_ea6210bb11114651a550df97bb654cfc_attempt-1_diff",
+      "path": "docs/evidence/v22_sessions/ea6210bb11114651a550df97bb654cfc/attempt-1.diff",
+      "sha256": "36822dcb29c2511f3dc26ff080559b12c3550ec905cbb5a7903ea5f3f15b2aba",
+      "runner": "relai_hosted_codex_real_git_patch_workflow_v22",
+      "comparison": "reference_control"
+    },
+    {
+      "id": "v23_frozen_protocol",
+      "path": "docs/evidence/v23_reuse_protocol.json",
+      "sha256": "fc6f0b42cd4a2d2153058319cfe34f71ea10e65246ac3acd82450bed5c0e5ed9",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "exact-source-issue-evaluator-and-measurement-frozen_before-replay"
+    },
+    {
+      "id": "v23_real_issue_27",
+      "path": "docs/evidence/v23_reuse_youtube_dl_27.json",
+      "sha256": "2f1413d78518a42e7aa3256c4bcb7143c8c8b656fc3aead8f9cf0e0d37224f2e",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "real-git-docker-8_to_5_dedup_verified_failure"
+    },
+    {
+      "id": "v23_real_issue_43",
+      "path": "docs/evidence/v23_reuse_youtube_dl_43.json",
+      "sha256": "aafba21c413607d75973028f0b697d0225043b8ab9dd209c0e5a01a7a7261488",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "real-git-docker-6_to_3_dedup_verified_hidden_pass"
+    },
+    {
+      "id": "v23_real_work_summary",
+      "path": "docs/evidence/v23_reuse_summary.json",
+      "sha256": "ef11902f529344be12fe0d7ccb2cc9006cd2a77e05d2cce594c3709000fec572",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "machine_audited_docker_and_time_savings"
+    },
+    {
+      "id": "v23_portable_source_index",
+      "path": "docs/evidence/v23_session_export_index.json",
+      "sha256": "9865fdb538d724de48fb4fce6c774905d529f29381ff2ee426c5631fe8a190a4",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_eight_host_sessions_sources_and_git_patches"
+    },
+    {
+      "id": "v23_cli_no_model_reference",
+      "path": "docs/evidence/v23_cli_reuse_control.json",
+      "sha256": "9ff3b1e38e2907ae16d28cc0181bc4b436fd4220d4700587d326584bc4c38bea",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "independent-process_reference-receipt-reuse-not_model-success"
+    },
+    {
+      "id": "v23_portable_2df37e83f6e345bfa1bf543b7f89413f_state_json",
+      "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/state.json",
+      "sha256": "ccd78a8a79cc2af2e84e5d2de74661ba704a3b6d75c6ecf633289b161ea9c283",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_2df37e83f6e345bfa1bf543b7f89413f_attempt-1_diff",
+      "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_2df37e83f6e345bfa1bf543b7f89413f_attempt-2_diff",
+      "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/attempt-2.diff",
+      "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_2df37e83f6e345bfa1bf543b7f89413f_attempt-3_diff",
+      "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/attempt-3.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_2df37e83f6e345bfa1bf543b7f89413f_attempt-4_diff",
+      "path": "docs/evidence/v23_sessions/2df37e83f6e345bfa1bf543b7f89413f/attempt-4.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_b689e64486f2446fbd24b60d7d9628e0_state_json",
+      "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/state.json",
+      "sha256": "8f8600c60e0c7a03d567dbd43438b9c3d08cc0308bdcf89690d3bd48422463c1",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_b689e64486f2446fbd24b60d7d9628e0_attempt-1_diff",
+      "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_b689e64486f2446fbd24b60d7d9628e0_attempt-2_diff",
+      "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/attempt-2.diff",
+      "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_b689e64486f2446fbd24b60d7d9628e0_attempt-3_diff",
+      "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/attempt-3.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_b689e64486f2446fbd24b60d7d9628e0_attempt-4_diff",
+      "path": "docs/evidence/v23_sessions/b689e64486f2446fbd24b60d7d9628e0/attempt-4.diff",
+      "sha256": "53f7a49a5b88d7e80c23e9c303b25bb34ce747fb68e9dd151160bd4b9b3b9a74",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_50c4cfc36aeb44228c380c356f18906e_state_json",
+      "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/state.json",
+      "sha256": "2f17c657310d448d935474fb67016195ba09ea834a5683f4379892749e65ce35",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_50c4cfc36aeb44228c380c356f18906e_attempt-1_diff",
+      "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_50c4cfc36aeb44228c380c356f18906e_attempt-2_diff",
+      "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/attempt-2.diff",
+      "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_50c4cfc36aeb44228c380c356f18906e_attempt-3_diff",
+      "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/attempt-3.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_50c4cfc36aeb44228c380c356f18906e_attempt-4_diff",
+      "path": "docs/evidence/v23_sessions/50c4cfc36aeb44228c380c356f18906e/attempt-4.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_b3ab813c10b74d40bf91e6a8f0dda030_state_json",
+      "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/state.json",
+      "sha256": "96b954dce0f1ea9f1442c591f13b94233d093208ad7d2a9d4486b459daf253d6",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v23_portable_b3ab813c10b74d40bf91e6a8f0dda030_attempt-1_diff",
+      "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v23_portable_b3ab813c10b74d40bf91e6a8f0dda030_attempt-2_diff",
+      "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/attempt-2.diff",
+      "sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v23_portable_b3ab813c10b74d40bf91e6a8f0dda030_attempt-3_diff",
+      "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/attempt-3.diff",
+      "sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v23_portable_b3ab813c10b74d40bf91e6a8f0dda030_attempt-4_diff",
+      "path": "docs/evidence/v23_sessions/b3ab813c10b74d40bf91e6a8f0dda030/attempt-4.diff",
+      "sha256": "53f7a49a5b88d7e80c23e9c303b25bb34ce747fb68e9dd151160bd4b9b3b9a74",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v23_portable_1a9434bf1a4a4882ab26ea53f4a5f44f_state_json",
+      "path": "docs/evidence/v23_sessions/1a9434bf1a4a4882ab26ea53f4a5f44f/state.json",
+      "sha256": "4ca66aed6f232ee12f8a0242bcbb9660b4e5685e0be8bbcf549519245a647ada",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_1a9434bf1a4a4882ab26ea53f4a5f44f_attempt-1_diff",
+      "path": "docs/evidence/v23_sessions/1a9434bf1a4a4882ab26ea53f4a5f44f/attempt-1.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_1a9434bf1a4a4882ab26ea53f4a5f44f_attempt-2_diff",
+      "path": "docs/evidence/v23_sessions/1a9434bf1a4a4882ab26ea53f4a5f44f/attempt-2.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_1a9434bf1a4a4882ab26ea53f4a5f44f_attempt-3_diff",
+      "path": "docs/evidence/v23_sessions/1a9434bf1a4a4882ab26ea53f4a5f44f/attempt-3.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_depth"
+    },
+    {
+      "id": "v23_portable_d133d3954d7c48d497606e976044fb42_state_json",
+      "path": "docs/evidence/v23_sessions/d133d3954d7c48d497606e976044fb42/state.json",
+      "sha256": "e1b15f9734014d66ebc88da1b4ce9c14a41c5bffa2e7ebb67662cd57e26bab52",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_d133d3954d7c48d497606e976044fb42_attempt-1_diff",
+      "path": "docs/evidence/v23_sessions/d133d3954d7c48d497606e976044fb42/attempt-1.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_d133d3954d7c48d497606e976044fb42_attempt-2_diff",
+      "path": "docs/evidence/v23_sessions/d133d3954d7c48d497606e976044fb42/attempt-2.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_d133d3954d7c48d497606e976044fb42_attempt-3_diff",
+      "path": "docs/evidence/v23_sessions/d133d3954d7c48d497606e976044fb42/attempt-3.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_ordinary_adaptive"
+    },
+    {
+      "id": "v23_portable_97fb52a8f82942b48a50d2f0a49c86ce_state_json",
+      "path": "docs/evidence/v23_sessions/97fb52a8f82942b48a50d2f0a49c86ce/state.json",
+      "sha256": "95e3fd0d829bc8872d3605fabcce27a83ddeec167e741daedba8e6619dd706cc",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_97fb52a8f82942b48a50d2f0a49c86ce_attempt-1_diff",
+      "path": "docs/evidence/v23_sessions/97fb52a8f82942b48a50d2f0a49c86ce/attempt-1.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_97fb52a8f82942b48a50d2f0a49c86ce_attempt-2_diff",
+      "path": "docs/evidence/v23_sessions/97fb52a8f82942b48a50d2f0a49c86ce/attempt-2.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_97fb52a8f82942b48a50d2f0a49c86ce_attempt-3_diff",
+      "path": "docs/evidence/v23_sessions/97fb52a8f82942b48a50d2f0a49c86ce/attempt-3.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_depth"
+    },
+    {
+      "id": "v23_portable_f1eb223f48b34778ae0d2c2f055005cb_state_json",
+      "path": "docs/evidence/v23_sessions/f1eb223f48b34778ae0d2c2f055005cb/state.json",
+      "sha256": "ffc5dff00ab6ef303cd528c1e6853d871289999c83c99a8e224002880dfa3ba2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v23_portable_f1eb223f48b34778ae0d2c2f055005cb_attempt-1_diff",
+      "path": "docs/evidence/v23_sessions/f1eb223f48b34778ae0d2c2f055005cb/attempt-1.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v23_portable_f1eb223f48b34778ae0d2c2f055005cb_attempt-2_diff",
+      "path": "docs/evidence/v23_sessions/f1eb223f48b34778ae0d2c2f055005cb/attempt-2.diff",
+      "sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v23_portable_f1eb223f48b34778ae0d2c2f055005cb_attempt-3_diff",
+      "path": "docs/evidence/v23_sessions/f1eb223f48b34778ae0d2c2f055005cb/attempt-3.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "nykra_relai_supervised_verified_public_work_reuse_v23",
+      "comparison": "portable_verified_git_patch_source_shared_adaptive"
+    },
+    {
+      "id": "v24_frozen_protocol",
+      "path": "docs/evidence/v24_protocol.json",
+      "sha256": "805237e2005a30cc927fc7be6441d4c2d7e54047c56d56d432d7e3d48e166f9a",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "frozen_historical_real_source_and_counterbalanced_conditions"
+    },
+    {
+      "id": "v24_real_bug27",
+      "path": "docs/evidence/v24_cache_youtube_dl_27.json",
+      "sha256": "4005b97a6ea8d33d242c7864e3cd5e4d41fdf3f5fd9164286c6ef82c2767227d",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_cold3_vs_cached1_failure_preserved"
+    },
+    {
+      "id": "v24_real_bug43",
+      "path": "docs/evidence/v24_cache_youtube_dl_43.json",
+      "sha256": "81bb9b0f113c80323b3f2ea5474e7ad05fb5d7000917d8c403e6bb80c5286174",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_cold3_vs_cached1_independent_hidden_passes"
+    },
+    {
+      "id": "v24_machine_summary",
+      "path": "docs/evidence/v24_summary.json",
+      "sha256": "e2fa6a4c4e087a634d22026195322a90307e42c6e7b48b01b4df345d477a4487",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "independent_verified_6_to_2_real_public_Docker_reduction"
+    },
+    {
+      "id": "v24_session_index",
+      "path": "docs/evidence/v24_session_export_index.json",
+      "sha256": "96c34700eb1d38739828eaa18ce58f249e912ba5774f0f5adbc085eb05cf7faf",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "12_independent_exported_real_session_sources_patches"
+    },
+    {
+      "id": "v24_receipt_index",
+      "path": "docs/evidence/v24_public_receipt_index.json",
+      "sha256": "7802f03512fbd1812cd095b1c91aa6da2587ca749d003acafdcf0e42aef8ab65",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "two_real_git_docker_public_receipts"
+    },
+    {
+      "id": "v24_cli_control",
+      "path": "docs/evidence/v24_cli_independent_control.json",
+      "sha256": "b22bcf72f2e85dc161f2fd7b8af2956a2e3fa9b5bab5f0abcb9bb60d56208497",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "external_process_opt_in_cache_no_model_calls"
+    },
+    {
+      "id": "v24_session_409bc10c2a534c858fbaa5b9908e31a6_state_json",
+      "path": "docs/evidence/v24_sessions/409bc10c2a534c858fbaa5b9908e31a6/state.json",
+      "sha256": "db9472ea452bc9c2057ccb7c569e85687a3672b89c28dbbfaa41faf5136cf377",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_409bc10c2a534c858fbaa5b9908e31a6_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/409bc10c2a534c858fbaa5b9908e31a6/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_0315768c0c5245c38c85d81eaf996850_state_json",
+      "path": "docs/evidence/v24_sessions/0315768c0c5245c38c85d81eaf996850/state.json",
+      "sha256": "0724861562f561e84ec18aa2e2769de56914e50a1f5dc2e5f78941652f92e77f",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_0315768c0c5245c38c85d81eaf996850_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/0315768c0c5245c38c85d81eaf996850/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_916644d11ceb46a4ba61df66cc30fb4e_state_json",
+      "path": "docs/evidence/v24_sessions/916644d11ceb46a4ba61df66cc30fb4e/state.json",
+      "sha256": "a080573fb36670f657869e0082ac8d56887e20ec6bcd196c1ea78ae47e06a59d",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_916644d11ceb46a4ba61df66cc30fb4e_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/916644d11ceb46a4ba61df66cc30fb4e/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_1c94e66e7f614607a670d9b349074488_state_json",
+      "path": "docs/evidence/v24_sessions/1c94e66e7f614607a670d9b349074488/state.json",
+      "sha256": "4eaaac8c6bea02bedab3b05af81004b9edbe607aee56d6ca82e600b21388fe86",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_1c94e66e7f614607a670d9b349074488_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/1c94e66e7f614607a670d9b349074488/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_9af70e2c4359490fa8681c50fe46b0c3_state_json",
+      "path": "docs/evidence/v24_sessions/9af70e2c4359490fa8681c50fe46b0c3/state.json",
+      "sha256": "f749e3446101e21eeaef82f479ad1ab87156637b98f14b53e1b26e6be6d12d8c",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_9af70e2c4359490fa8681c50fe46b0c3_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/9af70e2c4359490fa8681c50fe46b0c3/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_6e2fd7601a27436f964fc911678da592_state_json",
+      "path": "docs/evidence/v24_sessions/6e2fd7601a27436f964fc911678da592/state.json",
+      "sha256": "907aa4be75d33613a7fc763f5819a3009a0eacaa4b5bfc3b22dcb978c28a6654",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_6e2fd7601a27436f964fc911678da592_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/6e2fd7601a27436f964fc911678da592/attempt-1.diff",
+      "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-27"
+    },
+    {
+      "id": "v24_session_4ea034588fb8459987eb8f86173bfd15_state_json",
+      "path": "docs/evidence/v24_sessions/4ea034588fb8459987eb8f86173bfd15/state.json",
+      "sha256": "183e9150afd5bafeccdbd0cb1c7fea38cee9dd8b4ef95587a0a30f54171a2a3d",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_4ea034588fb8459987eb8f86173bfd15_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/4ea034588fb8459987eb8f86173bfd15/attempt-1.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_26bf9dde628d43f8bad1eb9adcd5a4af_state_json",
+      "path": "docs/evidence/v24_sessions/26bf9dde628d43f8bad1eb9adcd5a4af/state.json",
+      "sha256": "fd4f6e2e15c66f06496eb5ff1ad780b0a70b174dbb7aa2fbda8986bbc5a8302f",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_26bf9dde628d43f8bad1eb9adcd5a4af_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/26bf9dde628d43f8bad1eb9adcd5a4af/attempt-1.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_1e6b9a08ee9a4b95b125666ed0355515_state_json",
+      "path": "docs/evidence/v24_sessions/1e6b9a08ee9a4b95b125666ed0355515/state.json",
+      "sha256": "0d1f5a6cd6da5afbd28858c0f4f5145dbd26405b153cd82dd1310698917bdb99",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_1e6b9a08ee9a4b95b125666ed0355515_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/1e6b9a08ee9a4b95b125666ed0355515/attempt-1.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cold_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_7f533a203bfd454d9eaf909b762b4227_state_json",
+      "path": "docs/evidence/v24_sessions/7f533a203bfd454d9eaf909b762b4227/state.json",
+      "sha256": "9e73aa17feddfa24ca8f0b160b2a5927852c09a2c083fff7f8d71ecee08e5945",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_7f533a203bfd454d9eaf909b762b4227_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/7f533a203bfd454d9eaf909b762b4227/attempt-1.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_627a2f28befa499db8c0f33d976b9a3b_state_json",
+      "path": "docs/evidence/v24_sessions/627a2f28befa499db8c0f33d976b9a3b/state.json",
+      "sha256": "600e147ba5ae41be275e9a548abb3f48b22374e69593f0d648c6dbe4f618aab8",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_627a2f28befa499db8c0f33d976b9a3b_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/627a2f28befa499db8c0f33d976b9a3b/attempt-1.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_6736b7393ded41d096f5b0b2138464fd_state_json",
+      "path": "docs/evidence/v24_sessions/6736b7393ded41d096f5b0b2138464fd/state.json",
+      "sha256": "727ddf319e448d2d2a37704b7337b2b81d13104a63053fe0bf2b7688ff1997bc",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-43"
+    },
+    {
+      "id": "v24_session_6736b7393ded41d096f5b0b2138464fd_attempt-1_diff",
+      "path": "docs/evidence/v24_sessions/6736b7393ded41d096f5b0b2138464fd/attempt-1.diff",
+      "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "real_independent_session_cached_youtube-dl-43"
+    },
+    {
+      "id": "v24_actual_cache_youtube_dl_27",
+      "path": "docs/evidence/v24_public_receipts/e1539fc95405ec7b9bf8ddfbee22bd0ba0da309fe5f0b764f8f19529072b1287.json",
+      "sha256": "26d07eb50fd569f7edc5fa6645926211b91b202b30f6375b281647cffd9f6da3",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "portable_real_public_docker_cache_receipt_no_hidden"
+    },
+    {
+      "id": "v24_actual_cache_youtube_dl_43",
+      "path": "docs/evidence/v24_public_receipts/1fda617e4280be4bac68043b44cdc5670174729c17845f38ce05ab5b73259626.json",
+      "sha256": "4ec2fcf68d8e211c4dfb714cc8206f23c1eb2d6214cfe168b9821f3105cba891",
+      "runner": "relai_chatgpt_independent_public_evaluator_cache_v24",
+      "comparison": "portable_real_public_docker_cache_receipt_no_hidden"
+    },
+    {
+      "id": "v25_multifile_pinned_docker_trial",
+      "path": "docs/evidence/v25_multifile_docker_trial.json",
+      "sha256": "db81c0fca44df1074ded9812ddfc2261a3c795facc7b38acea863bea2d4e84fa",
+      "runner": "nykra_v25_transactional_multifile_synthetic_fixture_offline_docker",
+      "comparison": "two_coordinated_python_file_repairs_passed_tests_seeded_not_model_generated"
+    }
+  ],
+  "repository_source_patch_study": {
+    "state": "completed",
+    "task_count": 6,
+    "model_inference_verified": true,
+    "baseline_tasks_solved": 6,
+    "nykra_tasks_solved": 6,
+    "baseline_heldout_cases_passed": 156,
+    "nykra_heldout_cases_passed": 156,
+    "nykra_revision_turns_executed": 0,
+    "general_agent_improvement_proven": false,
+    "real_external_github_issues": false,
+    "report_path": "docs/REPOSITORY_REPAIR_PILOT.md"
+  },
+  "shared_policy_external_eval": {
+    "version": "0.16.0",
+    "model_smoke_attempts": 1,
+    "model_smoke_heldout_passed": 26,
+    "model_smoke_heldout_total": 26,
+    "policy_effect_measured": false,
+    "external_benchmark_executed": false,
+    "external_sandbox_ready": false,
+    "external_benchmark_report": "docs/EXTERNAL_EVALUATION.md",
+    "docker_fixed_smoke_passed": true
+  },
+  "real_external_issue_pilot": {
+    "registered": 4,
+    "eligible_pairs": 3,
+    "prevalidation_excluded": 1,
+    "baseline_regression_passes": 1,
+    "nykra_regression_passes": 1,
+    "nykra_only_wins": 0,
+    "baseline_only_wins": 0,
+    "separate_hidden_verifier": false,
+    "official_swebench": false,
+    "general_coding_agent_improvement_proven": false,
+    "report_path": "docs/REAL_ISSUE_PILOT.md"
+  },
+  "real_external_issue_v18": {
+    "registered": 4,
+    "paired_completed": 4,
+    "baseline_hidden_verified_successes": 2,
+    "nykra_hidden_verified_successes": 2,
+    "nykra_only": 1,
+    "baseline_only": 1,
+    "policy_path_divergences": 0,
+    "general_agent_improvement_proven": false,
+    "official_swebench": false,
+    "report_path": "docs/REAL_ISSUE_V18.md",
+    "raw_summary_path": "docs/evidence/v18_summary.json"
+  },
+  "real_external_issue_v19": {
+    "natural_registered": 4,
+    "natural_shared_early_public_successes": 3,
+    "natural_shared_posthoc_hidden_verified": 3,
+    "natural_genuine_forks": 1,
+    "natural_baseline_hidden_repairs": 0,
+    "natural_nykra_hidden_repairs": 1,
+    "archived_conditional_genuine_forks": 3,
+    "archived_baseline_hidden_repairs": 2,
+    "archived_nykra_hidden_repairs": 3,
+    "cohorts_independent": false,
+    "valid_to_pool_results": false,
+    "general_coding_agent_improvement_proven": false,
+    "report_path": "docs/REAL_ISSUE_V19.md",
+    "summary_path": "docs/evidence/v19_summary.json"
+  },
+  "real_external_issue_v20": {
+    "registered": 4,
+    "reference_eligible": 4,
+    "new_to_nykra_historical_issues": 4,
+    "genuine_forks": 2,
+    "draws_per_policy": 4,
+    "baseline_full_successes": 0,
+    "nykra_full_successes": 0,
+    "early_shared_hidden_verified_successes": 1,
+    "invalid_model_source_prefixes": 1,
+    "general_coding_agent_improvement_proven": false,
+    "v19_advantage_replicated": false,
+    "official_swebench": false,
+    "report_path": "docs/REAL_ISSUE_V20.md",
+    "raw_summary_path": "docs/evidence/v20_summary.json"
+  },
+  "real_external_issue_v21": {
+    "registered": 6,
+    "eligible": 5,
+    "preflight_excluded": 1,
+    "shared_early_hidden_verified": 3,
+    "paired_tasks": 2,
+    "bare_full_successes": 0,
+    "enriched_full_successes": 1,
+    "enriched_only_wins": 1,
+    "bare_only_wins": 0,
+    "paired_exact_two_sided_p": 1.0,
+    "feedback_quality_study_not_policy_study": true,
+    "general_coding_agent_improvement_proven": false,
+    "report_path": "docs/REAL_ISSUE_V21.md",
+    "raw_summary_path": "docs/evidence/v21_summary.json"
+  },
+  "real_external_issue_v22": {
+    "historical_reused_real_issues": 2,
+    "distinct_codex_model_completions": 8,
+    "git_applied_source_patch_instances": 14,
+    "genuine_policy_fork_tasks": 1,
+    "depth_hidden_verified_successes": 1,
+    "nykra_adaptive_hidden_verified_successes": 1,
+    "verified_relai_cli_supervised_host": true,
+    "codex_authenticated_inference_provider": true,
+    "unattended_relai_native_inference": false,
+    "native_other_agent_adapters_verified": false,
+    "unrestricted_multi_file_patch": false,
+    "general_coding_agent_improvement_proven": false,
+    "integration_report_path": "docs/AGENT_WORKFLOW_V22.md",
+    "raw_summary_path": "docs/evidence/v22_workflow_summary.json",
+    "portable_session_export_index": "docs/evidence/v22_session_export_index.json"
+  },
+  "real_external_issue_v23": {
+    "registered_reused_real_issue_replays": 2,
+    "model_calls_new": 0,
+    "ordinary_public_docker_calls": 14,
+    "nykra_shared_public_docker_calls": 8,
+    "public_docker_calls_avoided": 6,
+    "public_docker_reduction_pct": 42.9,
+    "ordinary_git_apply_calls": 14,
+    "nykra_shared_git_apply_calls": 8,
+    "observed_total_wall_seconds_saved": 51.3252,
+    "observed_wall_reduction_pct": 42.1,
+    "final_hidden_test_outcomes_equal": true,
+    "model_token_savings_claimed": false,
+    "general_model_success_uplift_proven": false,
+    "native_relai_model_inference_available": false,
+    "report_path": "docs/WORK_SAVINGS_V23.md",
+    "evidence_path": "docs/evidence/v23_reuse_summary.json"
+  },
+  "real_external_issue_v24": {
+    "previously_used_real_issues": 2,
+    "independent_session_runs": 12,
+    "new_model_calls": 0,
+    "ordinary_public_docker": 6,
+    "cached_public_docker": 2,
+    "real_public_docker_avoided": 4,
+    "public_docker_reduction_pct": 66.7,
+    "git_apply_calls_avoided": 4,
+    "ordinary_wall_seconds": 69.781,
+    "cached_wall_seconds": 32.6652,
+    "observed_wall_saved_seconds": 37.1158,
+    "observed_wall_reduction_pct": 53.2,
+    "independent_hidden_results_unchanged": true,
+    "general_coding_quality_improvement_proven": false,
+    "new_model_token_savings_measured": false,
+    "report_path": "docs/CONTENT_CACHE_V24.md",
+    "summary_path": "docs/evidence/v24_summary.json"
+  },
+  "multifile_transaction_v25": {
+    "synthetic_two_file_bug_repair": true,
+    "independent_unseen_real_issue": false,
+    "model_generated_candidate": false,
+    "pinned_offline_docker_tests_passed": true,
+    "target_source_file_count": 2,
+    "actual_docker_test_exit_code": 0,
+    "elapsed_seconds_in_local_trial": 10.361,
+    "automatic_promotion": false,
+    "rollback_adversarial_tests": true,
+    "general_model_coding_gain_proven": false,
+    "report_path": "docs/MULTIFILE_TRANSACTION.md",
+    "raw_path": "docs/evidence/v25_multifile_docker_trial.json"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "schema": "nykra-v21-paired-public-feedback-v1",
+  "task_id": "youtube-dl-27",
+  "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "eligible": true,
+  "status": "completed",
+  "shared": {
+    "id": "common-1",
+    "source": "def parse_dfxp_time_expr(time_expr):\n    if not time_expr:\n        return\n\n    mobj = re.match(r'^(?P<time_offset>\\d+(?:\\.\\d+)?)s?$', time_expr)\n    if mobj:\n        return float(mobj.group('time_offset'))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d\\d):(?P<seconds>\\d\\d(?:\\.\\d+)?)$', time_expr)\n    if mobj:\n        return (3600 * int(mobj.group('hours')) + 60 * int(mobj.group('minutes')) + float(mobj.group('seconds')))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d\\d):(?P<seconds>\\d\\d):(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n    if mobj:\n        # TTML's alternative clock format includes frame and subframe fields.\n        # youtube-dl's DFXP handling has no frame-rate context here, so interpret\n        # the frame fields as a fractional second at the conventional 30 fps.\n        seconds = (3600 * int(mobj.group('hours')) + 60 * int(mobj.group('minutes')) + int(mobj.group('seconds')))\n        frames = int(mobj.group('frames'))\n        subframes = mobj.group('subframes')\n        return seconds + (frames + (float('0.' + subframes) if subframes else 0)) / 30",
+    "source_sha256": "d7deebb54b59a3187136314eff3b8a6af24d3231f281f19bbab0299e18d1de50",
+    "model_status": "ok",
+    "tokens_reported": 15398,
+    "model_seconds": 9.71,
+    "public": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "fb47f92a5fab8f85a6af882831ffdefa17122a46681881e3b33cdeaac5c57c0c",
+          "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+        }
+      ],
+      "elapsed_seconds": 9.57,
+      "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+    }
+  },
+  "shared_hidden": null,
+  "arms": [
+    {
+      "arm": "bare",
+      "prompt_sha256": "98a2de2d631d3607f1d2744214fab6e5caf3a0ce73c70c67ba868fab54b5a270",
+      "candidate": {
+        "id": "bare-1",
+        "source": "def parse_dfxp_time_expr(time_expr):\n    if not time_expr:\n        return\n\n    mobj = re.match(r'^(?P<time_offset>\\d+(?:\\.\\d+)?)s?$', time_expr)\n    if mobj:\n        return float(mobj.group('time_offset'))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d\\d):(?P<seconds>\\d\\d(?:\\.\\d+)?)$', time_expr)\n    if mobj:\n        return 3600 * int(mobj.group('hours')) + 60 * int(mobj.group('minutes')) + float(mobj.group('seconds'))\n\n    # TTML also permits clock-time expressions with frames and subframes.\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d\\d):(?P<seconds>\\d\\d):(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n    if mobj:\n        seconds = (3600 * int(mobj.group('hours')) + 60 * int(mobj.group('minutes')) + int(mobj.group('seconds')))\n        frames = int(mobj.group('frames'))\n        subframes = mobj.group('subframes')\n        return seconds + (frames + (float('0.' + subframes) if subframes else 0)) / 30\n",
+        "source_sha256": "c61a31d48c0d80c04ebef6616201c8d5d45fd95f1f0dbcbf61c66bf4a27ca634",
+        "model_status": "ok",
+        "tokens_reported": 15735,
+        "model_seconds": 8.85,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "fb47f92a5fab8f85a6af882831ffdefa17122a46681881e3b33cdeaac5c57c0c",
+              "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+            }
+          ],
+          "elapsed_seconds": 9.4,
+          "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "full_success": false
+    },
+    {
+      "arm": "enriched",
+      "prompt_sha256": "b0b18b963efb79a86e93aa8fdeac45116bcbd07ce905114353390044e75923fe",
+      "candidate": {
+        "id": "enriched-1",
+        "source": "def parse_dfxp_time_expr(time_expr):\n    if not time_expr:\n        return\n\n    mobj = re.match(r'^(?P<time_offset>\\d+(?:\\.\\d+)?)s?$', time_expr)\n    if mobj:\n        return float(mobj.group('time_offset'))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d\\d):(?P<seconds>\\d\\d(?:\\.\\d+)?)$', time_expr)\n    if mobj:\n        return 3600 * int(mobj.group('hours')) + 60 * int(mobj.group('minutes')) + float(mobj.group('seconds'))\n\n    # TTML's alternative clock format expresses frames after a semicolon;\n    # the fractional part represents subframes. At 30 fps, 00:00:01;03 is 1.1s.\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d\\d):(?P<seconds>\\d\\d);(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n    if mobj:\n        seconds = 3600 * int(mobj.group('hours')) + 60 * int(mobj.group('minutes')) + int(mobj.group('seconds'))\n        frames = int(mobj.group('frames'))\n        subframes = mobj.group('subframes')\n        return seconds + (frames + (float('0.' + subframes) if subframes else 0)) / 30",
+        "source_sha256": "2b2480b6ca0ca5218070f88155be6aaca318a94a2d28db2e2e291e87dbf8afa9",
+        "model_status": "ok",
+        "tokens_reported": 1736,
+        "model_seconds": 13.52,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "e4bfce9f3d01fe6e54eeaa69a06ed61be1a1825109449d36de3d6348503744b5",
+              "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: None != 1.1\nFAILED (failures=1)"
+            }
+          ],
+          "elapsed_seconds": 8.29,
+          "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: None != 1.1\nFAILED (failures=1)"
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "full_success": false
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "protocol_id": "nykra-git-regression-pilot-v1",
+  "date": "2026-10-11",
+  "model": "gpt-6-luna",
+  "task_count": 6,
+  "tasks": "real Nykra module source, intentionally injected single bugs in temporary Git checkout",
+  "protocol_sha256": "04d42bbde0efabe7dfe234765be3d353400ca8db385ee9f28663a8291863d93f",
+  "arm_results": {
+    "baseline": {
+      "solved": 6,
+      "hidden_checks_passed": 156,
+      "hidden_checks_total": 156,
+      "model_attempts": 6,
+      "reported_tokens": 24323,
+      "model_call_wall_seconds": 60.41
+    },
+    "nykra": {
+      "solved": 6,
+      "hidden_checks_passed": 156,
+      "hidden_checks_total": 156,
+      "model_attempts": 6,
+      "reported_tokens": 25357,
+      "model_call_wall_seconds": 66.88
+    }
+  },
+  "task_rows": [
+    {
+      "task_id": "pvalue-tail",
+      "arm": "baseline",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 9.13,
+      "codex_reported_tokens": 2081,
+      "selected_attempt": 1,
+      "final_diff_sha256": "af6bd40aba49061524b006ff7df1407e99e9b13393a75aa78d9b57781b8c6bb8",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "pvalue-tail",
+      "arm": "nykra",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 9.26,
+      "codex_reported_tokens": 2083,
+      "selected_attempt": 1,
+      "final_diff_sha256": "af6bd40aba49061524b006ff7df1407e99e9b13393a75aa78d9b57781b8c6bb8",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "wall-connectivity",
+      "arm": "nykra",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 10.67,
+      "codex_reported_tokens": 1279,
+      "selected_attempt": 1,
+      "final_diff_sha256": "4c4464ce15c78b4e1c87b2323018f7eb92112085052ddda512d637db07e896c3",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "wall-connectivity",
+      "arm": "baseline",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 10.43,
+      "codex_reported_tokens": 1273,
+      "selected_attempt": 1,
+      "final_diff_sha256": "cfd38945ce868a117ee1c79224402fadd3de0d86211b716416dc7c2524057eaf",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "bootstrap-quantile",
+      "arm": "baseline",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 9.77,
+      "codex_reported_tokens": 1158,
+      "selected_attempt": 1,
+      "final_diff_sha256": "3d3c6c047ccbfaa239b20bae0ec8c2d9a4770c726f64a1a59a4a0b76190d94d1",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "bootstrap-quantile",
+      "arm": "nykra",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 12.5,
+      "codex_reported_tokens": 15242,
+      "selected_attempt": 1,
+      "final_diff_sha256": "3d3c6c047ccbfaa239b20bae0ec8c2d9a4770c726f64a1a59a4a0b76190d94d1",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "finite-scores",
+      "arm": "nykra",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 9.08,
+      "codex_reported_tokens": 1003,
+      "selected_attempt": 1,
+      "final_diff_sha256": "b7614bdb6124a08cfd71e7b29b1e619d203e1145e9847bb43afaae3944d3c420",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "finite-scores",
+      "arm": "baseline",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 9.83,
+      "codex_reported_tokens": 2023,
+      "selected_attempt": 1,
+      "final_diff_sha256": "c752299e38d0dfd872ddfa6c82bf767f46459fe51896afad0b9609fcfc3b687f",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "identifier-validation",
+      "arm": "baseline",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 10.11,
+      "codex_reported_tokens": 15105,
+      "selected_attempt": 1,
+      "final_diff_sha256": "460054de16bacba9e62bdfddce3d5da1ed9f0f050a4e5c1a65f99938515dfde0",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "identifier-validation",
+      "arm": "nykra",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 11.2,
+      "codex_reported_tokens": 1023,
+      "selected_attempt": 1,
+      "final_diff_sha256": "460054de16bacba9e62bdfddce3d5da1ed9f0f050a4e5c1a65f99938515dfde0",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "driver-capabilities",
+      "arm": "nykra",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 14.17,
+      "codex_reported_tokens": 4727,
+      "selected_attempt": 1,
+      "final_diff_sha256": "f896f57c5c6ea629d6c6a3776dcf2f7e0d5fc6b238a3f9e6eefeb4a7d4d3d666",
+      "attempt_statuses": [
+        "ok"
+      ]
+    },
+    {
+      "task_id": "driver-capabilities",
+      "arm": "baseline",
+      "attempts": 1,
+      "fully_solved": true,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "model_wall_seconds": 11.14,
+      "codex_reported_tokens": 2683,
+      "selected_attempt": 1,
+      "final_diff_sha256": "f896f57c5c6ea629d6c6a3776dcf2f7e0d5fc6b238a3f9e6eefeb4a7d4d3d666",
+      "attempt_statuses": [
+        "ok"
+      ]
+    }
+  ],
+  "raw_file_sha256": [
+    {
+      "path": "docs/evidence/v15_pvalue-tail.json",
+      "sha256": "40e2e7b97e19a82ebc8aed29bb6f1443c24e6b48bf19c963a87101899cb7c596"
+    },
+    {
+      "path": "docs/evidence/v15_wall-connectivity.json",
+      "sha256": "e21efb8c61de9109cef5a392cab08e7b3dc69c75f21e0d1abce016b3b74231a1"
+    },
+    {
+      "path": "docs/evidence/v15_bootstrap-quantile.json",
+      "sha256": "d14a5b84e4213df9e693261423244ea6f2bd0720e0a67b5c59e53353fc574c04"
+    },
+    {
+      "path": "docs/evidence/v15_finite-scores.json",
+      "sha256": "5bf95c276e936d4788f0c69bc4a877a3a098201ad0cc24463f1a0fc053b8750d"
+    },
+    {
+      "path": "docs/evidence/v15_identifier-validation.json",
+      "sha256": "6bdb1c7d9f9a6cf09dc61e38312cee32f38b183c67ca825a0a8189d830894d60"
+    },
+    {
+      "path": "docs/evidence/v15_driver-capabilities.json",
+      "sha256": "a874e65ae8783b643024f019d508cd5b8ee9b058fa595a72b35f304abfeece6b"
+    }
+  ],
+  "primary_task_success_difference": 0,
+  "nykra_revision_turns_executed": 0,
+  "causal_improvement_proven": false,
+  "interpretation": "No measured advantage: all six tasks passed on first attempt in both arms. No revision prompt activated. Not independent external issues, no SWE-bench score, no general agent claim.",
+  "limitations": [
+    "small six-task synthetic regression set in genuine source repository",
+    "target function is supplied in each prompt",
+    "model prompts and hidden oracle not externally blinded",
+    "no hardened OS sandbox for patch tests",
+    "no Nykra history-driven policy selection exercised"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "youtube-dl-bugsinpy-11",
+  "protocol_sha256": "495453711ee9d89b2a5d0e640eef6feed9b2f472f4926b062ca101f4f9e07658",
+  "source_commit": "b568561eba6f4aceb87419e21aba11567c5de7da",
+  "status": "completed",
+  "model": "gpt-6-luna",
+  "arms": [
+    {
+      "arm": "baseline",
+      "status": "completed",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def str_to_int(int_str):\n    \"\"\" A more relaxed version of int_or_none \"\"\"\n    if int_str is None:\n        return None\n    if isinstance(int_str, int):\n        return int_str\n    int_str = re.sub(r'[,.+]', '', int_str)\n    return int(int_str)",
+          "source_sha256": "e2d6ff9b196a59d5e3d2013c4e7f3e64559e7684d8c96abd9c3d95f915a72e47",
+          "model_status": "ok",
+          "model_seconds": 6.49,
+          "reported_tokens": 2008,
+          "public": {
+            "status": "ok",
+            "passed": true,
+            "exit_code": 0,
+            "elapsed": 9.11,
+            "image_id": "sha256:05ec9515ed88719431f3b9f3bbb2eaa590bdbb845cc7eb05f1d59de7712776f9",
+            "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045",
+            "stderr_bytes": 96
+          }
+        }
+      ],
+      "attempts_used": 1,
+      "selected_attempt": "attempt-1",
+      "regression_test_passed": true,
+      "total_model_seconds": 6.49,
+      "tokens_reported": 2008,
+      "tokens_complete": true,
+      "hidden_evaluation_independent": false
+    },
+    {
+      "arm": "nykra",
+      "status": "completed",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def str_to_int(int_str):\n    \"\"\" A more relaxed version of int_or_none \"\"\"\n    if int_str is None:\n        return None\n    if isinstance(int_str, int):\n        return int_str\n    int_str = re.sub(r'[,\\.\\+]', '', int_str)\n    return int(int_str)",
+          "source_sha256": "27408b194587453c4e490a645863c1d084cf3176c99e778bcbaebffedabe6572",
+          "model_status": "ok",
+          "model_seconds": 6.57,
+          "reported_tokens": 15062,
+          "public": {
+            "status": "ok",
+            "passed": true,
+            "exit_code": 0,
+            "elapsed": 9.93,
+            "image_id": "sha256:3fe1031048e30659f9dbbe0fbfd43ff6e61b7f31587322be0c6aedfe20852232",
+            "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045",
+            "stderr_bytes": 96
+          }
+        }
+      ],
+      "attempts_used": 1,
+      "selected_attempt": "attempt-1",
+      "regression_test_passed": true,
+      "total_model_seconds": 6.57,
+      "tokens_reported": 15062,
+      "tokens_complete": true,
+      "hidden_evaluation_independent": false
+    }
+  ],
+  "prevalidation": {
+    "buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "exit_code": 1,
+      "elapsed": 12.7,
+      "image_id": "sha256:abde7d3d94eb3167532fb1831413de3ff35a13bd43c6d693b4c5132a2d71e02e",
+      "stderr_sha256": "42ed3300e00abaa42b8cb4b068b1eb998ee53d25e91b92579f423f5e6d06274a",
+      "stderr_bytes": 720
+    },
+    "reference_fix": {
+      "status": "ok",
+      "passed": true,
+      "exit_code": 0,
+      "elapsed": 9.44,
+      "image_id": "sha256:8cc52753bb1280a9457ee9a3005f953ca9777a617d94432031a1e2f190c70b4f",
+      "stderr_sha256": "5f4da3a10467ed523d52edf10edfcd360269e31f5319fbb2e3c0632fb4663431",
+      "stderr_bytes": 96
+    },
+    "eligible": true
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "task_id": "youtube-dl-20",
+  "protocol_sha256": "d3a6431e2bb636f4790c38c949de77b69b70b89f1752609de11281caed922dde",
+  "model": "gpt-6-luna",
+  "status": "not_forkable",
+  "shared_prefix": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n         \\s+%s(?:=['\"]?%s['\"]?)?\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+      "source_sha256": "aefc8ba1eed7a23d118b4c7d3547f10a8c3ba720b03ca89e9b0b7f77ecd2bcaf",
+      "model_status": "ok",
+      "model_seconds": 8.3,
+      "tokens_reported": 7440,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "57aaeffe76517b9b403a51a79a39b7809068e12c6aed681100eac0e8559b2dc7",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 15.99
+      }
+    },
+    {
+      "id": "attempt-2",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-1",
+      "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n         \\s+%s(?:\\s*=\\s*(?:[\"']?%s[\"']?))?\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+      "source_sha256": "3419dc8eafc424c2f6262cc42ab30a597414d7895b4cc02122f556e5859e37b7",
+      "model_status": "ok",
+      "model_seconds": 7.73,
+      "tokens_reported": 1649,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "57aaeffe76517b9b403a51a79a39b7809068e12c6aed681100eac0e8559b2dc7",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 8.8
+      }
+    },
+    {
+      "id": "attempt-3",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-2",
+      "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:\\s*=\\s*(?:[a-zA-Z0-9:._-]*|\"[^\"]*\"|'[^']*'))?)*?\n         \\s+%s(?:\\s*=\\s*(?:\"%s\"|'%s'|%s))?\n         (?:\\s+[a-zA-Z0-9:._-]+(?:\\s*=\\s*(?:[a-zA-Z0-9:._-]*|\"[^\"]*\"|'[^']*'))?)*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value, value, value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+      "source_sha256": "238172b6c9d1b854865ddc1466a82093a5c6f0b8ac2461b56b2d3e79ab34be31",
+      "model_status": "ok",
+      "model_seconds": 11.75,
+      "tokens_reported": 15754,
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "7a8da304dd43db4ef725652618f035e8902bfc6c6680a6b8175f9a2f3b4ec5f7",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 8.02
+      }
+    }
+  ],
+  "shared_prefix_reason": "public_solved",
+  "fork_actions": null,
+  "arms": []
+}

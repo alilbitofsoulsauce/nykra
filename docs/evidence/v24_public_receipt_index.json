@@ -1,0 +1,19 @@
+{
+  "schema": "nykra-v24-public-cache-portable-index-v1",
+  "protocol_sha256": "805237e2005a30cc927fc7be6441d4c2d7e54047c56d56d432d7e3d48e166f9a",
+  "receipt_count": 2,
+  "receipts": [
+    {
+      "task_id": "youtube-dl-27",
+      "path": "docs/evidence/v24_public_receipts/e1539fc95405ec7b9bf8ddfbee22bd0ba0da309fe5f0b764f8f19529072b1287.json",
+      "sha256": "26d07eb50fd569f7edc5fa6645926211b91b202b30f6375b281647cffd9f6da3",
+      "bytes": 3600
+    },
+    {
+      "task_id": "youtube-dl-43",
+      "path": "docs/evidence/v24_public_receipts/1fda617e4280be4bac68043b44cdc5670174729c17845f38ce05ab5b73259626.json",
+      "sha256": "4ec2fcf68d8e211c4dfb714cc8206f23c1eb2d6214cfe168b9821f3105cba891",
+      "bytes": 2457
+    }
+  ]
+}

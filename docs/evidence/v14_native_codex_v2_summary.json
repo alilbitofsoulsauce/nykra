@@ -1,0 +1,171 @@
+{
+  "protocol_id": "nykra-native-codex-matched-pilot-v2",
+  "study_date": "2026-10-11",
+  "task_count": 4,
+  "model": "gpt-6-luna",
+  "arms": {
+    "baseline": {
+      "task_solved": 1,
+      "hidden_cases_passed": 32,
+      "hidden_cases_total": 128,
+      "attempts_used": 7,
+      "tokens_reported": 56723,
+      "wall_seconds": 90.92
+    },
+    "nykra": {
+      "task_solved": 1,
+      "hidden_cases_passed": 37,
+      "hidden_cases_total": 128,
+      "attempts_used": 7,
+      "tokens_reported": 56686,
+      "wall_seconds": 78.57
+    }
+  },
+  "nykra_only_solved": 0,
+  "baseline_only_solved": 0,
+  "measured_task_uplift_count": 0,
+  "model_runner_verified": true,
+  "evidence_type": "small post-hoc paired function-level repair pilot",
+  "general_agent_improvement_proven": false,
+  "randomized_blind_comparison": false,
+  "notes": "Second retry added after v1 revealed interface failures; both arms receive identical public validation/test feedback, differing only in revise-vs-fresh prompt. Source validators are deliberately restrictive. Four local tasks, non-blind, not official SWE-bench.",
+  "protocol_sha256": "94445a4375eaa9ccb6d4d0f9fdf3a550aa89da4815dd1e16a74e792a80a3f8a8",
+  "arm_files": [
+    {
+      "path": "docs\\evidence\\v14_codex_v2_reservation-gaps.json",
+      "sha256": "dd722d2672c4a12d7069d33385f80175a43cee4a45e65f69ea0b9babcd395036"
+    },
+    {
+      "path": "docs\\evidence\\v14_codex_v2_ledger-undo.json",
+      "sha256": "bc162be824a0ec7c242e1cb76b8b957d8d1bb62c10ceead91059df686d020f5a"
+    },
+    {
+      "path": "docs\\evidence\\v14_codex_v2_csv-records.json",
+      "sha256": "7fb9586c8b6d2f8de5415a2b988afd0b61ca3909c7080a7f83e8def82849a6f5"
+    },
+    {
+      "path": "docs\\evidence\\v14_codex_v2_normalized-path.json",
+      "sha256": "354e411bc52b217516b981f92808ff5e8939ef27842d5fdd854e4213a9483aa2"
+    }
+  ],
+  "task_rows": [
+    {
+      "task": "reservation-gaps",
+      "arm": "baseline",
+      "success": true,
+      "heldout_passed": 32,
+      "heldout_total": 32,
+      "attempts": 1,
+      "statuses": [
+        "ok"
+      ],
+      "tokens_reported": 18352,
+      "elapsed_seconds": 10.98,
+      "training_passed": 14
+    },
+    {
+      "task": "reservation-gaps",
+      "arm": "nykra",
+      "success": true,
+      "heldout_passed": 32,
+      "heldout_total": 32,
+      "attempts": 1,
+      "statuses": [
+        "ok"
+      ],
+      "tokens_reported": 4339,
+      "elapsed_seconds": 10.7,
+      "training_passed": 14
+    },
+    {
+      "task": "ledger-undo",
+      "arm": "nykra",
+      "success": false,
+      "heldout_passed": 0,
+      "heldout_total": 32,
+      "attempts": 2,
+      "statuses": [
+        "invalid_source",
+        "invalid_source"
+      ],
+      "tokens_reported": 18631,
+      "elapsed_seconds": 19.4,
+      "training_passed": 0
+    },
+    {
+      "task": "ledger-undo",
+      "arm": "baseline",
+      "success": false,
+      "heldout_passed": 0,
+      "heldout_total": 32,
+      "attempts": 2,
+      "statuses": [
+        "invalid_source",
+        "invalid_source"
+      ],
+      "tokens_reported": 31677,
+      "elapsed_seconds": 23.34,
+      "training_passed": 0
+    },
+    {
+      "task": "csv-records",
+      "arm": "baseline",
+      "success": false,
+      "heldout_passed": 0,
+      "heldout_total": 32,
+      "attempts": 2,
+      "statuses": [
+        "invalid_source",
+        "invalid_source"
+      ],
+      "tokens_reported": 4086,
+      "elapsed_seconds": 21.84,
+      "training_passed": 0
+    },
+    {
+      "task": "csv-records",
+      "arm": "nykra",
+      "success": false,
+      "heldout_passed": 5,
+      "heldout_total": 32,
+      "attempts": 2,
+      "statuses": [
+        "invalid_source",
+        "ok"
+      ],
+      "tokens_reported": 31177,
+      "elapsed_seconds": 25.79,
+      "training_passed": 3
+    },
+    {
+      "task": "normalized-path",
+      "arm": "nykra",
+      "success": false,
+      "heldout_passed": 0,
+      "heldout_total": 32,
+      "attempts": 2,
+      "statuses": [
+        "invalid_source",
+        "invalid_source"
+      ],
+      "tokens_reported": 2539,
+      "elapsed_seconds": 22.68,
+      "training_passed": 0
+    },
+    {
+      "task": "normalized-path",
+      "arm": "baseline",
+      "success": false,
+      "heldout_passed": 0,
+      "heldout_total": 32,
+      "attempts": 2,
+      "statuses": [
+        "invalid_source",
+        "invalid_source"
+      ],
+      "tokens_reported": 2608,
+      "elapsed_seconds": 34.76,
+      "training_passed": 0
+    }
+  ]
+}

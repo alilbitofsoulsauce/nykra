@@ -1,0 +1,37 @@
+{
+  "task_id": "pvalue-tail",
+  "policy": "adaptive",
+  "budget": 3,
+  "evaluations_used": 1,
+  "heldout_passed": 26,
+  "heldout_total": 26,
+  "heldout_success": true,
+  "best_attempt_id": "attempt-1",
+  "candidate_attempts": [
+    {
+      "attempt_id": "attempt-1",
+      "source": "def _exact_discordance_test(improved: int, regressed: int) -> float:\n    \"\"\"One-sided exact McNemar/binomial tail for matched binary outcomes.\"\"\"\n    n = improved + regressed\n    if n == 0:\n        return 1.0\n    return math.fsum(math.comb(n, k) / 2**n for k in range(improved, n + 1))",
+      "source_sha256": "9852bd01191309565b155151715b6611c5652e3564a046ef12303b4918af16aa",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "public": {
+        "passed": 7,
+        "total": 7,
+        "score": 1.0,
+        "status": "ok",
+        "failed_public": []
+      },
+      "error": null,
+      "status": "ok",
+      "model_seconds": 9.93,
+      "model_tokens": 7135
+    }
+  ],
+  "qualification": "trusted synthetic Nykra source regression; not a real external issue benchmark",
+  "protocol_id": "nykra-v16-trusted-source-policy-smoke-v1",
+  "model": "gpt-6-luna",
+  "driver": "Rel.AI orchestration of official Codex CLI 0.160.0",
+  "comparative_evidence": false,
+  "general_coding_agent_improvement_proven": false,
+  "description": "One actual trusted model evaluation through the shared policy selector; not an external repository benchmark"
+}

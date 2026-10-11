@@ -1,0 +1,45 @@
+{
+  "id": "nykra-v19-stalled-existing-prefixes-v1",
+  "frozen_at": "2026-10-11",
+  "prior_v19_protocol_sha256": "d3a6431e2bb636f4790c38c949de77b69b70b89f1752609de11281caed922dde",
+  "selection_rule": "For each of all four v18 preregistered tasks in original order, select first arm in original preregistered arm order whose first three attempts are valid model-generated consecutive publicly failed depth ancestry. Revalidate all candidates in current Docker public grader before fork. No new prefix model calls. Conditional on failure; not representative new-issue benchmark.",
+  "cohort_size": 3,
+  "selected": [
+    {
+      "task_id": "youtube-dl-20",
+      "source_arm": "nykra",
+      "v18_result_path": "docs\\evidence\\v18_youtube_dl_20.json",
+      "v18_raw_sha256": "e35101e748bcb35885c5e81b746412214022f71f50519107c344f1683853db16",
+      "prefix_sha256": "64060e60633782b1362bbb09234ee59aa23ed375b9277a368cfcaf3ebdfe29e5"
+    },
+    {
+      "task_id": "youtube-dl-21",
+      "source_arm": "baseline",
+      "v18_result_path": "docs\\evidence\\v18_youtube_dl_21.json",
+      "v18_raw_sha256": "91ba4b5165ade37d2a860cc40b26dd1b1479d456f6ece57b11c59a3dc96ec8a6",
+      "prefix_sha256": "04de9600cb02286f5946f9a229f0ae6d9b45b202b8c4d9ce92e290ab5a007b5d"
+    },
+    {
+      "task_id": "PySnooper-3",
+      "source_arm": "nykra",
+      "v18_result_path": "docs\\evidence\\v18_pysnooper_3.json",
+      "v18_raw_sha256": "5d7b91173cfcbd36cfb1cd3c19c60f9bf09ebf3650108ad78bf0e1a6246435d4",
+      "prefix_sha256": "eecda56bff892b691820e385a8c8317c6ae612d7540510f358c31ed8dab8b608"
+    }
+  ],
+  "continuation_arm_order": {
+    "youtube-dl-20": [
+      "nykra",
+      "baseline"
+    ],
+    "youtube-dl-21": [
+      "baseline",
+      "nykra"
+    ],
+    "PySnooper-3": [
+      "nykra",
+      "baseline"
+    ]
+  },
+  "reporting_limit": "Secondary post-v19-natural study; prefix selection is explicitly conditioned on previously failed attempts. The protocol is frozen before NEW continuation calls, but not prior to observing the earlier historical outcomes."
+}

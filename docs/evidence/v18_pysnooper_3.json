@@ -1,0 +1,229 @@
+{
+  "task_id": "PySnooper-3",
+  "protocol_sha256": "8d52ce33e9906211e3e2a39ab16b65eeb4bd0f3d92b2f0bf6604898f12d954b6",
+  "model": "gpt-6-luna",
+  "status": "completed",
+  "prevalidation": {
+    "public_buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "fd960697efe1ab4657f84801101bcc77bbe2c78689f4ec75ff8e7d085ca627fa"
+        }
+      ],
+      "mode": "public",
+      "elapsed_seconds": 3.13
+    },
+    "public_reference": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "f796cb44f96d18f8b0475be436c0a5c25fe3d84783215482c8061953113e7b74"
+        }
+      ],
+      "mode": "public",
+      "elapsed_seconds": 2.81
+    },
+    "hidden_buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stderr_sha256": "c8bfcbe0e514bade34ca23a01c2d341de5b52cd6d64487f063607ea9785edf0a",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "721b9b713b928c749d4457ae0a4f379292739140bb3db685930ec58bc439ce36"
+        }
+      ],
+      "mode": "hidden",
+      "elapsed_seconds": 3.73
+    },
+    "hidden_reference": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "c467333c3fcbda817536ae5ddd7ee9e141a5fd974b5cd3451f81dd2c70cffaae",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "0f125e8ab5f5bebebe4113cd601bb9bd0ab1cd8714e453133e22705ea2cc6002"
+        }
+      ],
+      "mode": "hidden",
+      "elapsed_seconds": 4.74
+    },
+    "eligible": true
+  },
+  "arms": [
+    {
+      "arm": "nykra",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def get_write_function(output):\n    if output is None:\n        def write(s):\n            stderr = sys.stderr\n            stderr.write(s)\n    elif isinstance(output, (pycompat.PathLike, str)):\n        output_path = pycompat.pathstr(output)\n        def write(s):\n            with open(output_path, 'a') as output_file:\n                output_file.write(s)\n    else:\n        assert isinstance(output, utils.WritableStream)\n        def write(s):\n            output.write(s)\n\n    return write",
+          "source_sha256": "40a18a820a7c826a05cc6fb2a8c87093f5b316f7b8f2de585efe5422f51edcf2",
+          "model_status": "ok",
+          "model_seconds": 7.82,
+          "tokens_reported": 1018,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "2876404a70fe632ba3df3ab7370409cea9af3080868b6744a277a7ce8918820d"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 2.88
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def get_write_function(output):\n    if output is None:\n        def write(s):\n            stderr = sys.stderr\n            stderr.write(s)\n    elif isinstance(output, (pycompat.PathLike, str)):\n        output_path = pycompat.pathstr(output)\n        def write(s):\n            with open(output_path, 'a') as output_file:\n                output_file.write(s)\n    else:\n        assert isinstance(output, utils.WritableStream)\n        def write(s):\n            output.write(s)\n\n    return write",
+          "source_sha256": "40a18a820a7c826a05cc6fb2a8c87093f5b316f7b8f2de585efe5422f51edcf2",
+          "model_status": "ok",
+          "model_seconds": 6.88,
+          "tokens_reported": 15236,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "4ae343c778f5e903268ec1c9191a3bab7b868d3ff57ec2f3343e3e2e33cf5e97"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 3.2
+          }
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "source": "def get_write_function(output):\n    if output is None:\n        def write(s):\n            stderr = sys.stderr\n            stderr.write(s)\n    elif isinstance(output, (pycompat.PathLike, str)):\n        output_path = pycompat.pathstr(output)\n        def write(s):\n            with open(output_path, 'a') as output_file:\n                output_file.write(s)\n    else:\n        assert isinstance(output, utils.WritableStream)\n        def write(s):\n            output.write(s)\n\n    return write",
+          "source_sha256": "40a18a820a7c826a05cc6fb2a8c87093f5b316f7b8f2de585efe5422f51edcf2",
+          "model_status": "ok",
+          "model_seconds": 8.77,
+          "tokens_reported": 1152,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "cb2cdc11abdf10da3cb8d630e1374fd007ffc5a1509ea4de8830ef14b0d71f53"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 4.21
+          }
+        }
+      ],
+      "attempts_used": 3,
+      "selected_attempt": null,
+      "public_pass": false,
+      "hidden_pass": false,
+      "full_success": false,
+      "final_hidden": {
+        "status": "no_public_solution",
+        "passed": false
+      },
+      "reported_tokens": 17406,
+      "token_reporting_complete": true,
+      "model_seconds": 23.47,
+      "stop_reason": "attempt_limit",
+      "soft_token_budget_not_hard_enforced": true
+    },
+    {
+      "arm": "baseline",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def get_write_function(output):\n    if output is None:\n        def write(s):\n            stderr = sys.stderr\n            stderr.write(s)\n    elif isinstance(output, (pycompat.PathLike, str)):\n        output_path = output\n        def write(s):\n            with open(output_path, 'a') as output_file:\n                output_file.write(s)\n    else:\n        assert isinstance(output, utils.WritableStream)\n        def write(s):\n            output.write(s)\n\n    return write",
+          "source_sha256": "e092b6efac662d3862b7f327323652625b5e888ad5cf7e1596f6c80b9931466a",
+          "model_status": "ok",
+          "model_seconds": 10.02,
+          "tokens_reported": 1017,
+          "public": {
+            "status": "ok",
+            "passed": true,
+            "checks": [
+              {
+                "status": "ok",
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "f796cb44f96d18f8b0475be436c0a5c25fe3d84783215482c8061953113e7b74"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 4.01
+          }
+        }
+      ],
+      "attempts_used": 1,
+      "selected_attempt": "attempt-1",
+      "public_pass": true,
+      "hidden_pass": true,
+      "full_success": true,
+      "final_hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "d618543eb9aa92cc6157dcb22ac2fda3ea1324a7a13bce6cfed513321faadf70",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "223c1c79772a8e9546176196a42fa66490776ac72f4b1bd1129091815c0b8161"
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 4.21
+      },
+      "reported_tokens": 1017,
+      "token_reporting_complete": true,
+      "model_seconds": 10.02,
+      "stop_reason": "public_success",
+      "soft_token_budget_not_hard_enforced": true
+    }
+  ]
+}

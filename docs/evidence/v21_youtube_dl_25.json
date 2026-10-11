@@ -1,0 +1,10 @@
+{
+  "schema": "nykra-v21-paired-public-feedback-v1",
+  "task_id": "youtube-dl-25",
+  "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "eligible": false,
+  "status": "preflight_excluded",
+  "shared": null,
+  "shared_hidden": null,
+  "arms": []
+}

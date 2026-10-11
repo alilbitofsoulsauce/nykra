@@ -1,0 +1,21 @@
+{
+  "name": "nykra-observer",
+  "displayName": "Nykra Passive Observer",
+  "publisher": "nykra",
+  "version": "0.25.0",
+  "description": "Local-first, privacy-minimized editor execution observations for Nykra.",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.js",
+  "extensionKind": [
+    "ui"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ]
+}

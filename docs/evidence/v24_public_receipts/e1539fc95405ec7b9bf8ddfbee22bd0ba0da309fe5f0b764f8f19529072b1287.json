@@ -1,0 +1,42 @@
+{
+  "schema": "nykra-public-receipt-v24",
+  "cache_key": "e1539fc95405ec7b9bf8ddfbee22bd0ba0da309fe5f0b764f8f19529072b1287",
+  "inputs": {
+    "schema": "nykra-public-cache-key-v24",
+    "task_id": "youtube-dl-27",
+    "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+    "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba",
+    "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+    "git_original_sha256": "ad96dcee56a993032c65893a827a5518fc8ebad2e646f960a195332f1e3b8bac",
+    "git_after_sha256": "ab881c3029123db509e8d82868e6ce4fe4955d5d12bade4d9c8562bde3324093",
+    "upstream_buggy_commit": "d631d5f9f27f93767226192e4288990413fa9dbd",
+    "upstream_fixed_commit": "db2fe38b5508cbd28b89893219d9cccd41406851",
+    "public_test_source_sha256": "78f04750bdb68c472c73b0aa3bc45102d7d1ab0f854f6ebabc50d942b5f80b9d",
+    "public_test_selector": "test.test_utils.TestUtil.test_parse_dfxp_time_expr",
+    "image_id": "sha256:a4ae367e48252c42a50fcb5136b9fdf6fb2544e048494f4004891b3ca38e63e7",
+    "evaluator_code_sha256": {
+      "v21_grader.py": "d50d8796cb971356d32c67ec428fe07aac642dc77061189449c6dba8c7e7bcb0",
+      "v20_grader.py": "d9dce1d4a4d056aa5e9ecf064855915ddd89c5fee8fb53810b2de25bd4dca81b",
+      "repair_feedback.py": "9814a86a21ec5a2ef00c0041e0254901131c8432338f44b60c72401f4fbd5f84",
+      "repository_repair_trial.py": "c193cf58bab92a9f6ceba7da72c997d8efa866c7797a9debf479c48bc5d96d57",
+      "agent_workflow.py": "54afa04b2e260e77fd1c78709375fbe754d68d5ab47c4189b7766699fa006012"
+    }
+  },
+  "patch": "diff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1982,9 +1982,23 @@\n     if mobj:\n         return float(mobj.group('time_offset'))\n \n-    mobj = re.match(r'^(\\d+):(\\d\\d):(\\d\\d(?:\\.\\d+)?)$', time_expr)\n+    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}(?:\\.\\d+)?)$', time_expr)\n     if mobj:\n-        return 3600 * int(mobj.group(1)) + 60 * int(mobj.group(2)) + float(mobj.group(3))\n+        return (\n+            3600 * int(mobj.group('hours'))\n+            + 60 * int(mobj.group('minutes'))\n+            + float(mobj.group('seconds'))\n+        )\n+\n+    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}):(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n+    if mobj:\n+        hours = int(mobj.group('hours'))\n+        minutes = int(mobj.group('minutes'))\n+        seconds = int(mobj.group('seconds'))\n+        frames = int(mobj.group('frames'))\n+        subframes = mobj.group('subframes')\n+        return 3600 * hours + 60 * minutes + seconds + frames / 30.0 + (float('0.' + subframes) / 30.0 if subframes else 0)\n+\n \n \n def srt_subtitles_timecode(seconds):\n",
+  "public": {
+    "status": "test_failed",
+    "passed": false,
+    "checks": [
+      {
+        "status": "test_failed",
+        "exit_code": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b5477a5e0d91ddb6109a05f74034797c40a94e58b7dbb06279f147ed7c6dd32d",
+        "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+      }
+    ],
+    "elapsed_seconds": 6.8,
+    "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+  },
+  "receipt_sha256": "462171557339e7f6212043173ae3d64b27e478258fe118907a4b354624a64f2a"
+}

@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+build/
+dist/
+.coverage
+*.vsix
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+auth.token
+.relai-integration-smoke/
+.live-smoke*/
+# Locally downloaded external historical benchmark repositories.
+experiments/
+# Never publish local credentials, logs, or runtime state.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+*.sqlite
+*.db
+.nykra/
+.nykra-local/

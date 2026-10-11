@@ -1,0 +1,93 @@
+{
+  "protocol": "nykra-native-codex-matched-pilot-v1",
+  "task_count": 4,
+  "baseline_successes": 1,
+  "nykra_successes": 1,
+  "heldout_cases_per_task_arm": 32,
+  "primary_result": "no_observed_difference",
+  "limitations": "Three task families failed schema/AST validation before semantic scoring; this is primarily a model-adapter compliance test. No second attempts were issued for invalid output. Exploratory n=4; not SWE-bench.",
+  "rows": [
+    {
+      "task": "reservation-gaps",
+      "arm": "baseline",
+      "success": true,
+      "heldout_passed": 32,
+      "attempts": 1,
+      "first_attempt_status": "ok"
+    },
+    {
+      "task": "reservation-gaps",
+      "arm": "nykra",
+      "success": true,
+      "heldout_passed": 32,
+      "attempts": 1,
+      "first_attempt_status": "ok"
+    },
+    {
+      "task": "ledger-undo",
+      "arm": "nykra",
+      "success": false,
+      "heldout_passed": 0,
+      "attempts": 1,
+      "first_attempt_status": "invalid_model_output"
+    },
+    {
+      "task": "ledger-undo",
+      "arm": "baseline",
+      "success": false,
+      "heldout_passed": 0,
+      "attempts": 1,
+      "first_attempt_status": "invalid_model_output"
+    },
+    {
+      "task": "csv-records",
+      "arm": "baseline",
+      "success": false,
+      "heldout_passed": 0,
+      "attempts": 1,
+      "first_attempt_status": "invalid_model_output"
+    },
+    {
+      "task": "csv-records",
+      "arm": "nykra",
+      "success": false,
+      "heldout_passed": 0,
+      "attempts": 1,
+      "first_attempt_status": "invalid_model_output"
+    },
+    {
+      "task": "normalized-path",
+      "arm": "nykra",
+      "success": false,
+      "heldout_passed": 0,
+      "attempts": 1,
+      "first_attempt_status": "invalid_model_output"
+    },
+    {
+      "task": "normalized-path",
+      "arm": "baseline",
+      "success": false,
+      "heldout_passed": 0,
+      "attempts": 1,
+      "first_attempt_status": "invalid_model_output"
+    }
+  ],
+  "files": [
+    {
+      "name": "v14_codex_reservation-gaps.json",
+      "sha256": "e7046d56a108c8e289b410c17bae35687867a7d2bada6e27d7d654ae889d6b5e"
+    },
+    {
+      "name": "v14_codex_ledger-undo.json",
+      "sha256": "d01914d7246841a44d1441e30ed485b9e1913c407d14fc3c77a9c3fdebc0427f"
+    },
+    {
+      "name": "v14_codex_csv-records.json",
+      "sha256": "b03611afdd18ae66aa98863a1495230a70ef3bd03b6aba9c151cfdebb192c07e"
+    },
+    {
+      "name": "v14_codex_normalized-path.json",
+      "sha256": "6f294eae1861f4635e10f08f072c173649672d618fb82e44c4a988d9553d7f55"
+    }
+  ]
+}

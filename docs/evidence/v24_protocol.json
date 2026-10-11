@@ -1,0 +1,68 @@
+{
+  "id": "nykra-v24-independent-session-content-cache-v1",
+  "freeze": "2026-10-11 before actual v0.24 Docker benchmark",
+  "evaluator_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "original_model_sources_from_v22": true,
+  "new_model_proposals": 0,
+  "cases": [
+    {
+      "id": "youtube-dl-27",
+      "reference_source_state": "docs/evidence/v22_sessions/16ebcd0ed4804a36bbfbc5364f8b1a57/state.json",
+      "reference_source_state_sha256": "c5c60b6e142b0a1c431797c56ebb9759c52587a2e7d36b00265e89900ed23c8e",
+      "reference_attempt_id": "attempt-1",
+      "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba",
+      "historical_public_pass": false,
+      "condition_order": [
+        "cold",
+        "cached"
+      ],
+      "independent_sessions": [
+        {
+          "policy": "depth",
+          "enriched_feedback": true
+        },
+        {
+          "policy": "adaptive",
+          "enriched_feedback": false
+        },
+        {
+          "policy": "breadth",
+          "enriched_feedback": true
+        }
+      ]
+    },
+    {
+      "id": "youtube-dl-43",
+      "reference_source_state": "docs/evidence/v22_sessions/5f9257c820e6492b9f384f649220c181/state.json",
+      "reference_source_state_sha256": "85918cec3c0b25da75b108a3e68ccc648aaef74e345a117005ebb81c9241a231",
+      "reference_attempt_id": "attempt-3",
+      "source_sha256": "d4173e70b151af072e34d66d5c4cef98f176a610a4a06a2c1e80f65fd647d1a1",
+      "historical_public_pass": true,
+      "condition_order": [
+        "cached",
+        "cold"
+      ],
+      "independent_sessions": [
+        {
+          "policy": "depth",
+          "enriched_feedback": true
+        },
+        {
+          "policy": "adaptive",
+          "enriched_feedback": false
+        },
+        {
+          "policy": "breadth",
+          "enriched_feedback": true
+        }
+      ]
+    }
+  ],
+  "cold": "Three independent new sessions, each apply Git and run public Docker; no cross-session reuse.",
+  "cached": "Three independent new sessions with same fixed source but different policy and public feedback flags; cold first runs actual Git+public Docker and caches receipt; next two must use identical source cache and avoid Git and public Docker.",
+  "cache_scope": "same exact source/task/git target/upstream public tests/evaluator code/Docker image; independent prompting histories allowed",
+  "hidden": "Each independently public-solved session must still run separate hidden Docker tests and preserve original outcomes",
+  "measures": "Actual Git apply/public Docker counts, full session elapsed wall time, cache hits, independent hidden success, no model calls; order counterbalanced.",
+  "cost": "No Codex or other external inference; previously generated archival model source reused.",
+  "limitations": "Only two historically reused upstream issues, each has 3 independent sessions per condition; not a new coding ability or model token savings estimate; timings include Docker warmup and order confounds."
+}

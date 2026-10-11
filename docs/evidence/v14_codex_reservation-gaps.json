@@ -1,0 +1,83 @@
+{
+  "protocol_id": "nykra-native-codex-matched-pilot-v1",
+  "model": "gpt-6-luna",
+  "task": "reservation-gaps",
+  "protocol_sha256": "45666fad1d9758558cbe96a1f434cff4d6bb0553504809299ba0fc4dc6242736",
+  "arm_order": [
+    "baseline",
+    "nykra"
+  ],
+  "runner": "codex-cli-0.160.0-chatgpt-auth",
+  "reasoning_effort": "low",
+  "training_hidden_disjoint": true,
+  "task_scope": "local function-level bug repair; not SWE-bench",
+  "status": "completed",
+  "arms": [
+    {
+      "arm": "baseline",
+      "task": "reservation-gaps",
+      "attempt_budget": 2,
+      "attempts_used": 1,
+      "time_seconds": 10.96,
+      "tokens_reported": 15353,
+      "tokens_reporting_complete": true,
+      "best_attempt_number": 1,
+      "final_training_passed": 14,
+      "final_heldout_passed": 32,
+      "final_heldout_total": 32,
+      "final_heldout_success": true,
+      "heldout_score": 1.0,
+      "attempts": [
+        {
+          "status": "ok",
+          "elapsed_seconds": 10.96,
+          "source": "def solve(start, end, bookings):\n    if start >= end:\n        return []\n    occupied = []\n    for a, b in bookings:\n        if a < b and b > start and a < end:\n            occupied = occupied + [[max(a, start), min(b, end)]]\n    occupied = sorted(occupied)\n    free = []\n    cursor = start\n    for a, b in occupied:\n        if a > cursor:\n            free = free + [[cursor, a]]\n        if b > cursor:\n            cursor = b\n    if cursor < end:\n        free = free + [[cursor, end]]\n    return free",
+          "tokens_reported": 15353,
+          "source_sha256": "5e5b6fc3b5f243f28c7631a98be1072e8bdefe5f366d0500d1dc966a5994b059",
+          "training": {
+            "status": "ok",
+            "passed": 14,
+            "total": 14,
+            "score": 1.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        }
+      ]
+    },
+    {
+      "arm": "nykra",
+      "task": "reservation-gaps",
+      "attempt_budget": 2,
+      "attempts_used": 1,
+      "time_seconds": 9.99,
+      "tokens_reported": 15351,
+      "tokens_reporting_complete": true,
+      "best_attempt_number": 1,
+      "final_training_passed": 14,
+      "final_heldout_passed": 32,
+      "final_heldout_total": 32,
+      "final_heldout_success": true,
+      "heldout_score": 1.0,
+      "attempts": [
+        {
+          "status": "ok",
+          "elapsed_seconds": 9.99,
+          "source": "def solve(start, end, bookings):\n    if start >= end:\n        return []\n    occupied = []\n    for a, b in bookings:\n        if a < b and b > start and a < end:\n            occupied = occupied + [[max(a, start), min(b, end)]]\n    occupied = sorted(occupied)\n    free = []\n    cursor = start\n    for a, b in occupied:\n        if a > cursor:\n            free = free + [[cursor, a]]\n        if b > cursor:\n            cursor = b\n    if cursor < end:\n        free = free + [[cursor, end]]\n    return free",
+          "tokens_reported": 15351,
+          "source_sha256": "5e5b6fc3b5f243f28c7631a98be1072e8bdefe5f366d0500d1dc966a5994b059",
+          "training": {
+            "status": "ok",
+            "passed": 14,
+            "total": 14,
+            "score": 1.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        }
+      ]
+    }
+  ]
+}

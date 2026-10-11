@@ -1,0 +1,48 @@
+{
+  "schema": "nykra-v21-paired-public-feedback-v1",
+  "task_id": "youtube-dl-28",
+  "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "eligible": true,
+  "status": "shared_solved",
+  "shared": {
+    "id": "common-1",
+    "source": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)$', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        try:\n            return compat_chr(int(numstr, base))\n        except (ValueError, OverflowError):\n            pass\n\n    # Unknown or invalid entity in name, return its literal representation\n    return ('&%s;' % entity)",
+    "source_sha256": "f7b7d1d2b3b1356551b74f7f9e38a31d9fd1f9ecf38153fe47b2e654dfdfded6",
+    "model_status": "ok",
+    "tokens_reported": 15277,
+    "model_seconds": 6.59,
+    "public": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "e30ddd48012021d8e16572b246e56f3e50ee36877720e4c28f8816dd7783d958"
+        }
+      ],
+      "elapsed_seconds": 9.18
+    }
+  },
+  "shared_hidden": {
+    "status": "ok",
+    "passed": true,
+    "checks": [
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e10294891efdceaba8fe6e93fee126d54580bb4306c9ff175b6181c545b2c730"
+      },
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e30ddd48012021d8e16572b246e56f3e50ee36877720e4c28f8816dd7783d958"
+      }
+    ],
+    "elapsed_seconds": 10.56
+  },
+  "arms": []
+}

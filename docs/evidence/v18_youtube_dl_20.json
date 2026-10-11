@@ -1,0 +1,261 @@
+{
+  "task_id": "youtube-dl-20",
+  "protocol_sha256": "8d52ce33e9906211e3e2a39ab16b65eeb4bd0f3d92b2f0bf6604898f12d954b6",
+  "model": "gpt-6-luna",
+  "status": "completed",
+  "prevalidation": {
+    "public_buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stderr_sha256": "a331985c2b3988540c58a0c53e30605ea1b7a7f1b944e85c77db3154267a725f",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "public",
+      "elapsed_seconds": 6.89
+    },
+    "public_reference": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "7a8da304dd43db4ef725652618f035e8902bfc6c6680a6b8175f9a2f3b4ec5f7",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "public",
+      "elapsed_seconds": 7.29
+    },
+    "hidden_buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stderr_sha256": "d1a11d2076e4c792f6e3e477d74c2c784e3b73838c21745a251f2338d7dd0563",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "5ccf56cf97483d8bb9aba563c7580b9389f83e2971b862eb17d9cdf9ee728a3b",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "hidden",
+      "elapsed_seconds": 8.63
+    },
+    "hidden_reference": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "c5b3c1a6cf81d6407a283a4b9d34c28f823d353547630533df7c26f12cba0ef2",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "5e7ff5d2346668a9c1fc2da6b7b09089123c33b184030230c50b250b40c347cd",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "hidden",
+      "elapsed_seconds": 9.03
+    },
+    "eligible": true
+  },
+  "arms": [
+    {
+      "arm": "nykra",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n         \\s+%s(?:=['\"]?%s['\"]?)?\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+          "source_sha256": "aefc8ba1eed7a23d118b4c7d3547f10a8c3ba720b03ca89e9b0b7f77ecd2bcaf",
+          "model_status": "ok",
+          "model_seconds": 7.62,
+          "tokens_reported": 2384,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "57aaeffe76517b9b403a51a79a39b7809068e12c6aed681100eac0e8559b2dc7",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 15.64
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n         \\s+%s(?:=['\"]?%s['\"]?)?\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+          "source_sha256": "aefc8ba1eed7a23d118b4c7d3547f10a8c3ba720b03ca89e9b0b7f77ecd2bcaf",
+          "model_status": "ok",
+          "model_seconds": 9.0,
+          "tokens_reported": 1642,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "57aaeffe76517b9b403a51a79a39b7809068e12c6aed681100eac0e8559b2dc7",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 8.73
+          }
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n         (?:\\s+%s(?:=['\"]?%s['\"]?)?)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+          "source_sha256": "ffff36b17eb35c6a3760717110cab2d32a75de370361f0740285cee400ac4f93",
+          "model_status": "ok",
+          "model_seconds": 7.96,
+          "tokens_reported": 1643,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "57aaeffe76517b9b403a51a79a39b7809068e12c6aed681100eac0e8559b2dc7",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 8.48
+          }
+        }
+      ],
+      "attempts_used": 3,
+      "selected_attempt": null,
+      "public_pass": false,
+      "hidden_pass": false,
+      "full_success": false,
+      "final_hidden": {
+        "status": "no_public_solution",
+        "passed": false
+      },
+      "reported_tokens": 5669,
+      "token_reporting_complete": true,
+      "model_seconds": 24.58,
+      "stop_reason": "attempt_limit",
+      "soft_token_budget_not_hard_enforced": true
+    },
+    {
+      "arm": "baseline",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n         \\s+%s(?:=['\"]?%s['\"]?)?\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+          "source_sha256": "aefc8ba1eed7a23d118b4c7d3547f10a8c3ba720b03ca89e9b0b7f77ecd2bcaf",
+          "model_status": "ok",
+          "model_seconds": 9.11,
+          "tokens_reported": 2380,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "a331985c2b3988540c58a0c53e30605ea1b7a7f1b944e85c77db3154267a725f",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 7.43
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n         \\s+%s(?:=['\"]?%s['\"]?)?\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+          "source_sha256": "aefc8ba1eed7a23d118b4c7d3547f10a8c3ba720b03ca89e9b0b7f77ecd2bcaf",
+          "model_status": "ok",
+          "model_seconds": 10.45,
+          "tokens_reported": 4714,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "57aaeffe76517b9b403a51a79a39b7809068e12c6aed681100eac0e8559b2dc7",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 8.06
+          }
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "source": "def get_elements_by_attribute(attribute, value, html, escape_value=True):\n    \"\"\"Return the content of the tag with the specified attribute in the passed HTML document\"\"\"\n\n    value = re.escape(value) if escape_value else value\n\n    retlist = []\n    for m in re.finditer(r'''(?xs)\n        <([a-zA-Z0-9:._-]+)\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n         \\s+%s(?:=['\"]?%s['\"]?)?\n         (?:\\s+[a-zA-Z0-9:._-]+(?:=[a-zA-Z0-9:._-]*|=\"[^\"]*\"|='[^']*'))*?\n        \\s*>\n        (?P<content>.*?)\n        </\\1>\n    ''' % (re.escape(attribute), value), html):\n        res = m.group('content')\n\n        if res.startswith('\"') or res.startswith(\"'\"):\n            res = res[1:-1]\n\n        retlist.append(unescapeHTML(res))\n\n    return retlist",
+          "source_sha256": "aefc8ba1eed7a23d118b4c7d3547f10a8c3ba720b03ca89e9b0b7f77ecd2bcaf",
+          "model_status": "ok",
+          "model_seconds": 8.38,
+          "tokens_reported": 1640,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "57aaeffe76517b9b403a51a79a39b7809068e12c6aed681100eac0e8559b2dc7",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 7.86
+          }
+        }
+      ],
+      "attempts_used": 3,
+      "selected_attempt": null,
+      "public_pass": false,
+      "hidden_pass": false,
+      "full_success": false,
+      "final_hidden": {
+        "status": "no_public_solution",
+        "passed": false
+      },
+      "reported_tokens": 8734,
+      "token_reporting_complete": true,
+      "model_seconds": 27.94,
+      "stop_reason": "attempt_limit",
+      "soft_token_budget_not_hard_enforced": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+diff --git a/youtube_dl/utils.py b/youtube_dl/utils.py
+--- a/youtube_dl/utils.py
++++ b/youtube_dl/utils.py
+@@ -1985,6 +1985,11 @@
+     mobj = re.match(r'^(\d+):(\d\d):(\d\d(?:\.\d+)?)$', time_expr)
+     if mobj:
+         return 3600 * int(mobj.group(1)) + 60 * int(mobj.group(2)) + float(mobj.group(3))
++
++    mobj = re.match(r'^(\d+):(\d\d):(\d\d):(\d+)$', time_expr)
++    if mobj:
++        return 3600 * int(mobj.group(1)) + 60 * int(mobj.group(2)) + int(mobj.group(3)) + float(mobj.group(4)) / 30
++
+ 
+ 
+ def srt_subtitles_timecode(seconds):

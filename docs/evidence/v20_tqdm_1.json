@@ -1,0 +1,38 @@
+{
+  "schema": "nykra-v20-real-task-result-v1",
+  "task_id": "tqdm-1",
+  "protocol_sha256": "9eec931522e43e5c3afadeaa592e0a9cbd1b1c7c7639153ad7219b6ad731c2ab",
+  "model": "gpt-6-luna",
+  "prevalidated_eligible": true,
+  "status": "not_forkable",
+  "shared_prefix": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, **tqdm_kwargs), start=start)",
+      "source_sha256": "85f1ba720e609165de32de534c5900f18b771108e94fc1a4a0e2216d6f0cb04a",
+      "model_status": "ok",
+      "model_seconds": 7.49,
+      "tokens_reported": 2141,
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "03c8a847ea85739e546bcddc86a6b1f963153dd3944077c6b152e2528d431dcc",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 4.92
+      }
+    }
+  ],
+  "shared_prefix_reason": "public_solved",
+  "fork_actions": null,
+  "draws": []
+}

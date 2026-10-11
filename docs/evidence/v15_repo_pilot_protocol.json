@@ -1,0 +1,80 @@
+{
+  "id": "nykra-git-regression-pilot-v1",
+  "date": "2026-10-11",
+  "task_source": "Nykra 0.14.0 real repository modules with artificially introduced single regression per checkout; NOT externally reported issues",
+  "tasks": [
+    {
+      "id": "pvalue-tail",
+      "order": [
+        "baseline",
+        "nykra"
+      ],
+      "file": "nykra/benchmarks.py",
+      "function": "_exact_discordance_test",
+      "bug": "The one-sided exact paired p-value undercounts the equality boundary, reporting zero when all discordant pairs improve. Restore inclusive tail probability and preserve empty-discordance behavior."
+    },
+    {
+      "id": "wall-connectivity",
+      "order": [
+        "nykra",
+        "baseline"
+      ],
+      "file": "nykra/benchmarks.py",
+      "function": "_has_path",
+      "bug": "Maze task solvability incorrectly allows a route to cross blocked wall cells. Restore correct 4-neighbor reachability under rectangular bounds."
+    },
+    {
+      "id": "bootstrap-quantile",
+      "order": [
+        "baseline",
+        "nykra"
+      ],
+      "file": "nykra/benchmarks.py",
+      "function": "_bootstrap_interval",
+      "bug": "The bootstrap confidence interval uses an incorrect upper percentile, understating the upper bound. Preserve deterministic task-resampling and two-sided 95% percentile semantics."
+    },
+    {
+      "id": "finite-scores",
+      "order": [
+        "nykra",
+        "baseline"
+      ],
+      "file": "nykra/store.py",
+      "function": "_score",
+      "bug": "The score validator began accepting nonfinite float inputs (NaN and infinities). Preserve support for finite int/float and reject booleans and invalid types."
+    },
+    {
+      "id": "identifier-validation",
+      "order": [
+        "baseline",
+        "nykra"
+      ],
+      "file": "nykra/store.py",
+      "function": "_identifier",
+      "bug": "Identifiers currently reject valid simple identifiers and accept invalid text containing spaces or prohibited punctuation. Preserve validation length and allowed syntax."
+    },
+    {
+      "id": "driver-capabilities",
+      "order": [
+        "nykra",
+        "baseline"
+      ],
+      "file": "nykra/drivers.py",
+      "function": "scan_drivers",
+      "bug": "The discovery-only agent entries incorrectly claim autonomous candidate-generation capability, which must remain false until a native adapter is validated. Preserve all other vendor detection reporting."
+    }
+  ],
+  "model": "gpt-6-luna",
+  "codex_cli_version": "0.160.0",
+  "reasoning_effort": "low",
+  "max_model_turns_per_task_arm": 2,
+  "max_seconds_per_model_turn": 70,
+  "test_timeout_seconds": 7,
+  "strategy": {
+    "baseline": "After the first evaluated patch, independently regenerate the target function from specification using the same previous code and public failure feedback",
+    "nykra": "After the first evaluated patch, revise the existing candidate function guided by the same feedback"
+  },
+  "evaluation": "source function replacement in disposable git copy, public cases after every call, private cases only after best public-scored candidate is selected, re-grade from clean mutated checkout",
+  "comparison": "small exploratory paired controlled model-generation policy comparison, not a production bugfix, not SWE-bench, not externally blind",
+  "security": "Codex inference read-only, output structured JSON, host patches only an allowed top-level function in an isolated Git checkout; grader subprocess is NOT a hardened sandbox; no production code modification"
+}

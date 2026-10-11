@@ -1,0 +1,24 @@
+{
+  "protocol": "nykra-fixed-container-smoke-v1",
+  "image": "docker.io/library/busybox@sha256:bdf57e528e45e4433820e045b29b4597825a1c9e38353532d90a01445013f82e",
+  "smoke_passed": true,
+  "checks": [
+    "digest_pinned_locally_available_image",
+    "no_network",
+    "read_only_root",
+    "nonroot_uid_65534",
+    "drop_all_capabilities",
+    "no_new_privileges",
+    "bounded_cpu_memory_pids_and_wall_time",
+    "ephemeral_tmpfs_workdir",
+    "no_host_mounts",
+    "writable_workdir_verified",
+    "root_write_denied_verified",
+    "fresh_nonce_output_verified"
+  ],
+  "untrusted_repository_code_executed": false,
+  "execution_authorized": false,
+  "external_benchmark_ready": false,
+  "limitations": "A constrained fixed-command smoke check is not sufficient to certify hostile-code isolation or authorize external benchmarks.",
+  "observed_at_utc": "2026-10-11T10:19:24.628721+00:00"
+}

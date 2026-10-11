@@ -1,0 +1,127 @@
+{
+  "schema": "nykra-workflow-v22-v1",
+  "id": "97fb52a8f82942b48a50d2f0a49c86ce",
+  "task_id": "youtube-dl-43",
+  "evaluator_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "policy": "depth",
+  "driver": "relai-supervised",
+  "budget": 4,
+  "enriched_feedback": true,
+  "status": "finished",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "prompt_sha256": "2acfd0a6ef93be2c40d2fd7fcc9e6b042ba92fc543d356f3ed322c6acc44d6cd",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "source_sha256": "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+      "patch_sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "patched_source_path": "youtube_dl/utils.py",
+      "git_before_sha256": "6452e59a02035f4a1c04fb3094adf6f882a1b6c5d741432ae1a2f6beb7a1b793",
+      "git_after_sha256": "228d95002b2dd34e264ff2394a6c026a95bb30d02d48a96943ceff5ae1ce57f0",
+      "actual_git_apply_verified": true,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 5.66,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "tokens_reported": null,
+      "model_seconds": null,
+      "agent_label": "archived-model-replay-no-inference",
+      "public_evaluator_invocations": 1,
+      "git_apply_invocations": 1
+    },
+    {
+      "id": "attempt-2",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-1",
+      "prompt_sha256": "7fb5683c8f831596d1e11c160d5e58f81f81c50321e170fd773ce3c228dac36d",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "source_sha256": "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+      "patch_sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2",
+      "patched_source_path": "youtube_dl/utils.py",
+      "git_before_sha256": "6452e59a02035f4a1c04fb3094adf6f882a1b6c5d741432ae1a2f6beb7a1b793",
+      "git_after_sha256": "228d95002b2dd34e264ff2394a6c026a95bb30d02d48a96943ceff5ae1ce57f0",
+      "actual_git_apply_verified": true,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 4.3,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "tokens_reported": null,
+      "model_seconds": null,
+      "agent_label": "archived-model-replay-no-inference",
+      "public_evaluator_invocations": 1,
+      "git_apply_invocations": 1
+    },
+    {
+      "id": "attempt-3",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-2",
+      "prompt_sha256": "7fb5683c8f831596d1e11c160d5e58f81f81c50321e170fd773ce3c228dac36d",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)*([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "source_sha256": "d4173e70b151af072e34d66d5c4cef98f176a610a4a06a2c1e80f65fd647d1a1",
+      "patch_sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+      "patched_source_path": "youtube_dl/utils.py",
+      "git_before_sha256": "6452e59a02035f4a1c04fb3094adf6f882a1b6c5d741432ae1a2f6beb7a1b793",
+      "git_after_sha256": "e7e96bbd7e7ea5e547330d02bc95fabf58a362b9f54ac7a3a746f7676e2bbc4f",
+      "actual_git_apply_verified": true,
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045"
+          }
+        ],
+        "elapsed_seconds": 4.49
+      },
+      "tokens_reported": null,
+      "model_seconds": null,
+      "agent_label": "archived-model-replay-no-inference",
+      "public_evaluator_invocations": 1,
+      "git_apply_invocations": 1
+    }
+  ],
+  "selected_attempt_id": "attempt-3",
+  "hidden": {
+    "status": "ok",
+    "passed": true,
+    "checks": [
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c"
+      }
+    ],
+    "elapsed_seconds": 4.18
+  },
+  "source_mode": "complete-function-patch-to-disposable-upstream-Git-repo",
+  "independent_hidden": true,
+  "host_model_invocation": false
+}

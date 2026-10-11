@@ -1,0 +1,75 @@
+{
+  "protocol": "nykra-git-regression-pilot-v1",
+  "protocol_sha256": "04d42bbde0efabe7dfe234765be3d353400ca8db385ee9f28663a8291863d93f",
+  "task_id": "identifier-validation",
+  "model": "gpt-6-luna",
+  "state": "completed",
+  "arms": [
+    {
+      "arm": "baseline",
+      "task": "identifier-validation",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 15105,
+      "token_reporting_complete": true,
+      "model_seconds": 10.11,
+      "final_diff": "diff --git a/nykra/store.py b/nykra/store.py\nindex 8c5ca6f..7cef842 100644\n--- a/nykra/store.py\n+++ b/nykra/store.py\n@@ -41,12 +41,13 @@ def _required_text(value: Any, field: str, maximum: int = 1024) -> str:\n \n def _identifier(value: Any, field: str, maximum: int = 256) -> str:\n     value = _required_text(value, field, maximum)\n-    if re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n+    if not re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n         raise NykraError(f\"{field} must be a simple identifier\")\n     return value\n \n \n \n+\n def _nonnegative(value: Any, field: str) -> float:\n     if isinstance(value, bool) or not isinstance(value, (float, int)) or not math.isfinite(value) or value < 0:\n         raise NykraError(f\"{field} must be a finite, non-negative number\")\n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def _identifier(value: Any, field: str, maximum: int = 256) -> str:\n    value = _required_text(value, field, maximum)\n    if not re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n        raise NykraError(f\"{field} must be a simple identifier\")\n    return value",
+          "seconds": 10.11,
+          "tokens": 15105,
+          "source_sha256": "059a5fb9abdef3ed15dfe42d165b8875d957d157652551bbfed3819aa9afca60",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/store.py b/nykra/store.py\nindex 8c5ca6f..7cef842 100644\n--- a/nykra/store.py\n+++ b/nykra/store.py\n@@ -41,12 +41,13 @@ def _required_text(value: Any, field: str, maximum: int = 1024) -> str:\n \n def _identifier(value: Any, field: str, maximum: int = 256) -> str:\n     value = _required_text(value, field, maximum)\n-    if re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n+    if not re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n         raise NykraError(f\"{field} must be a simple identifier\")\n     return value\n \n \n \n+\n def _nonnegative(value: Any, field: str) -> float:\n     if isinstance(value, bool) or not isinstance(value, (float, int)) or not math.isfinite(value) or value < 0:\n         raise NykraError(f\"{field} must be a finite, non-negative number\")\n",
+          "parent": null
+        }
+      ]
+    },
+    {
+      "arm": "nykra",
+      "task": "identifier-validation",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 1023,
+      "token_reporting_complete": true,
+      "model_seconds": 11.2,
+      "final_diff": "diff --git a/nykra/store.py b/nykra/store.py\nindex 8c5ca6f..7cef842 100644\n--- a/nykra/store.py\n+++ b/nykra/store.py\n@@ -41,12 +41,13 @@ def _required_text(value: Any, field: str, maximum: int = 1024) -> str:\n \n def _identifier(value: Any, field: str, maximum: int = 256) -> str:\n     value = _required_text(value, field, maximum)\n-    if re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n+    if not re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n         raise NykraError(f\"{field} must be a simple identifier\")\n     return value\n \n \n \n+\n def _nonnegative(value: Any, field: str) -> float:\n     if isinstance(value, bool) or not isinstance(value, (float, int)) or not math.isfinite(value) or value < 0:\n         raise NykraError(f\"{field} must be a finite, non-negative number\")\n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def _identifier(value: Any, field: str, maximum: int = 256) -> str:\n    value = _required_text(value, field, maximum)\n    if not re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n        raise NykraError(f\"{field} must be a simple identifier\")\n    return value",
+          "seconds": 11.2,
+          "tokens": 1023,
+          "source_sha256": "059a5fb9abdef3ed15dfe42d165b8875d957d157652551bbfed3819aa9afca60",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/store.py b/nykra/store.py\nindex 8c5ca6f..7cef842 100644\n--- a/nykra/store.py\n+++ b/nykra/store.py\n@@ -41,12 +41,13 @@ def _required_text(value: Any, field: str, maximum: int = 1024) -> str:\n \n def _identifier(value: Any, field: str, maximum: int = 256) -> str:\n     value = _required_text(value, field, maximum)\n-    if re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n+    if not re.fullmatch(r\"[a-zA-Z0-9_./:@-]+\", value):\n         raise NykraError(f\"{field} must be a simple identifier\")\n     return value\n \n \n \n+\n def _nonnegative(value: Any, field: str) -> float:\n     if isinstance(value, bool) or not isinstance(value, (float, int)) or not math.isfinite(value) or value < 0:\n         raise NykraError(f\"{field} must be a finite, non-negative number\")\n",
+          "parent": null
+        }
+      ]
+    }
+  ]
+}

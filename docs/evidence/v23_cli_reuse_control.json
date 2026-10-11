@@ -1,0 +1,17 @@
+{
+  "schema": "nykra-v23-independent-process-relai-chatgpt-cli-reuse-v1",
+  "task_id": "youtube-dl-43",
+  "driver": "relai-supervised",
+  "candidate_source": "v22 prevalidated reference control, not new model",
+  "source_session_id": "ea6210bb11114651a550df97bb654cfc",
+  "destination_session_id": "a8cbc98c7cef4752bb2da1120b73f0bc",
+  "new_model_proposals": 0,
+  "new_public_docker_calls": 0,
+  "new_git_apply_calls": 0,
+  "source_sha256": "211254a037ab2006aa0c04bed41ae1a6dc5b6d03e7fb3e53ff5166bf4c95917e",
+  "patch_sha256": "36822dcb29c2511f3dc26ff080559b12c3550ec905cbb5a7903ea5f3f15b2aba",
+  "hidden_verified_pass": true,
+  "hidden_status": "ok",
+  "user_command": "python -m nykra workflow reuse --session TARGET --verified-session SOURCE --approve",
+  "limitations": "Same exact task, fixed evaluator, matching initial prompt. This is a reference control, not model correctness evidence."
+}

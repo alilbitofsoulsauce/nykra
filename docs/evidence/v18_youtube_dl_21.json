@@ -1,0 +1,253 @@
+{
+  "task_id": "youtube-dl-21",
+  "protocol_sha256": "8d52ce33e9906211e3e2a39ab16b65eeb4bd0f3d92b2f0bf6604898f12d954b6",
+  "model": "gpt-6-luna",
+  "status": "completed",
+  "prevalidation": {
+    "public_buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stderr_sha256": "5e8b87addeaf1f497bd4f03deea39e1508150ada4304151cf0fedb10b4c7500e",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "public",
+      "elapsed_seconds": 7.52
+    },
+    "public_reference": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "39974788f93b1d2bd60514c0ffe214a012a7f7608ed3dc1f537539b3e761d763",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "public",
+      "elapsed_seconds": 7.37
+    },
+    "hidden_buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stderr_sha256": "c5f2bf2d387b82d80a67483f43dcc8369e87a212ffeaed3410f255c672d8a232",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "3c25569acf19bfec340830e4b84b2a8cd11f7ce642d50864c842bcee67fd1e2e",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "hidden",
+      "elapsed_seconds": 8.11
+    },
+    "hidden_reference": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "621e13ea38d9a3e33f62f66f3ad4d50b7c3bb23cad5fe831692448e5f7e9b79a",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "fc898bc8b82148954e86fc186a546b54ab238d547b5592da90c7d568a12ddb9e",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "hidden",
+      "elapsed_seconds": 9.51
+    },
+    "eligible": true
+  },
+  "arms": [
+    {
+      "arm": "baseline",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def urljoin(base, path):\n    if not isinstance(path, compat_str):\n        path = compat_str(path)\n    if not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if not isinstance(base, compat_str):\n        base = compat_str(base)\n    if not re.match(r'^(?:https?:)?//', base):\n        return None\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "c15ec76ead905604c0d199831765fbe300ea34e44c0392bd76476c63f80452c8",
+          "model_status": "ok",
+          "model_seconds": 7.46,
+          "tokens_reported": 2036,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "5e8b87addeaf1f497bd4f03deea39e1508150ada4304151cf0fedb10b4c7500e",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 10.86
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def urljoin(base, path):\n    if not isinstance(path, compat_str):\n        path = compat_str(path)\n    if not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if not isinstance(base, compat_str):\n        base = compat_str(base)\n    if not re.match(r'^(?:https?:)?//', base):\n        return None\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "c15ec76ead905604c0d199831765fbe300ea34e44c0392bd76476c63f80452c8",
+          "model_status": "ok",
+          "model_seconds": 7.47,
+          "tokens_reported": 2164,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "5e8b87addeaf1f497bd4f03deea39e1508150ada4304151cf0fedb10b4c7500e",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 11.97
+          }
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "source": "def urljoin(base, path):\n    if not isinstance(path, compat_str):\n        path = compat_str(path)\n    if not path:\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if not isinstance(base, compat_str):\n        base = compat_str(base)\n    if not re.match(r'^(?:https?:)?//', base):\n        return None\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "c15ec76ead905604c0d199831765fbe300ea34e44c0392bd76476c63f80452c8",
+          "model_status": "ok",
+          "model_seconds": 8.5,
+          "tokens_reported": 15220,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "5e8b87addeaf1f497bd4f03deea39e1508150ada4304151cf0fedb10b4c7500e",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 11.02
+          }
+        }
+      ],
+      "attempts_used": 3,
+      "selected_attempt": null,
+      "public_pass": false,
+      "hidden_pass": false,
+      "full_success": false,
+      "final_hidden": {
+        "status": "no_public_solution",
+        "passed": false
+      },
+      "reported_tokens": 19420,
+      "token_reporting_complete": true,
+      "model_seconds": 23.43,
+      "stop_reason": "attempt_limit",
+      "soft_token_budget_not_hard_enforced": true
+    },
+    {
+      "arm": "nykra",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def urljoin(base, path):\n    if not path:\n        return None\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str) or not re.match(r'^(?:https?:)?//', base):\n        return None\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "d7ee8f0563fef6433492bb56bb5d2ab5f940aa0d2dedde5be06eabd2c2fd7783",
+          "model_status": "ok",
+          "model_seconds": 7.01,
+          "tokens_reported": 15108,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "cd9dde9ec5ece6e22dbc676bebcbcfc850579904cef43ce0f2452e3fd7d45c3f",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 8.2
+          }
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "source": "def urljoin(base, path):\n    if not path:\n        return None\n    if isinstance(path, bytes):\n        path = path.decode('utf-8')\n    if not isinstance(path, compat_str):\n        return None\n    if re.match(r'^(?:https?:)?//', path):\n        return path\n    if isinstance(base, bytes):\n        base = base.decode('utf-8')\n    if not isinstance(base, compat_str) or not re.match(r'^(?:https?:)?//', base):\n        return None\n    return compat_urlparse.urljoin(base, path)",
+          "source_sha256": "ea58ad0ae3fe37b181065d7c25b8d8ef047cbf58212f1f3bdefae729c1909605",
+          "model_status": "ok",
+          "model_seconds": 8.88,
+          "tokens_reported": 1179,
+          "public": {
+            "status": "ok",
+            "passed": true,
+            "checks": [
+              {
+                "status": "ok",
+                "exit_code": 0,
+                "stderr_sha256": "39974788f93b1d2bd60514c0ffe214a012a7f7608ed3dc1f537539b3e761d763",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 9.19
+          }
+        }
+      ],
+      "attempts_used": 2,
+      "selected_attempt": "attempt-2",
+      "public_pass": true,
+      "hidden_pass": true,
+      "full_success": true,
+      "final_hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "72bbe24582820a5030e7d9bb0b51b9cbf2a2a566fcc3b52dfb73f56cce095395",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "8c2cbb252db23f81047cfc2dd2d494e4b998754cec6a7ca30bc578e18a5762b8",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 9.86
+      },
+      "reported_tokens": 16287,
+      "token_reporting_complete": true,
+      "model_seconds": 15.89,
+      "stop_reason": "public_success",
+      "soft_token_budget_not_hard_enforced": true
+    }
+  ]
+}

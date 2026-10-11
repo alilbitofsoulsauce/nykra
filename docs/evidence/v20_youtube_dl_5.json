@@ -1,0 +1,242 @@
+{
+  "schema": "nykra-v20-real-task-result-v1",
+  "task_id": "youtube-dl-5",
+  "protocol_sha256": "9eec931522e43e5c3afadeaa592e0a9cbd1b1c7c7639153ad7219b6ad731c2ab",
+  "model": "gpt-6-luna",
+  "prevalidated_eligible": true,
+  "status": "completed",
+  "shared_prefix": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n\n    pm_delta = datetime.timedelta(hours=12 if re.search(r'(?i)PM', date_str) else 0)\n    timezone, date_str = extract_timezone(date_str)\n\n    # Remove AM/PM + timezone\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression) - timezone + pm_delta\n            return calendar.timegm(dt.timetuple())\n        except ValueError:\n            pass\n    timetuple = email.utils.parsedate_tz(date_str)\n    if timetuple:\n        return calendar.timegm(timetuple[:9]) - (timetuple[9] or 0)\n",
+      "source_sha256": "e051d35659b00ac86264ec9b7481d14bb3af95d71f6352e31dc2a7b928a63cb2",
+      "model_status": "ok",
+      "model_seconds": 7.37,
+      "tokens_reported": 1235,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "41bbbeab5f9207976d7e22f8d317f2ffeadcdc21cd5417a6072cb7453f531a2d",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 9.31
+      }
+    },
+    {
+      "id": "attempt-2",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-1",
+      "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n\n    pm_delta = datetime.timedelta(hours=12 if re.search(r'(?i)PM', date_str) else 0)\n    timezone, date_str = extract_timezone(date_str)\n\n    # Remove AM/PM + timezone\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression) - timezone + pm_delta\n            return calendar.timegm(dt.timetuple())\n        except ValueError:\n            pass\n    timetuple = email.utils.parsedate_tz(date_str)\n    if timetuple:\n        return calendar.timegm(timetuple[:9]) - (timetuple[9] or 0)\n",
+      "source_sha256": "e051d35659b00ac86264ec9b7481d14bb3af95d71f6352e31dc2a7b928a63cb2",
+      "model_status": "ok",
+      "model_seconds": 6.9,
+      "tokens_reported": 15538,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "5e41392897a91a5044e7764cf352d21712bc3db35bf2f21acd16046ceaff4220",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 7.61
+      }
+    },
+    {
+      "id": "attempt-3",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-2",
+      "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n\n    pm_delta = datetime.timedelta(hours=12 if re.search(r'(?i)PM', date_str) else 0)\n    timezone, date_str = extract_timezone(date_str)\n\n    # Remove AM/PM + timezone\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression) - timezone + pm_delta\n            return calendar.timegm(dt.timetuple())\n        except ValueError:\n            pass\n    timetuple = email.utils.parsedate_tz(date_str)\n    if timetuple:\n        return calendar.timegm(timetuple[:9]) - (timetuple[9] or 0)\n",
+      "source_sha256": "e051d35659b00ac86264ec9b7481d14bb3af95d71f6352e31dc2a7b928a63cb2",
+      "model_status": "ok",
+      "model_seconds": 7.41,
+      "tokens_reported": 1458,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "34b9a3d3b423a20d08def84b7427c127ecfc8d0c08b04fba940fa5fbc1f6ac4e",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 7.71
+      }
+    }
+  ],
+  "shared_prefix_reason": "three_public_failures",
+  "fork_actions": {
+    "baseline": {
+      "kind": "revise",
+      "parent_attempt_id": "attempt-3"
+    },
+    "nykra": {
+      "kind": "new_root",
+      "parent_attempt_id": null
+    }
+  },
+  "draws": [
+    {
+      "draw": 1,
+      "arm": "nykra",
+      "common_prefix_sha256": "5b4e32a1ddf814fc26af19898f0ce1c1a47726bb08929439d165087e9dc6c5d6",
+      "attempt": {
+        "id": "draw-1-nykra",
+        "kind": "new_root",
+        "parent_attempt_id": null,
+        "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n\n    pm_delta = datetime.timedelta(hours=12 if re.search(r'(?i)PM', date_str) else 0)\n    timezone, date_str = extract_timezone(date_str)\n\n    # Remove AM/PM + timezone\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression) - timezone + pm_delta\n            return calendar.timegm(dt.timetuple())\n        except ValueError:\n            pass\n\n    timetuple = email.utils.parsedate_tz(date_str)\n    if timetuple:\n        return calendar.timegm(email.utils.mktime_tz(timetuple))\n",
+        "source_sha256": "dd751c3d1d8818b37c13cf6d84a2cf366061f893c73582654d268e662cf138ae",
+        "model_status": "ok",
+        "model_seconds": 7.27,
+        "tokens_reported": 1332,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "9bfffd2c93d9550873874a1e59c6affe8354abcc4038c68055e60524ba87fc24",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 7.61
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "soft_token_limit_exceeded": false,
+      "full_success": false
+    },
+    {
+      "draw": 1,
+      "arm": "baseline",
+      "common_prefix_sha256": "5b4e32a1ddf814fc26af19898f0ce1c1a47726bb08929439d165087e9dc6c5d6",
+      "attempt": {
+        "id": "draw-1-baseline",
+        "kind": "revise",
+        "parent_attempt_id": "attempt-3",
+        "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n\n    pm_delta = datetime.timedelta(hours=12 if re.search(r'(?i)PM', date_str) else 0)\n    timezone, date_str = extract_timezone(date_str)\n\n    # Remove AM/PM + timezone\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression) - timezone + pm_delta\n            return calendar.timegm(dt.timetuple())\n        except ValueError:\n            pass\n    timetuple = email.utils.parsedate_tz(date_str)\n    if timetuple:\n        return calendar.mktime_tz(timetuple)\n",
+        "source_sha256": "0361c0b1adca239a84dd3f5b3d1d18d6091720c6dde1355ae76366f2f61fa7d8",
+        "model_status": "ok",
+        "model_seconds": 6.85,
+        "tokens_reported": 2567,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "a18f04f64156574a032f700a1cf722a4366132ff1b4f301fa2d26766b3b68b50",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 8.12
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "soft_token_limit_exceeded": false,
+      "full_success": false
+    },
+    {
+      "draw": 2,
+      "arm": "nykra",
+      "common_prefix_sha256": "5b4e32a1ddf814fc26af19898f0ce1c1a47726bb08929439d165087e9dc6c5d6",
+      "attempt": {
+        "id": "draw-2-nykra",
+        "kind": "new_root",
+        "parent_attempt_id": null,
+        "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n\n    pm_delta = datetime.timedelta(hours=12 if re.search(r'(?i)PM', date_str) else 0)\n    timezone, date_str = extract_timezone(date_str)\n\n    # Remove AM/PM + timezone\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression) - timezone + pm_delta\n            return calendar.timegm(dt.timetuple())\n        except ValueError:\n            pass\n    timetuple = email.utils.parsedate_tz(date_str)\n    if timetuple:\n        return calendar.timegm(timetuple[:9]) - (timetuple[9] or 0)\n",
+        "source_sha256": "e051d35659b00ac86264ec9b7481d14bb3af95d71f6352e31dc2a7b928a63cb2",
+        "model_status": "ok",
+        "model_seconds": 9.89,
+        "tokens_reported": 1342,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "63105788630bf532c5010a4c39d5bf5b22ac8042404f3e996f258c9033963789",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 7.24
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "soft_token_limit_exceeded": false,
+      "full_success": false
+    },
+    {
+      "draw": 2,
+      "arm": "baseline",
+      "common_prefix_sha256": "5b4e32a1ddf814fc26af19898f0ce1c1a47726bb08929439d165087e9dc6c5d6",
+      "attempt": {
+        "id": "draw-2-baseline",
+        "kind": "revise",
+        "parent_attempt_id": "attempt-3",
+        "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n\n    pm_delta = datetime.timedelta(hours=12 if re.search(r'(?i)PM', date_str) else 0)\n    timezone, date_str = extract_timezone(date_str)\n\n    # Remove AM/PM + timezone\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression) - timezone + pm_delta\n            return calendar.timegm(dt.timetuple())\n        except ValueError:\n            pass\n\n    timetuple = email.utils.parsedate_tz(date_str)\n    if timetuple:\n        try:\n            dt = datetime.datetime(*timetuple[:6])\n            return calendar.timegm(dt.timetuple()) - (timetuple[9] or 0)\n        except (ValueError, OverflowError):\n            pass\n",
+        "source_sha256": "4dd4c115b078d9d2ca00d22fad264ef7ee6b65dbe3b228b17b8b750261bbd8e1",
+        "model_status": "ok",
+        "model_seconds": 7.25,
+        "tokens_reported": 1591,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "0568c5ac6da2115a8b255f44e108a004c900287022e4659a1953aed6074d66d8",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 11.6
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "soft_token_limit_exceeded": false,
+      "full_success": false
+    }
+  ]
+}

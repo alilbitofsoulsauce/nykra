@@ -1,0 +1,237 @@
+{
+  "schema": "nykra-v24-portable-real-cold-warm-sessions-v1",
+  "protocol_sha256": "805237e2005a30cc927fc7be6441d4c2d7e54047c56d56d432d7e3d48e166f9a",
+  "session_count": 12,
+  "new_model_calls": 0,
+  "source_model_outputs_reused_from_v22": true,
+  "sessions": [
+    {
+      "task": "youtube-dl-27",
+      "mode": "cold",
+      "session_id": "409bc10c2a534c858fbaa5b9908e31a6",
+      "policy": "depth",
+      "cache_hit": false,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/409bc10c2a534c858fbaa5b9908e31a6/state.json",
+          "sha256": "db9472ea452bc9c2057ccb7c569e85687a3672b89c28dbbfaa41faf5136cf377",
+          "bytes": 3315
+        },
+        {
+          "path": "docs/evidence/v24_sessions/409bc10c2a534c858fbaa5b9908e31a6/attempt-1.diff",
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "bytes": 1174
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-27",
+      "mode": "cold",
+      "session_id": "0315768c0c5245c38c85d81eaf996850",
+      "policy": "adaptive",
+      "cache_hit": false,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/0315768c0c5245c38c85d81eaf996850/state.json",
+          "sha256": "0724861562f561e84ec18aa2e2769de56914e50a1f5dc2e5f78941652f92e77f",
+          "bytes": 3318
+        },
+        {
+          "path": "docs/evidence/v24_sessions/0315768c0c5245c38c85d81eaf996850/attempt-1.diff",
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "bytes": 1174
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-27",
+      "mode": "cold",
+      "session_id": "916644d11ceb46a4ba61df66cc30fb4e",
+      "policy": "breadth",
+      "cache_hit": false,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/916644d11ceb46a4ba61df66cc30fb4e/state.json",
+          "sha256": "a080573fb36670f657869e0082ac8d56887e20ec6bcd196c1ea78ae47e06a59d",
+          "bytes": 3317
+        },
+        {
+          "path": "docs/evidence/v24_sessions/916644d11ceb46a4ba61df66cc30fb4e/attempt-1.diff",
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "bytes": 1174
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-27",
+      "mode": "cached",
+      "session_id": "1c94e66e7f614607a670d9b349074488",
+      "policy": "depth",
+      "cache_hit": false,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/1c94e66e7f614607a670d9b349074488/state.json",
+          "sha256": "4eaaac8c6bea02bedab3b05af81004b9edbe607aee56d6ca82e600b21388fe86",
+          "bytes": 3375
+        },
+        {
+          "path": "docs/evidence/v24_sessions/1c94e66e7f614607a670d9b349074488/attempt-1.diff",
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "bytes": 1174
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-27",
+      "mode": "cached",
+      "session_id": "9af70e2c4359490fa8681c50fe46b0c3",
+      "policy": "adaptive",
+      "cache_hit": true,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/9af70e2c4359490fa8681c50fe46b0c3/state.json",
+          "sha256": "f749e3446101e21eeaef82f479ad1ab87156637b98f14b53e1b26e6be6d12d8c",
+          "bytes": 3378
+        },
+        {
+          "path": "docs/evidence/v24_sessions/9af70e2c4359490fa8681c50fe46b0c3/attempt-1.diff",
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "bytes": 1174
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-27",
+      "mode": "cached",
+      "session_id": "6e2fd7601a27436f964fc911678da592",
+      "policy": "breadth",
+      "cache_hit": true,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/6e2fd7601a27436f964fc911678da592/state.json",
+          "sha256": "907aa4be75d33613a7fc763f5819a3009a0eacaa4b5bfc3b22dcb978c28a6654",
+          "bytes": 3376
+        },
+        {
+          "path": "docs/evidence/v24_sessions/6e2fd7601a27436f964fc911678da592/attempt-1.diff",
+          "sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "bytes": 1174
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-43",
+      "mode": "cold",
+      "session_id": "4ea034588fb8459987eb8f86173bfd15",
+      "policy": "depth",
+      "cache_hit": false,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/4ea034588fb8459987eb8f86173bfd15/state.json",
+          "sha256": "183e9150afd5bafeccdbd0cb1c7fea38cee9dd8b4ef95587a0a30f54171a2a3d",
+          "bytes": 2454
+        },
+        {
+          "path": "docs/evidence/v24_sessions/4ea034588fb8459987eb8f86173bfd15/attempt-1.diff",
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+          "bytes": 381
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-43",
+      "mode": "cold",
+      "session_id": "26bf9dde628d43f8bad1eb9adcd5a4af",
+      "policy": "adaptive",
+      "cache_hit": false,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/26bf9dde628d43f8bad1eb9adcd5a4af/state.json",
+          "sha256": "fd4f6e2e15c66f06496eb5ff1ad780b0a70b174dbb7aa2fbda8986bbc5a8302f",
+          "bytes": 2458
+        },
+        {
+          "path": "docs/evidence/v24_sessions/26bf9dde628d43f8bad1eb9adcd5a4af/attempt-1.diff",
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+          "bytes": 381
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-43",
+      "mode": "cold",
+      "session_id": "1e6b9a08ee9a4b95b125666ed0355515",
+      "policy": "breadth",
+      "cache_hit": false,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/1e6b9a08ee9a4b95b125666ed0355515/state.json",
+          "sha256": "0d1f5a6cd6da5afbd28858c0f4f5145dbd26405b153cd82dd1310698917bdb99",
+          "bytes": 2456
+        },
+        {
+          "path": "docs/evidence/v24_sessions/1e6b9a08ee9a4b95b125666ed0355515/attempt-1.diff",
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+          "bytes": 381
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-43",
+      "mode": "cached",
+      "session_id": "7f533a203bfd454d9eaf909b762b4227",
+      "policy": "depth",
+      "cache_hit": false,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/7f533a203bfd454d9eaf909b762b4227/state.json",
+          "sha256": "9e73aa17feddfa24ca8f0b160b2a5927852c09a2c083fff7f8d71ecee08e5945",
+          "bytes": 2516
+        },
+        {
+          "path": "docs/evidence/v24_sessions/7f533a203bfd454d9eaf909b762b4227/attempt-1.diff",
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+          "bytes": 381
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-43",
+      "mode": "cached",
+      "session_id": "627a2f28befa499db8c0f33d976b9a3b",
+      "policy": "adaptive",
+      "cache_hit": true,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/627a2f28befa499db8c0f33d976b9a3b/state.json",
+          "sha256": "600e147ba5ae41be275e9a548abb3f48b22374e69593f0d648c6dbe4f618aab8",
+          "bytes": 2519
+        },
+        {
+          "path": "docs/evidence/v24_sessions/627a2f28befa499db8c0f33d976b9a3b/attempt-1.diff",
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+          "bytes": 381
+        }
+      ]
+    },
+    {
+      "task": "youtube-dl-43",
+      "mode": "cached",
+      "session_id": "6736b7393ded41d096f5b0b2138464fd",
+      "policy": "breadth",
+      "cache_hit": true,
+      "files": [
+        {
+          "path": "docs/evidence/v24_sessions/6736b7393ded41d096f5b0b2138464fd/state.json",
+          "sha256": "727ddf319e448d2d2a37704b7337b2b81d13104a63053fe0bf2b7688ff1997bc",
+          "bytes": 2517
+        },
+        {
+          "path": "docs/evidence/v24_sessions/6736b7393ded41d096f5b0b2138464fd/attempt-1.diff",
+          "sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e",
+          "bytes": 381
+        }
+      ]
+    }
+  ]
+}

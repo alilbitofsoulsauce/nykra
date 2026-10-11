@@ -1,0 +1,29 @@
+diff --git a/youtube_dl/utils.py b/youtube_dl/utils.py
+--- a/youtube_dl/utils.py
++++ b/youtube_dl/utils.py
+@@ -1982,9 +1982,23 @@
+     if mobj:
+         return float(mobj.group('time_offset'))
+ 
+-    mobj = re.match(r'^(\d+):(\d\d):(\d\d(?:\.\d+)?)$', time_expr)
++    mobj = re.match(r'^(?P<hours>\d+):(?P<minutes>\d{2}):(?P<seconds>\d{2}(?:\.\d+)?)$', time_expr)
+     if mobj:
+-        return 3600 * int(mobj.group(1)) + 60 * int(mobj.group(2)) + float(mobj.group(3))
++        return (
++            3600 * int(mobj.group('hours'))
++            + 60 * int(mobj.group('minutes'))
++            + float(mobj.group('seconds'))
++        )
++
++    mobj = re.match(r'^(?P<hours>\d+):(?P<minutes>\d{2}):(?P<seconds>\d{2}):(?P<frames>\d+)(?:\.(?P<subframes>\d+))?$', time_expr)
++    if mobj:
++        hours = int(mobj.group('hours'))
++        minutes = int(mobj.group('minutes'))
++        seconds = int(mobj.group('seconds'))
++        frames = int(mobj.group('frames'))
++        subframes = mobj.group('subframes')
++        return 3600 * hours + 60 * minutes + seconds + frames / 30.0 + (float('0.' + subframes) / 30.0 if subframes else 0)
++
+ 
+ 
+ def srt_subtitles_timecode(seconds):

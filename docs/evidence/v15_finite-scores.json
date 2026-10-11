@@ -1,0 +1,75 @@
+{
+  "protocol": "nykra-git-regression-pilot-v1",
+  "protocol_sha256": "04d42bbde0efabe7dfe234765be3d353400ca8db385ee9f28663a8291863d93f",
+  "task_id": "finite-scores",
+  "model": "gpt-6-luna",
+  "state": "completed",
+  "arms": [
+    {
+      "arm": "nykra",
+      "task": "finite-scores",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 1003,
+      "token_reporting_complete": true,
+      "model_seconds": 9.08,
+      "final_diff": "diff --git a/nykra/store.py b/nykra/store.py\nindex c61c77f..190babd 100644\n--- a/nykra/store.py\n+++ b/nykra/store.py\n@@ -53,9 +53,13 @@ def _nonnegative(value: Any, field: str) -> float:\n \n \n def _score(value: Any) -> float:\n-    if isinstance(value, bool) or not isinstance(value, (float, int)) :\n+    if isinstance(value, bool) or not isinstance(value, (float, int)):\n         raise NykraError(\"score must be a finite number\")\n-    return float(value)\n+    score = float(value)\n+    if not math.isfinite(score):\n+        raise NykraError(\"score must be a finite number\")\n+    return score\n+\n \n \n \n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def _score(value: Any) -> float:\n    if isinstance(value, bool) or not isinstance(value, (float, int)):\n        raise NykraError(\"score must be a finite number\")\n    score = float(value)\n    if not math.isfinite(score):\n        raise NykraError(\"score must be a finite number\")\n    return score",
+          "seconds": 9.08,
+          "tokens": 1003,
+          "source_sha256": "5881f2d8be10507fd397953d7d5bb785ff9973e3fcc146813c253699923c99cb",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/store.py b/nykra/store.py\nindex c61c77f..190babd 100644\n--- a/nykra/store.py\n+++ b/nykra/store.py\n@@ -53,9 +53,13 @@ def _nonnegative(value: Any, field: str) -> float:\n \n \n def _score(value: Any) -> float:\n-    if isinstance(value, bool) or not isinstance(value, (float, int)) :\n+    if isinstance(value, bool) or not isinstance(value, (float, int)):\n         raise NykraError(\"score must be a finite number\")\n-    return float(value)\n+    score = float(value)\n+    if not math.isfinite(score):\n+        raise NykraError(\"score must be a finite number\")\n+    return score\n+\n \n \n \n",
+          "parent": null
+        }
+      ]
+    },
+    {
+      "arm": "baseline",
+      "task": "finite-scores",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 2023,
+      "token_reporting_complete": true,
+      "model_seconds": 9.83,
+      "final_diff": "diff --git a/nykra/store.py b/nykra/store.py\nindex c61c77f..526e810 100644\n--- a/nykra/store.py\n+++ b/nykra/store.py\n@@ -53,9 +53,13 @@ def _nonnegative(value: Any, field: str) -> float:\n \n \n def _score(value: Any) -> float:\n-    if isinstance(value, bool) or not isinstance(value, (float, int)) :\n+    if isinstance(value, bool) or not isinstance(value, (float, int)):\n         raise NykraError(\"score must be a finite number\")\n-    return float(value)\n+    result = float(value)\n+    if not math.isfinite(result):\n+        raise NykraError(\"score must be a finite number\")\n+    return result\n+\n \n \n \n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def _score(value: Any) -> float:\n    if isinstance(value, bool) or not isinstance(value, (float, int)):\n        raise NykraError(\"score must be a finite number\")\n    result = float(value)\n    if not math.isfinite(result):\n        raise NykraError(\"score must be a finite number\")\n    return result",
+          "seconds": 9.83,
+          "tokens": 2023,
+          "source_sha256": "b13a1f554d0f9dec0b78cb0256fa754a6a1caa51901151fca4d0c426c92755f0",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/store.py b/nykra/store.py\nindex c61c77f..526e810 100644\n--- a/nykra/store.py\n+++ b/nykra/store.py\n@@ -53,9 +53,13 @@ def _nonnegative(value: Any, field: str) -> float:\n \n \n def _score(value: Any) -> float:\n-    if isinstance(value, bool) or not isinstance(value, (float, int)) :\n+    if isinstance(value, bool) or not isinstance(value, (float, int)):\n         raise NykraError(\"score must be a finite number\")\n-    return float(value)\n+    result = float(value)\n+    if not math.isfinite(result):\n+        raise NykraError(\"score must be a finite number\")\n+    return result\n+\n \n \n \n",
+          "parent": null
+        }
+      ]
+    }
+  ]
+}

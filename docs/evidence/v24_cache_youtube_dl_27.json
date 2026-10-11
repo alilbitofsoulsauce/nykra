@@ -1,0 +1,122 @@
+{
+  "schema": "nykra-v24-independent-session-cold-warm-real-docker-v1",
+  "protocol_sha256": "805237e2005a30cc927fc7be6441d4c2d7e54047c56d56d432d7e3d48e166f9a",
+  "task_id": "youtube-dl-27",
+  "model_source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba",
+  "new_model_calls": 0,
+  "status": "completed",
+  "conditions": {
+    "cold": {
+      "mode": "cold",
+      "wall_seconds": 37.8773,
+      "new_model_inference_calls": 0,
+      "sessions": [
+        {
+          "session_id": "409bc10c2a534c858fbaa5b9908e31a6",
+          "policy": "depth",
+          "enriched_feedback": true,
+          "public_status": "test_failed",
+          "public_passed": false,
+          "public_cache_hit": false,
+          "public_cache_key": null,
+          "git_apply_calls": 1,
+          "public_docker_calls": 1,
+          "hidden_status": "no_public_repair",
+          "full_success": false,
+          "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba"
+        },
+        {
+          "session_id": "0315768c0c5245c38c85d81eaf996850",
+          "policy": "adaptive",
+          "enriched_feedback": false,
+          "public_status": "test_failed",
+          "public_passed": false,
+          "public_cache_hit": false,
+          "public_cache_key": null,
+          "git_apply_calls": 1,
+          "public_docker_calls": 1,
+          "hidden_status": "no_public_repair",
+          "full_success": false,
+          "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba"
+        },
+        {
+          "session_id": "916644d11ceb46a4ba61df66cc30fb4e",
+          "policy": "breadth",
+          "enriched_feedback": true,
+          "public_status": "test_failed",
+          "public_passed": false,
+          "public_cache_hit": false,
+          "public_cache_key": null,
+          "git_apply_calls": 1,
+          "public_docker_calls": 1,
+          "hidden_status": "no_public_repair",
+          "full_success": false,
+          "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba"
+        }
+      ],
+      "git_apply_calls": 3,
+      "public_docker_calls": 3,
+      "cache_hits": 0,
+      "hidden_verified_passes": 0
+    },
+    "cached": {
+      "mode": "cached",
+      "wall_seconds": 10.6953,
+      "new_model_inference_calls": 0,
+      "sessions": [
+        {
+          "session_id": "1c94e66e7f614607a670d9b349074488",
+          "policy": "depth",
+          "enriched_feedback": true,
+          "public_status": "test_failed",
+          "public_passed": false,
+          "public_cache_hit": false,
+          "public_cache_key": "e1539fc95405ec7b9bf8ddfbee22bd0ba0da309fe5f0b764f8f19529072b1287",
+          "git_apply_calls": 1,
+          "public_docker_calls": 1,
+          "hidden_status": "no_public_repair",
+          "full_success": false,
+          "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba"
+        },
+        {
+          "session_id": "9af70e2c4359490fa8681c50fe46b0c3",
+          "policy": "adaptive",
+          "enriched_feedback": false,
+          "public_status": "test_failed",
+          "public_passed": false,
+          "public_cache_hit": true,
+          "public_cache_key": "e1539fc95405ec7b9bf8ddfbee22bd0ba0da309fe5f0b764f8f19529072b1287",
+          "git_apply_calls": 0,
+          "public_docker_calls": 0,
+          "hidden_status": "no_public_repair",
+          "full_success": false,
+          "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba"
+        },
+        {
+          "session_id": "6e2fd7601a27436f964fc911678da592",
+          "policy": "breadth",
+          "enriched_feedback": true,
+          "public_status": "test_failed",
+          "public_passed": false,
+          "public_cache_hit": true,
+          "public_cache_key": "e1539fc95405ec7b9bf8ddfbee22bd0ba0da309fe5f0b764f8f19529072b1287",
+          "git_apply_calls": 0,
+          "public_docker_calls": 0,
+          "hidden_status": "no_public_repair",
+          "full_success": false,
+          "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+          "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba"
+        }
+      ],
+      "git_apply_calls": 1,
+      "public_docker_calls": 1,
+      "cache_hits": 2,
+      "hidden_verified_passes": 0
+    }
+  }
+}

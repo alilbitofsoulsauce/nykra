@@ -1,0 +1,56 @@
+{
+  "schema": "nykra-workflow-v22-v1",
+  "id": "1c94e66e7f614607a670d9b349074488",
+  "task_id": "youtube-dl-27",
+  "evaluator_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "policy": "depth",
+  "driver": "relai-supervised",
+  "budget": 1,
+  "enriched_feedback": true,
+  "status": "finished",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "prompt_sha256": "7fd59d3b7bc2e9b92b5a09368428e72959891f16ad086c1f1fc414286fb3ebee",
+      "source": "def parse_dfxp_time_expr(time_expr):\n    if not time_expr:\n        return\n\n    mobj = re.match(r'^(?P<time_offset>\\d+(?:\\.\\d+)?)s?$', time_expr)\n    if mobj:\n        return float(mobj.group('time_offset'))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}(?:\\.\\d+)?)$', time_expr)\n    if mobj:\n        return (\n            3600 * int(mobj.group('hours'))\n            + 60 * int(mobj.group('minutes'))\n            + float(mobj.group('seconds'))\n        )\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}):(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n    if mobj:\n        hours = int(mobj.group('hours'))\n        minutes = int(mobj.group('minutes'))\n        seconds = int(mobj.group('seconds'))\n        frames = int(mobj.group('frames'))\n        subframes = mobj.group('subframes')\n        return 3600 * hours + 60 * minutes + seconds + frames / 30.0 + (float('0.' + subframes) / 30.0 if subframes else 0)\n",
+      "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba",
+      "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "patched_source_path": "youtube_dl/utils.py",
+      "git_before_sha256": "ad96dcee56a993032c65893a827a5518fc8ebad2e646f960a195332f1e3b8bac",
+      "git_after_sha256": "ab881c3029123db509e8d82868e6ce4fe4955d5d12bade4d9c8562bde3324093",
+      "actual_git_apply_verified": true,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "b5477a5e0d91ddb6109a05f74034797c40a94e58b7dbb06279f147ed7c6dd32d",
+            "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 6.8,
+        "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+      },
+      "tokens_reported": null,
+      "model_seconds": null,
+      "agent_label": "archived-original-source-no-new-inference",
+      "public_evaluator_invocations": 1,
+      "git_apply_invocations": 1,
+      "public_cache_hit": false,
+      "public_cache_key": "e1539fc95405ec7b9bf8ddfbee22bd0ba0da309fe5f0b764f8f19529072b1287"
+    }
+  ],
+  "selected_attempt_id": null,
+  "hidden": {
+    "status": "no_public_repair",
+    "passed": false
+  },
+  "source_mode": "complete-function-patch-to-disposable-upstream-Git-repo",
+  "independent_hidden": true,
+  "host_model_invocation": false
+}

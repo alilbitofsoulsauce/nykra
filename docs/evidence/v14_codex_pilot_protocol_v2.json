@@ -1,0 +1,58 @@
+{
+  "protocol_id": "nykra-native-codex-matched-pilot-v2",
+  "date": "2026-10-11",
+  "amendment": "Post-hoc interface-repair follow-up to v1; original v1 outcomes are immutable. The original v1 rejected 6 of 8 first candidates as invalid restricted source and failed to use the second allowed attempt. V2 explicitly returns AST validator errors, retains source for feedback, and uses the same second-attempt opportunity for both arms. Not a blind trial.",
+  "previous_protocol": "docs/evidence/v14_codex_pilot_protocol.json",
+  "runner": "official-codex-cli-0.160.0-checksum-verified",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "authentication": "existing_chatgpt",
+  "task_order": [
+    {
+      "task": "reservation-gaps",
+      "run_order": [
+        "baseline",
+        "nykra"
+      ]
+    },
+    {
+      "task": "ledger-undo",
+      "run_order": [
+        "nykra",
+        "baseline"
+      ]
+    },
+    {
+      "task": "csv-records",
+      "run_order": [
+        "baseline",
+        "nykra"
+      ]
+    },
+    {
+      "task": "normalized-path",
+      "run_order": [
+        "nykra",
+        "baseline"
+      ]
+    }
+  ],
+  "policy_arms": {
+    "baseline": "Generate a fresh independent implementation from the same bug report and the same measured public feedback",
+    "nykra": "Revise the selected parent implementation using the same measured public feedback"
+  },
+  "attempt_limit_per_task_arm": 2,
+  "run_timeout_seconds": 75,
+  "training_examples_per_task": 14,
+  "heldout_examples_per_task": 32,
+  "training_feedback": "up to 3 failing public examples plus deterministic AST validation error category, identical availability to both arms",
+  "heldout_access": "only after final best-by-training candidate selection; no prompts include hidden cases",
+  "primary_outcome": "per-arm fraction of four tasks passing all 32 heldout tests",
+  "secondary_outcomes": [
+    "hidden case pass proportion",
+    "attempts",
+    "reported tokens",
+    "model timeout/failure rate"
+  ],
+  "notes": "All four tasks reused without cherry-picking after v1. Small, post-hoc, nonblinded, not statistically conclusive, function-level repairs rather than real GitHub issues."
+}

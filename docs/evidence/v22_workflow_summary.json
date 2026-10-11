@@ -1,0 +1,85 @@
+{
+  "schema": "nykra-v22-real-repository-agent-workflow-integration-summary-v1",
+  "protocol_sha256": "9ea44d344f46d6c2f99cfff6a37d46bfc53b3a3390023c20cbe4535e8c5bc776",
+  "registered_reused_upstream_issues": 2,
+  "tested_workflow_driver": "Rel.AI host + authenticated Codex read-only inference",
+  "verified_portable_relai_cli_transport": true,
+  "cli_reference_control_excluded_from_model_results": true,
+  "actual_distinct_codex_model_calls": 8,
+  "git_applied_source_patches_in_paired_model_trials": 14,
+  "policy_divergence_task_count": 1,
+  "hidden_verified_successes": {
+    "depth": 1,
+    "adaptive": 1
+  },
+  "general_effectiveness_improvement_proven": false,
+  "unattended_relai_inference_available": false,
+  "native_multi_agent_adapters_verified": false,
+  "official_swebench": false,
+  "reused_benchmark_tasks_not_independent_research_sample": true,
+  "cli_smoke_path": "docs/evidence/v22_cli_reference_smoke.json",
+  "cli_smoke_sha256": "2effb01d3fa89fbb50b9fbc51741b31397f4ca67b7796466c3e2959bfd27d204",
+  "tasks": [
+    {
+      "task_id": "youtube-dl-27",
+      "raw_path": "docs/evidence/v22_workflow_pair_youtube_dl_27.json",
+      "raw_sha256": "eee1fac3e3fd8c8416c27b78fc883bb54fcc825287887bb4181295ea8e568c85",
+      "shared_model_completions": 3,
+      "total_distinct_model_completions": 5,
+      "genuine_policy_fork": true,
+      "arms": {
+        "depth": {
+          "success": false,
+          "attempts": 4,
+          "git_patches": 4,
+          "reported_tokens_including_shared_prefix": 20544,
+          "reported_model_seconds_including_shared_prefix": 39.02,
+          "missing_token_counters": 0,
+          "final_hidden_status": "no_public_repair",
+          "session_id": "16ebcd0ed4804a36bbfbc5364f8b1a57"
+        },
+        "adaptive": {
+          "success": false,
+          "attempts": 4,
+          "git_patches": 4,
+          "reported_tokens_including_shared_prefix": 34119,
+          "reported_model_seconds_including_shared_prefix": 38.32,
+          "missing_token_counters": 0,
+          "final_hidden_status": "no_public_repair",
+          "session_id": "b2ff113a4fb247b6ab09297f23a1431f"
+        }
+      }
+    },
+    {
+      "task_id": "youtube-dl-43",
+      "raw_path": "docs/evidence/v22_workflow_pair_youtube_dl_43.json",
+      "raw_sha256": "53b64fa02757ad5deb2d8014378c6f969145385d33e98d98ea522e2412fae390",
+      "shared_model_completions": 3,
+      "total_distinct_model_completions": 3,
+      "genuine_policy_fork": false,
+      "arms": {
+        "depth": {
+          "success": true,
+          "attempts": 3,
+          "git_patches": 3,
+          "reported_tokens_including_shared_prefix": 24315,
+          "reported_model_seconds_including_shared_prefix": 18.94,
+          "missing_token_counters": 0,
+          "final_hidden_status": "ok",
+          "session_id": "5f9257c820e6492b9f384f649220c181"
+        },
+        "adaptive": {
+          "success": true,
+          "attempts": 3,
+          "git_patches": 3,
+          "reported_tokens_including_shared_prefix": 24315,
+          "reported_model_seconds_including_shared_prefix": 18.94,
+          "missing_token_counters": 0,
+          "final_hidden_status": "ok",
+          "session_id": "6fc99fbd8b4648ada3cfda0ec0435a91"
+        }
+      }
+    }
+  ],
+  "limit": "This tests a portable host-supervised real Git single-function repair workflow, NOT arbitrary multi-file autonomous coding. Both tasks were reused from v0.21; the only actual policy fork failed in both arms. Rel.AI does not independently supply model completions."
+}

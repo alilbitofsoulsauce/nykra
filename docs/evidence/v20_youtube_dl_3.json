@@ -1,0 +1,242 @@
+{
+  "schema": "nykra-v20-real-task-result-v1",
+  "task_id": "youtube-dl-3",
+  "protocol_sha256": "9eec931522e43e5c3afadeaa592e0a9cbd1b1c7c7639153ad7219b6ad731c2ab",
+  "model": "gpt-6-luna",
+  "prevalidated_eligible": true,
+  "status": "completed",
+  "shared_prefix": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)",
+      "source_sha256": "8734f00fb2c60bafdbf26b921d212fb2dd5abc475e40be38603ff3618e0278e5",
+      "model_status": "ok",
+      "model_seconds": 11.94,
+      "tokens_reported": 18022,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 11.37
+      }
+    },
+    {
+      "id": "attempt-2",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-1",
+      "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)\n",
+      "source_sha256": "ab877ec4adabf6aaa69a70e3df52ae9166b63131920b14b6229bf37cc52b82b4",
+      "model_status": "ok",
+      "model_seconds": 8.08,
+      "tokens_reported": 1019,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 7.89
+      }
+    },
+    {
+      "id": "attempt-3",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-2",
+      "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)\n",
+      "source_sha256": "ab877ec4adabf6aaa69a70e3df52ae9166b63131920b14b6229bf37cc52b82b4",
+      "model_status": "ok",
+      "model_seconds": 5.83,
+      "tokens_reported": 1019,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 9.93
+      }
+    }
+  ],
+  "shared_prefix_reason": "three_public_failures",
+  "fork_actions": {
+    "baseline": {
+      "kind": "revise",
+      "parent_attempt_id": "attempt-3"
+    },
+    "nykra": {
+      "kind": "new_root",
+      "parent_attempt_id": null
+    }
+  },
+  "draws": [
+    {
+      "draw": 1,
+      "arm": "baseline",
+      "common_prefix_sha256": "7dd4ff3bf46a6baa26c47c69a8e48dbf27a060e37c3a9cb2593d93330a45aa96",
+      "attempt": {
+        "id": "draw-1-baseline",
+        "kind": "revise",
+        "parent_attempt_id": "attempt-3",
+        "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;|[^&;]+$)', lambda m: _htmlentity_transform(m.group(1)), s)\n",
+        "source_sha256": "0001c68e0a16c3035049706c98e0cac9dce983c4b64bb96da3dfa39efa24aabe",
+        "model_status": "ok",
+        "model_seconds": 7.33,
+        "tokens_reported": 1122,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 9.69
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "soft_token_limit_exceeded": false,
+      "full_success": false
+    },
+    {
+      "draw": 1,
+      "arm": "nykra",
+      "common_prefix_sha256": "7dd4ff3bf46a6baa26c47c69a8e48dbf27a060e37c3a9cb2593d93330a45aa96",
+      "attempt": {
+        "id": "draw-1-nykra",
+        "kind": "new_root",
+        "parent_attempt_id": null,
+        "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)\n",
+        "source_sha256": "ab877ec4adabf6aaa69a70e3df52ae9166b63131920b14b6229bf37cc52b82b4",
+        "model_status": "ok",
+        "model_seconds": 6.82,
+        "tokens_reported": 15128,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 9.86
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "soft_token_limit_exceeded": false,
+      "full_success": false
+    },
+    {
+      "draw": 2,
+      "arm": "baseline",
+      "common_prefix_sha256": "7dd4ff3bf46a6baa26c47c69a8e48dbf27a060e37c3a9cb2593d93330a45aa96",
+      "attempt": {
+        "id": "draw-2-baseline",
+        "kind": "revise",
+        "parent_attempt_id": "attempt-3",
+        "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)",
+        "source_sha256": "8734f00fb2c60bafdbf26b921d212fb2dd5abc475e40be38603ff3618e0278e5",
+        "model_status": "ok",
+        "model_seconds": 6.32,
+        "tokens_reported": 1115,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 8.73
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "soft_token_limit_exceeded": false,
+      "full_success": false
+    },
+    {
+      "draw": 2,
+      "arm": "nykra",
+      "common_prefix_sha256": "7dd4ff3bf46a6baa26c47c69a8e48dbf27a060e37c3a9cb2593d93330a45aa96",
+      "attempt": {
+        "id": "draw-2-nykra",
+        "kind": "new_root",
+        "parent_attempt_id": null,
+        "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)\n",
+        "source_sha256": "ab877ec4adabf6aaa69a70e3df52ae9166b63131920b14b6229bf37cc52b82b4",
+        "model_status": "ok",
+        "model_seconds": 7.55,
+        "tokens_reported": 1052,
+        "public": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_preview": null
+            }
+          ],
+          "mode": "public",
+          "elapsed_seconds": 8.14
+        }
+      },
+      "hidden": {
+        "status": "not_publicly_selected",
+        "passed": false
+      },
+      "soft_token_limit_exceeded": false,
+      "full_success": false
+    }
+  ]
+}

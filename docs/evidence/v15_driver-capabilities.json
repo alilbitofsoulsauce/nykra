@@ -1,0 +1,75 @@
+{
+  "protocol": "nykra-git-regression-pilot-v1",
+  "protocol_sha256": "04d42bbde0efabe7dfe234765be3d353400ca8db385ee9f28663a8291863d93f",
+  "task_id": "driver-capabilities",
+  "model": "gpt-6-luna",
+  "state": "completed",
+  "arms": [
+    {
+      "arm": "nykra",
+      "task": "driver-capabilities",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 4727,
+      "token_reporting_complete": true,
+      "model_seconds": 14.17,
+      "final_diff": "diff --git a/nykra/drivers.py b/nykra/drivers.py\nindex 3ae32f7..e4fccdf 100644\n--- a/nykra/drivers.py\n+++ b/nykra/drivers.py\n@@ -82,7 +82,7 @@ def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n             id=key, display_name=title, detected=present,\n             integration_level=\"none\", observation=False,\n             interactive_revisions=False, objective_evaluation=False,\n-            autonomous_generation=True, auto_policy_application=False,\n+            autonomous_generation=False, auto_policy_application=False,\n             implementation=\"discovery_only\",\n             qualification=caution + \" Binary detection is not authentication or capability verification.\",\n         ).public())\n@@ -98,6 +98,7 @@ def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n \n \n \n+\n def get_driver(driver_id: str, store: HistoryStore) -> AgentDriver:\n     if driver_id != \"relai\":\n         raise NykraError(\n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n    if relai_database_detected is None:\n        from .relai_history import default_relai_database\n        relai_database_detected = default_relai_database().is_file()\n    entries = [\n        DriverCapabilities(\n            id=\"relai\", display_name=\"Rel.AI (connected ChatGPT)\", detected=relai_database_detected,\n            integration_level=\"supervised\" if relai_database_detected else \"none\",\n            observation=relai_database_detected,\n            interactive_revisions=relai_database_detected,\n            objective_evaluation=relai_database_detected,\n            autonomous_generation=False, auto_policy_application=False,\n            implementation=\"verified_local_adapter\",\n            qualification=(\n                \"Working in an authorized connected ChatGPT turn; Rel.AI MCP alone \"\n                \"does not expose independent model-completion calls.\"\n            ),\n        ).public()\n    ]\n    for key, title, command, caution in _VENDOR_BINARIES:\n        present = shutil.which(command) is not None\n        entries.append(DriverCapabilities(\n            id=key, display_name=title, detected=present,\n            integration_level=\"none\", observation=False,\n            interactive_revisions=False, objective_evaluation=False,\n            autonomous_generation=False, auto_policy_application=False,\n            implementation=\"discovery_only\",\n            qualification=caution + \" Binary detection is not authentication or capability verification.\",\n        ).public())\n    return {\n        \"core\": \"agent_independent\",\n        \"contract\": \"AgentDriver.v1\",\n        \"drivers\": entries,\n        \"warning\": (\n            \"Discovery is not integration: only Rel.AI has the verified supervised \"\n            \"turn adapter. No detected agent is automatically controlled or patched.\"\n        ),\n    }",
+          "seconds": 14.17,
+          "tokens": 4727,
+          "source_sha256": "9f4cddcb967522823b7539d1544dfe0a2bf0be776743776c5770f3f8e81ab837",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/drivers.py b/nykra/drivers.py\nindex 3ae32f7..e4fccdf 100644\n--- a/nykra/drivers.py\n+++ b/nykra/drivers.py\n@@ -82,7 +82,7 @@ def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n             id=key, display_name=title, detected=present,\n             integration_level=\"none\", observation=False,\n             interactive_revisions=False, objective_evaluation=False,\n-            autonomous_generation=True, auto_policy_application=False,\n+            autonomous_generation=False, auto_policy_application=False,\n             implementation=\"discovery_only\",\n             qualification=caution + \" Binary detection is not authentication or capability verification.\",\n         ).public())\n@@ -98,6 +98,7 @@ def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n \n \n \n+\n def get_driver(driver_id: str, store: HistoryStore) -> AgentDriver:\n     if driver_id != \"relai\":\n         raise NykraError(\n",
+          "parent": null
+        }
+      ]
+    },
+    {
+      "arm": "baseline",
+      "task": "driver-capabilities",
+      "attempts_used": 1,
+      "selected_attempt": 1,
+      "hidden_passed": 26,
+      "hidden_total": 26,
+      "fully_solved": true,
+      "reported_tokens": 2683,
+      "token_reporting_complete": true,
+      "model_seconds": 11.14,
+      "final_diff": "diff --git a/nykra/drivers.py b/nykra/drivers.py\nindex 3ae32f7..e4fccdf 100644\n--- a/nykra/drivers.py\n+++ b/nykra/drivers.py\n@@ -82,7 +82,7 @@ def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n             id=key, display_name=title, detected=present,\n             integration_level=\"none\", observation=False,\n             interactive_revisions=False, objective_evaluation=False,\n-            autonomous_generation=True, auto_policy_application=False,\n+            autonomous_generation=False, auto_policy_application=False,\n             implementation=\"discovery_only\",\n             qualification=caution + \" Binary detection is not authentication or capability verification.\",\n         ).public())\n@@ -98,6 +98,7 @@ def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n \n \n \n+\n def get_driver(driver_id: str, store: HistoryStore) -> AgentDriver:\n     if driver_id != \"relai\":\n         raise NykraError(\n",
+      "attempts": [
+        {
+          "status": "ok",
+          "source": "def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n    if relai_database_detected is None:\n        from .relai_history import default_relai_database\n        relai_database_detected = default_relai_database().is_file()\n    entries = [\n        DriverCapabilities(\n            id=\"relai\", display_name=\"Rel.AI (connected ChatGPT)\", detected=relai_database_detected,\n            integration_level=\"supervised\" if relai_database_detected else \"none\",\n            observation=relai_database_detected,\n            interactive_revisions=relai_database_detected,\n            objective_evaluation=relai_database_detected,\n            autonomous_generation=False, auto_policy_application=False,\n            implementation=\"verified_local_adapter\",\n            qualification=(\n                \"Working in an authorized connected ChatGPT turn; Rel.AI MCP alone \"\n                \"does not expose independent model-completion calls.\"\n            ),\n        ).public()\n    ]\n    for key, title, command, caution in _VENDOR_BINARIES:\n        present = shutil.which(command) is not None\n        entries.append(DriverCapabilities(\n            id=key, display_name=title, detected=present,\n            integration_level=\"none\", observation=False,\n            interactive_revisions=False, objective_evaluation=False,\n            autonomous_generation=False, auto_policy_application=False,\n            implementation=\"discovery_only\",\n            qualification=caution + \" Binary detection is not authentication or capability verification.\",\n        ).public())\n    return {\n        \"core\": \"agent_independent\",\n        \"contract\": \"AgentDriver.v1\",\n        \"drivers\": entries,\n        \"warning\": (\n            \"Discovery is not integration: only Rel.AI has the verified supervised \"\n            \"turn adapter. No detected agent is automatically controlled or patched.\"\n        ),\n    }",
+          "seconds": 11.14,
+          "tokens": 2683,
+          "source_sha256": "9f4cddcb967522823b7539d1544dfe0a2bf0be776743776c5770f3f8e81ab837",
+          "error": null,
+          "attempt": 1,
+          "public": {
+            "passed": 7,
+            "total": 7,
+            "score": 1.0,
+            "status": "ok",
+            "failed_public": []
+          },
+          "diff": "diff --git a/nykra/drivers.py b/nykra/drivers.py\nindex 3ae32f7..e4fccdf 100644\n--- a/nykra/drivers.py\n+++ b/nykra/drivers.py\n@@ -82,7 +82,7 @@ def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n             id=key, display_name=title, detected=present,\n             integration_level=\"none\", observation=False,\n             interactive_revisions=False, objective_evaluation=False,\n-            autonomous_generation=True, auto_policy_application=False,\n+            autonomous_generation=False, auto_policy_application=False,\n             implementation=\"discovery_only\",\n             qualification=caution + \" Binary detection is not authentication or capability verification.\",\n         ).public())\n@@ -98,6 +98,7 @@ def scan_drivers(*, relai_database_detected: bool | None = None) -> dict:\n \n \n \n+\n def get_driver(driver_id: str, store: HistoryStore) -> AgentDriver:\n     if driver_id != \"relai\":\n         raise NykraError(\n",
+          "parent": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "study_id": "chatgpt-relai-coding-first-attempt-v1",
+  "evaluator": "nykra-study-coding-v1",
+  "candidate_manifest_sha256": "7afad64e3f2e80f9da855716c2efd41358be2c662c11021cc8a21dcd8a5907b6",
+  "task_family_count": 8,
+  "initial_candidates": 8,
+  "agent_provenance": "ChatGPT model-authored candidates submitted via Rel.AI by a connected assistant; not a separate unattended inference API.",
+  "heldout_test_cases": 320,
+  "heldout_test_cases_passed": 320,
+  "first_attempt_tasks_passed": 8,
+  "first_attempt_success_rate": 1.0,
+  "guided_revision_attempts": 0,
+  "measurable_uplift_tasks": 0,
+  "measurable_uplift_percentage_points": 0.0,
+  "task_rows": [
+    {
+      "task_id": "unique-window",
+      "initial_source_sha256": "dd9c30d65c51d6c519471ec40a6310c3da6b3026cadefa7c4a928355c9cdfb44",
+      "training_score": 1.0,
+      "heldout_score": 1.0,
+      "heldout_cases": 40,
+      "heldout_passed": 40,
+      "first_attempt_passed": true
+    },
+    {
+      "task_id": "maximum-subarray",
+      "initial_source_sha256": "efe00650b896c07fb42478f73efb418e34a36f0f23783525616d733655696141",
+      "training_score": 1.0,
+      "heldout_score": 1.0,
+      "heldout_cases": 40,
+      "heldout_passed": 40,
+      "first_attempt_passed": true
+    },
+    {
+      "task_id": "min-cover-window",
+      "initial_source_sha256": "d47d6054fe94c6fc7b05f40dab7b25597f1f635b9851dd311de95b4c5878b04d",
+      "training_score": 1.0,
+      "heldout_score": 1.0,
+      "heldout_cases": 40,
+      "heldout_passed": 40,
+      "first_attempt_passed": true
+    },
+    {
+      "task_id": "nonoverlap-intervals",
+      "initial_source_sha256": "9774c6b28706e40ae9f14c01f37cf6710f5ad92d4341c8edf08734955587f9d8",
+      "training_score": 1.0,
+      "heldout_score": 1.0,
+      "heldout_cases": 40,
+      "heldout_passed": 40,
+      "first_attempt_passed": true
+    },
+    {
+      "task_id": "trapped-water",
+      "initial_source_sha256": "a577202561d8ac67996341250a87865ed16f0ed79733974f5315ea514b64c0b1",
+      "training_score": 1.0,
+      "heldout_score": 1.0,
+      "heldout_cases": 40,
+      "heldout_passed": 40,
+      "first_attempt_passed": true
+    },
+    {
+      "task_id": "next-greater",
+      "initial_source_sha256": "51f2ed1035092849560f7d3958c7f54988c58cc7f77d7a102d181f3e7eef7b28",
+      "training_score": 1.0,
+      "heldout_score": 1.0,
+      "heldout_cases": 40,
+      "heldout_passed": 40,
+      "first_attempt_passed": true
+    },
+    {
+      "task_id": "common-prefix",
+      "initial_source_sha256": "7aa577887495357030e6de9eacbd49ee5585b7c0bee2c8798278294d72eeabe2",
+      "training_score": 1.0,
+      "heldout_score": 1.0,
+      "heldout_cases": 40,
+      "heldout_passed": 40,
+      "first_attempt_passed": true
+    },
+    {
+      "task_id": "subsequence-count",
+      "initial_source_sha256": "5840fc9de14ca649dc7334e5420c6e874e9741d517abe6bbf8268167f59112c6",
+      "training_score": 1.0,
+      "heldout_score": 1.0,
+      "heldout_cases": 40,
+      "heldout_passed": 40,
+      "first_attempt_passed": true
+    }
+  ],
+  "study_limits": {
+    "baseline": "one model-authored first candidate per task; no matched independent-agent control arm",
+    "tasks": "eight algorithmic Python challenges with separate deterministic public training and heldout generators; NOT repository issue fixes",
+    "external_blinding": "none; tasks and reference implementations are in this source repository and the author can inspect them",
+    "budget": "one candidate per task was needed; no attempt-matched randomized comparison possible because every initial candidate passed",
+    "inference": "no statistically valid estimate of Nykra vs. no Nykra causal benefit; ceiling effect",
+    "real_model_gain_proven": false,
+    "zero_general_benefit_proven": false,
+    "recursive_self_improvement_proven": false
+  }
+}

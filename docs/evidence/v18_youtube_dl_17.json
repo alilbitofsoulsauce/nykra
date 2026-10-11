@@ -1,0 +1,197 @@
+{
+  "task_id": "youtube-dl-17",
+  "protocol_sha256": "8d52ce33e9906211e3e2a39ab16b65eeb4bd0f3d92b2f0bf6604898f12d954b6",
+  "model": "gpt-6-luna",
+  "status": "completed",
+  "prevalidation": {
+    "public_buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stderr_sha256": "b40683ee8d7015d891f6cdeb133ef615a74c02487fe43bdc173eaf3b01815c2d",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "public",
+      "elapsed_seconds": 9.63
+    },
+    "public_reference": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "d20461fe4fe4bc5a1441990647f36d84bca34d56d0916e1ae4a8099b61585d0b",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "public",
+      "elapsed_seconds": 9.78
+    },
+    "hidden_buggy": {
+      "status": "test_failed",
+      "passed": false,
+      "checks": [
+        {
+          "status": "test_failed",
+          "exit_code": 1,
+          "stderr_sha256": "ccd5c28982273a7bd67e3cf3c952af199513f3f894518fde3a0598a4d1b0bdc6",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "9891429e27757884b2cff993ffb571f0d0f75ecb43431b5534d9ed42cba5a4ee",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "hidden",
+      "elapsed_seconds": 8.97
+    },
+    "hidden_reference": {
+      "status": "ok",
+      "passed": true,
+      "checks": [
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "1235ec82cc9aa708017aabac975edf93b91a588a0a8c5cdfdedcba2e2fe3092c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "status": "ok",
+          "exit_code": 0,
+          "stderr_sha256": "55d5b68643dc29cdad7b7de8b7e42fd52ba8d2292194bd88d3a03def5c89c38e",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "mode": "hidden",
+      "elapsed_seconds": 9.79
+    },
+    "eligible": true
+  },
+  "arms": [
+    {
+      "arm": "baseline",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def cli_bool_option(params, command_option, param, true_value='true', false_value='false', separator=None):\n    param = params.get(param)\n    if param is None:\n        return []\n    assert isinstance(param, bool)\n    if separator:\n        return [command_option + separator + (true_value if param else false_value)]\n    return [command_option, true_value if param else false_value]",
+          "source_sha256": "768061f5cc04386a125bbe32e92d9b889c540001b057933869692ee0e71a64dd",
+          "model_status": "ok",
+          "model_seconds": 12.83,
+          "tokens_reported": 18071,
+          "public": {
+            "status": "ok",
+            "passed": true,
+            "checks": [
+              {
+                "status": "ok",
+                "exit_code": 0,
+                "stderr_sha256": "d20461fe4fe4bc5a1441990647f36d84bca34d56d0916e1ae4a8099b61585d0b",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 8.86
+          }
+        }
+      ],
+      "attempts_used": 1,
+      "selected_attempt": "attempt-1",
+      "public_pass": true,
+      "hidden_pass": true,
+      "full_success": true,
+      "final_hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "1235ec82cc9aa708017aabac975edf93b91a588a0a8c5cdfdedcba2e2fe3092c",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "e748a1e3652241a7a8cad9286080b5e36b9de105fb50ca2b1177101e70a835b1",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 14.18
+      },
+      "reported_tokens": 18071,
+      "token_reporting_complete": true,
+      "model_seconds": 12.83,
+      "stop_reason": "public_success",
+      "soft_token_budget_not_hard_enforced": true
+    },
+    {
+      "arm": "nykra",
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "source": "def cli_bool_option(params, command_option, param, true_value='true', false_value='false', separator=None):\n    param = params.get(param)\n    if param is None:\n        return []\n    assert isinstance(param, bool)\n    if separator:\n        return [command_option + separator + (true_value if param else false_value)]\n    return [command_option, true_value if param else false_value]",
+          "source_sha256": "768061f5cc04386a125bbe32e92d9b889c540001b057933869692ee0e71a64dd",
+          "model_status": "ok",
+          "model_seconds": 9.03,
+          "tokens_reported": 15065,
+          "public": {
+            "status": "ok",
+            "passed": true,
+            "checks": [
+              {
+                "status": "ok",
+                "exit_code": 0,
+                "stderr_sha256": "d20461fe4fe4bc5a1441990647f36d84bca34d56d0916e1ae4a8099b61585d0b",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 7.4
+          }
+        }
+      ],
+      "attempts_used": 1,
+      "selected_attempt": "attempt-1",
+      "public_pass": true,
+      "hidden_pass": true,
+      "full_success": true,
+      "final_hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "1235ec82cc9aa708017aabac975edf93b91a588a0a8c5cdfdedcba2e2fe3092c",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "5e7ff5d2346668a9c1fc2da6b7b09089123c33b184030230c50b250b40c347cd",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 8.97
+      },
+      "reported_tokens": 15065,
+      "token_reporting_complete": true,
+      "model_seconds": 9.03,
+      "stop_reason": "public_success",
+      "soft_token_budget_not_hard_enforced": true
+    }
+  ]
+}

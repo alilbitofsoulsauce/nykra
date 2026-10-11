@@ -1,0 +1,48 @@
+{
+  "id": "nykra-controlled-prefix-fork-v1",
+  "date_frozen": "2026-10-11",
+  "model": "gpt-6-luna",
+  "source_v18_protocol_sha256": "8d52ce33e9906211e3e2a39ab16b65eeb4bd0f3d92b2f0bf6604898f12d954b6",
+  "v18_reproduction_evidence_sha256": {
+    "youtube-dl-17": "c0350a58a1153af3d2666a5903e253401621cfb5f381463642ef25ae290b4dac",
+    "youtube-dl-20": "e35101e748bcb35885c5e81b746412214022f71f50519107c344f1683853db16",
+    "youtube-dl-21": "91ba4b5165ade37d2a860cc40b26dd1b1479d456f6ece57b11c59a3dc96ec8a6",
+    "PySnooper-3": "5d7b91173cfcbd36cfb1cd3c19c60f9bf09ebf3650108ad78bf0e1a6246435d4"
+  },
+  "task_ids": [
+    "youtube-dl-17",
+    "youtube-dl-20",
+    "youtube-dl-21",
+    "PySnooper-3"
+  ],
+  "arm_order": {
+    "youtube-dl-17": [
+      "baseline",
+      "nykra"
+    ],
+    "youtube-dl-20": [
+      "nykra",
+      "baseline"
+    ],
+    "youtube-dl-21": [
+      "baseline",
+      "nykra"
+    ],
+    "PySnooper-3": [
+      "nykra",
+      "baseline"
+    ]
+  },
+  "selection": "ALL four previously benchmarked v0.18 cases, not newly held out; no outcome filtering. Shared prefix of 3 attempts from depth; exclude early public solutions and infrastructure failures from actual fork. Freeze rule before new inference.",
+  "shared_prefix_attempts": 3,
+  "continuations_per_arm": 2,
+  "total_policy_budget": 5,
+  "max_seconds_per_model_call": 70,
+  "model_seconds_for_continuation_arm": 130,
+  "soft_tokens_for_continuation_arm": 35000,
+  "token_limit": "Soft reported token stop before a subsequent call; no hard per-call token ceiling. Any overshoot/incomplete tokens will be reported.",
+  "fork_condition": "Exactly three identical evaluated public failures must produce depth revise attempt-3 and adaptive new-root. Enforce actual divergence or abort.",
+  "model_context": "Both continuations inherit same generated/evaluated common prefix, task and public outcomes. Intervention differs by selected source parent (baseline revises vs Nykra independent root). Inference randomness after fork remains.",
+  "scoring": "Full success = selected public-passing continuation repair also passes separate hidden cases once. Previously solved prefixes are counted as shared ceilings, not win/loss.",
+  "limits": "Same already-seen historical BugsInPy tasks, tiny sample, model stochasticity, restricted one-function patches, Docker not certified hostile-code isolation; no general improvement inference."
+}

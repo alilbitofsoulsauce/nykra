@@ -1,0 +1,76 @@
+{
+  "id": "nykra-real-bugsinpy-pilot-v1",
+  "frozen_on": "2026-10-11",
+  "task_selection": "BugsInPy youtube-dl issues 1,10,11,13 with one changed top-level function and standard-library unittest regression tests; fixed upstream commit source never provided to Codex.",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "attempts_per_arm": 4,
+  "seconds_per_model_call": 70,
+  "docker_image": "docker.io/library/python@sha256:e191a71397fd61fbddb6712cd43ef9a2c17df0b5e7ba67607128554cd6bff267",
+  "baseline_policy": "depth (revise selected parent every failed attempt)",
+  "nykra_policy": "adaptive (shared select_next ancestry/stagnation routing)",
+  "evaluation": "independent upstream fixed-commit regression tests run in fresh, networkless Docker images; public feedback is one test pass/fail; no hidden independent test set",
+  "restrictions": "Docker Linux, nonroot UID, read-only root, capability drop, no network, no mounts, CPU/memory/PID/time limits; container isolation is risk reduction, not certified adversarial security",
+  "tasks": [
+    {
+      "id": "youtube-dl-bugsinpy-1",
+      "upstream": "https://github.com/ytdl-org/youtube-dl",
+      "dataset": "https://github.com/soarsmu/BugsInPy",
+      "bug_id": 1,
+      "buggy_commit": "99036a1298089068dcf80c0985bfcc3f8c24f281",
+      "fixed_commit": "1cc47c667419e0eadc0a6989256ab7b276852adf",
+      "function": "_match_one",
+      "regression_test": "test.test_utils.TestUtil.test_match_str",
+      "issue": "[utils] Fix match_str for boolean meta fields",
+      "arm_order": [
+        "baseline",
+        "nykra"
+      ]
+    },
+    {
+      "id": "youtube-dl-bugsinpy-10",
+      "upstream": "https://github.com/ytdl-org/youtube-dl",
+      "dataset": "https://github.com/soarsmu/BugsInPy",
+      "bug_id": 10,
+      "buggy_commit": "85d586617750d38d742a24f141b099f6b898d269",
+      "fixed_commit": "d305dd73a3d6927f0a2c63d08662a183fa173833",
+      "function": "js_to_json",
+      "regression_test": "test.test_utils.TestUtil.test_js_to_json_realworld",
+      "issue": "[utils] Fix js_to_json",
+      "arm_order": [
+        "nykra",
+        "baseline"
+      ]
+    },
+    {
+      "id": "youtube-dl-bugsinpy-11",
+      "upstream": "https://github.com/ytdl-org/youtube-dl",
+      "dataset": "https://github.com/soarsmu/BugsInPy",
+      "bug_id": 11,
+      "buggy_commit": "b568561eba6f4aceb87419e21aba11567c5de7da",
+      "fixed_commit": "348c6bf1c1a00eec323d6e21ff7b9b12699afe04",
+      "function": "str_to_int",
+      "regression_test": "test.test_utils.TestUtil.test_str_to_int",
+      "issue": "[utils] handle int values passed to str_to_int",
+      "arm_order": [
+        "baseline",
+        "nykra"
+      ]
+    },
+    {
+      "id": "youtube-dl-bugsinpy-13",
+      "upstream": "https://github.com/ytdl-org/youtube-dl",
+      "dataset": "https://github.com/soarsmu/BugsInPy",
+      "bug_id": 13,
+      "buggy_commit": "6945b9e78f38284eb4e440b7badea2fc60b66c2f",
+      "fixed_commit": "fad4ceb53404227f471af2f3544c4c14a5df4acb",
+      "function": "urljoin",
+      "regression_test": "test.test_utils.TestUtil.test_urljoin",
+      "issue": "[utils] Fix urljoin for paths with non-http(s) schemes",
+      "arm_order": [
+        "nykra",
+        "baseline"
+      ]
+    }
+  ]
+}

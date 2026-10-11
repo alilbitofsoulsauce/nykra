@@ -1,0 +1,38 @@
+{
+  "schema": "nykra-multifile-transaction-v1",
+  "upstream_head": "6dec2fbbbe05404a4c57e0032dddc5ed8b654d87",
+  "patch_sha256": "0df65bb651f8b5e14a83e38609f9dd7243ac63b74603797e387df45526b7d63e",
+  "files": {
+    "engine/calc.py": {
+      "operation": "modify",
+      "before_sha256": "f30a6b4e70ef404851fcc44aa09d61a86993d82280ba2b1f7049adbc77c720c5",
+      "after_sha256": "8e742a5db3be87853e89da5df088f7089667c820e183ebcdb9e56edb693d74bf"
+    },
+    "engine/routes.py": {
+      "operation": "modify",
+      "before_sha256": "4eb0dd0aa214afe91f79821e3acb683743674eb14b94d8db1b487b635c644e63",
+      "after_sha256": "65db438682b6ce862ff8d4803b599d68633dd183258f9194805112aced71dcdd"
+    }
+  },
+  "file_count": 2,
+  "executor": "docker",
+  "test_args": [
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "test_exit_code": 0,
+  "test_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_stderr_sha256": "f1d3fb4a121ac15f611f5966a730c57f97e9c34ac2786b1bf094cca588d82e7b",
+  "tests_passed": true,
+  "promoted": false,
+  "elapsed_seconds": 10.361,
+  "reference_problem": "Two interacting bugs: arithmetic addition and endpoint URL formatting",
+  "baseline": "unrepaired Git source fails 2 Python unittest assertions",
+  "evidence_label": "synthetic seeded two-file real Git + pinned offline Docker trial; not a live GitHub issue or agent capability uplift",
+  "docker_mode": "actual Docker run no network read only no privilege tested disposable Git checkout"
+}

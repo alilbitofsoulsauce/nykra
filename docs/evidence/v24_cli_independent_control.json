@@ -1,0 +1,19 @@
+{
+  "schema": "nykra-v24-external-cli-durable-cache-control-v1",
+  "protocol_sha256": "805237e2005a30cc927fc7be6441d4c2d7e54047c56d56d432d7e3d48e166f9a",
+  "task_id": "youtube-dl-27",
+  "first_session_id": "21825ffda16546cbb41631e6fcbafc25",
+  "second_session_id": "a3989acb6a8e453aa77b22a57126f4cc",
+  "candidate_source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba",
+  "first_real_public_docker_calls": 1,
+  "second_real_public_docker_calls": 0,
+  "first_real_git_apply_calls": 1,
+  "second_real_git_apply_calls": 0,
+  "second_cache_hit": true,
+  "public_status": "test_failed",
+  "first_final_hidden": "no_public_repair",
+  "second_final_hidden": "no_public_repair",
+  "independent_process_cli": true,
+  "new_model_calls": 0,
+  "no_model_correctness_uplift_claim": true
+}

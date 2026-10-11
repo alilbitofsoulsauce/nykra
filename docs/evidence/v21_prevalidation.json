@@ -1,0 +1,384 @@
+{
+  "schema": "nykra-v21-reference-preflight-amended",
+  "protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "tasks": [
+    {
+      "id": "youtube-dl-24",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "f5359c3d948e64eeb82e294c5bb94ff5b77918ad538481d75e03c15cf68ed569",
+              "diagnostic": "FAIL: test_match_filter (test.test_YoutubeDL.TestYoutubeDL)\nAssertionError: Lists differ: [] != ['1']\nFAILED (failures=1)"
+            }
+          ],
+          "elapsed_seconds": 10.16,
+          "diagnostic": "FAIL: test_match_filter (test.test_YoutubeDL.TestYoutubeDL)\nAssertionError: Lists differ: [] != ['1']\nFAILED (failures=1)"
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "820d4720cb2d8d1f75b105341f322725203e904b8cce1a0c67a79e4c55d93402"
+            }
+          ],
+          "elapsed_seconds": 8.91
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "1589cf8c20afbee9b7991990777953f875622f2a46d597d293e2e79a1e874077"
+            }
+          ],
+          "elapsed_seconds": 10.36
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "c79607ca65e22505d81ae3cca9e901b468a3ce03b5828e91aad5024d36f1e367"
+            }
+          ],
+          "elapsed_seconds": 10.29
+        },
+        "eligible": true
+      }
+    },
+    {
+      "id": "youtube-dl-25",
+      "eligible": false,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "d09570d329fe34c3e5a63be4977defc164dae04619c6ea531cb925df4f5b9614",
+              "diagnostic": "FAIL: test_js_to_json_realworld (test.test_utils.TestUtil)\nAssertionError: '{\"duration\": 0}' != '{\"duration\": \"00:01:07\"}'\nFAILED (failures=1)"
+            }
+          ],
+          "elapsed_seconds": 11.83,
+          "diagnostic": "FAIL: test_js_to_json_realworld (test.test_utils.TestUtil)\nAssertionError: '{\"duration\": 0}' != '{\"duration\": \"00:01:07\"}'\nFAILED (failures=1)"
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "a208a722115c44a1f385affeb549aa9d4b3441647b2e3e8018cafc689262f228"
+            }
+          ],
+          "elapsed_seconds": 10.33
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "b148e5a753c18f175c9d8d62ec84bd13858ddbb675c5e017db326efadfa91f0f"
+            }
+          ],
+          "elapsed_seconds": 10.71
+        },
+        "hidden_reference": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "8f8def144df6c5beb0dd23ac05c35fc73a7a285cd260e02d35028ce3477f15ed"
+            }
+          ],
+          "elapsed_seconds": 11.08
+        },
+        "eligible": false
+      }
+    },
+    {
+      "id": "youtube-dl-27",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "4e9de7776a5fc648a54a8306f582647054784116334d42cdb6170037e2235274",
+              "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: None != 1.1\nFAILED (failures=1)"
+            }
+          ],
+          "elapsed_seconds": 7.68,
+          "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: None != 1.1\nFAILED (failures=1)"
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "e30ddd48012021d8e16572b246e56f3e50ee36877720e4c28f8816dd7783d958"
+            }
+          ],
+          "elapsed_seconds": 7.16
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "778488197a9a9bf1a49fde1c9d7f324816c652d8539faabae7421173a90c919e"
+            }
+          ],
+          "elapsed_seconds": 6.86
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "a1617ab134fce1fe57dc039f48016fc3958ed76d872cbabcfaf947bd989141d5"
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "e30ddd48012021d8e16572b246e56f3e50ee36877720e4c28f8816dd7783d958"
+            }
+          ],
+          "elapsed_seconds": 9.95
+        },
+        "eligible": true
+      }
+    },
+    {
+      "id": "youtube-dl-28",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "9400b9ab826258f548065dd3dc65c98f579f4a9efd412753d8871faf5aef77d0",
+              "diagnostic": "ERROR: test_unescape_html (test.test_utils.TestUtil)\nValueError: chr() arg not in range(0x110000)\nFAILED (errors=1)"
+            }
+          ],
+          "elapsed_seconds": 7.9,
+          "diagnostic": "ERROR: test_unescape_html (test.test_utils.TestUtil)\nValueError: chr() arg not in range(0x110000)\nFAILED (errors=1)"
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "e30ddd48012021d8e16572b246e56f3e50ee36877720e4c28f8816dd7783d958"
+            }
+          ],
+          "elapsed_seconds": 7.7
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "9e69935133c3b3e91d70e8e8fb15b160ab7e1d9194036aa412d634ea28eb3dba"
+            }
+          ],
+          "elapsed_seconds": 7.25
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "afbfdc4444d7b6c8d8dde3a26b355202e1d2f4ea2955de591acd7646cde6768c"
+            },
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "e30ddd48012021d8e16572b246e56f3e50ee36877720e4c28f8816dd7783d958"
+            }
+          ],
+          "elapsed_seconds": 8.36
+        },
+        "eligible": true
+      }
+    },
+    {
+      "id": "youtube-dl-29",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "d6f38a2f2158266472d88a9ae6ffe9497d66a999f93ae9e77046b95201c6a7f7",
+              "diagnostic": "FAIL: test_unified_dates (test.test_utils.TestUtil)\nAssertionError: 'None' != None\nFAILED (failures=1)"
+            }
+          ],
+          "elapsed_seconds": 6.19,
+          "diagnostic": "FAIL: test_unified_dates (test.test_utils.TestUtil)\nAssertionError: 'None' != None\nFAILED (failures=1)"
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "29d6c68d14c3862ba6671ac81260fa0e59b8ca471c52df611fbd92885a8ff10b"
+            }
+          ],
+          "elapsed_seconds": 6.3
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "eb65447a7d16297a4c86aa48fc6c7fa296ca63a7d912803c93f01fddab68cb44"
+            }
+          ],
+          "elapsed_seconds": 6.41
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "fc2c0beba7dc776860d94da81b8ceafdc7f088983f61ae8f7fa28bc7050e60aa"
+            }
+          ],
+          "elapsed_seconds": 6.84
+        },
+        "eligible": true
+      }
+    },
+    {
+      "id": "youtube-dl-43",
+      "eligible": true,
+      "checks": {
+        "public_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+              "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+            }
+          ],
+          "elapsed_seconds": 5.12,
+          "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+        },
+        "public_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "5f4da3a10467ed523d52edf10edfcd360269e31f5319fbb2e3c0632fb4663431"
+            }
+          ],
+          "elapsed_seconds": 4.43
+        },
+        "hidden_buggy": {
+          "status": "test_failed",
+          "passed": false,
+          "checks": [
+            {
+              "status": "test_failed",
+              "exit_code": 1,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "4fe27cc6988562bdf201548b371da2b79d2dcd37376ad623fff8f215357da4bb"
+            }
+          ],
+          "elapsed_seconds": 4.58
+        },
+        "hidden_reference": {
+          "status": "ok",
+          "passed": true,
+          "checks": [
+            {
+              "status": "ok",
+              "exit_code": 0,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c"
+            }
+          ],
+          "elapsed_seconds": 4.46
+        },
+        "eligible": true
+      }
+    }
+  ]
+}

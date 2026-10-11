@@ -1,0 +1,45 @@
+{
+  "benchmark_id": "grid-paired-prospective-v1",
+  "source_of_tasks": "reproducible_pseudorandom_solvable_grids",
+  "sample": 48,
+  "seed": 20261011,
+  "task_manifest_sha256": "2f6cdba57845285c6770dc06831dd47cd532a1a3dfd48c0cafe7ebc7ebf32b03",
+  "attempt_budget_per_arm": 12,
+  "seconds_budget_per_task_arm": 12,
+  "baseline": "breadth",
+  "challenger": "adaptive",
+  "results": {
+    "baseline_successes": 19,
+    "challenger_successes": 48,
+    "baseline_success_rate": 0.39583,
+    "challenger_success_rate": 1.0,
+    "difference_percentage_points": 60.417,
+    "difference_95_bootstrap_interval_percentage_points": [
+      45.83,
+      72.92
+    ],
+    "paired_one_sided_exact_p": 1.862645149230957e-09,
+    "challenger_only_succeeds": 29,
+    "baseline_only_succeeds": 0,
+    "both_succeed": 19,
+    "neither_succeeds": 0,
+    "mean_actual_expansions": {
+      "breadth": 10.5,
+      "adaptive": 5.167
+    },
+    "execution_failures": {
+      "breadth": 0,
+      "adaptive": 0
+    }
+  },
+  "limits": {
+    "agent": "deterministic_grid_reference_worker; NOT a language model",
+    "task_scope": "generated 5x5 solvable mazes; not programming tasks",
+    "policy_scope": "adaptive selects lower Manhattan heuristic; this benchmark may favor that heuristic",
+    "statistical_scope": "paired exact test and task bootstrap conditional on the specified procedural task generator; exploratory single seed; not an independent real-agent replication",
+    "causal_claim": "only comparative performance of these two algorithms on this particular reference task generator",
+    "general_agent_improvement_proven": false,
+    "recursive_self_improvement_proven": false
+  },
+  "qualification": "Results come from running both real search algorithms on the same new grid tasks under equal expansion caps, not replaying stored scores. No LLM was used."
+}

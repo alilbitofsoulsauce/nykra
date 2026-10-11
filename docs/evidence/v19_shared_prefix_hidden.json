@@ -1,0 +1,86 @@
+{
+  "schema": "nykra-v19-shared-prefix-posthoc-hidden-verification-v1",
+  "protocol_sha256": "d3a6431e2bb636f4790c38c949de77b69b70b89f1752609de11281caed922dde",
+  "observed_after_all_model_calls": true,
+  "never_returned_to_model": true,
+  "tasks": [
+    {
+      "task_id": "youtube-dl-17",
+      "natural_result_sha256": "c5968425967fe40d34b04b3a204f81d54106ee9f43f40a215a590fb244c61772",
+      "chosen_attempt": "attempt-1",
+      "chosen_source_sha256": "768061f5cc04386a125bbe32e92d9b889c540001b057933869692ee0e71a64dd",
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "1235ec82cc9aa708017aabac975edf93b91a588a0a8c5cdfdedcba2e2fe3092c",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "5e7ff5d2346668a9c1fc2da6b7b09089123c33b184030230c50b250b40c347cd",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 10.44
+      }
+    },
+    {
+      "task_id": "youtube-dl-20",
+      "natural_result_sha256": "3c7f6d72f2e73167d1a4e8f9e26719f7b06f72fbc34438174e2324ad3f24182b",
+      "chosen_attempt": "attempt-3",
+      "chosen_source_sha256": "238172b6c9d1b854865ddc1466a82093a5c6f0b8ac2461b56b2d3e79ab34be31",
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "c5b3c1a6cf81d6407a283a4b9d34c28f823d353547630533df7c26f12cba0ef2",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "22c48337dfc63d63a30425414d9159bcccf12418641a8fc55eaa653717ba0573",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 10.64
+      }
+    },
+    {
+      "task_id": "youtube-dl-21",
+      "natural_result_sha256": "790dc5417c1598edfd81b5694c5e06d68e39187f53c68e00f5d03303b9e1d94a",
+      "chosen_attempt": "attempt-2",
+      "chosen_source_sha256": "d0c1253d52ff5a1538f32dab43635282d3dfbab6009e6863c18851328a87f79a",
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "72bbe24582820a5030e7d9bb0b51b9cbf2a2a566fcc3b52dfb73f56cce095395",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "3c25569acf19bfec340830e4b84b2a8cd11f7ce642d50864c842bcee67fd1e2e",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 10.31
+      }
+    }
+  ]
+}

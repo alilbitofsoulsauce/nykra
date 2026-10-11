@@ -1,0 +1,51 @@
+{
+  "id": "nykra-v23-exact-replay-public-evaluation-reuse-v1",
+  "frozen_at": "2026-10-11",
+  "model_proposal_source": "Existing v0.22 authenticated Codex completions, no new inference calls",
+  "new_model_calls": 0,
+  "upstream_real_git_tasks": [
+    {
+      "id": "youtube-dl-27",
+      "pair_path": "docs/evidence/v22_workflow_pair_youtube_dl_27.json",
+      "pair_sha256": "eee1fac3e3fd8c8416c27b78fc883bb54fcc825287887bb4181295ea8e568c85",
+      "shared_original_attempts": 3,
+      "original_unique_model_completions": 5,
+      "condition_order": [
+        "ordinary",
+        "shared"
+      ],
+      "reference_hidden_result": {
+        "depth": false,
+        "adaptive": false
+      }
+    },
+    {
+      "id": "youtube-dl-43",
+      "pair_path": "docs/evidence/v22_workflow_pair_youtube_dl_43.json",
+      "pair_sha256": "53b64fa02757ad5deb2d8014378c6f969145385d33e98d98ea522e2412fae390",
+      "shared_original_attempts": 3,
+      "original_unique_model_completions": 3,
+      "condition_order": [
+        "shared",
+        "ordinary"
+      ],
+      "reference_hidden_result": {
+        "depth": true,
+        "adaptive": true
+      }
+    }
+  ],
+  "v21_evaluator_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "v22_portable_session_index_sha256": "003cce233547817b7b8a1676663e0cc22a48e240226b5dc13d4cc24c0eb6c4f3",
+  "metric_definitions": {
+    "actual_public_evaluator_calls": "Number of actual sandbox Docker public test invocations, excluding verified replay receipts",
+    "actual_git_apply_calls": "Number of actual disposable Git patch applications, excluding verified replay receipts",
+    "same_correctness": "Exact final public + heldout hidden outcomes equal in both ordinary and shared conditions",
+    "wall_time_seconds": "Elapsed wall time of end-to-end condition including host overhead and hidden grading; unpaired order and Docker cache subject to confounding",
+    "calls_saved": "Ordinary public grading calls minus verified-shared public grading calls; excludes original v0.22 model cost"
+  },
+  "trust_boundary": "No cached arbitrary user verdicts; receipt copied only from matching host-owned session, same evaluator sha, candidate source hash, original upstream source SHA, exact patch bytes SHA, same decision and ancestry; no hidden outcomes returned to model; no original working repo edits",
+  "historical_task_reuse": true,
+  "not_general_coding_agent_quality_improvement": true,
+  "source_tree_experiment_not_installed_release": true
+}

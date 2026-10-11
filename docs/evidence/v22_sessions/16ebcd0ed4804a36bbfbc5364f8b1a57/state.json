@@ -1,0 +1,145 @@
+{
+  "schema": "nykra-workflow-v22-v1",
+  "id": "16ebcd0ed4804a36bbfbc5364f8b1a57",
+  "task_id": "youtube-dl-27",
+  "evaluator_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+  "policy": "depth",
+  "driver": "codex-inference",
+  "budget": 4,
+  "enriched_feedback": true,
+  "status": "finished",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "kind": "new_root",
+      "parent_attempt_id": null,
+      "prompt_sha256": "7fd59d3b7bc2e9b92b5a09368428e72959891f16ad086c1f1fc414286fb3ebee",
+      "source": "def parse_dfxp_time_expr(time_expr):\n    if not time_expr:\n        return\n\n    mobj = re.match(r'^(?P<time_offset>\\d+(?:\\.\\d+)?)s?$', time_expr)\n    if mobj:\n        return float(mobj.group('time_offset'))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}(?:\\.\\d+)?)$', time_expr)\n    if mobj:\n        return (\n            3600 * int(mobj.group('hours'))\n            + 60 * int(mobj.group('minutes'))\n            + float(mobj.group('seconds'))\n        )\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}):(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n    if mobj:\n        hours = int(mobj.group('hours'))\n        minutes = int(mobj.group('minutes'))\n        seconds = int(mobj.group('seconds'))\n        frames = int(mobj.group('frames'))\n        subframes = mobj.group('subframes')\n        return 3600 * hours + 60 * minutes + seconds + frames / 30.0 + (float('0.' + subframes) / 30.0 if subframes else 0)\n",
+      "source_sha256": "a10f9f8afb78bdec135f72ae7dce388b8fa275dd966b78c66dfd60abb906d8ba",
+      "patch_sha256": "c8393f97abbb24d7d3227982930184a781f3ead8504049b233395ac9748443a1",
+      "patched_source_path": "youtube_dl/utils.py",
+      "git_before_sha256": "ad96dcee56a993032c65893a827a5518fc8ebad2e646f960a195332f1e3b8bac",
+      "git_after_sha256": "ab881c3029123db509e8d82868e6ce4fe4955d5d12bade4d9c8562bde3324093",
+      "actual_git_apply_verified": true,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "b5477a5e0d91ddb6109a05f74034797c40a94e58b7dbb06279f147ed7c6dd32d",
+            "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 8.64,
+        "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+      },
+      "tokens_reported": 15402,
+      "model_seconds": 13.7,
+      "agent_label": "codex-shared"
+    },
+    {
+      "id": "attempt-2",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-1",
+      "prompt_sha256": "b441a6410f9803a55370ca58b3f0b6579103d3a07ee5d4d44a9ee9d7ce2ca8dd",
+      "source": "def parse_dfxp_time_expr(time_expr):\n    if not time_expr:\n        return\n\n    mobj = re.match(r'^(?P<time_offset>\\d+(?:\\.\\d+)?)s?$', time_expr)\n    if mobj:\n        return float(mobj.group('time_offset'))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}(?:\\.\\d+)?)$', time_expr)\n    if mobj:\n        return (\n            3600 * int(mobj.group('hours'))\n            + 60 * int(mobj.group('minutes'))\n            + float(mobj.group('seconds'))\n        )\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}):(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n    if mobj:\n        hours = int(mobj.group('hours'))\n        minutes = int(mobj.group('minutes'))\n        seconds = int(mobj.group('seconds'))\n        frames = int(mobj.group('frames'))\n        subframes = mobj.group('subframes')\n        return 3600 * hours + 60 * minutes + seconds + frames / 30.0 + (float('0.' + subframes) if subframes else 0)",
+      "source_sha256": "ed386f8eb718ae71ae4216fa856eebef0e534fa686a88b19b0165537f2894195",
+      "patch_sha256": "0a7eb9ef014de1b9f7b224afad80ea211915aecea05d24932e533d4ef7f91172",
+      "patched_source_path": "youtube_dl/utils.py",
+      "git_before_sha256": "ad96dcee56a993032c65893a827a5518fc8ebad2e646f960a195332f1e3b8bac",
+      "git_after_sha256": "0c5ab12b84f9d0e93423a8428e2c43ead5403d6c3ff3483d1f3b68406dbe73d7",
+      "actual_git_apply_verified": true,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "fb47f92a5fab8f85a6af882831ffdefa17122a46681881e3b33cdeaac5c57c0c",
+            "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 7.15,
+        "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+      },
+      "tokens_reported": 1713,
+      "model_seconds": 8.76,
+      "agent_label": "codex-shared"
+    },
+    {
+      "id": "attempt-3",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-2",
+      "prompt_sha256": "d6091928dd75babe2415a0bc3c70cc3dffbcc431fe1f843b2afa72f68e940f86",
+      "source": "def parse_dfxp_time_expr(time_expr):\n    if not time_expr:\n        return\n\n    mobj = re.match(r'^(?P<time_offset>\\d+(?:\\.\\d+)?)s?$', time_expr)\n    if mobj:\n        return float(mobj.group('time_offset'))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}(?:\\.\\d+)?)$', time_expr)\n    if mobj:\n        return (\n            3600 * int(mobj.group('hours'))\n            + 60 * int(mobj.group('minutes'))\n            + float(mobj.group('seconds'))\n        )\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}):(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n    if mobj:\n        hours = int(mobj.group('hours'))\n        minutes = int(mobj.group('minutes'))\n        seconds = int(mobj.group('seconds'))\n        frames = int(mobj.group('frames'))\n        subframes = mobj.group('subframes')\n        return 3600 * hours + 60 * minutes + seconds + (frames + (float('0.' + subframes) if subframes else 0)) / 30.0",
+      "source_sha256": "9b316add64486dd5986d38bfde1697b477ed1662e8ca8d974a0480c6d5c109be",
+      "patch_sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "patched_source_path": "youtube_dl/utils.py",
+      "git_before_sha256": "ad96dcee56a993032c65893a827a5518fc8ebad2e646f960a195332f1e3b8bac",
+      "git_after_sha256": "8811b4db9e5ada1381d417ce17ea89ed0f1f7448ec3e378ba259530e0fd439cb",
+      "actual_git_apply_verified": true,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "b5477a5e0d91ddb6109a05f74034797c40a94e58b7dbb06279f147ed7c6dd32d",
+            "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 7.53,
+        "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+      },
+      "tokens_reported": 1713,
+      "model_seconds": 8.12,
+      "agent_label": "codex-shared"
+    },
+    {
+      "id": "attempt-4",
+      "kind": "revise",
+      "parent_attempt_id": "attempt-3",
+      "prompt_sha256": "d7dd11edfb233bcd2004c4918ae7514f8021f0917beedeff81c2611271555a72",
+      "source": "def parse_dfxp_time_expr(time_expr):\n    if not time_expr:\n        return\n\n    mobj = re.match(r'^(?P<time_offset>\\d+(?:\\.\\d+)?)s?$', time_expr)\n    if mobj:\n        return float(mobj.group('time_offset'))\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}(?:\\.\\d+)?)$', time_expr)\n    if mobj:\n        return (\n            3600 * int(mobj.group('hours'))\n            + 60 * int(mobj.group('minutes'))\n            + float(mobj.group('seconds'))\n        )\n\n    mobj = re.match(r'^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2}):(?P<frames>\\d+)(?:\\.(?P<subframes>\\d+))?$', time_expr)\n    if mobj:\n        hours = int(mobj.group('hours'))\n        minutes = int(mobj.group('minutes'))\n        seconds = int(mobj.group('seconds'))\n        frames = int(mobj.group('frames'))\n        subframes = mobj.group('subframes')\n        return 3600 * hours + 60 * minutes + seconds + (frames + (float('0.' + subframes) if subframes else 0)) / 30.0\n",
+      "source_sha256": "e960f1ba016dbe278507b126284228f0e465b372932fe57d81e5e2e8575e4358",
+      "patch_sha256": "0e64eca3e509528efc23064862ec5fc974324db527f012eb0222430d50ab66ff",
+      "patched_source_path": "youtube_dl/utils.py",
+      "git_before_sha256": "ad96dcee56a993032c65893a827a5518fc8ebad2e646f960a195332f1e3b8bac",
+      "git_after_sha256": "8811b4db9e5ada1381d417ce17ea89ed0f1f7448ec3e378ba259530e0fd439cb",
+      "actual_git_apply_verified": true,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "fb47f92a5fab8f85a6af882831ffdefa17122a46681881e3b33cdeaac5c57c0c",
+            "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 8.51,
+        "diagnostic": "FAIL: test_parse_dfxp_time_expr (test.test_utils.TestUtil)\nAssertionError: 4.333333333333334 != 1.1\nFAILED (failures=1)"
+      },
+      "tokens_reported": 1716,
+      "model_seconds": 8.44,
+      "agent_label": "codex-depth"
+    }
+  ],
+  "selected_attempt_id": null,
+  "hidden": {
+    "status": "no_public_repair",
+    "passed": false
+  },
+  "source_mode": "complete-function-patch-to-disposable-upstream-Git-repo",
+  "independent_hidden": true,
+  "host_model_invocation": false
+}

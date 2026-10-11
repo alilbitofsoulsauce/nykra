@@ -1,0 +1,242 @@
+{
+  "schema": "nykra-real-issue-independent-v18-summary-v1",
+  "protocol_sha256": "8d52ce33e9906211e3e2a39ab16b65eeb4bd0f3d92b2f0bf6604898f12d954b6",
+  "model": "gpt-6-luna",
+  "registered": 4,
+  "paired_completed": 4,
+  "prevalidation_excluded": 0,
+  "uncompleted": [],
+  "successes": {
+    "baseline": 2,
+    "nykra": 2
+  },
+  "nykra_only": 1,
+  "baseline_only": 1,
+  "two_sided_paired_sign_p": 1.0,
+  "policy_decision_divergences": 0,
+  "model_attempts": {
+    "baseline": 8,
+    "nykra": 9
+  },
+  "reported_tokens": {
+    "baseline": 47242,
+    "nykra": 54427
+  },
+  "separate_hidden_cases": true,
+  "multiple_upstream_repositories": true,
+  "official_bugsinpy_harness": false,
+  "official_swebench": false,
+  "causal_policy_uplift_proven": false,
+  "general_coding_agent_improvement_proven": false,
+  "limit": "This is n=4 and no policy path diverged. Stochastic model variability can explain discordant successes. Soft token ceilings cannot bound a single call. Historical benchmark leakage is unknown.",
+  "tasks": [
+    {
+      "task": "youtube-dl-17",
+      "project": "youtube-dl",
+      "status": "completed",
+      "raw_path": "docs/evidence/v18_youtube_dl_17.json",
+      "raw_sha256": "c0350a58a1153af3d2666a5903e253401621cfb5f381463642ef25ae290b4dac",
+      "eligible": true,
+      "arms": {
+        "baseline": {
+          "public": true,
+          "hidden": true,
+          "full": true,
+          "attempts": 1,
+          "reported_tokens": 18071,
+          "token_reporting_complete": true,
+          "model_seconds": 12.83,
+          "model_calls_ok": 1,
+          "branch_sequence": [
+            {
+              "kind": "new_root",
+              "parent_id": null
+            }
+          ]
+        },
+        "nykra": {
+          "public": true,
+          "hidden": true,
+          "full": true,
+          "attempts": 1,
+          "reported_tokens": 15065,
+          "token_reporting_complete": true,
+          "model_seconds": 9.03,
+          "model_calls_ok": 1,
+          "branch_sequence": [
+            {
+              "kind": "new_root",
+              "parent_id": null
+            }
+          ]
+        }
+      },
+      "policy_decisions_diverged": false
+    },
+    {
+      "task": "youtube-dl-20",
+      "project": "youtube-dl",
+      "status": "completed",
+      "raw_path": "docs/evidence/v18_youtube_dl_20.json",
+      "raw_sha256": "e35101e748bcb35885c5e81b746412214022f71f50519107c344f1683853db16",
+      "eligible": true,
+      "arms": {
+        "baseline": {
+          "public": false,
+          "hidden": false,
+          "full": false,
+          "attempts": 3,
+          "reported_tokens": 8734,
+          "token_reporting_complete": true,
+          "model_seconds": 27.94,
+          "model_calls_ok": 3,
+          "branch_sequence": [
+            {
+              "kind": "new_root",
+              "parent_id": null
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-1"
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-2"
+            }
+          ]
+        },
+        "nykra": {
+          "public": false,
+          "hidden": false,
+          "full": false,
+          "attempts": 3,
+          "reported_tokens": 5669,
+          "token_reporting_complete": true,
+          "model_seconds": 24.58,
+          "model_calls_ok": 3,
+          "branch_sequence": [
+            {
+              "kind": "new_root",
+              "parent_id": null
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-1"
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-2"
+            }
+          ]
+        }
+      },
+      "policy_decisions_diverged": false
+    },
+    {
+      "task": "youtube-dl-21",
+      "project": "youtube-dl",
+      "status": "completed",
+      "raw_path": "docs/evidence/v18_youtube_dl_21.json",
+      "raw_sha256": "91ba4b5165ade37d2a860cc40b26dd1b1479d456f6ece57b11c59a3dc96ec8a6",
+      "eligible": true,
+      "arms": {
+        "baseline": {
+          "public": false,
+          "hidden": false,
+          "full": false,
+          "attempts": 3,
+          "reported_tokens": 19420,
+          "token_reporting_complete": true,
+          "model_seconds": 23.43,
+          "model_calls_ok": 3,
+          "branch_sequence": [
+            {
+              "kind": "new_root",
+              "parent_id": null
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-1"
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-2"
+            }
+          ]
+        },
+        "nykra": {
+          "public": true,
+          "hidden": true,
+          "full": true,
+          "attempts": 2,
+          "reported_tokens": 16287,
+          "token_reporting_complete": true,
+          "model_seconds": 15.89,
+          "model_calls_ok": 2,
+          "branch_sequence": [
+            {
+              "kind": "new_root",
+              "parent_id": null
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-1"
+            }
+          ]
+        }
+      },
+      "policy_decisions_diverged": false
+    },
+    {
+      "task": "PySnooper-3",
+      "project": "PySnooper",
+      "status": "completed",
+      "raw_path": "docs/evidence/v18_pysnooper_3.json",
+      "raw_sha256": "5d7b91173cfcbd36cfb1cd3c19c60f9bf09ebf3650108ad78bf0e1a6246435d4",
+      "eligible": true,
+      "arms": {
+        "baseline": {
+          "public": true,
+          "hidden": true,
+          "full": true,
+          "attempts": 1,
+          "reported_tokens": 1017,
+          "token_reporting_complete": true,
+          "model_seconds": 10.02,
+          "model_calls_ok": 1,
+          "branch_sequence": [
+            {
+              "kind": "new_root",
+              "parent_id": null
+            }
+          ]
+        },
+        "nykra": {
+          "public": false,
+          "hidden": false,
+          "full": false,
+          "attempts": 3,
+          "reported_tokens": 17406,
+          "token_reporting_complete": true,
+          "model_seconds": 23.47,
+          "model_calls_ok": 3,
+          "branch_sequence": [
+            {
+              "kind": "new_root",
+              "parent_id": null
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-1"
+            },
+            {
+              "kind": "revise",
+              "parent_id": "attempt-2"
+            }
+          ]
+        }
+      },
+      "policy_decisions_diverged": false
+    }
+  ]
+}

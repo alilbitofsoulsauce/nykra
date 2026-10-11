@@ -1,0 +1,157 @@
+{
+  "schema": "nykra-v22-agent-workflow-paired-integration-v1",
+  "protocol_sha256": "9ea44d344f46d6c2f99cfff6a37d46bfc53b3a3390023c20cbe4535e8c5bc776",
+  "task_id": "youtube-dl-43",
+  "driver": "relai-hosted-codex-inference",
+  "shared_model_completion_count": 3,
+  "total_model_completions": 3,
+  "generated": [
+    {
+      "mode": "shared",
+      "request_kind": "new_root",
+      "source_sha256": "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+      "status": "ok",
+      "tokens": 7033
+    },
+    {
+      "mode": "shared",
+      "request_kind": "revise",
+      "source_sha256": "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+      "status": "ok",
+      "tokens": 2112
+    },
+    {
+      "mode": "shared",
+      "request_kind": "revise",
+      "source_sha256": "d4173e70b151af072e34d66d5c4cef98f176a610a4a06a2c1e80f65fd647d1a1",
+      "status": "ok",
+      "tokens": 15170
+    }
+  ],
+  "policy_divergence": null,
+  "results": {
+    "depth": {
+      "session_id": "5f9257c820e6492b9f384f649220c181",
+      "task_id": "youtube-dl-43",
+      "driver": "codex-inference",
+      "policy": "depth",
+      "status": "finished",
+      "attempt_count": 3,
+      "model_calls_reported": 3,
+      "model_tokens_reported": 24315,
+      "model_seconds_reported": 18.94,
+      "missing_token_counters": 0,
+      "tested_git_patches": 3,
+      "source_snapshot_sha256": [
+        "228d95002b2dd34e264ff2394a6c026a95bb30d02d48a96943ceff5ae1ce57f0",
+        "228d95002b2dd34e264ff2394a6c026a95bb30d02d48a96943ceff5ae1ce57f0",
+        "e7e96bbd7e7ea5e547330d02bc95fabf58a362b9f54ac7a3a746f7676e2bbc4f"
+      ],
+      "ancestry": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "status": "test_failed",
+          "passed": false,
+          "patch_sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "status": "test_failed",
+          "passed": false,
+          "patch_sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "status": "ok",
+          "passed": true,
+          "patch_sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e"
+        }
+      ],
+      "selected_attempt_id": "attempt-3",
+      "final_hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "a6baa67c5885ba73d0986354d38da638e6c8b19da8fd1764eaa0ea3497bd0d48"
+          }
+        ],
+        "elapsed_seconds": 4.83
+      },
+      "full_success": true,
+      "qualification": "Disposable real Git issue function patches; not unrestricted file-editing coding agent."
+    },
+    "adaptive": {
+      "session_id": "6fc99fbd8b4648ada3cfda0ec0435a91",
+      "task_id": "youtube-dl-43",
+      "driver": "codex-inference",
+      "policy": "adaptive",
+      "status": "finished",
+      "attempt_count": 3,
+      "model_calls_reported": 3,
+      "model_tokens_reported": 24315,
+      "model_seconds_reported": 18.94,
+      "missing_token_counters": 0,
+      "tested_git_patches": 3,
+      "source_snapshot_sha256": [
+        "228d95002b2dd34e264ff2394a6c026a95bb30d02d48a96943ceff5ae1ce57f0",
+        "228d95002b2dd34e264ff2394a6c026a95bb30d02d48a96943ceff5ae1ce57f0",
+        "e7e96bbd7e7ea5e547330d02bc95fabf58a362b9f54ac7a3a746f7676e2bbc4f"
+      ],
+      "ancestry": [
+        {
+          "id": "attempt-1",
+          "kind": "new_root",
+          "parent_attempt_id": null,
+          "status": "test_failed",
+          "passed": false,
+          "patch_sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "id": "attempt-2",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-1",
+          "status": "test_failed",
+          "passed": false,
+          "patch_sha256": "38566479d4a4e782ec44724d3eb826d598681b28c7f1d1ead92b1444ed810dc2"
+        },
+        {
+          "id": "attempt-3",
+          "kind": "revise",
+          "parent_attempt_id": "attempt-2",
+          "status": "ok",
+          "passed": true,
+          "patch_sha256": "7a67c98cba8e373c145b2dc3d952a48b6e55f6f917dd3439284aa156daffd83e"
+        }
+      ],
+      "selected_attempt_id": "attempt-3",
+      "final_hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c"
+          }
+        ],
+        "elapsed_seconds": 4.93
+      },
+      "full_success": true,
+      "qualification": "Disposable real Git issue function patches; not unrestricted file-editing coding agent."
+    }
+  },
+  "preexisting_historical_benchmark": true,
+  "causal_or_general_uplift_proven": false,
+  "qualification": "Actual Git apply to disposable upstream checkout and Docker grading; single-function patch protocol, not arbitrary autonomous multi-file agent editing."
+}

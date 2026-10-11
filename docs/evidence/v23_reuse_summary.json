@@ -1,0 +1,93 @@
+{
+  "schema": "nykra-v23-real-repository-public-evaluation-deduplication-v1",
+  "frozen_protocol_sha256": "fc6f0b42cd4a2d2153058319cfe34f71ea10e65246ac3acd82450bed5c0e5ed9",
+  "protocol_source": "all original actual model patches sourced unchanged from v22",
+  "actual_new_codex_or_external_model_calls": 0,
+  "tasks_replayed": 2,
+  "condition_orders": [
+    [
+      "ordinary",
+      "shared"
+    ],
+    [
+      "shared",
+      "ordinary"
+    ]
+  ],
+  "ordinary_public_docker_calls": 14,
+  "nykra_shared_public_docker_calls": 8,
+  "public_docker_calls_avoided": 6,
+  "public_docker_call_reduction_pct": 42.9,
+  "ordinary_git_apply_calls": 14,
+  "nykra_shared_git_apply_calls": 8,
+  "actual_git_apply_calls_avoided": 6,
+  "ordinary_total_wall_seconds": 121.9779,
+  "nykra_shared_total_wall_seconds": 70.6527,
+  "observed_total_wall_seconds_saved": 51.3252,
+  "observed_wall_reduction_pct": 42.1,
+  "identical_public_results": true,
+  "independent_final_hidden_outcomes_preserved": true,
+  "portable_session_count": 8,
+  "portable_export_sha256": "9865fdb538d724de48fb4fce6c774905d529f29381ff2ee426c5631fe8a190a4",
+  "general_model_correctness_uplift_proven": false,
+  "new_model_token_savings_observed": false,
+  "original_historical_model_token_cost_not_included": true,
+  "scope": "Only duplicate exact code/parent/prompt/evaluator work across 2 policy branches; no guaranteed speedup on independent unrelated requests.",
+  "limitations": "Two previously used defects, one replay each; real Docker runs and wall clock but order/warmup confounding, no statistical distribution; no new model calls, model outputs are frozen from previous source. Git/Docker work saved when duplicate contexts occur, not new ability to repair.",
+  "tasks": [
+    {
+      "task_id": "youtube-dl-27",
+      "raw_path": "docs/evidence/v23_reuse_youtube_dl_27.json",
+      "raw_sha256": "2f1413d78518a42e7aa3256c4bcb7143c8c8b656fc3aead8f9cf0e0d37224f2e",
+      "modes": {
+        "ordinary": {
+          "public_docker_runs": 8,
+          "git_apply_runs": 8,
+          "cache_reuse_hits": 0,
+          "wall_seconds": 79.5442,
+          "full_hidden_outcomes": {
+            "depth": false,
+            "adaptive": false
+          }
+        },
+        "shared": {
+          "public_docker_runs": 5,
+          "git_apply_runs": 5,
+          "cache_reuse_hits": 3,
+          "wall_seconds": 41.9019,
+          "full_hidden_outcomes": {
+            "depth": false,
+            "adaptive": false
+          }
+        }
+      }
+    },
+    {
+      "task_id": "youtube-dl-43",
+      "raw_path": "docs/evidence/v23_reuse_youtube_dl_43.json",
+      "raw_sha256": "aafba21c413607d75973028f0b697d0225043b8ab9dd209c0e5a01a7a7261488",
+      "modes": {
+        "ordinary": {
+          "public_docker_runs": 6,
+          "git_apply_runs": 6,
+          "cache_reuse_hits": 0,
+          "wall_seconds": 42.4337,
+          "full_hidden_outcomes": {
+            "depth": true,
+            "adaptive": true
+          }
+        },
+        "shared": {
+          "public_docker_runs": 3,
+          "git_apply_runs": 3,
+          "cache_reuse_hits": 3,
+          "wall_seconds": 28.7508,
+          "full_hidden_outcomes": {
+            "depth": true,
+            "adaptive": true
+          }
+        }
+      }
+    }
+  ]
+}

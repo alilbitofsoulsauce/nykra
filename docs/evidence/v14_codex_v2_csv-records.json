@@ -1,0 +1,253 @@
+{
+  "protocol_id": "nykra-native-codex-matched-pilot-v2",
+  "task": "csv-records",
+  "model": "gpt-6-luna",
+  "protocol_sha256": "94445a4375eaa9ccb6d4d0f9fdf3a550aa89da4815dd1e16a74e792a80a3f8a8",
+  "arm_order": [
+    "baseline",
+    "nykra"
+  ],
+  "status": "completed",
+  "arms": [
+    {
+      "task": "csv-records",
+      "arm": "baseline",
+      "attempt_budget": 2,
+      "attempts_used": 2,
+      "best_attempt": null,
+      "final_training_passed": 0,
+      "final_heldout_passed": 0,
+      "final_heldout_total": 32,
+      "final_heldout_success": false,
+      "total_tokens_reported": 4086,
+      "token_reporting_complete": true,
+      "total_wall_seconds": 21.84,
+      "attempts": [
+        {
+          "status": "invalid_source",
+          "source": "def solve(text):\n    if not text:\n        return []\n    rows = []\n    row = []\n    field = ''\n    quoted = False\n    i = 0\n    n = len(text)\n    while i < n:\n        c = text[i]\n        if quoted:\n            if c == '\"':\n                if i + 1 < n and text[i + 1] == '\"':\n                    field += '\"'\n                    i += 1\n                else:\n                    quoted = False\n            else:\n                field += c\n        elif c == '\"':\n            quoted = True\n        elif c == ',':\n            row.append(field)\n            field = ''\n        elif c == '\\n' or c == '\\r':\n            row.append(field)\n            rows.append(row)\n            row = []\n            field = ''\n            if c == '\\r' and i + 1 < n and text[i + 1] == '\\n':\n                i += 1\n        else:\n            field += c\n        i += 1\n    if text[n - 1] != '\\n' and text[n - 1] != '\\r':\n        row.append(field)\n        rows.append(row)\n    return rows",
+          "source_sha256": "a2df5f3fd500c62c4a4632381212a99e7090d661d29974bed302c5b171062da0",
+          "elapsed_seconds": 10.89,
+          "tokens_reported": 1365,
+          "validation_error": "ValueError: prohibited code construct",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        },
+        {
+          "status": "invalid_source",
+          "source": "def solve(text):\n    if not text:\n        return []\n    rows = []\n    row = []\n    field = ''\n    quoted = False\n    i = 0\n    n = len(text)\n    while i < n:\n        c = text[i]\n        if quoted:\n            if c == '\"':\n                if i + 1 < n and text[i + 1] == '\"':\n                    field += '\"'\n                    i += 1\n                else:\n                    quoted = False\n            else:\n                field += c\n        elif c == '\"':\n            quoted = True\n        elif c == ',':\n            row.append(field)\n            field = ''\n        elif c == '\\r' or c == '\\n':\n            row.append(field)\n            rows.append(row)\n            row = []\n            field = ''\n            if c == '\\r' and i + 1 < n and text[i + 1] == '\\n':\n                i += 1\n        else:\n            field += c\n        i += 1\n    if text[n - 1] != '\\r' and text[n - 1] != '\\n':\n        row.append(field)\n        rows.append(row)\n    return rows",
+          "source_sha256": "d5b764738bf5eb1b50938e1e74352b76df7133bb456aa3661fbc9c69c529586f",
+          "elapsed_seconds": 10.95,
+          "tokens_reported": 2721,
+          "validation_error": "ValueError: prohibited code construct",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 2,
+          "parent_attempt": null
+        }
+      ]
+    },
+    {
+      "task": "csv-records",
+      "arm": "nykra",
+      "attempt_budget": 2,
+      "attempts_used": 2,
+      "best_attempt": 2,
+      "final_training_passed": 3,
+      "final_heldout_passed": 5,
+      "final_heldout_total": 32,
+      "final_heldout_success": false,
+      "total_tokens_reported": 31177,
+      "token_reporting_complete": true,
+      "total_wall_seconds": 25.79,
+      "attempts": [
+        {
+          "status": "invalid_source",
+          "source": "def solve(text):\n    if not text:\n        return []\n    rows = []\n    row = []\n    field = ''\n    quoted = False\n    i = 0\n    n = len(text)\n    while i < n:\n        c = text[i]\n        if quoted:\n            if c == '\"':\n                if i + 1 < n and text[i + 1] == '\"':\n                    field += '\"'\n                    i += 1\n                else:\n                    quoted = False\n            else:\n                field += c\n        else:\n            if c == '\"':\n                quoted = True\n            elif c == ',':\n                row += [field]\n                field = ''\n            elif c == '\\n' or c == '\\r':\n                row += [field]\n                rows += [row]\n                row = []\n                field = ''\n                if c == '\\r' and i + 1 < n and text[i + 1] == '\\n':\n                    i += 1\n            else:\n                field += c\n        i += 1\n    if row or field or (n and text[n - 1] == ','):\n        row += [field]\n        rows += [row]\n    return rows",
+          "source_sha256": "b266f40bcaec611c3c458d01c2b839825725e14d15ac7d55dc828fb5d3abe12d",
+          "elapsed_seconds": 15.03,
+          "tokens_reported": 15449,
+          "validation_error": "ValueError: prohibited code construct",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        },
+        {
+          "status": "ok",
+          "source": "def solve(text):\n    if not text:\n        return []\n    rows = []\n    row = []\n    field = ''\n    quoted = False\n    n = len(text)\n    for i in range(n):\n        c = text[i]\n        if quoted:\n            if c == '\"':\n                if i + 1 < n and text[i + 1] == '\"':\n                    field += '\"'\n                    continue\n                quoted = False\n            else:\n                field += c\n        else:\n            if c == '\"':\n                quoted = True\n            elif c == ',':\n                row += [field]\n                field = ''\n            elif c == '\\n' or c == '\\r':\n                row += [field]\n                rows += [row]\n                row = []\n                field = ''\n            else:\n                field += c\n    if row or field or text[n - 1] == ',':\n        row += [field]\n        rows += [row]\n    return rows",
+          "source_sha256": "35493b5edacce7c047e1a4589d07d3a691ebea074e01fcecd1a2548a3a0afc11",
+          "elapsed_seconds": 10.76,
+          "tokens_reported": 15728,
+          "validation_error": null,
+          "training": {
+            "status": "ok",
+            "passed": 3,
+            "total": 14,
+            "score": 0.21428571428571427,
+            "failure_examples": [
+              {
+                "input": [
+                  "a,b\r\nc,d\r\n"
+                ],
+                "expected": [
+                  [
+                    "a",
+                    "b"
+                  ],
+                  [
+                    "c",
+                    "d"
+                  ]
+                ],
+                "actual": [
+                  [
+                    "a",
+                    "b"
+                  ],
+                  [
+                    ""
+                  ],
+                  [
+                    "c",
+                    "d"
+                  ],
+                  [
+                    ""
+                  ]
+                ]
+              },
+              {
+                "input": [
+                  "\"a\"\"b\",c"
+                ],
+                "expected": [
+                  [
+                    "a\"b",
+                    "c"
+                  ]
+                ],
+                "actual": [
+                  [
+                    "a\"b,c"
+                  ]
+                ]
+              },
+              {
+                "input": [
+                  "\"\"\"b\nb\",\"\r\n\"\"\"\"\",bbz,\"\nz,\r\nb\",\"b\n\"\r\n\"z,z\",\",,a\"\r\nb,\",a\"\"\nb\",a,\"aa\"\"\"\r\n\",a\"\"z\",\"\"\"z\r\n,z\",\"\n\r\nb\",\"\n\",\",aaa\"\r\n"
+                ],
+                "expected": [
+                  [
+                    "\"b\nb",
+                    "\r\n\"\"",
+                    "bbz",
+                    "\nz,\r\nb",
+                    "b\n"
+                  ],
+                  [
+                    "z,z",
+                    ",,a"
+                  ],
+                  [
+                    "b",
+                    ",a\"\nb",
+                    "a",
+                    "aa\""
+                  ],
+                  [
+                    ",a\"z",
+                    "\"z\r\n,z",
+                    "\n\r\nb",
+                    "\n",
+                    ",aaa"
+                  ]
+                ],
+                "actual": [
+                  [
+                    "\"b"
+                  ],
+                  [
+                    "b,"
+                  ],
+                  [
+                    ""
+                  ],
+                  [
+                    "\"\"\"",
+                    "bbz",
+                    "\nz,\r\nb",
+                    "b\n"
+                  ],
+                  [
+                    ""
+                  ],
+                  [
+                    "z,z",
+                    ",,a"
+                  ],
+                  [
+                    ""
+                  ],
+                  [
+                    "b",
+                    ",a\""
+                  ],
+                  [
+                    "b,a,aa\""
+                  ],
+                  [
+                    ""
+                  ],
+                  [
+                    ",a\"z,\"\"z"
+                  ],
+                  [
+                    ""
+                  ],
+                  [
+                    "",
+                    "z,"
+                  ],
+                  [
+                    ""
+                  ],
+                  [
+                    ""
+                  ],
+                  [
+                    "b,"
+                  ],
+                  [
+                    ",",
+                    "aaa\r\n"
+                  ]
+                ]
+              }
+            ]
+          },
+          "attempt_number": 2,
+          "parent_attempt": 1
+        }
+      ]
+    }
+  ],
+  "limitations": "post-hoc n=4, function-level rather than SWE-bench, no blind task authoring"
+}

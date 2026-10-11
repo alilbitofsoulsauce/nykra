@@ -1,0 +1,114 @@
+{
+  "protocol_id": "nykra-native-codex-matched-pilot-v2",
+  "task": "ledger-undo",
+  "model": "gpt-6-luna",
+  "protocol_sha256": "94445a4375eaa9ccb6d4d0f9fdf3a550aa89da4815dd1e16a74e792a80a3f8a8",
+  "arm_order": [
+    "nykra",
+    "baseline"
+  ],
+  "status": "completed",
+  "arms": [
+    {
+      "task": "ledger-undo",
+      "arm": "nykra",
+      "attempt_budget": 2,
+      "attempts_used": 2,
+      "best_attempt": null,
+      "final_training_passed": 0,
+      "final_heldout_passed": 0,
+      "final_heldout_total": 32,
+      "final_heldout_success": false,
+      "total_tokens_reported": 18631,
+      "token_reporting_complete": true,
+      "total_wall_seconds": 19.4,
+      "attempts": [
+        {
+          "status": "invalid_source",
+          "source": "def solve(events):\n    balances = {}\n    seen = set()\n    applied = {}\n    cancelled = set()\n    for e in events:\n        t = e['type']\n        if t == 'deposit' or t == 'withdraw':\n            i = e['id']\n            if i in seen:\n                continue\n            seen.add(i)\n            k = e['account']\n            if k not in balances:\n                balances[k] = 0\n            a = e['amount']\n            if t == 'deposit':\n                balances[k] += a\n                applied[i] = (k, a)\n            elif balances[k] >= a:\n                balances[k] -= a\n                applied[i] = (k, -a)\n        elif t == 'cancel':\n            i = e['target']\n            if i in applied and i not in cancelled:\n                k, delta = applied[i]\n                balances[k] -= delta\n                cancelled.add(i)\n    return [[k, balances[k]] for k in sorted(balances)]",
+          "source_sha256": "8a21ac63345a728e6a33b553e5653517f31b3dc8a23d78c2a6479bc3af25ef86",
+          "elapsed_seconds": 9.56,
+          "tokens_reported": 2635,
+          "validation_error": "ValueError: only restricted built-in calls are allowed",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        },
+        {
+          "status": "invalid_source",
+          "source": "def solve(events):\n    balances = {}\n    seen = set()\n    applied = {}\n    cancelled = set()\n    for e in events:\n        t = e['type']\n        if t == 'deposit' or t == 'withdraw':\n            i = e['id']\n            if i in seen:\n                continue\n            seen.add(i)\n            k = e['account']\n            if k not in balances:\n                balances[k] = 0\n            a = e['amount']\n            if t == 'deposit':\n                balances[k] = balances[k] + a\n                applied[i] = (k, a)\n            elif balances[k] >= a:\n                balances[k] = balances[k] - a\n                applied[i] = (k, -a)\n        elif t == 'cancel':\n            i = e['target']\n            if i in applied and i not in cancelled:\n                k, delta = applied[i]\n                balances[k] = balances[k] - delta\n                cancelled.add(i)\n    return [[k, balances[k]] for k in sorted(balances)]",
+          "source_sha256": "e13f5ea240ad035d0a11d8891f91b5e3c179b9a34db5ea38b8dd09087f29ee98",
+          "elapsed_seconds": 9.84,
+          "tokens_reported": 15996,
+          "validation_error": "ValueError: only restricted built-in calls are allowed",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 2,
+          "parent_attempt": 1
+        }
+      ]
+    },
+    {
+      "task": "ledger-undo",
+      "arm": "baseline",
+      "attempt_budget": 2,
+      "attempts_used": 2,
+      "best_attempt": null,
+      "final_training_passed": 0,
+      "final_heldout_passed": 0,
+      "final_heldout_total": 32,
+      "final_heldout_success": false,
+      "total_tokens_reported": 31677,
+      "token_reporting_complete": true,
+      "total_wall_seconds": 23.34,
+      "attempts": [
+        {
+          "status": "invalid_source",
+          "source": "def solve(events):\n    balances = {}\n    seen = set()\n    applied = {}\n    cancelled = set()\n    for e in events:\n        t = e['type']\n        if t == 'cancel':\n            target = e['target']\n            if target in applied and target not in cancelled:\n                k, delta = applied[target]\n                balances[k] -= delta\n                cancelled.add(target)\n        else:\n            ident = e['id']\n            if ident in seen:\n                continue\n            seen.add(ident)\n            k = e['account']\n            if k not in balances:\n                balances[k] = 0\n            amount = e['amount']\n            if t == 'deposit':\n                balances[k] += amount\n                applied[ident] = (k, amount)\n            elif t == 'withdraw' and balances[k] >= amount:\n                balances[k] -= amount\n                applied[ident] = (k, -amount)\n    return [[k, balances[k]] for k in sorted(balances)]",
+          "source_sha256": "9cb702d3dc25b2f38e47c902f7a29f898b3aaec11afa36db0c33273ebc38f6f1",
+          "elapsed_seconds": 10.18,
+          "tokens_reported": 15691,
+          "validation_error": "ValueError: only restricted built-in calls are allowed",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 1,
+          "parent_attempt": null
+        },
+        {
+          "status": "invalid_source",
+          "source": "def solve(events):\n    balances = {}\n    used = set()\n    applied = {}\n    cancelled = set()\n    for e in events:\n        if e['type'] == 'cancel':\n            target = e['target']\n            if target in applied and target not in cancelled:\n                account, change = applied[target]\n                balances[account] -= change\n                cancelled.add(target)\n        else:\n            ident = e['id']\n            if ident not in used:\n                used.add(ident)\n                account = e['account']\n                if account not in balances:\n                    balances[account] = 0\n                amount = e['amount']\n                if e['type'] == 'deposit':\n                    balances[account] += amount\n                    applied[ident] = (account, amount)\n                elif e['type'] == 'withdraw' and balances[account] >= amount:\n                    balances[account] -= amount\n                    applied[ident] = (account, -amount)\n    return [[account, balances[account]] for account in sorted(balances)]",
+          "source_sha256": "4b151277357e84421cc90cb5d7acea2628a7728ce6f4c99a04901c8bb42be17f",
+          "elapsed_seconds": 13.16,
+          "tokens_reported": 15986,
+          "validation_error": "ValueError: only restricted built-in calls are allowed",
+          "training": {
+            "status": "invalid_source",
+            "passed": 0,
+            "total": 14,
+            "score": 0.0,
+            "failure_examples": []
+          },
+          "attempt_number": 2,
+          "parent_attempt": null
+        }
+      ]
+    }
+  ],
+  "limitations": "post-hoc n=4, function-level rather than SWE-bench, no blind task authoring"
+}
