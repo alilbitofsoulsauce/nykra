@@ -1263,6 +1263,13 @@
       "sha256": "db81c0fca44df1074ded9812ddfc2261a3c795facc7b38acea863bea2d4e84fa",
       "runner": "nykra_v25_transactional_multifile_synthetic_fixture_offline_docker",
       "comparison": "two_coordinated_python_file_repairs_passed_tests_seeded_not_model_generated"
+    },
+    {
+      "id": "v25_multifile_real_docker_seeded_repair",
+      "path": "docs/evidence/v25_multifile_docker_trial.json",
+      "sha256": "db81c0fca44df1074ded9812ddfc2261a3c795facc7b38acea863bea2d4e84fa",
+      "runner": "nykra_allowlisted_multifile_transaction_seeded_real_docker_trial_v25",
+      "comparison": "seeded_two_interacting_files_git_patch_pinned_docker_public_unittest_pass_not_unseen_upstream_or_model_generated"
     }
   ],
   "repository_source_patch_study": {
@@ -1430,5 +1437,19 @@
     "general_model_coding_gain_proven": false,
     "report_path": "docs/MULTIFILE_TRANSACTION.md",
     "raw_path": "docs/evidence/v25_multifile_docker_trial.json"
+  },
+  "real_external_issue_v25": {
+    "engine": "allowlisted_git_multifile_transaction",
+    "seeded_synthetic_fixture": true,
+    "model_generated_candidate": false,
+    "previously_unseen_upstream_issue": false,
+    "git_patch_source_file_count": 2,
+    "pinned_offline_docker_unittest_passed": true,
+    "test_exit_code": 0,
+    "real_docker_elapsed_seconds": 10.361,
+    "final_promote_and_rollback_adversarial_tests_passed": true,
+    "general_coding_agent_success_rate_improvement_proven": false,
+    "trace_path": "docs/evidence/v25_multifile_docker_trial.json",
+    "implementation_documentation": "docs/MULTIFILE_TRANSACTION.md"
   }
 }
