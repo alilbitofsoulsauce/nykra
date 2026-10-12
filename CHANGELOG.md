@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.26.0 — Release candidate prepared, not yet published
+## 0.26.0 — Supervised multi-file workflow release (2026-10-12)
 
 - Added an approval-gated, provider-neutral supervised multi-file coding workflow and bounded structured source-edit to Git-diff adaptation.
 - Added offline provider readiness/safety checks, precise same-request/public-evaluation caching, and fail-closed malformed-Unicode handling.
@@ -8,7 +8,7 @@
 - Extended clean-clone CI, pending-file release hygiene, package/extension version checks and an offline release-candidate wheel smoke.
 - Preserved the original v0.37 benchmark-era adapter and test-source bytes alongside current hardened source, without rewriting historical outcomes.
 
-This entry describes an **unreleased local candidate**. The published tag remains v0.25.0 until GitHub-hosted checks, maintainer review and an explicit release action are completed. See [release-candidate checklist](docs/RELEASE_CANDIDATE_V026.md).
+This release is a workflow milestone, not proof of a general coding-agent advantage. See [release review](docs/RELEASE_REVIEW_V026.md) and [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## 0.25.0 — Source-tree multi-file transaction milestone
 

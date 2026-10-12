@@ -53,12 +53,16 @@ class ReleaseCandidateTests(unittest.TestCase):
             with self.subTest(path=relative):
                 self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),digest)
 
-    def test_unreleased_label_and_changelog_are_explicit(self):
+    def test_release_label_changelog_and_notices_are_explicit(self):
         readme=(ROOT/"README.md").read_text(encoding="utf-8")
         changelog=(ROOT/"CHANGELOG.md").read_text(encoding="utf-8")
-        self.assertIn("Unreleased v0.26.0 release candidate",readme)
-        self.assertIn("0.26.0 — Release candidate prepared, not yet published",changelog)
+        self.assertIn("v0.26.0 — supervised multi-file workflow release",readme)
+        self.assertIn("0.26.0 — Supervised multi-file workflow release",changelog)
         self.assertIn("do not establish a general coding success-rate increase",changelog)
+        notices=(ROOT/"THIRD_PARTY_NOTICES.md").read_text(encoding="utf-8")
+        self.assertIn("PySnooper",notices)
+        self.assertIn("youtube-dl",notices)
+        self.assertTrue((ROOT/"THIRD_PARTY_PYSNOOPER_LICENSE.txt").is_file())
 
 
 if __name__=="__main__":

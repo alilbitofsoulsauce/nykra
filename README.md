@@ -6,7 +6,9 @@ Nykra is an independent, local-first open-source project inspired by the histori
 
 **Vision:** Install once and let compatible workstation-based coding agents, IDE agents, and remote agents using MCP-connected execution harnesses benefit from accumulated, objectively evaluated exploration history, without per-agent manual configuration.
 
-**Unreleased v0.26.0 release candidate:** Nykra includes approval-gated multi-file Git patch transactions, disposable test checkouts, opt-in exact public-evaluation reuse, bounded provider-neutral structured source edits, and supervised multi-attempt workflows. Experimental evidence through v0.40 documents both improvements in patch applicability and unsuccessful adaptive-policy comparisons. These results **do not establish general coding-agent accuracy gains or recursive self-improvement**. The repository's latest published tag remains v0.25.0 until a reviewed release is merged and tagged; an earlier v0.16 background observer may be installed independently of this source tree.
+**v0.26.0 — supervised multi-file workflow release:** Nykra includes approval-gated multi-file Git patch transactions, disposable test checkouts, opt-in exact public-evaluation reuse, bounded provider-neutral structured source edits, and supervised multi-attempt workflows. Experimental evidence through v0.40 documents both improvements in patch applicability and unsuccessful adaptive-policy comparisons. These results **do not establish general coding-agent accuracy gains or recursive self-improvement**. This release marks a workflow milestone, not a proven agent-accuracy improvement. An earlier v0.16 background observer may be installed independently of this source tree.
+
+Historical benchmark source excerpts are attributed in [third-party notices](THIRD_PARTY_NOTICES.md). The public evidence archive cannot be reused as a fresh blind benchmark.
 
 ## Quick start
 
