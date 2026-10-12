@@ -1,0 +1,153 @@
+{
+  "schema": "nykra-v33-codex-luna-real-issue-comparison-v1",
+  "protocol_sha256": "32e7c61b82d9833941cf8954bd01ef371837611ca65924340dd1f5fea152394f",
+  "issue": "youtube-dl-43",
+  "arm": "baseline_depth",
+  "provider": "native Codex ChatGPT OAuth",
+  "model": "gpt-5.6-luna",
+  "initial_3_failures_from_prior_model": true,
+  "public_excerpt_sha256": "0a4754dba5659d58255c0199d660e144e162604de10ea3416bf43d6f6e86c2d7",
+  "status": "solved",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+      "source_sha256": "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+      "parent_id": null,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 5.2,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "provider": "OpenRouter free earlier prefix",
+      "public_called": true,
+      "public_reused": false,
+      "inherited": true
+    },
+    {
+      "id": "attempt-2",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+      "parent_id": "attempt-1",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 4.02,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "provider": "OpenRouter free earlier prefix",
+      "public_called": true,
+      "public_reused": false,
+      "inherited": true
+    },
+    {
+      "id": "attempt-3",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+      "source_sha256": "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+      "parent_id": "attempt-2",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 3.79,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "provider": "OpenRouter free earlier prefix",
+      "public_called": true,
+      "public_reused": false,
+      "inherited": true
+    },
+    {
+      "id": "attempt-4",
+      "inherited": false,
+      "parent_id": "attempt-3",
+      "policy_action": "revise",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:)?//[^/?#]+/([^?#]*)', url)\n    if not m:\n        return u''\n    path = m.group(1).rstrip('/')\n    return path.rsplit('/', 1)[-1] if path else u''\n",
+      "source_sha256": "476bcd1a325add9383b529a6baee54e3f7df102a54359e7fb89457590a5d13fe",
+      "raw_codex_output": "def url_basename(url):\n    m = re.match(r'(?:https?:)?//[^/?#]+/([^?#]*)', url)\n    if not m:\n        return u''\n    path = m.group(1).rstrip('/')\n    return path.rsplit('/', 1)[-1] if path else u''",
+      "raw_sha256": "86d89f363d7aa23e6c5df277c0589a99034c08a864ac37b91f56643adbe653b3",
+      "prompt_sha256": "b2eaf40ff6e4d7b8e109c7e2d163cabe47709509eb3c4d0a4a2d63de477f6448",
+      "normalization": "unchanged",
+      "codex_receipt": {
+        "status": "ok",
+        "usage": {
+          "input_tokens": 14623,
+          "cached_input_tokens": 2816,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 369,
+          "reasoning_output_tokens": 298
+        },
+        "errors": [],
+        "tool_activity": [],
+        "exit_code": 0,
+        "wall_seconds": 11.026
+      },
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045"
+          }
+        ],
+        "elapsed_seconds": 4.91
+      },
+      "public_called": true,
+      "public_reused": false,
+      "public_reused_from": null,
+      "hidden_receipt": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c"
+          }
+        ],
+        "elapsed_seconds": 4.82
+      }
+    }
+  ],
+  "hidden_runs": 1,
+  "codex_completions": 1,
+  "codex_reported_usage": {
+    "input_tokens": 14623,
+    "cached_input_tokens": 2816,
+    "output_tokens": 369,
+    "reasoning_output_tokens": 298
+  },
+  "selected_id": "attempt-4",
+  "selected_sha256": "476bcd1a325add9383b529a6baee54e3f7df102a54359e7fb89457590a5d13fe"
+}

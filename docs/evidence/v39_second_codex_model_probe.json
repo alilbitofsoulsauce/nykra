@@ -1,0 +1,20 @@
+{
+  "schema": "nykra-v39-second-codex-model-live-readiness-v1",
+  "model": "gpt-5.6-terra",
+  "provider": "Codex via same OpenAI ChatGPT auth",
+  "outcome": "verified_reply",
+  "is_distinct_provider": false,
+  "elapsed_seconds": 9.69,
+  "exit_code": 0,
+  "message": "READY",
+  "reported_usage": {
+    "input_tokens": 15595,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5,
+    "reasoning_output_tokens": 0
+  },
+  "stdout_sha256": "37a1761bb59e5ff68c0f69ffd949ac5c910a9daf9606bb2f2e2d619016c77766",
+  "stderr_sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+  "errors": []
+}

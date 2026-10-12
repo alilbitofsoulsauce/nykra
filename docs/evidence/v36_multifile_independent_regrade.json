@@ -1,0 +1,55 @@
+{
+  "schema": "nykra-v36-independent-post-study-real-multifile-regrade-v1",
+  "task": "youtube-dl-35",
+  "pre_inference_frozen_hidden_suite": true,
+  "samples": [
+    {
+      "arm": "baseline_depth",
+      "winning_patch_sha256": "f64337c0d50cf821e98f6377d59d4d4b8012254e8915f298d584ad690ae1dce3",
+      "raw_trace_sha256": "f75cd6e7b6b6345708b21cf93c41dbace6e1f782ba30e34df51b3a9a3809cf15",
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "d7c51628e7e4c5dee8bad878134dfb4713358feae7730af9346e864dff619627",
+        "elapsed_seconds": 6.22
+      },
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "dbbf6de71f47c99c318cdb6736a8eff8c36b689bd2c22d3605be4c71c9e66f05",
+        "elapsed_seconds": 5.35
+      },
+      "no_new_model_calls": true
+    },
+    {
+      "arm": "nykra_adaptive",
+      "winning_patch_sha256": "57ecfe56776c360ca9ee470f9658f5c12deadde792327d01e8be5b96907a8dd4",
+      "raw_trace_sha256": "d73ab1a2d05a193dd5ee0ba07f3a8827ab003dabb6c8b9926e2f82adddf3449c",
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b2c640939ea76f0b9c6d4f54d8237ec83727f577382fbb96e42d783090c1b919",
+        "elapsed_seconds": 5.64
+      },
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "11de124fcb63229021453bda95c07d5e28e7d2aebd30edfc3a57ea9507993729",
+        "elapsed_seconds": 5.87
+      },
+      "no_new_model_calls": true
+    }
+  ]
+}

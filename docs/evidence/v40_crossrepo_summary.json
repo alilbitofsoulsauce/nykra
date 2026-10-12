@@ -1,0 +1,131 @@
+{
+  "schema": "nykra-v39-v40-cross-repository-other-Codex-model-evidence-v1",
+  "issue": "PySnooper-1",
+  "project": "PySnooper",
+  "real_historical_bugsinpy_source": true,
+  "v39": {
+    "protocol": "docs/evidence/v39_pysnooper_protocol.json",
+    "note": "previously unused task when v39 began, frozen public/hidden; semantic hidden failures"
+  },
+  "v40": {
+    "protocol": "docs/evidence/v40_terra_policy_protocol.json",
+    "note": "follow-on, public strengthened posthoc after v39; same structured adapter both controller policies; hidden once"
+  },
+  "arms": {
+    "v39/baseline_raw_git_diff": {
+      "path": "docs/evidence/v39_pysnooper_live/PySnooper-1_baseline_raw_git_diff.json",
+      "sha256": "c20578cb4bd35e2d22124ee9961e8587dfcc502ad9a1c651674f3042f41fc750",
+      "model": "gpt-5.6-luna",
+      "provider": "ChatGPT Codex same provider",
+      "status": "budget_exhausted",
+      "model_completions": 5,
+      "public_statuses": [
+        "invalid_patch",
+        "invalid_patch",
+        "invalid_patch",
+        "invalid_patch",
+        "invalid_patch"
+      ],
+      "hidden_statuses": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "public_docker": 0,
+      "hidden_docker": 0,
+      "usage": {
+        "input_tokens": 192223,
+        "cached_input_tokens": 144640,
+        "output_tokens": 3884,
+        "reasoning_output_tokens": 1495
+      },
+      "two_source_files_changed": false
+    },
+    "v39/nykra_structured_adapter": {
+      "path": "docs/evidence/v39_pysnooper_live/PySnooper-1_nykra_structured_adapter.json",
+      "sha256": "3c2c581d6aaa45e9a41b07eba80dd7e32767d971ec258f5728e0e79ef8ca3cb6",
+      "model": "gpt-5.6-luna",
+      "provider": "ChatGPT Codex same provider",
+      "status": "budget_exhausted",
+      "model_completions": 5,
+      "public_statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "hidden_statuses": [
+        "test_failed",
+        "test_failed",
+        "test_failed",
+        "test_failed",
+        "test_failed"
+      ],
+      "public_docker": 5,
+      "hidden_docker": 5,
+      "usage": {
+        "input_tokens": 126494,
+        "cached_input_tokens": 90112,
+        "output_tokens": 3692,
+        "reasoning_output_tokens": 2628
+      },
+      "two_source_files_changed": false
+    },
+    "v40/structured_depth": {
+      "path": "docs/evidence/v40_terra_policy_live/PySnooper-1_structured_depth.json",
+      "sha256": "efb258f2fc5d93b7fd6b5ab74d6e1486886b98998f3bf61cf95d3be9285af65c",
+      "model": "gpt-5.6-terra",
+      "provider": "ChatGPT Codex same provider",
+      "status": "hidden_verified",
+      "model_completions": 1,
+      "public_statuses": [
+        "ok"
+      ],
+      "hidden_statuses": [
+        "ok"
+      ],
+      "public_docker": 1,
+      "hidden_docker": 1,
+      "usage": {
+        "input_tokens": 17177,
+        "cached_input_tokens": 0,
+        "output_tokens": 568,
+        "reasoning_output_tokens": 406
+      },
+      "two_source_files_changed": true
+    },
+    "v40/structured_adaptive": {
+      "path": "docs/evidence/v40_terra_policy_live/PySnooper-1_structured_adaptive.json",
+      "sha256": "ccdc4451f80a92268f04b91c46a174598d329bf1070aa64144b7900571cc8d22",
+      "model": "gpt-5.6-terra",
+      "provider": "ChatGPT Codex same provider",
+      "status": "hidden_verified",
+      "model_completions": 1,
+      "public_statuses": [
+        "ok"
+      ],
+      "hidden_statuses": [
+        "ok"
+      ],
+      "public_docker": 1,
+      "hidden_docker": 1,
+      "usage": {
+        "input_tokens": 17173,
+        "cached_input_tokens": 2816,
+        "output_tokens": 564,
+        "reasoning_output_tokens": 403
+      },
+      "two_source_files_changed": true
+    }
+  },
+  "second_provider": {
+    "OpenCode": "no verified completion before timeout",
+    "Codex_Terra": "verified independent different model, same OpenAI ChatGPT Codex provider"
+  },
+  "adaptive_fork_observed": false,
+  "no_generalized_advantage_claim": true,
+  "no_commits_pushed": true
+}

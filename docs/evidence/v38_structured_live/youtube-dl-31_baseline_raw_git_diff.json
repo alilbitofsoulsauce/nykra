@@ -1,0 +1,156 @@
+{
+  "schema": "nykra-v38-multiissue-structured-replication-v1",
+  "task": "youtube-dl-31",
+  "arm": "baseline_raw_git_diff",
+  "model": "gpt-5.6-luna",
+  "protocol_sha256": "3370cda8492374555b2e2696a292b7be5fa9b9072dae36ff03f94a3acaa27df3",
+  "preflight_sha256": "fb335e30ecdac0f2675df28a764a5b5f30bc9784af8b43fd0edf3baf5618ef59",
+  "status": "budget_exhausted",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "a7d3a7f38f64cc3f212badfb794e7ab66dc37017dac9f36f05537146be17317d",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n-            webpage, 'duration', fatal=False))\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n+            webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,23 +245,31 @@ def parse_duration(s):\n \n     m = re.match(\n         r'''(?ix)T?\n-            (?:\n-                (?:(?P<hours>[0-9]+)\\s*(?:[:h]|hours?)\\s*)?\n-                (?P<mins>[0-9]+)\\s*(?:[:m]|mins?|minutes?)\\s*\n-            )?\n-            (?P<secs>[0-9]+)(?P<ms>\\.[0-9]+)?\\s*(?:s|secs?|seconds?)?$''', s)\n-    if not m:\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:[:h]|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:[:m]|mins?|minutes?)\\s*)?\n+            (?P<secs>[0-9]+(?:\\.[0-9]+)?)?\\s*(?:s|secs?|seconds?)?$''',\n+        s)\n+    if not m or not any(m.group(group) for group in ('hours', 'mins', 'secs')):\n         return None\n-    res = int(m.group('secs'))\n+    res = float(m.group('secs') or 0)\n     if m.group('mins'):\n-        res += int(m.group('mins')) * 60\n-        if m.group('hours'):\n-            res += int(m.group('hours')) * 60 * 60\n-    if m.group('ms'):\n-        res += float(m.group('ms'))\n-    return res\n+        res += float(m.group('mins')) * 60\n+    if m.group('hours'):\n+        res += float(m.group('hours')) * 60 * 60\n+    return int(res) if res.is_integer() else res\n \n \n def prepend_extension(filename, ext):",
+      "raw_output_sha256": "9085d6f42fc9112829903ab2188719a999a4129f37f440cf8e8b01ab98734441",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n-            webpage, 'duration', fatal=False))\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n+            webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,23 +245,31 @@ def parse_duration(s):\n \n     m = re.match(\n         r'''(?ix)T?\n-            (?:\n-                (?:(?P<hours>[0-9]+)\\s*(?:[:h]|hours?)\\s*)?\n-                (?P<mins>[0-9]+)\\s*(?:[:m]|mins?|minutes?)\\s*\n-            )?\n-            (?P<secs>[0-9]+)(?P<ms>\\.[0-9]+)?\\s*(?:s|secs?|seconds?)?$''', s)\n-    if not m:\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:[:h]|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:[:m]|mins?|minutes?)\\s*)?\n+            (?P<secs>[0-9]+(?:\\.[0-9]+)?)?\\s*(?:s|secs?|seconds?)?$''',\n+        s)\n+    if not m or not any(m.group(group) for group in ('hours', 'mins', 'secs')):\n         return None\n-    res = int(m.group('secs'))\n+    res = float(m.group('secs') or 0)\n     if m.group('mins'):\n-        res += int(m.group('mins')) * 60\n-        if m.group('hours'):\n-            res += int(m.group('hours')) * 60 * 60\n-    if m.group('ms'):\n-        res += float(m.group('ms'))\n-    return res\n+        res += float(m.group('mins')) * 60\n+    if m.group('hours'):\n+        res += float(m.group('hours')) * 60 * 60\n+    return int(res) if res.is_integer() else res\n \n \n def prepend_extension(filename, ext):\n",
+      "patch_sha256": "fd0314f3982df31a56442de608b49bd9c41530881a09a17b499fb4ebc07ab3e9",
+      "model_usage": {
+        "input_tokens": 83330,
+        "cached_input_tokens": 75520,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2126,
+        "reasoning_output_tokens": 1001
+      },
+      "model_seconds": 61.496,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 24"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-2",
+      "parent_id": "attempt-1",
+      "policy_action": "revise",
+      "prompt_sha256": "e9816e97a76c5cff78cc727e925b7e845005890988ee53e8669612b51d85fed3",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n-            webpage, 'duration', fatal=False))\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n+            webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,6 +245,21 @@ def parse_duration(s):\n \n     s = s.strip()\n \n+    m = re.match(\n+        r'''(?ix)^T?\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:h|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:m|mins?|minutes?)\\s*)?\n+            (?:(?P<secs>[0-9]+(?:\\.[0-9]+)?)\\s*(?:s|secs?|seconds?))?$''',\n+        s)\n+    if m and any(m.group(group) for group in ('hours', 'mins', 'secs')):\n+        res = float(m.group('secs') or 0)\n+        if m.group('mins'):\n+            res += float(m.group('mins')) * 60\n+        if m.group('hours'):\n+            res += float(m.group('hours')) * 60 * 60\n+        return int(res) if res.is_integer() else res\n+\n     m = re.match(\n         r'''(?ix)T?\n             (?:\n@@ -263,7 +278,7 @@ def parse_duration(s):\n     if m.group('ms'):\n         res += float(m.group('ms'))\n     return res\n \n \n def prepend_extension(filename, ext):\n*** End Patch",
+      "raw_output_sha256": "fb03c84418491d44a2e109336fb42f11bb7bdb136e19661c8ab143a7a3ec7cac",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n-            webpage, 'duration', fatal=False))\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n+            webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,6 +245,21 @@ def parse_duration(s):\n \n     s = s.strip()\n \n+    m = re.match(\n+        r'''(?ix)^T?\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:h|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:m|mins?|minutes?)\\s*)?\n+            (?:(?P<secs>[0-9]+(?:\\.[0-9]+)?)\\s*(?:s|secs?|seconds?))?$''',\n+        s)\n+    if m and any(m.group(group) for group in ('hours', 'mins', 'secs')):\n+        res = float(m.group('secs') or 0)\n+        if m.group('mins'):\n+            res += float(m.group('mins')) * 60\n+        if m.group('hours'):\n+            res += float(m.group('hours')) * 60 * 60\n+        return int(res) if res.is_integer() else res\n+\n     m = re.match(\n         r'''(?ix)T?\n             (?:\n@@ -263,7 +278,7 @@ def parse_duration(s):\n     if m.group('ms'):\n         res += float(m.group('ms'))\n     return res\n \n \n def prepend_extension(filename, ext):\n*** End Patch\n",
+      "patch_sha256": "e99b8a2f4364b541c4cd10738ea343801fbc83f365aa4442fa4f3506ee4899a1",
+      "model_usage": {
+        "input_tokens": 16371,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 958,
+        "reasoning_output_tokens": 364
+      },
+      "model_seconds": 13.655,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 24"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-3",
+      "parent_id": "attempt-2",
+      "policy_action": "revise",
+      "prompt_sha256": "ffae73813b6bc6dc24c4835a7622995a280472a820ffd29dbe2c02a3c304f7d0",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n-            webpage, 'duration', fatal=False))\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n+            webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,6 +245,21 @@ def parse_duration(s):\n \n     s = s.strip()\n \n+    m = re.match(\n+        r'''(?ix)^T?\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:h|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:m|mins?|minutes?)\\s*)?\n+            (?:(?P<secs>[0-9]+(?:\\.[0-9]+)?)\\s*(?:s|secs?|seconds?))?$''',\n+        s)\n+    if m and any(m.group(group) for group in ('hours', 'mins', 'secs')):\n+        res = float(m.group('secs') or 0)\n+        if m.group('mins'):\n+            res += float(m.group('mins')) * 60\n+        if m.group('hours'):\n+            res += float(m.group('hours')) * 60 * 60\n+        return int(res) if res.is_integer() else res\n+\n     m = re.match(\n         r'''(?ix)T?\n             (?:\n***",
+      "raw_output_sha256": "d377991608dc613a9ca569bd922c2e37c903d5a62408520418c7d303c4416f63",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n-            webpage, 'duration', fatal=False))\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n+            webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,6 +245,21 @@ def parse_duration(s):\n \n     s = s.strip()\n \n+    m = re.match(\n+        r'''(?ix)^T?\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:h|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:m|mins?|minutes?)\\s*)?\n+            (?:(?P<secs>[0-9]+(?:\\.[0-9]+)?)\\s*(?:s|secs?|seconds?))?$''',\n+        s)\n+    if m and any(m.group(group) for group in ('hours', 'mins', 'secs')):\n+        res = float(m.group('secs') or 0)\n+        if m.group('mins'):\n+            res += float(m.group('mins')) * 60\n+        if m.group('hours'):\n+            res += float(m.group('hours')) * 60 * 60\n+        return int(res) if res.is_integer() else res\n+\n     m = re.match(\n         r'''(?ix)T?\n             (?:\n***\n",
+      "patch_sha256": "46f1eaf4c4b5cb40f462e41f282b39fb0cc3ced6ca17b0ea676b598c6ad9d529",
+      "model_usage": {
+        "input_tokens": 32837,
+        "cached_input_tokens": 16128,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1005,
+        "reasoning_output_tokens": 337
+      },
+      "model_seconds": 20.271,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 24"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-4",
+      "parent_id": "attempt-3",
+      "policy_action": "revise",
+      "prompt_sha256": "a61f0b86c97423e5b2ef37f10a4dedb288a1c3698362ec036be919eee3717b60",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n             webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,6 +245,21 @@ def parse_duration(s):\n \n     s = s.strip()\n \n+    m = re.match(\n+        r'''(?ix)^\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:h|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:m|mins?|minutes?)\\s*)?\n+            (?:(?P<secs>[0-9]+(?:\\.[0-9]+)?)\\s*(?:s|secs?|seconds?))?$''',\n+        s)\n+    if m and any(m.group(group) for group in ('hours', 'mins', 'secs')):\n+        res = float(m.group('secs') or 0)\n+        if m.group('mins'):\n+            res += float(m.group('mins')) * 60\n+        if m.group('hours'):\n+            res += float(m.group('hours')) * 60 * 60\n+        return int(res) if res.is_integer() else res\n+\n     m = re.match(\n         r'''(?ix)T?\n             (?:\n***",
+      "raw_output_sha256": "b38da39a2ffb152d4a3ab9d13a14bb6037f82f53f27bbdd26c947c1567fda3cc",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n             webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,6 +245,21 @@ def parse_duration(s):\n \n     s = s.strip()\n \n+    m = re.match(\n+        r'''(?ix)^\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:h|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:m|mins?|minutes?)\\s*)?\n+            (?:(?P<secs>[0-9]+(?:\\.[0-9]+)?)\\s*(?:s|secs?|seconds?))?$''',\n+        s)\n+    if m and any(m.group(group) for group in ('hours', 'mins', 'secs')):\n+        res = float(m.group('secs') or 0)\n+        if m.group('mins'):\n+            res += float(m.group('mins')) * 60\n+        if m.group('hours'):\n+            res += float(m.group('hours')) * 60 * 60\n+        return int(res) if res.is_integer() else res\n+\n     m = re.match(\n         r'''(?ix)T?\n             (?:\n***\n",
+      "patch_sha256": "835f823df8c4eb8006326de8ef36b384717716241e581f4cde04b5ac8a2ee128",
+      "model_usage": {
+        "input_tokens": 16208,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 743,
+        "reasoning_output_tokens": 206
+      },
+      "model_seconds": 12.496,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 23"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-5",
+      "parent_id": "attempt-4",
+      "policy_action": "revise",
+      "prompt_sha256": "351c9534e0c7c2659bc73e7263b12309028ba1289fd5d1e4474694bbef6ca890",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n             webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,6 +245,21 @@ def parse_duration(s):\n \n     s = s.strip()\n \n+    m = re.match(\n+        r'''(?ix)^\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:h|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:m|mins?|minutes?)\\s*)?\n+            (?:(?P<secs>[0-9]+(?:\\.[0-9]+)?)\\s*(?:s|secs?|seconds?)\\s*)?$''',\n+        s)\n+    if m and any(m.group(group) for group in ('hours', 'mins', 'secs')):\n+        res = float(m.group('secs') or 0)\n+        if m.group('mins'):\n+            res += float(m.group('mins')) * 60\n+        if m.group('hours'):\n+            res += float(m.group('hours')) * 60 * 60\n+        return int(res) if res.is_integer() else res\n+\n     m = re.match(\n         r'''(?ix)T?\n             (?:\n***",
+      "raw_output_sha256": "2353af2e10e7b6d702930d462a5e30dedf08354e9fd19619cafae035fd1d711d",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -7,6 +7,7 @@ from ..compat import (\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -54,9 +55,9 @@ class MinhatecaIE(InfoExtractor):\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">(.*?)</p>',\n             webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"d\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -245,6 +245,21 @@ def parse_duration(s):\n \n     s = s.strip()\n \n+    m = re.match(\n+        r'''(?ix)^\n+            (?:(?P<hours>[0-9]+(?:\\.[0-9]+)?)\\s*(?:h|hours?)\\s*)?\n+            (?:(?P<mins>[0-9]+(?:\\.[0-9]+)?)\\s*(?:m|mins?|minutes?)\\s*)?\n+            (?:(?P<secs>[0-9]+(?:\\.[0-9]+)?)\\s*(?:s|secs?|seconds?)\\s*)?$''',\n+        s)\n+    if m and any(m.group(group) for group in ('hours', 'mins', 'secs')):\n+        res = float(m.group('secs') or 0)\n+        if m.group('mins'):\n+            res += float(m.group('mins')) * 60\n+        if m.group('hours'):\n+            res += float(m.group('hours')) * 60 * 60\n+        return int(res) if res.is_integer() else res\n+\n     m = re.match(\n         r'''(?ix)T?\n             (?:\n***\n",
+      "patch_sha256": "db91e03d8edfbf7cff4e648394831f410645391d7e97c2ebc31afde0699a8ecf",
+      "model_usage": {
+        "input_tokens": 16196,
+        "cached_input_tokens": 2816,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 616,
+        "reasoning_output_tokens": 77
+      },
+      "model_seconds": 21.952,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 23"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    }
+  ],
+  "provider_calls": 5,
+  "reported_usage": {
+    "input_tokens": 164942,
+    "cached_input_tokens": 120576,
+    "output_tokens": 5448,
+    "reasoning_output_tokens": 1985
+  },
+  "public_docker_calls": 0,
+  "public_docker_reuses": 0,
+  "hidden_docker_calls": 0
+}

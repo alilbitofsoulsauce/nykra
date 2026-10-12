@@ -1,0 +1,163 @@
+```python
+# ===MORE===
+from collections import deque
+from fractions import Fraction
+from decimal import Decimal
+from statistics import median as _median
+from numbers import Real
+from typing import Iterator, Optional, Union, List, Tuple, TypeVar
+
+T = TypeVar('T', bound=Union[int, float, Fraction, Decimal, complex])
+
+class Stats:
+    __slots__ = ('size', 'minimum', 'median', 'maximum', 'mean')
+    def __init__(self, size: int, minimum: T, median: T, maximum: T, mean: T):
+        self.size = size
+        self.minimum = minimum
+        self.median = median
+        self.maximum = maximum
+        self.mean = mean
+
+    def __eq__(self, other):
+        return (
+            isinstance(other, Stats) and
+            self.size == other.size and
+            self.minimum == other.minimum and
+            self.median == other.median and
+            self.maximum == other.maximum and
+            self.mean == other.mean
+        )
+
+    def __repr__(self):
+        return (
+            f'Stats(size={self.size}, minimum={self.minimum}, '
+            f'median={self.median}, maximum={self.maximum}, mean={self.mean})'
+        )
+
+def running_min(iterable, *, maxlen: Optional[int] = None) -> Iterator[T]:
+    if maxlen is not None:
+        maxlen = int(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        d = deque(maxlen=maxlen)
+        it = iter(iterable)
+        for x in it:
+            d.append(x)
+            yield min(d)
+        for _ in range(len(d), maxlen):
+            yield d[0]
+    else:
+        it = iter(iterable)
+        try:
+            current_min = next(it)
+        except StopIteration:
+            return
+        yield current_min
+        for x in it:
+            if x < current_min:
+                current_min = x
+            yield current_min
+
+def running_max(iterable, *, maxlen: Optional[int] = None) -> Iterator[T]:
+    if maxlen is not None:
+        maxlen = int(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        d = deque(maxlen=maxlen)
+        it = iter(iterable)
+        for x in it:
+            d.append(x)
+            yield max(d)
+        for _ in range(len(d), maxlen):
+            yield d[0]
+    else:
+        it = iter(iterable)
+        try:
+            current_max = next(it)
+        except StopIteration:
+            return
+        yield current_max
+        for x in it:
+            if x > current_max:
+                current_max = x
+            yield current_max
+
+def running_statistics(iterable, *, maxlen: Optional[int] = None) -> Iterator[Stats]:
+    if maxlen is not None:
+        maxlen = int(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        min_deque = deque(maxlen=maxlen)
+        max_deque = deque(maxlen=maxlen)
+        window = deque(maxlen=maxlen)
+        sum_deque = deque(maxlen=maxlen)
+        it = iter(iterable)
+        for x in it:
+            window.append(x)
+            sum_deque.append(x)
+            while min_deque and min_deque[-1] > x:
+                min_deque.pop()
+            min_deque.append(x)
+            while max_deque and max_deque[-1] < x:
+                max_deque.pop()
+            max_deque.append(x)
+            yield Stats(
+                size=len(window),
+                minimum=min_deque[0],
+                median=_median(window),
+                maximum=max_deque[0],
+                mean=sum(sum_deque) / len(window)
+            )
+        for _ in range(len(window), maxlen):
+            yield Stats(
+                size=len(window),
+                minimum=min_deque[0],
+                median=_median(window),
+                maximum=max_deque[0],
+                mean=sum(sum_deque) / len(window)
+            )
+    else:
+        min_deque = []
+        max_deque = []
+        window = []
+        total = 0.0
+        it = iter(iterable)
+        for x in it:
+            window.append(x)
+            total += x
+            while min_deque and min_deque[-1] > x:
+                min_deque.pop()
+            min_deque.append(x)
+            while max_deque and max_deque[-1] < x:
+                max_deque.pop()
+            max_deque.append(x)
+            yield Stats(
+                size=len(window),
+                minimum=min_deque[0],
+                median=_median(window),
+                maximum=max_deque[0],
+                mean=total / len(window)
+            )
+
+def running_mean(iterable, *, maxlen: Optional[int] = None) -> Iterator[float]:
+    if maxlen is not None:
+        maxlen = int(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        window = deque(maxlen=maxlen)
+        total = 0.0
+        for x in iterable:
+            window.append(x)
+            total += x
+            yield total / len(window)
+        for _ in range(len(window), maxlen):
+            yield total / len(window)
+    else:
+        total = 0.0
+        count = 0
+        for x in iterable:
+            total += x
+            count += 1
+            yield total / count
+# ===MEAN===
+```

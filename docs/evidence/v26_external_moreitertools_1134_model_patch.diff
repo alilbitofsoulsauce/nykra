@@ -1,0 +1,138 @@
+diff --git a/more_itertools/more.py b/more_itertools/more.py
+index 12b4942..ff7f309 100644
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -1,6 +1,7 @@
+ import math
+ 
+ from collections import Counter, defaultdict, deque
++from dataclasses import dataclass
+ from collections.abc import Sequence
+ from contextlib import suppress
+ from functools import cached_property, partial, wraps
+@@ -56,6 +57,10 @@ from .recipes import (
+ )
+ 
+ __all__ = [
++    'Stats',
++    'running_min',
++    'running_max',
++    'running_statistics',
+     'AbortThread',
+     'SequenceView',
+     'adjacent',
+@@ -5441,3 +5446,68 @@ class _concurrent_tee:
+                     link[1] = [None, None]
+         value, self.link = link
+         return value
++
++@dataclass(frozen=True, slots=True)
++class Stats:
++    """Snapshot of the statistics for a growing/sliding window."""
++
++    size: int
++    minimum: object
++    median: object
++    maximum: object
++    mean: object
++
++
++def _running_extreme(iterable, maxlen, *, is_min):
++    """Monotone deque rolling extrema, including growing initial windows."""
++    if maxlen is not None and maxlen <= 0:
++        raise ValueError('maxlen must be a positive integer')
++    it = iter(iterable)
++
++    def generate():
++        candidates = deque()
++        for index, value in enumerate(it):
++            while candidates and (
++                value <= candidates[-1][1] if is_min
++                else value >= candidates[-1][1]
++            ):
++                candidates.pop()
++            candidates.append((index, value))
++            if maxlen is not None:
++                while candidates and index - candidates[0][0] >= maxlen:
++                    candidates.popleft()
++            yield candidates[0][1]
++
++    return generate()
++
++
++def running_min(iterable, *, maxlen=None):
++    """Yield the minimum within every growing or fixed-length prefix."""
++    return _running_extreme(iterable, maxlen, is_min=True)
++
++
++def running_max(iterable, *, maxlen=None):
++    """Yield the maximum within every growing or fixed-length prefix."""
++    return _running_extreme(iterable, maxlen, is_min=False)
++
++
++def running_statistics(iterable, *, maxlen=None):
++    """Yield immutable Stats objects for each running window."""
++    iterator = iter(iterable)
++    if maxlen is not None and maxlen <= 0:
++        raise ValueError('maxlen must be a positive integer')
++    from .recipes import running_mean, running_median
++    minimums, medians, maximums, means = tee(iterator, 4)
++
++    def generate():
++        sources = zip(
++            running_min(minimums, maxlen=maxlen),
++            running_median(medians, maxlen=maxlen),
++            running_max(maximums, maxlen=maxlen),
++            running_mean(means, maxlen=maxlen),
++        )
++        for index, (minimum, med, maximum, avg) in enumerate(sources, start=1):
++            yield Stats(size=min(index, maxlen) if maxlen is not None else index,
++                        minimum=minimum, median=med, maximum=maximum, mean=avg)
++
++    return generate()
+diff --git a/more_itertools/recipes.py b/more_itertools/recipes.py
+index 9f46be3..320b087 100644
+--- a/more_itertools/recipes.py
++++ b/more_itertools/recipes.py
+@@ -1408,19 +1408,29 @@ def running_median(iterable, *, maxlen=None):
+     return _running_median_minheap_and_maxheap(iterator)  # pragma: no cover
+ 
+ 
+-def running_mean(iterable):
+-    """Yield the average of all values seen so far.
+-
+-    >>> iterable = [100, 200, 600]
+-    >>> all_means = running_mean(iterable)
+-    >>> next(all_means)
+-    100.0
+-    >>> next(all_means)
+-    150.0
+-    >>> next(all_means)
+-    300.0
++def running_mean(iterable, *, maxlen=None):
++    """Yield the mean of a growing or fixed-length sliding window.
++
++    With *maxlen* omitted, use the average of all values seen so far.
++    With a positive *maxlen*, evict the oldest item as the window fills.
+     """
+-    return map(truediv, accumulate(iterable), count(1))
++    iterator = iter(iterable)
++    if maxlen is None:
++        return map(truediv, accumulate(iterator), count(1))
++    if maxlen <= 0:
++        raise ValueError('maxlen must be a positive integer')
++
++    def generate():
++        window = deque()
++        total = 0
++        for value in iterator:
++            window.append(value)
++            total += value
++            if len(window) > maxlen:
++                total -= window.popleft()
++            yield total / len(window)
++
++    return generate()
+ 
+ 
+ def random_derangement(iterable):

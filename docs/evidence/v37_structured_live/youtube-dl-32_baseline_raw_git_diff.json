@@ -1,0 +1,345 @@
+{
+  "schema": "nykra-v37-structured-edits-vs-raw-git-diff-v1",
+  "task": "youtube-dl-32",
+  "arm": "baseline_raw_git_diff",
+  "model": "gpt-5.6-luna",
+  "protocol_sha256": "77965e4d6d27afb580f4c128744df3a5ad420b514a5ef18da11f91babfe985e6",
+  "preflight_sha256": "f98d0a248c82b68210d3ff1b31c5b59b67b71a4df5c939a3f5c3113ba8579912",
+  "status": "running",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "ee365db2632ed1deca469412f2e3bc654dc861c122520ff15891abe932fd49be",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -1,3 +1,3 @@\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)parseMetadata\\((.*?)\\);?\\s*//.*$', r'\\1', j)\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*(?://.*)?\\s*$', r'\\1', code)",
+      "raw_output_sha256": "70d43d24f6d16448d0336ce4020d8e5d835238370bd6b5b531a6592c1554abfd",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -1,3 +1,3 @@\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)parseMetadata\\((.*?)\\);?\\s*//.*$', r'\\1', j)\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*(?://.*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "6ecce1806a3ebe1d97961f0e4f2f2f6cfcfd314035bb2e47c2fd0c312aa41e16",
+      "model_usage": {
+        "input_tokens": 71135,
+        "cached_input_tokens": 60416,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1550,
+        "reasoning_output_tokens": 993
+      },
+      "model_seconds": 36.848,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 7"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-2",
+      "parent_id": "attempt-1",
+      "policy_action": "revise",
+      "prompt_sha256": "3b1cbb84c2b5bf738d940f6022e5c11f42d72433d095d005b98bbf0b7b325629",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -36,7 +36,7 @@ class NPOIE(InfoExtractor):\n             'http://e.omroep.nl/metadata/aflevering/%s' % video_id,\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)parseMetadata\\(\\s*(.*?)\\s*\\);?\\s*//.*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\);?\\s*(?://.*)?\\s*$', r'\\1', code)\n",
+      "raw_output_sha256": "3fba1f5e438cc67e9a765785127f4ef0db8d3759d3aa8bbfb6941bd5afbf3b7f",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -36,7 +36,7 @@ class NPOIE(InfoExtractor):\n             'http://e.omroep.nl/metadata/aflevering/%s' % video_id,\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)parseMetadata\\(\\s*(.*?)\\s*\\);?\\s*//.*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\);?\\s*(?://.*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "3fba1f5e438cc67e9a765785127f4ef0db8d3759d3aa8bbfb6941bd5afbf3b7f",
+      "model_usage": {
+        "input_tokens": 15380,
+        "cached_input_tokens": 2816,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 747,
+        "reasoning_output_tokens": 416
+      },
+      "model_seconds": 13.178,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: patch failed: youtube_dl/utils.py:1\nerror: youtube_dl/utils.py: patch does not apply"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-3",
+      "parent_id": "attempt-2",
+      "policy_action": "revise",
+      "prompt_sha256": "744fc677c844ac7a0a62c3bc49cb091c2a440570e1fcc34fe3e20e00c90d8f29",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -36,7 +36,7 @@ class NPOIE(InfoExtractor):\n             'http://e.omroep.nl/metadata/aflevering/%s' % video_id,\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)parseMetadata\\(\\s*(.*?)\\s*\\);?\\s*(?://.*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\);?\\s*(?://.*)?\\s*$', r'\\1', code)\nGED:VEVENT",
+      "raw_output_sha256": "e89cb40b514b91c66d84866aaf569b6b6e0ada0bd7ce5fa2850eb03593807bf5",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -36,7 +36,7 @@ class NPOIE(InfoExtractor):\n             'http://e.omroep.nl/metadata/aflevering/%s' % video_id,\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)parseMetadata\\(\\s*(.*?)\\s*\\);?\\s*(?://.*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\);?\\s*(?://.*)?\\s*$', r'\\1', code)\nGED:VEVENT\n",
+      "patch_sha256": "15d017d83b1390e24cca70d2aed293334bbba6bd7152033779a70cc1556cdaf9",
+      "model_usage": {
+        "input_tokens": 47233,
+        "cached_input_tokens": 43264,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1100,
+        "reasoning_output_tokens": 557
+      },
+      "model_seconds": 25.178,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 20"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-4",
+      "parent_id": "attempt-3",
+      "policy_action": "revise",
+      "prompt_sha256": "a256121bc8bdbd8cd5237e5e071a04e9c743c68e01c3865bc6b5dda0fbfe7a91",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\);?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\);?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n \u00e1\u0192\u00a1",
+      "raw_output_sha256": "3d06904d55176bf53033c9bddef9905b8340625303413f276d5a4aa802467829",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\);?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\);?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n \u00e1\u0192\u00a1\n",
+      "patch_sha256": "06a36ef311e7a9eb3ff73c88e8e715fda5d82e042d11080a0af5b86be9e998dd",
+      "model_usage": {
+        "input_tokens": 15468,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 485,
+        "reasoning_output_tokens": 163
+      },
+      "model_seconds": 12.052,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 12"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-5",
+      "parent_id": "attempt-4",
+      "policy_action": "revise",
+      "prompt_sha256": "23819402cee8c3c3971adb7f20e67800f5b1a0844b31c30c07a95576761d878d",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)",
+      "raw_output_sha256": "573b3295cb6f10ce722031193e753a45b913470895898d5da02d661a47f6ad43",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "0cae8568be16739dfbdc5b44bf4586630f4e29b425d911ba5957161e50110712",
+      "model_usage": {
+        "input_tokens": 15448,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 580,
+        "reasoning_output_tokens": 253
+      },
+      "model_seconds": 15.283,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 20"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-6",
+      "parent_id": "attempt-5",
+      "policy_action": "revise",
+      "prompt_sha256": "ace239155e29a8f32f43288e9f003e8038fdbdad6e14d85c28559ff9a86ee355",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*)\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)",
+      "raw_output_sha256": "9f64808cf3d293fcbc00eefe278814c9172f3a483965920d74383a2030752f84",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*)\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "9dc58e97f754998c81902c68e90ab109ec390bfe54345042efaecf9544bb3f71",
+      "model_usage": {
+        "input_tokens": 31169,
+        "cached_input_tokens": 17920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 668,
+        "reasoning_output_tokens": 253
+      },
+      "model_seconds": 19.822,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 12"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-7",
+      "parent_id": "attempt-6",
+      "policy_action": "revise",
+      "prompt_sha256": "c741e8b415756df75c5a5c0e64c00d1a9a3955484f6ea43ee7909cad99bfbb69",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*)\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)",
+      "raw_output_sha256": "2091a41bfebefc92be8da56fa4b88177f6f4a736af422a0c39f21c68375a8e0b",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*)\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "8a47d047792d0ceb92472cec4feb1810710ac3644d4f33ae26cf7ed0c7871384",
+      "model_usage": {
+        "input_tokens": 31574,
+        "cached_input_tokens": 28160,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1106,
+        "reasoning_output_tokens": 637
+      },
+      "model_seconds": 21.967,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 12"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-8",
+      "parent_id": "attempt-7",
+      "policy_action": "revise",
+      "prompt_sha256": "faf7143ff79b17f0d7db47078d27c5985702d86fb5a784b9b717ab9480362716",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "raw_output_sha256": "f097bf4f9405141c973ef3a8c92c82cd4378db6d78332c09dab91992ab3c36bd",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "f097bf4f9405141c973ef3a8c92c82cd4378db6d78332c09dab91992ab3c36bd",
+      "model_usage": {
+        "input_tokens": 15446,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 475,
+        "reasoning_output_tokens": 148
+      },
+      "model_seconds": 11.328,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 12"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-9",
+      "parent_id": "attempt-8",
+      "policy_action": "revise",
+      "prompt_sha256": "b114c42518dbf56260077bc19136c9a369926bd14c2becf2f0aceb263ce3acbf",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,6 +37,6 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)",
+      "raw_output_sha256": "9923da9602b9ce6d6be3ae544fc08b991cbef1d59f9c9a916759e714693280ac",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,6 +37,6 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "a53b8cf739ccb02019144c518430d0b5632478e0b5cfd708870c6cd7d79a99e7",
+      "model_usage": {
+        "input_tokens": 15452,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1122,
+        "reasoning_output_tokens": 795
+      },
+      "model_seconds": 15.68,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: patch failed: youtube_dl/utils.py:1\nerror: youtube_dl/utils.py: patch does not apply"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-10",
+      "parent_id": "attempt-9",
+      "policy_action": "revise",
+      "prompt_sha256": "bffdf52981bce5c5e5b13ce722ebaec70c8b3cbfc582e27cf00f3a13ed43f8a7",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,6 +37,6 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n \n",
+      "raw_output_sha256": "7b9980263c28af6e0b9f62ef04448893565610194f9961a21589e710a1d2ec93",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,6 +37,6 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "a5504ee0a50f60715aff285bc33cd6d4db4658f7bec0295711033079e90e782f",
+      "model_usage": {
+        "input_tokens": 47506,
+        "cached_input_tokens": 43264,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1126,
+        "reasoning_output_tokens": 551
+      },
+      "model_seconds": 24.169,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 19"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-11",
+      "parent_id": "attempt-10",
+      "policy_action": "revise",
+      "prompt_sha256": "b7a9cd1ca00ecbff73c94b877cbb4ac3823eca3f9435976b8f95616ca68c61b4",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n \n \n",
+      "raw_output_sha256": "38f2be431b272923df5424d097ebcede94475f101837ed670ccf4a007cdf51f2",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,3 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "03d983f5f7595218cc5079627cdd3427817fb376c7825310fd37663d03825959",
+      "model_usage": {
+        "input_tokens": 15451,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 580,
+        "reasoning_output_tokens": 252
+      },
+      "model_seconds": 12.991,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 12"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-12",
+      "parent_id": "attempt-11",
+      "policy_action": "revise",
+      "prompt_sha256": "03a73ab6fbd43da658b4101e6f45ee9f175fcd2dd636aa14e4deebd844b76acc",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)",
+      "raw_output_sha256": "49a05e6f959011ee85254a3608d80b00f90b36dd4f6199087a162ff1a8513365",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -37,7 +37,7 @@ class NPOIE(InfoExtractor):\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=lambda j: re.sub(r'(?s)^parseMetadata\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', j)\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,2 +1,2 @@\n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*?)\\s*\\)\\s*;?\\s*(?://[^\\r\\n]*)?\\s*$', r'\\1', code)\n",
+      "patch_sha256": "f097bf4f9405141c973ef3a8c92c82cd4378db6d78332c09dab91992ab3c36bd",
+      "model_usage": {
+        "input_tokens": 15454,
+        "cached_input_tokens": 2816,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 450,
+        "reasoning_output_tokens": 123
+      },
+      "model_seconds": 10.206,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 12"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    }
+  ],
+  "provider_calls": 12,
+  "reported_usage": {
+    "input_tokens": 336716,
+    "cached_input_tokens": 250880,
+    "output_tokens": 9989,
+    "reasoning_output_tokens": 5141
+  },
+  "public_docker_calls": 0,
+  "public_docker_reuses": 0,
+  "hidden_docker_calls": 0
+}

@@ -1,0 +1,62 @@
+{
+  "schema": "nykra-v37-real-codex-luna-structured-diff-adapter-v1",
+  "case": "youtube-dl-32",
+  "previously_unused_by_nykra_study": true,
+  "protocol_sha256": "77965e4d6d27afb580f4c128744df3a5ad420b514a5ef18da11f91babfe985e6",
+  "preflight_sha256": "f98d0a248c82b68210d3ff1b31c5b59b67b71a4df5c939a3f5c3113ba8579912",
+  "baseline": {
+    "raw_sha256": "466cbb7b3046caf0660495e45ebbbd70d2fd8e81514ed540570f60ba056cd238",
+    "last_state": "operator_paused_external_stop",
+    "raw_checkpoint_remains_running_no_internal_completion_claim": true,
+    "provider_completed_calls": 12,
+    "public_invalid_patch_count": 12,
+    "public_docker_evaluations": 0,
+    "hidden_evaluations": 0,
+    "reported_usage": {
+      "input_tokens": 336716,
+      "cached_input_tokens": 250880,
+      "output_tokens": 9989,
+      "reasoning_output_tokens": 5141
+    },
+    "solved": false,
+    "not_run_to_completion": true
+  },
+  "nykra": {
+    "raw_sha256": "fd5c3502e470c1011c515be80faecf206d0ee17417fa0e0fac5e8c4b830a1ad8",
+    "provider_completed_calls": 1,
+    "public_invalid_patch_count": 0,
+    "public_docker_evaluations": 1,
+    "hidden_evaluations": 1,
+    "reported_usage": {
+      "input_tokens": 15140,
+      "cached_input_tokens": 0,
+      "output_tokens": 711,
+      "reasoning_output_tokens": 488
+    },
+    "solved": true,
+    "public_and_hidden_both_pass": true,
+    "winning_patch_sha256": "7d69949dd851483e0ab525435808efcea82a9196ecd9a10b6003271a78131acd",
+    "files_modified": [
+      "youtube_dl/extractor/npo.py",
+      "youtube_dl/utils.py"
+    ]
+  },
+  "independent_confirmatory_docker_check": {
+    "receipt_sha256": "6db29a09969871c3a4d354a0c240481f185c307f6fd1a9fb718843517dbb6b12",
+    "public_pass": true,
+    "hidden_pass": true,
+    "additional_model_calls": 0
+  },
+  "literal_completions_seen": 13,
+  "counterfactual_claim": "none; baseline interrupted after 12 failed calls",
+  "observed_repair_completion_comparison": "structured 1 verified vs raw Git baseline 12 attempted none applicable",
+  "limitations": [
+    "Different output-format instructions, not an isolated adaptive search-policy intervention",
+    "Single historical task, potential upstream issue training-set contamination",
+    "Baseline explicitly stopped and not solved, so do not claim a measured solve-to-solve speedup",
+    "No actual USD charges; ChatGPT Codex plan-managed allowance and token reporting only",
+    "Hidden checks authored/frozen locally prior to inference, not third-party blinded",
+    "Restricted Docker not certified hostile-code isolation"
+  ],
+  "no_commit_push": true
+}

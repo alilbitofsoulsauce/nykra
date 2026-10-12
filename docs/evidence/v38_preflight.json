@@ -1,0 +1,91 @@
+{
+  "schema": "nykra-v38-upstream-source-preinference-cohort-preflight-v1",
+  "protocol_sha256": "3370cda8492374555b2e2696a292b7be5fa9b9072dae36ff03f94a3acaa27df3",
+  "before_first_v38_codex_completion": true,
+  "tasks": {
+    "youtube-dl-33": {
+      "eligible": true,
+      "receipts": {
+        "buggy_public": {
+          "status": "test_failed",
+          "passed": false,
+          "mode": "public",
+          "return_code": 1,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "005dd5a4ab73264f491447239bea3f3cfc7b449eb45d2a70a551b1bca649cd12",
+          "elapsed_seconds": 22.49,
+          "diagnostic": "ERROR: test_parse_iso8601 (test.test_utils.TestUtil)\nraise ValueError(\"unconverted data remains: %s\" %\nValueError: unconverted data remains: .1234\nFAILED (errors=1)"
+        },
+        "buggy_hidden": {
+          "status": "test_failed",
+          "passed": false,
+          "mode": "hidden",
+          "return_code": 1,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "20f2efed9c47fffbbfcb9d2b669cb957ff4cc11db2e9818cac03a86cb1180d69",
+          "elapsed_seconds": 8.36
+        },
+        "reference_public": {
+          "status": "ok",
+          "passed": true,
+          "mode": "public",
+          "return_code": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "e5c9ea81668365a6e062c81c56042f7baceea493cc9ac06c4f9a7b821e04ab88",
+          "elapsed_seconds": 7.42
+        },
+        "reference_hidden": {
+          "status": "ok",
+          "passed": true,
+          "mode": "hidden",
+          "return_code": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "af9a0b329bf584509c42477b433ece0dd1befea22663ef6446378fad8d375b8c",
+          "elapsed_seconds": 6.54
+        }
+      }
+    },
+    "youtube-dl-31": {
+      "eligible": true,
+      "receipts": {
+        "buggy_public": {
+          "status": "test_failed",
+          "passed": false,
+          "mode": "public",
+          "return_code": 1,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "9a95ec7a11276c4bcabff314324dc47f145c554ac5efad5569ac8d61ec6d21c3",
+          "elapsed_seconds": 11.14,
+          "diagnostic": "FAIL: test_parse_duration (test.test_utils.TestUtil)\nAssertionError: None != 180\nFAILED (failures=1)"
+        },
+        "buggy_hidden": {
+          "status": "test_failed",
+          "passed": false,
+          "mode": "hidden",
+          "return_code": 1,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "bfe4c16bf4ef32b2e862ddeee18a25f3545e30a75f3a0bb2f7518ea6fdc682f5",
+          "elapsed_seconds": 10.27
+        },
+        "reference_public": {
+          "status": "ok",
+          "passed": true,
+          "mode": "public",
+          "return_code": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "b46f03e81b55c8e3e5346c92e758f4c7d14b2a8aaf448b8e37d369250f991678",
+          "elapsed_seconds": 7.72
+        },
+        "reference_hidden": {
+          "status": "ok",
+          "passed": true,
+          "mode": "hidden",
+          "return_code": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "5b0210d78373b00a027b14d182c1b454bd50a259287fd9631a7e98cd76a4fcc0",
+          "elapsed_seconds": 7.36
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "nykra-v32-real-upstream-solve-to-completion-protocol-v1",
+  "freeze_before_new_v32_model_calls": true,
+  "frozen_v31_protocol_sha256": "d50af1b42f21ebf0361a315d37fe822abe992bd5a32d88dac32cc6461f951f24",
+  "start": "continue from each separate existing v31 arm with all 3 real failed proposals and their genuine public receipts",
+  "first_target": "youtube-dl-43; next tqdm-1 if feasible; both are previously studied historical issues, not unseen",
+  "arms": [
+    "baseline_depth",
+    "nykra_adaptive_with_public_reuse"
+  ],
+  "arm_order": [
+    "baseline_depth",
+    "nykra_adaptive_with_public_reuse"
+  ],
+  "stop": "per arm only on independent hidden-verified passing source, or hard infrastructure / quota exhaustion, never on a prespecified number of failed attempts",
+  "unbounded_attempt_budget": true,
+  "model": "cohere/north-mini-code:free",
+  "max_output_tokens_per_call": 1500,
+  "timeout_per_call_seconds": 90,
+  "temperature": 0.2,
+  "public_feedback": "registered public regression test method from upstream fixed test commit, the same for both arms, plus only their own public diagnostics and prior candidates",
+  "policy": "actual exploration_policy.select_next with baseline=depth, optimized=adaptive; first adaptive fork after three failed historical attempts",
+  "model_request_cache": "optimized only, exact request only, private account HMAC, per target and arm; continue new real calls if prompt changes",
+  "public_verdict_reuse": "optimized only, previously tested identical failed candidate source within its own arm including v31; no cross-arm reuse",
+  "repeat_failure": "adaptively reroot and provide explicit novel-approach directive; do not terminate unsolved arm or fake savings",
+  "grader": "v20/v21 pinned historical Docker public, independently gated hidden after public pass; hidden details never fed back",
+  "same_max_tokens_per_call": true,
+  "independent_model_calls": true,
+  "source_promotion": false,
+  "git_commit_push": false,
+  "limits": [
+    "unbounded does not mean infinite API quota, time or wall clock; explicit hard infrastructure failures recorded; no claim of statistical generalizability",
+    "historical task re-use may leak training information; neither arm sees reference source",
+    "the v31 baseline/optimized histories are independent, not identical; policy fork is not randomized"
+  ],
+  "issues": [
+    {
+      "id": "youtube-dl-43",
+      "project": "youtube-dl",
+      "grader": "v21",
+      "source_result_sha256": "c86d8bd13649e295730debcf771730871e2f8ee3b9fdef67db1dfeb1cd57699a",
+      "buggy_commit": "cecaaf3f58ad9f544dbb79af1e565d9353fa2b2d",
+      "fixed_commit": "d6c7a367e88096bb17e323954002c084477fe908",
+      "source_file": "youtube_dl/utils.py",
+      "public_test": "test.test_utils.TestUtil.test_url_basename",
+      "public_test_excerpt": "    def test_url_basename(self):\n        self.assertEqual(url_basename(u'http://foo.de/'), u'')\n        self.assertEqual(url_basename(u'http://foo.de/bar/baz'), u'baz')\n        self.assertEqual(url_basename(u'http://foo.de/bar/baz?x=y'), u'baz')\n        self.assertEqual(url_basename(u'http://foo.de/bar/baz#x=y'), u'baz')\n        self.assertEqual(url_basename(u'http://foo.de/bar/baz/'), u'baz')\n        self.assertEqual(\n            url_basename(u'http://media.w3.org/2010/05/sintel/trailer.mp4'),\n            u'trailer.mp4')\n\nif __name__ == '__main__':\n    unittest.main()\n",
+      "public_excerpt_sha256": "f62587928fc129193c4bbf95f83ca3a9f4c12cd3a0024812cb825780e42fd385",
+      "unresolved_v31_both_arms": true
+    },
+    {
+      "id": "tqdm-1",
+      "project": "tqdm",
+      "grader": "v20",
+      "source_result_sha256": "d9b97cc909be5d8040cbe4018173dc484105f2cc638041d5ddc5a1bdd5f9506f",
+      "buggy_commit": "8cc777fe8401a05d07f2c97e65d15e4460feab88",
+      "fixed_commit": "c0dcf39b046d1b4ff6de14ac99ad9a1b10487512",
+      "source_file": "tqdm/contrib/__init__.py",
+      "public_test": "tqdm/tests/tests_contrib.py::test_enumerate",
+      "public_test_excerpt": "def test_enumerate():\n    \"\"\"Test contrib.tenumerate\"\"\"\n    with closing(StringIO()) as our_file:\n        a = range(9)\n        assert list(tenumerate(a, file=our_file)) == list(enumerate(a))\n        assert list(tenumerate(a, 42, file=our_file)) == list(enumerate(a, 42))",
+      "public_excerpt_sha256": "1237e0691365d3d80dd3a726ba6d6be4f9bcf97d86e7e350c9448220d7bc34de",
+      "unresolved_v31_both_arms": true
+    }
+  ]
+}

@@ -1270,6 +1270,1126 @@
       "sha256": "db81c0fca44df1074ded9812ddfc2261a3c795facc7b38acea863bea2d4e84fa",
       "runner": "nykra_allowlisted_multifile_transaction_seeded_real_docker_trial_v25",
       "comparison": "seeded_two_interacting_files_git_patch_pinned_docker_public_unittest_pass_not_unseen_upstream_or_model_generated"
+    },
+    {
+      "id": "v26_internal_zero_suite_repair_summary",
+      "path": "docs/evidence/v26_zero_unittest_real_issue.json",
+      "sha256": "8d38683da1bbda9af0cd9936dab86dc92d11c739f542afbfb9cda4995a5dcbd6",
+      "runner": "chatgpt_relai_supervised_pinned_docker",
+      "comparison": "single_internal_real_defect_no_control"
+    },
+    {
+      "id": "v26_internal_zero_suite_model_patch",
+      "path": "docs/evidence/v26_zero_unittest_agent_patch.diff",
+      "sha256": "7979dc87f4f443ade255691eb7b1909ecaad4cb15b451dedd65bc4f257b56e8f",
+      "runner": "chatgpt_relai_supervised_pinned_docker",
+      "comparison": "exact_one_attempt_two_file_source_diff"
+    },
+    {
+      "id": "v26_internal_zero_suite_frozen_public_tests",
+      "path": "tests/test_zero_count_public.py",
+      "sha256": "9b15cac25cb581016f6c5d874c3bee7db1a588853087f2397b283c327180d5e8",
+      "runner": "pinned_python313_docker",
+      "comparison": "six_public_tests_frozen_before_model_patch"
+    },
+    {
+      "id": "v26_internal_zero_suite_followup_checks",
+      "path": "docs/evidence/v26_zero_unittest_independent_checks.py",
+      "sha256": "b93c3fcea237157a8045759ef247d01be38ac05deb7adf0722bcf2ec66d1f896",
+      "runner": "pinned_python313_docker",
+      "comparison": "twelve_postproposal_nonblinded_checks"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_protocol_initial",
+      "path": "docs/evidence/v26_external_moreitertools_1134_protocol_initial.json",
+      "sha256": "84512a3bfffc7b48f9a4b3d59da1ba1494f77231807e5607590be91600bb1952",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "provider_preflight_before_proposals"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_protocol_amended",
+      "path": "docs/evidence/v26_external_moreitertools_1134_protocol.json",
+      "sha256": "ad5b500347dfc71adbfeedb0a46da94e83c0afb7ec1113587f625fe33abcc5dd",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "frozen_public_hidden_with_preproposal_eol_amendment"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_public_tests",
+      "path": "docs/evidence/v26_external_moreitertools_1134_public.py",
+      "sha256": "e882cde666ca3e775e5d8fe02d26af25ec0ea3077d4a8ceef5990cf8a67614b8",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "public_checks_frozen_before_model_proposal"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_withheld_tests",
+      "path": "docs/evidence/v26_external_moreitertools_1134_heldout.py",
+      "sha256": "7f3edd5ee7eece9531532996e1d198d0cdd5d7caed0862d2c15d84f841a96058",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "separate_terminal_only_grading"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_shared_model_patch",
+      "path": "docs/evidence/v26_external_moreitertools_1134_model_patch.diff",
+      "sha256": "02c641ea363eef18dac1837198b3a1300b7eb6a149fa9fc8e87fddd18bb324b5",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "one_shared_model_proposal_two_file_patch"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_arm_receipts",
+      "path": "docs/evidence/v26_external_moreitertools_1134_arm_receipts.json",
+      "sha256": "042952858b2b40b00fd92ebd006741031fcd19bc9cf7563abef9f72e32fde434",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "depth_vs_adaptive_identical_single_attempt"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_preflight",
+      "path": "docs/evidence/v26_external_moreitertools_1134_preflight.json",
+      "sha256": "351fc50aa3e580388e890fd149c9dcb8050b162d5d8b56e26013e57a38ddf942",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "buggy_fails_reference_passes_public_and_hidden"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_broad_regression_failure",
+      "path": "docs/evidence/v26_external_moreitertools_1134_upstream_regression.json",
+      "sha256": "bec75bf291cd6ffd75872d91805018ba816a41d4b6cef025379e9342c27a666c",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "nonzero_upstream_suite_retained_including_thread_error"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_targeted_regression",
+      "path": "docs/evidence/v26_external_moreitertools_1134_targeted_regression.json",
+      "sha256": "428454b73cc919a27507badd1e0260ba44e504796c0cf56f14c768d0aeb14fa8",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "targeted_compatibility_checks"
+    },
+    {
+      "id": "v26_external_moreitertools_1134_matched_summary",
+      "path": "docs/evidence/v26_external_moreitertools_1134_summary.json",
+      "sha256": "775623aaf669db73b14c4233dcc43fc57e3d96e45cb1f64087d57287c29ee128",
+      "runner": "supervised_chatgpt_pinned_docker_matched_depth_adaptive",
+      "comparison": "tie_no_policy_divergence_no_causal_uplift"
+    },
+    {
+      "id": "v27_provider_readiness_exclusion",
+      "path": "docs/evidence/v27_free_provider_readiness.json",
+      "sha256": "cdac2a134599d785ed2606f3b861616a5ceb439964a14e2233ddb9d78805935a",
+      "runner": "supervised_relai_workstation_provider_preflight",
+      "comparison": "live_provider_probes_and_unscored_two_arm_exclusion"
+    },
+    {
+      "id": "v27_provider_preflight_source",
+      "path": "nykra/provider_preflight.py",
+      "sha256": "4ae8a71c04e93a972af1ac659ee3f8d2605e49457ae2d94344ecf2d26b844d03",
+      "runner": "supervised_relai_workstation_provider_preflight",
+      "comparison": "provider_neutral_approved_subprocess_gate_source"
+    },
+    {
+      "id": "v27_provider_preflight_tests",
+      "path": "tests/test_provider_preflight.py",
+      "sha256": "eae7dabb81b5c8acdb9f43006e01476a41bd0f114f15c8dbd82d0095cdd07f9b",
+      "runner": "supervised_relai_workstation_provider_preflight",
+      "comparison": "nine_focused_subprocess_regressions"
+    },
+    {
+      "id": "v28_northmini_baseline_model_1_txt",
+      "path": "docs/evidence/v28_northmini/baseline_model_1.txt",
+      "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_baseline_model_2_txt",
+      "path": "docs/evidence/v28_northmini/baseline_model_2.txt",
+      "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_baseline_model_3_txt",
+      "path": "docs/evidence/v28_northmini/baseline_model_3.txt",
+      "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_baseline_model_4_txt",
+      "path": "docs/evidence/v28_northmini/baseline_model_4.txt",
+      "sha256": "a77c175cb65232b0f846baacbbb2861fdc7a38a909b4044c06e364632ea94647",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_baseline_patch_1_diff",
+      "path": "docs/evidence/v28_northmini/baseline_patch_1.diff",
+      "sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_baseline_prompt_2_txt",
+      "path": "docs/evidence/v28_northmini/baseline_prompt_2.txt",
+      "sha256": "d31b533302858ddbe173f56b5a119407023b49ec7f1ca16f485e08b4eb96c0f4",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_baseline_prompt_3_txt",
+      "path": "docs/evidence/v28_northmini/baseline_prompt_3.txt",
+      "sha256": "96420fb16e2b64a53d23598604c60425a55546230cd32246828a56cc520043d1",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_baseline_prompt_4_txt",
+      "path": "docs/evidence/v28_northmini/baseline_prompt_4.txt",
+      "sha256": "93216f3c861737fe301ff630b1712ca832903622314c704c5ec2e6b004e87a9a",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_finalization_json",
+      "path": "docs/evidence/v28_northmini/finalization.json",
+      "sha256": "0df07e5d6fb0e5cfd4d4d6bc96d83ebbe2239aa108b485150f1e51f91a149808",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_initial_prompt_txt",
+      "path": "docs/evidence/v28_northmini/initial_prompt.txt",
+      "sha256": "d581896758b5f325c025766cccf299ab26d7a49c9869aca620fa4eca8de27bb4",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_model_1_txt",
+      "path": "docs/evidence/v28_northmini/nykra_model_1.txt",
+      "sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_model_2_txt",
+      "path": "docs/evidence/v28_northmini/nykra_model_2.txt",
+      "sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_model_3_txt",
+      "path": "docs/evidence/v28_northmini/nykra_model_3.txt",
+      "sha256": "39653cfcf6c17d9c0e12565e5ff8a5cc3ddd9d532ae09d6dba5dc18613847669",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_model_4_txt",
+      "path": "docs/evidence/v28_northmini/nykra_model_4.txt",
+      "sha256": "f74dd200e12f50dc9141d070eed463f5147b627ed37d40c18ee59e8dd787810b",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_patch_1_diff",
+      "path": "docs/evidence/v28_northmini/nykra_patch_1.diff",
+      "sha256": "a5c266793d8392c85b7d091f8e67131a3f9199a41a6e2fb2ebb5c9d9e5ce110e",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_patch_3_diff",
+      "path": "docs/evidence/v28_northmini/nykra_patch_3.diff",
+      "sha256": "4795451b13be77b92abe417d3cf0cd46ccdacb318a6cf64bda568e768e4391f6",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_patch_4_diff",
+      "path": "docs/evidence/v28_northmini/nykra_patch_4.diff",
+      "sha256": "99eabc63eff8f2aed713980c76cac4c119d5e13428bfb4e63b8b20a2b29e15a3",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_prompt_2_txt",
+      "path": "docs/evidence/v28_northmini/nykra_prompt_2.txt",
+      "sha256": "52cc8ffc48c5c9a5dd87f0ab38fbba101a61c9a8801139c1490fab73e3403804",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_prompt_3_txt",
+      "path": "docs/evidence/v28_northmini/nykra_prompt_3.txt",
+      "sha256": "e0fd5454ed1122e60a591dd10383097852edb7ab267754ce14c3fc8c5ee632a7",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_nykra_prompt_4_txt",
+      "path": "docs/evidence/v28_northmini/nykra_prompt_4.txt",
+      "sha256": "2f1c20dee3f664137b6895ab98b2bd15b084834d8f423b4861abe7d3a3b9f14d",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_protocol_json",
+      "path": "docs/evidence/v28_northmini/protocol.json",
+      "sha256": "195d122ea6c4449529b3d5d0868f5766834d6a623c78140f04c346e3e45895e5",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_sessions_json",
+      "path": "docs/evidence/v28_northmini/sessions.json",
+      "sha256": "3e0510e1a4a4ad9074fd8a96718fd13b0c1cc3a8fec2921a8a1845463ece1da1",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_northmini_summary_json",
+      "path": "docs/evidence/v28_northmini/summary.json",
+      "sha256": "4d3a8b422d97c4fc17351d938c6d37236f2b36e74d04dbd8f154fe88b182700b",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_free_model_client_py",
+      "path": "docs/evidence/v30_frozen_source_history/v28_free_model_client.py.txt",
+      "sha256": "2e79868ca8a2d9465d662615dec6fa48cd6a80d57159898b2e1ca840c04c2173",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v28_test_free_model_client_py",
+      "path": "tests/test_free_model_client.py",
+      "sha256": "db0e405525cb79a77effce77e533a6d3cd9d3c9c44bd88f84ef289991518d4af",
+      "runner": "nykra_supervised_independent_northmini_free_pinned_docker",
+      "comparison": "independent_model_output_or_evidence_no_success_uplift"
+    },
+    {
+      "id": "v29_multifile_dedupe_real_docker_receipt",
+      "path": "docs/evidence/v29_multifile_dedupe_docker.json",
+      "sha256": "0099c3849b7fb617c48a2ed894875282efe426779ba6c0a247d80dad5beba49f",
+      "runner": "relai_workstation_pinned_docker_and_unittest",
+      "comparison": "optin_same_session_duplicate_public_eval_reuse_no_accuracy_gain"
+    },
+    {
+      "id": "v29_multifile_dedupe_replay_script",
+      "path": "scripts/measure_multifile_dedupe.py",
+      "sha256": "d7757ce433a855d33996c9909c7ed2750b0c8cb7f01b011bf8c331b95d930764",
+      "runner": "relai_workstation_pinned_docker_and_unittest",
+      "comparison": "optin_same_session_duplicate_public_eval_reuse_no_accuracy_gain"
+    },
+    {
+      "id": "v29_multifile_dedupe_workflow_source",
+      "path": "docs/evidence/v30_frozen_source_history/v29_multifile_workflow.py.txt",
+      "sha256": "e860a3cc0f3a89159e159c0b27f6ddbaf4486f72708960e5149e092d5eaf91de",
+      "runner": "relai_workstation_pinned_docker_and_unittest",
+      "comparison": "optin_same_session_duplicate_public_eval_reuse_no_accuracy_gain"
+    },
+    {
+      "id": "v29_multifile_dedupe_workflow_tests",
+      "path": "docs/evidence/v30_frozen_source_history/v29_multifile_workflow_tests.py.txt",
+      "sha256": "330225d5a0aa5100bafcf5b99329c513b54023c270bc99b47c18359fa3004b29",
+      "runner": "relai_workstation_pinned_docker_and_unittest",
+      "comparison": "optin_same_session_duplicate_public_eval_reuse_no_accuracy_gain"
+    },
+    {
+      "id": "v29_multifile_dedupe_replay_evidence_tests",
+      "path": "tests/test_multifile_dedupe_evidence.py",
+      "sha256": "0d1babd42c738e3c8a79fd7b44506957df387dfd411e2e42e72ba8ddd5a8998d",
+      "runner": "relai_workstation_pinned_docker_and_unittest",
+      "comparison": "optin_same_session_duplicate_public_eval_reuse_no_accuracy_gain"
+    },
+    {
+      "id": "v29_multifile_dedupe_experiment_report",
+      "path": "docs/DUPLICATE_PUBLIC_EVALUATION_V29.md",
+      "sha256": "7e260f406e275c01af9fba27dd846f42a9191b2a571ae606dbca7f07c0dd58e2",
+      "runner": "relai_workstation_pinned_docker_and_unittest",
+      "comparison": "optin_same_session_duplicate_public_eval_reuse_no_accuracy_gain"
+    },
+    {
+      "id": "v30_live_exact_request_reuse",
+      "path": "docs/evidence/v30_live_exact_request_reuse.json",
+      "sha256": "38902cdb05e9c68f5983147cd0c7401f3966e30ba377e04efe10ef240c7ad498",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v30_free_request_client_source",
+      "path": "nykra/free_model_client.py",
+      "sha256": "e0a5cd13787c34de72aba1952c0bb6f83f0aad17819f46f33894277dad3ba0cd",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v30_free_request_cache_tests",
+      "path": "tests/test_free_request_cache.py",
+      "sha256": "7a7562d12c6e98dc716d6a7e50c3bab0cff1685228a0fd3b5e2d01b79f3aca92",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v30_multi_workflow_source",
+      "path": "nykra/multifile_workflow.py",
+      "sha256": "2e2fda4d431a968f0a312f138da7355536be243aa02dddbdb735be317b2dc45e",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v30_repeat_failure_workflow_tests",
+      "path": "tests/test_multifile_workflow.py",
+      "sha256": "9b0bf1fdab42b05a4ac501878eec979455eb15c894865299ef48f1dec4c3f9f3",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v30_live_exact_reuse_receipt_tests",
+      "path": "tests/test_live_exact_request_evidence.py",
+      "sha256": "8bc94cbb7f22d9f4716cbc7b7aa5be1f9b675ee4d42a7818f6dde7cacb61b899",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v30_live_cache_measurement_script",
+      "path": "scripts/measure_free_request_reuse.py",
+      "sha256": "22366cf9ba26417d7786f9aab408dc7c3cc810092c8835bfcb91bb93dfb6f3cf",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v30_inference_avoidance_report",
+      "path": "docs/INFERENCE_AVOIDANCE_V30.md",
+      "sha256": "ae29780a5462879f19032806c0aba17dcf2839bb3520a2281447966699a97fc5",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v30_immutable_source_migration_record",
+      "path": "docs/evidence/v30_source_manifest_migration.json",
+      "sha256": "4e04d3a10b44425e7ff0bb033b3fdcf49cfbb06f5a5de219bf6a654d63746aab",
+      "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
+      "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
+    },
+    {
+      "id": "v31_preregistered_protocol",
+      "path": "docs/evidence/v31_live_study_protocol.json",
+      "sha256": "d50af1b42f21ebf0361a315d37fe822abe992bd5a32d88dac32cc6461f951f24",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v31_youtube_dl_28_raw",
+      "path": "docs/evidence/v31_live_issues/youtube-dl-28.json",
+      "sha256": "3bad9903bb16c21ba039f5279f07fe679ccec9dcb5f6379db87093cd4c6ca986",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v31_tqdm_1_raw",
+      "path": "docs/evidence/v31_live_issues/tqdm-1.json",
+      "sha256": "d9b97cc909be5d8040cbe4018173dc484105f2cc638041d5ddc5a1bdd5f9506f",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v31_youtube_dl_43_raw",
+      "path": "docs/evidence/v31_live_issues/youtube-dl-43.json",
+      "sha256": "c86d8bd13649e295730debcf771730871e2f8ee3b9fdef67db1dfeb1cd57699a",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v31_live_aggregate",
+      "path": "docs/evidence/v31_live_efficiency_summary.json",
+      "sha256": "01b5b194bfa77314b297a3095c11c9a082aeb4e2a62d7e87fb23445a4c66e166",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v31_live_study_runner",
+      "path": "scripts/run_live_efficiency_v31.py",
+      "sha256": "7747460f1d895aa31d6d36db0fee15be86868d835362dcdda8998b1350e00f59",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v31_live_study_reconciler",
+      "path": "scripts/summarize_live_efficiency_v31.py",
+      "sha256": "69a4853a91660f572cb5ca21f5d53d6e9aecd262b1da7ab423d7b774e28e1cd2",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v31_live_evidence_tests",
+      "path": "tests/test_v31_efficiency_study.py",
+      "sha256": "3411c96fccc994678690145289d4e51b32596978f343e18f75d3dfbc8b2f056d",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v31_full_study_report",
+      "path": "docs/LIVE_EFFICIENCY_STUDY_V31.md",
+      "sha256": "8bcc34b33608c90c1e0f0a0ab1673b34615e0b984172084e1a27a34d912ddf5a",
+      "runner": "jervis_home_real_free_model_plus_pinned_docker_graders",
+      "comparison": "three_paired_historical_issues_independent_model;25pct_public_work_reuse;no_model_or_accuracy_uplift"
+    },
+    {
+      "id": "v32_solve_protocol",
+      "path": "docs/evidence/v32_solve_until_verified_protocol.json",
+      "sha256": "06c611da5df7b48143409e1bd477707eacd834c17b21ecf82ce81e8b87b64502",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_original_live_failed_provider_32_attempt_history",
+      "path": "docs/evidence/v32_solved/youtube-dl-43_baseline_depth.json",
+      "sha256": "0856530a22a4eaf828a65e0f72929811cfac06ae87fa0c22f33251ae73819524",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_chronological_recovered_public_hidden_replay",
+      "path": "docs/evidence/v32_solved/youtube-dl-43_chronological_import_replay.json",
+      "sha256": "b0b8e27300ea2a1d6d3d9653e025f9e06c324e376fabc7c2e0f4f73c5351ff60",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_independent_attempt29_hidden_confirmation",
+      "path": "docs/evidence/v32_solved/youtube-dl-43_import_normalization_regrade.json",
+      "sha256": "2de6a5a4ad9b5b980a145ed972d6cf912687dbaf6e79eace4155ba86d381765d",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_result_reconciliation",
+      "path": "docs/evidence/v32_solved/v32_recovery_summary.json",
+      "sha256": "5c168d4001680db71ab8f5bf22b3fc39bb2d2d13d69ee8c3f71db1b775493497",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_safe_import_normalizer",
+      "path": "nykra/model_source_normalizer.py",
+      "sha256": "1ce1baa1af8dd0d92e14367559415fcf6b8455b5d7df9d97ddeb7927004cca09",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_solve_until_verified_runner",
+      "path": "scripts/solve_until_verified_v32.py",
+      "sha256": "73434631cf441e0de22db75387e522ccd537ac83e77f6c257091f1298a431c6a",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_chronological_docker_replay",
+      "path": "scripts/replay_import_normalizer_v32.py",
+      "sha256": "8453750554fa99d96203047d1b7798d9699f4e9b83f8359349f7e074d9f4eb02",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_source_normalizer_tests",
+      "path": "tests/test_model_source_normalizer.py",
+      "sha256": "a30cebbabac7d95d29b7334245359f31e4ace700b5108ac99729cb560b727547",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_live_recovery_provenance_tests",
+      "path": "tests/test_v32_solve_recovery.py",
+      "sha256": "642f3719e51105fb6f759943747c5b87845b41173edb83168a9ab97786ea2c92",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v32_solve_to_completion_report",
+      "path": "docs/SOLVE_UNTIL_VERIFIED_V32.md",
+      "sha256": "6e70e4cfefdfbd0dbb657e1cdda432b4edac671e4675f359f5fb85a3eedb1fd6",
+      "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
+      "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
+    },
+    {
+      "id": "v33_codex_luna_study_protocol",
+      "path": "docs/evidence/v33_codex_luna_protocol.json",
+      "sha256": "32e7c61b82d9833941cf8954bd01ef371837611ca65924340dd1f5fea152394f",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v33_codex_luna_tqdm_baseline",
+      "path": "docs/evidence/v33_codex_luna/tqdm-1_baseline_depth.json",
+      "sha256": "cf9f9af855bd05edb2d5974efec8f7ff9b69473a26d415b768173eb9c311e330",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v33_codex_luna_tqdm_nykra",
+      "path": "docs/evidence/v33_codex_luna/tqdm-1_nykra_adaptive.json",
+      "sha256": "c039cc2e1905857bd94fd1e4f12a1174f0d4c81da1f07a6364e55de02840a42a",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v33_codex_luna_youtube_dl43_baseline",
+      "path": "docs/evidence/v33_codex_luna/youtube-dl-43_baseline_depth.json",
+      "sha256": "0fe7c95ca858973997e725570bff8f755528212155e154a9377ee74670822071",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v33_codex_luna_youtube_dl43_nykra",
+      "path": "docs/evidence/v33_codex_luna/youtube-dl-43_nykra_adaptive.json",
+      "sha256": "f3ed35b6f4553ae51d79060ff56ca0e408ea82473757f9eb0bbb026b8edf61b5",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v34_codex_hard_forks_protocol",
+      "path": "docs/evidence/v34_codex_hard_forks_protocol.json",
+      "sha256": "c0c877adde092e4a5a10bcd933dbd82f3ab5505d843b03bcebbc682a56727304",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v34_codex_luna_youtube_dl3_baseline",
+      "path": "docs/evidence/v34_codex_hard_forks/youtube-dl-3_baseline_depth.json",
+      "sha256": "428873877edb09a10c5b57a47d38efb2da71b250836d4e56a00d47ff43263ea2",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v34_codex_luna_youtube_dl3_nykra",
+      "path": "docs/evidence/v34_codex_hard_forks/youtube-dl-3_nykra_adaptive.json",
+      "sha256": "eee2e4ec297106569b36c5173216aa3e72fb474056a2f4b44c48e983ada942af",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v34_codex_luna_youtube_dl5_10_failed_attempts",
+      "path": "docs/evidence/v34_codex_hard_forks/youtube-dl-5_nykra_adaptive.json",
+      "sha256": "0cb479b8e506e5dfc8c389c5654bc7c7d87e4545d1025d01bf71781a707700d6",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v34_codex_luna_youtube_dl5_public_assertion",
+      "path": "docs/evidence/v34_codex_hard_forks/youtube-dl-5_public_diagnostic.json",
+      "sha256": "a107b0b189d81d0bab435eb22d3b30c0267bde2f02a6d937f2d2d4bb38af6153",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_codex_luna_feedback_rescue_protocol",
+      "path": "docs/evidence/v35_feedback_rescue_protocol.json",
+      "sha256": "681f031ed5ed40c349ec1df7f29856c47a5e8d163f1f240555916dda791ed09f",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_codex_luna_youtube_dl5_feedback_rescue",
+      "path": "docs/evidence/v35_rescue/youtube-dl-5_nykra_actionable_feedback.json",
+      "sha256": "1269e8cb74e0fac0ba60ddad6503737a490f184c1180a8adc394378d6a5b21e8",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_codex_luna_youtube_dl5_independent_recheck",
+      "path": "docs/evidence/v35_rescue/youtube-dl-5_independent_recheck.json",
+      "sha256": "2ef3e5c775833390a0b6bf2f0f13226d244a83773d66d3b95d040303f2bd298d",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_codex_luna_reconciled_summary",
+      "path": "docs/evidence/v35_codex_luna_results.json",
+      "sha256": "d392131945c4efbfcff5dc38dfc54c2e41c79f37d8d889ca6a2ddc1c267f34dc",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v33_codex_luna_live_runner",
+      "path": "scripts/run_codex_luna_v33.py",
+      "sha256": "6e2500372be1d15eab2eab6dfccf1c882cb346474e5f68564dfdb2a3e5887b98",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v34_codex_luna_hard_fork_runner",
+      "path": "scripts/run_codex_hard_forks_v34.py",
+      "sha256": "e0c6e07ea3050733116b7852c1e42edb7568816de437d894df20be26a0818144",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_codex_luna_public_diagnostic_rescue_runner",
+      "path": "scripts/rescue_codex_v35.py",
+      "sha256": "a065b1c66353c44052a1f4cf7ffef1832fc84abffef4b7f8e008a02b0163723c",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_docker_public_feedback_source",
+      "path": "nykra/v35_public_feedback.py",
+      "sha256": "f0045dc12db2858987bd5aac6996345d465a45ea9908ebfa817ce9ffecc43cdb",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_codex_luna_evidence_tests",
+      "path": "tests/test_v35_codex_evidence.py",
+      "sha256": "30528185d879024a937e7b645535895ad3b563949fae6046ae4f25f4897ac046",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_docker_public_feedback_security_tests",
+      "path": "tests/test_v35_public_feedback.py",
+      "sha256": "112eb17966d42d6e170b64e419f1d1368e4aeb973bee5eb540a7cc93f5e407ff",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v35_codex_luna_effectiveness_report",
+      "path": "docs/CODEX_LUNA_EFFECTIVENESS_V35.md",
+      "sha256": "0055cf0a0bb9b7b590f12c063334c714d419d1fafe7950c8ae2df036eb74b831",
+      "runner": "chatgpt_authenticated_codex_luna_plus_restricted_pinned_docker",
+      "comparison": "v33_v34_3_matched_tasks_tie;v35_posthoc_public_feedback_rescue_no_causal_policy_uplift"
+    },
+    {
+      "id": "v36_unseen_upstream_multifile_protocol",
+      "path": "docs/evidence/v36_multifile_protocol.json",
+      "sha256": "b7532405c50fcdd077a00d4fd6a295cdeb5aa275095da4a9ea0af13925aaaad4",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_multifile_pre_frozen_hidden_cases",
+      "path": "docs/evidence/v36_hidden_arte_dates.py",
+      "sha256": "a53ffe6f1fa582cf1e1d53e429b2eb2c787e4a1f9680331e85bf41f4ab44e3cb",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_multifile_reference_buggy_prevalidation",
+      "path": "docs/evidence/v36_multifile_preflight.json",
+      "sha256": "a7ceb95b1866befed7aeb8cf44c2299d5916bd26070fbd30c43efaf9ccda4c88",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_baseline_live_codex_complete_trace",
+      "path": "docs/evidence/v36_multifile_live/youtube-dl-35_baseline_depth.json",
+      "sha256": "f75cd6e7b6b6345708b21cf93c41dbace6e1f782ba30e34df51b3a9a3809cf15",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_nykra_adaptive_live_codex_complete_trace",
+      "path": "docs/evidence/v36_multifile_live/youtube-dl-35_nykra_adaptive.json",
+      "sha256": "d73ab1a2d05a193dd5ee0ba07f3a8827ab003dabb6c8b9926e2f82adddf3449c",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_model_authored_patches_independent_docker_regrade",
+      "path": "docs/evidence/v36_multifile_independent_regrade.json",
+      "sha256": "81e0a888b189fd8bea497a962938f3e40d2ed6139d179ce8df6fddf936b50306",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_restricted_upstream_multifile_grader",
+      "path": "nykra/v36_multifile_grader.py",
+      "sha256": "ae8334e0168e589b9c1c45b31ed7c0361a3b224957404308e9652b2aaa678b34",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_live_codex_matched_multifile_study_runner",
+      "path": "scripts/run_unseen_multifile_v36.py",
+      "sha256": "348372b298b24992aa3dd2a408ebcbf9c066565be7eeba342d293da3161fc3fe",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_two_prod_file_model_evidence_regression_tests",
+      "path": "tests/test_v36_multifile_evidence.py",
+      "sha256": "39a3b28ec870d521c0d7d0a9da535c06356d318398243b43ec3a2b0fb7f23af1",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v36_new_multifile_negative_result_report",
+      "path": "docs/NEW_MULTIFILE_CODEX_V36.md",
+      "sha256": "09942620b4a4605886190fe05886ff4683415b4ea58a8c48f99b72c3d921af5e",
+      "runner": "native_ChatGPT_Codex_Luna_plus_pinned_offline_Docker_Git_multifile_grader",
+      "comparison": "one_new_historical_multifile_issue_baseline4_calls_vs_nykra7;both_hidden_pass;negative_adaptive_efficacy"
+    },
+    {
+      "id": "v37_frozen_unused_youtube_dl32_protocol",
+      "path": "docs/evidence/v37_structured_multifile_protocol.json",
+      "sha256": "77965e4d6d27afb580f4c128744df3a5ad420b514a5ef18da11f91babfe985e6",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_frozen_npo_jsonp_hidden_source",
+      "path": "docs/evidence/v37_hidden_npo_jsonp.py",
+      "sha256": "fc9a13980580d3e121c65b7d746973b14f412dad4d7ba29bf62812e29e4ed745",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_upstream_source_public_hidden_prevalidation",
+      "path": "docs/evidence/v37_multifile_preflight.json",
+      "sha256": "f98d0a248c82b68210d3ff1b31c5b59b67b71a4df5c939a3f5c3113ba8579912",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_12_authenticated_codex_raw_diff_failures",
+      "path": "docs/evidence/v37_structured_live/youtube-dl-32_baseline_raw_git_diff.json",
+      "sha256": "466cbb7b3046caf0660495e45ebbbd70d2fd8e81514ed540570f60ba056cd238",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_one_call_codex_structured_two_file_hidden_pass",
+      "path": "docs/evidence/v37_structured_live/youtube-dl-32_nykra_structured_adapter.json",
+      "sha256": "fd5c3502e470c1011c515be80faecf206d0ee17417fa0e0fac5e8c4b830a1ad8",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_independent_docker_public_hidden_regrade",
+      "path": "docs/evidence/v37_structured_independent_regrade.json",
+      "sha256": "6db29a09969871c3a4d354a0c240481f185c307f6fd1a9fb718843517dbb6b12",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_real_codex_output_comparison_summary",
+      "path": "docs/evidence/v37_structured_summary.json",
+      "sha256": "d051cc323f349ea77ce156ac2df2a2cb7ca03e97d63c07581c7a051c500195e1",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_bounded_exact_source_edit_adapter",
+      "path": "nykra/structured_edit_adapter.py",
+      "sha256": "42157b995e79420eb53f76ba6fd146a942a5bf7adee6162f1b112abadbf87a81",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_restricted_two_file_upstream_grader",
+      "path": "nykra/v37_multifile_grader.py",
+      "sha256": "4530174317a28671a82f552cbd721405c1c5f52bcca7288bcd57cc568268806e",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_live_codex_structured_study_runner",
+      "path": "scripts/run_structured_codex_v37.py",
+      "sha256": "1fef4aa6f6c70622d5465b399d59bde8e835a156c7731c35c7add4bb44e8c1e2",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_adapter_security_and_applicability_tests",
+      "path": "tests/test_structured_edit_adapter.py",
+      "sha256": "189d9d8a04aeb6dae965dfe84c78478da5f428ff40391ad35729b05d4692d4f5",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_real_codex_hidden_verified_provenance_tests",
+      "path": "tests/test_v37_structured_live.py",
+      "sha256": "948f45fdef7b2f71db65b983b649c4c046a94645d9b8bf05965448fa67a62e38",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v37_structured_patch_reliability_report",
+      "path": "docs/STRUCTURED_EDITS_V37.md",
+      "sha256": "2dab9fc9762d9cdba9a082c0fe5ed1b85b6bebe3bb4db345a8e5ebcb57449aae",
+      "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
+      "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
+    },
+    {
+      "id": "v38_pre_frozen_two_issue_protocol",
+      "path": "docs/evidence/v38_cohort_protocol.json",
+      "sha256": "3370cda8492374555b2e2696a292b7be5fa9b9072dae36ff03f94a3acaa27df3",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_pre_frozen_drtv33_hidden_cases",
+      "path": "docs/evidence/v38_hidden_drtv_33.py",
+      "sha256": "7cceb4db384a91cd50ccc0a51cb8258adfaefd4f62e86e1d82cea1422ad13b2e",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_pre_frozen_minhateca31_hidden_cases",
+      "path": "docs/evidence/v38_hidden_minhateca_31.py",
+      "sha256": "ca77170c572d8a7730c98db019731a647c8f493964fdc0322e0ebf9a2d75879b",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_8_real_Docker_source_prevalidations",
+      "path": "docs/evidence/v38_preflight.json",
+      "sha256": "fb335e30ecdac0f2675df28a764a5b5f30bc9784af8b43fd0edf3baf5618ef59",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_drtv33_raw_codex_five_failures",
+      "path": "docs/evidence/v38_structured_live/youtube-dl-33_baseline_raw_git_diff.json",
+      "sha256": "00dfcd8b92395a0c752785fcde916aa977c69b7cb6e3c3052e6d77f93c07dde9",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_drtv33_structured_codex_verified",
+      "path": "docs/evidence/v38_structured_live/youtube-dl-33_nykra_structured_adapter.json",
+      "sha256": "ba0bedb700c5a6094ef9d820a6b3d0fdec1a7d67a301c25757b18700d1ef2295",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_minhateca31_raw_codex_five_failures",
+      "path": "docs/evidence/v38_structured_live/youtube-dl-31_baseline_raw_git_diff.json",
+      "sha256": "540789a47a044446dc295aa47a4a273ffcafe85592a32a87e918994f0fb35e98",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_minhateca31_structured_codex_verified",
+      "path": "docs/evidence/v38_structured_live/youtube-dl-31_nykra_structured_adapter.json",
+      "sha256": "cd4257e536a4dd465951c3204df31484de8576050263d92dd901e2febfbfa84a",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_2_selected_patches_independent_public_hidden_regrade",
+      "path": "docs/evidence/v38_independent_regrade.json",
+      "sha256": "edc89b7d0d30db40ee2111939da6196833e11444c8c3cb0233f8bcb18394b20a",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_pretrial_unicode_and_config_harness_incidents",
+      "path": "docs/evidence/v38_pretrial_unicode_failure.json",
+      "sha256": "320e145a4ae72ce11bafbb28afc8dc86ecb24849ea7124a9a39d210f3aeab800",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_reconciled_replication_cohort",
+      "path": "docs/evidence/v38_results.json",
+      "sha256": "a0dda99847b61db771e226789523a09824e290994faa35bed49866260e1d4c08",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_two_issue_Docker_evaluator_source",
+      "path": "nykra/v38_multifile_grader.py",
+      "sha256": "68e244b6b0c5169fc30500281c0b31adbb41a3fae26be05773e6c4e43bf69ad8",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_multiissue_live_Codex_runner",
+      "path": "scripts/run_structured_cohort_v38.py",
+      "sha256": "485b5b8a19255ec9c258d1d6b9cc3255e8633facf26c03e0286ed5bd362a3669",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_offline_cohort_evidence_integrity_tests",
+      "path": "tests/test_v38_structured_cohort.py",
+      "sha256": "a1718cd49f73daa0ec96cd26c09ffbe0c64b8ac4819a9f7a2ab76ed04b034a15",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v38_replication_factual_report",
+      "path": "docs/STRUCTURED_REPLICATION_V38.md",
+      "sha256": "9ef1650fff9efb5a324b85967d1be1714bcdd482d1df2d132bdc89cf1e92b1c2",
+      "runner": "real_native_ChatGPT_Codex_Luna_structured_vs_raw_Git_pinned_offline_Docker",
+      "comparison": "v38_previously_unused_BugsInPy31_33_two_file_repair;5_call_caps;raw0of2_vs_structured2of2;pretrial_unreconciled_usage_disclosed"
+    },
+    {
+      "id": "v39_crossrepo_pysnooper_frozen_protocol",
+      "path": "docs/evidence/v39_pysnooper_protocol.json",
+      "sha256": "0701ac0722531f7500a0d036d4052ccba60f916729160bd8d93560df4d6e637f",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_pysnooper_public_source_cases",
+      "path": "docs/evidence/v39_public_pysnooper1.py",
+      "sha256": "0439c8417d3e448a7ff1d46364e1d83a0c1ecd7489683f097095b4295f1ef7a1",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_pysnooper_private_hidden_source_cases",
+      "path": "docs/evidence/v39_hidden_pysnooper1.py",
+      "sha256": "db4e77f603dcbf44ddcd0e08b6d4a9ae303644b44c36fe2d07efd2b34898d812",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_first_Docker_preflight_fail_graded",
+      "path": "docs/evidence/v39_pysnooper_preflight.json",
+      "sha256": "263e0a74063f9aeb502202cacce8fe8398fa2e3ffb54edee51297ab90a607ee4",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_corrected_4way_Docker_reference_preflight",
+      "path": "docs/evidence/v39_pysnooper_preflight_validated.json",
+      "sha256": "ec6b3e08a3d96bd34d5d3822586bc32e20f8c691903b3f3152a9da43c14eefa8",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_luna_raw_diff_5_invalid_patches",
+      "path": "docs/evidence/v39_pysnooper_live/PySnooper-1_baseline_raw_git_diff.json",
+      "sha256": "c20578cb4bd35e2d22124ee9961e8587dfcc502ad9a1c651674f3042f41fc750",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_luna_structured_5_public_pass_hidden_fail",
+      "path": "docs/evidence/v39_pysnooper_live/PySnooper-1_nykra_structured_adapter.json",
+      "sha256": "3c2c581d6aaa45e9a41b07eba80dd7e32767d971ec258f5728e0e79ef8ca3cb6",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_second_provider_opencode_timeout_receipt",
+      "path": "docs/evidence/v39_opencode_provider_probe.json",
+      "sha256": "860fee12a2c2831dfaad03df588f0900fb1ec0b2164ae38a4351e5ad24861462",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_same_provider_new_codex_model_protocol",
+      "path": "docs/evidence/v39_second_codex_model_protocol.json",
+      "sha256": "43d9acd3f92c764f151e1f8a2e458809d0b8f4d6132fef736e6afd900e35b0a5",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_terra_same_provider_ready_receipt",
+      "path": "docs/evidence/v39_second_codex_model_probe.json",
+      "sha256": "17d6fd32f236538a6d07ddc54cdb9ea9f697f815aab75bc316ceb39d23227545",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_pysnooper_real_Docker_grader",
+      "path": "nykra/v39_pysnooper_grader.py",
+      "sha256": "da5398e35726de9e7e7db7f731e5a7058961ce8126ea124e9c93150c31020537",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v39_pysnooper_real_Luna_runner",
+      "path": "scripts/run_crossrepo_pysnooper_v39.py",
+      "sha256": "c160b25c4d69f93b25b9c7d516e1567808085e331bf3db22c836d378b1ba2023",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_frozen_posthoc_same_format_policy_protocol",
+      "path": "docs/evidence/v40_terra_policy_protocol.json",
+      "sha256": "be63c8920d383660fb2fc76f1637661dbf77edaa4974a84ace863132b5e7978e",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_strong_pysnooper_public_suite",
+      "path": "docs/evidence/v40_public_pysnooper_terra.py",
+      "sha256": "24bb787ca04fa6bdf2a115f5a413df05e6c6c9eeb59f4e44d3d577161dcf96f9",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_strong_pysnooper_private_hidden_suite",
+      "path": "docs/evidence/v40_hidden_pysnooper_terra.py",
+      "sha256": "17d1e3d31db2daf1d9a3618a3577c2622d44cf0883e5079adabe83535a853348",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_buggy_fixed_4way_preinference_Docker_receipts",
+      "path": "docs/evidence/v40_terra_preflight.json",
+      "sha256": "3c9f3702f7d50e45f4049ac2424dad94ce33b08bf0daa2fe56f47dfed5c6e8be",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_terra_structured_depth_hidden_verified",
+      "path": "docs/evidence/v40_terra_policy_live/PySnooper-1_structured_depth.json",
+      "sha256": "efb258f2fc5d93b7fd6b5ab74d6e1486886b98998f3bf61cf95d3be9285af65c",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_terra_structured_adaptive_hidden_verified",
+      "path": "docs/evidence/v40_terra_policy_live/PySnooper-1_structured_adaptive.json",
+      "sha256": "ccdc4451f80a92268f04b91c46a174598d329bf1070aa64144b7900571cc8d22",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_terra_independent_model_patches_Docker_recheck",
+      "path": "docs/evidence/v40_independent_regrade.json",
+      "sha256": "6c9d2e76893217446c152395627def183a7b6188fdb91aa4dd1d7434cb2f929e",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_crossrepo_aggregate_honest_summary",
+      "path": "docs/evidence/v40_crossrepo_summary.json",
+      "sha256": "4d189fc2257227e2cc2e878079f215da9fa40b0b2ceb0180c5bf6afb56e8380e",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_private_hidden_once_grader",
+      "path": "nykra/v40_terra_grader.py",
+      "sha256": "795fa78b2623543f24832965aa97b80ba2467f9919a937d00c86c60cde3166ad",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_same_model_identical_format_policy_runner",
+      "path": "scripts/run_terra_policy_v40.py",
+      "sha256": "162565e18e33abefe6b56d32aa49802dfa005c6df2cc639aa0f2bffc87c322aa",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_crossrepo_provider_policy_documentation",
+      "path": "docs/CROSS_REPO_MODEL_POLICY_V40.md",
+      "sha256": "92183f93e9061bb6c8b42e8080d35b1a8dc9bf65102fe8a59e6afb790f3d45eb",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
+    },
+    {
+      "id": "v40_crossrepo_evidence_offline_tests",
+      "path": "tests/test_v39_v40_crossrepo_evidence.py",
+      "sha256": "3822fde56208ceeb119d2489724baf2bacf559c7681cc6afd05e30fce030c578",
+      "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
+      "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
     }
   ],
   "repository_source_patch_study": {

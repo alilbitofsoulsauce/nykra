@@ -1,0 +1,93 @@
+{
+  "schema": "nykra-v40-same-model-structured-adaptive-vs-depth-holdout-once-v1",
+  "task": "PySnooper-1",
+  "arm": "structured_depth",
+  "model": "gpt-5.6-terra",
+  "protocol_sha256": "be63c8920d383660fb2fc76f1637661dbf77edaa4974a84ace863132b5e7978e",
+  "preflight_sha256": "3c9f3702f7d50e45f4049ac2424dad94ce33b08bf0daa2fe56f47dfed5c6e8be",
+  "status": "hidden_verified",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "00d6b2400995991f205a4ee3035fb0069d7de2af9bb62d907c434391b69c7b30",
+      "raw_codex_output": "{\"edits\":[{\"path\":\"pysnooper/pycompat.py\",\"old\":\"PY3 = (sys.version_info[0] == 3)\",\"new\":\"PY3 = (sys.version_info[0] == 3)\\nPY2 = (sys.version_info[0] == 2)\"},{\"path\":\"pysnooper/tracer.py\",\"old\":\"encoding = 'ascii'\",\"new\":\"encoding = 'utf-8'\"},{\"path\":\"pysnooper/tracer.py\",\"old\":\"with open(self.path, 'w' if self.overwrite else 'a') as output_file:\",\"new\":\"with open(self.path, 'w' if self.overwrite else 'a', encoding='utf-8') as output_file:\"}]}",
+      "raw_output_sha256": "c2caf031ef552f225a4c0623208bc8079c7da5a140877d13056baf8766ff8b1c",
+      "structured_adapter": {
+        "schema": "nykra-exact-edit-adapter-v1",
+        "edits": [
+          {
+            "edit": 1,
+            "path": "pysnooper/pycompat.py",
+            "start": 180,
+            "old_bytes": 32,
+            "new_bytes": 65
+          },
+          {
+            "edit": 2,
+            "path": "pysnooper/tracer.py",
+            "start": 2654,
+            "old_bytes": 18,
+            "new_bytes": 18
+          },
+          {
+            "edit": 3,
+            "path": "pysnooper/tracer.py",
+            "start": 4100,
+            "old_bytes": 68,
+            "new_bytes": 86
+          }
+        ],
+        "files_changed": [
+          "pysnooper/pycompat.py",
+          "pysnooper/tracer.py"
+        ],
+        "patch_sha256": "4b75424df04d3a4c8ea876a119b0069d41c2652b785a8f27656679152386fd9b"
+      },
+      "adapter_failure": null,
+      "patch": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -8,6 +8,7 @@\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+PY2 = (sys.version_info[0] == 2)\n \n if hasattr(abc, 'ABC'):\n     ABC = abc.ABC\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -84,7 +84,7 @@\n     # apply tokenize.detect_encoding to decode the source into a\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -130,7 +130,7 @@\n         self.overwrite = overwrite\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with open(self.path, 'w' if self.overwrite else 'a', encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False\n \n",
+      "patch_sha256": "4b75424df04d3a4c8ea876a119b0069d41c2652b785a8f27656679152386fd9b",
+      "model_usage": {
+        "input_tokens": 17177,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 568,
+        "reasoning_output_tokens": 406
+      },
+      "model_seconds": 13.387,
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "50e0b0587dce90871df6ee215b272b51bb1e2c66169a78bd07fa35f55e12b4b2",
+        "elapsed_seconds": 2.67
+      },
+      "public_called": true,
+      "public_reused_from": null,
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c",
+        "elapsed_seconds": 2.58
+      }
+    }
+  ],
+  "provider_calls": 1,
+  "reported_usage": {
+    "input_tokens": 17177,
+    "cached_input_tokens": 0,
+    "output_tokens": 568,
+    "reasoning_output_tokens": 406
+  },
+  "public_docker_calls": 1,
+  "public_docker_reuses": 0,
+  "hidden_docker_calls": 1,
+  "selected_patch_sha256": "4b75424df04d3a4c8ea876a119b0069d41c2652b785a8f27656679152386fd9b",
+  "selected_attempt": "attempt-1"
+}

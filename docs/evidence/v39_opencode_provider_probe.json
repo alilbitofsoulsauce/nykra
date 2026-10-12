@@ -1,0 +1,11 @@
+{
+  "schema": "nykra-v39-second-provider-readiness-v1",
+  "provider": "OpenCode Zen",
+  "requested_model": "opencode/mimo-v2.6-flash-free",
+  "live_test": "opencode run --pure --model opencode/mimo-v2.6-flash-free --format json 'Reply exactly READY'",
+  "outcome": "Rel.AI host command timeout (exit 125) with no captured stdout or stderr",
+  "verified_model_completion": false,
+  "verified_coding_completion": false,
+  "provider_cost": "unknown; no usage receipt",
+  "claim": "external second provider blocked, cannot include in matched comparative results"
+}

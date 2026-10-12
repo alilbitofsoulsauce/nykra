@@ -26,6 +26,38 @@ jobs:
         run: python -m compileall -q nykra tests examples
       - name: Run genuine multi-file transaction and adversarial tests
         run: python -m unittest discover -s tests -p test_transactional_patch.py -v
+      - name: Supervised multi-file agent workflow tests
+        run: python -m unittest discover -s tests -p test_multifile_workflow.py -v
+      - name: Reject empty unittest evaluator verdicts
+        run: python -m unittest discover -s tests -p test_zero_count_public.py -v
+      - name: Provider readiness and timeout regression tests
+        run: python -m unittest discover -s tests -p test_provider_preflight.py -v
+      - name: Free provider client safety tests (offline)
+        run: python -m unittest discover -s tests -p test_free_model_client.py -v
+      - name: Authenticated exact request-cache safety tests (offline)
+        run: python -m unittest discover -s tests -p test_free_request_cache.py -v
+      - name: Live inference evidence reconciliation (offline)
+        run: python -m unittest discover -s tests -p test_live_exact_request_evidence.py -v
+      - name: Historical free-model efficiency comparison evidence (offline)
+        run: python -m unittest discover -s tests -p test_v31_efficiency_study.py -v
+      - name: Safe model-output normalization tests (offline)
+        run: python -m unittest discover -s tests -p test_model_source_normalizer.py -v
+      - name: Solve-until-verified real-model recovery evidence (offline)
+        run: python -m unittest discover -s tests -p test_v32_solve_recovery.py -v
+      - name: Real ChatGPT Codex Luna public and hidden grader receipts (offline)
+        run: python -m unittest discover -s tests -p test_v35_codex_evidence.py -v
+      - name: Restricted Docker public feedback safety tests (offline)
+        run: python -m unittest discover -s tests -p test_v35_public_feedback.py -v
+      - name: New unseen historical two-source live Codex evidence (offline)
+        run: python -m unittest discover -s tests -p test_v36_multifile_evidence.py -v
+      - name: Structured bounded source-edit adapter security tests (offline)
+        run: python -m unittest discover -s tests -p test_structured_edit_adapter.py -v
+      - name: Real structured Codex live upstream repair provenance (offline)
+        run: python -m unittest discover -s tests -p test_v37_structured_live.py -v
+      - name: Two previously unused multi-file Codex replication receipts (offline)
+        run: python -m unittest discover -s tests -p test_v38_structured_cohort.py -v
+      - name: Cross-repository and alternate Codex model evidence (offline)
+        run: python -m unittest discover -s tests -p test_v39_v40_crossrepo_evidence.py -v
       - name: Core replay and history tests
         run: |
           python -m unittest discover -s tests -p test_store.py -v
@@ -33,6 +65,14 @@ jobs:
           python -m unittest discover -s tests -p test_exploration_policy.py -v
       - name: Verify evidence registry
         run: python -m unittest discover -s tests -p test_evidence_registry.py -v
+      - name: Check release scanner regressions
+        run: python -m unittest discover -s tests -p test_release_inputs.py -v
+      - name: Verify release version and extension packaging
+        run: python -m unittest discover -s tests -p test_release_candidate.py -v
+      - name: Check IDE adapter packaging and local behavior
+        run: python -m unittest discover -s tests -p test_ide.py -v
+      - name: Build release wheel without dependencies
+        run: python -m pip wheel --no-deps --wheel-dir dist .
       - name: Dependency-free demo
         run: python -m nykra demo
       - name: Verify version

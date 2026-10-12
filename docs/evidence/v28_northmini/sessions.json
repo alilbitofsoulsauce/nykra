@@ -1,0 +1,94 @@
+{
+  "baseline": {
+    "id": "a5a7f93246724580a00816d30de33b90",
+    "policy": "depth",
+    "home": "C:\\Users\\admin\\AppData\\Local\\Temp\\rel-ai-mcp-ephemeral\\c92aaefaa18254d9\\cdee6f7a66d203e7b121b0dcce3d7fb2\\paired-north-mini-v1\\history_baseline",
+    "attempts": [
+      {
+        "iteration": 1,
+        "model_response_sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+        "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+        "public_status": "test_failed",
+        "public_passed": false,
+        "public_count": 6,
+        "diagnostic": "---------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.0,[18 chars]66667, 4.666666666666667, 7.333333333333333, 7.666666666666667] != [4.0,[18 chars]66667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 3:\n4.666666666666667\n3.3333333333333335\n\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n- [4.0,\n-  3.5,\n-  4.666666666666667,\n-  4.666666666666667,\n-  7.333333333333333,\n-  7.666666666666667]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.030s\n\nFAILED (failures=1, errors=5)\n",
+        "elapsed": 11.149
+      },
+      {
+        "iteration": 2,
+        "model_response_sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+        "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+        "public_status": "test_failed",
+        "public_passed": false,
+        "public_count": 6,
+        "diagnostic": "---------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.0,[18 chars]66667, 4.666666666666667, 7.333333333333333, 7.666666666666667] != [4.0,[18 chars]66667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 3:\n4.666666666666667\n3.3333333333333335\n\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n- [4.0,\n-  3.5,\n-  4.666666666666667,\n-  4.666666666666667,\n-  7.333333333333333,\n-  7.666666666666667]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.032s\n\nFAILED (failures=1, errors=5)\n",
+        "duplicate_prev": true
+      },
+      {
+        "iteration": 3,
+        "model_response_sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+        "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+        "public_status": "test_failed",
+        "public_passed": false,
+        "public_count": 6,
+        "diagnostic": "---------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.0,[18 chars]66667, 4.666666666666667, 7.333333333333333, 7.666666666666667] != [4.0,[18 chars]66667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 3:\n4.666666666666667\n3.3333333333333335\n\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n- [4.0,\n-  3.5,\n-  4.666666666666667,\n-  4.666666666666667,\n-  7.333333333333333,\n-  7.666666666666667]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.029s\n\nFAILED (failures=1, errors=5)\n",
+        "duplicate_prev": true
+      },
+      {
+        "iteration": 4,
+        "model_response_sha256": "a77c175cb65232b0f846baacbbb2861fdc7a38a909b4044c06e364632ea94647",
+        "public_status": "invalid_format",
+        "public_passed": false,
+        "public_count": 0,
+        "note": "response ends with section marker, no second source; model-generated output invalid; no evaluator invoked"
+      }
+    ]
+  },
+  "nykra": {
+    "id": "b52dfc09ebdc48e38497a22762300935",
+    "policy": "adaptive",
+    "home": "C:\\Users\\admin\\AppData\\Local\\Temp\\rel-ai-mcp-ephemeral\\c92aaefaa18254d9\\cdee6f7a66d203e7b121b0dcce3d7fb2\\paired-north-mini-v1\\history_nykra",
+    "attempts": [
+      {
+        "iteration": 1,
+        "model_response_sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+        "patch_sha256": "a5c266793d8392c85b7d091f8e67131a3f9199a41a6e2fb2ebb5c9d9e5ce110e",
+        "public_status": "test_failed",
+        "public_passed": false,
+        "public_count": 6,
+        "diagnostic": "---------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.666666666666667, 3.6666666666666665, 4.0, 4.333333333333333] != [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 0:\n4.666666666666667\n4.0\n\nSecond list contains 2 additional elements.\nFirst extra element 4:\n5.0\n\n- [4.666666666666667, 3.6666666666666665, 4.0, 4.333333333333333]\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.034s\n\nFAILED (failures=1, errors=5)\n",
+        "elapsed": 2.539
+      },
+      {
+        "iteration": 2,
+        "model_response_sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+        "patch_sha256": "a5c266793d8392c85b7d091f8e67131a3f9199a41a6e2fb2ebb5c9d9e5ce110e",
+        "public_status": "test_failed",
+        "public_passed": false,
+        "public_count": 6,
+        "diagnostic": "---------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.666666666666667, 3.6666666666666665, 4.0, 4.333333333333333] != [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 0:\n4.666666666666667\n4.0\n\nSecond list contains 2 additional elements.\nFirst extra element 4:\n5.0\n\n- [4.666666666666667, 3.6666666666666665, 4.0, 4.333333333333333]\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.033s\n\nFAILED (failures=1, errors=5)\n",
+        "duplicate_prev": true
+      },
+      {
+        "iteration": 3,
+        "model_response_sha256": "39653cfcf6c17d9c0e12565e5ff8a5cc3ddd9d532ae09d6dba5dc18613847669",
+        "patch_sha256": "4795451b13be77b92abe417d3cf0cd46ccdacb318a6cf64bda568e768e4391f6",
+        "public_status": "test_failed",
+        "public_passed": false,
+        "public_count": 6,
+        "diagnostic": "---------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.666666666666667, 3.6666666666666665, 4.0, 4.333333333333333] != [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 0:\n4.666666666666667\n4.0\n\nSecond list contains 2 additional elements.\nFirst extra element 4:\n5.0\n\n- [4.666666666666667, 3.6666666666666665, 4.0, 4.333333333333333]\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.035s\n\nFAILED (failures=1, errors=5)\n",
+        "duplicate_prev": false
+      },
+      {
+        "iteration": 4,
+        "model_response_sha256": "f74dd200e12f50dc9141d070eed463f5147b627ed37d40c18ee59e8dd787810b",
+        "patch_sha256": "99eabc63eff8f2aed713980c76cac4c119d5e13428bfb4e63b8b20a2b29e15a3",
+        "public_status": "test_failed",
+        "public_passed": false,
+        "public_count": 6,
+        "diagnostic": "ublicRunningStatistics.test_running_mean_window)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.0, 3.5, 4.666666666666667, 2.75, 2.4, 2.1666666666666665] != [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 3:\n2.75\n3.3333333333333335\n\n- [4.0, 3.5, 4.666666666666667, 2.75, 2.4, 2.1666666666666665]\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nFAILED (failures=1)\n",
+        "action": "new_root"
+      }
+    ]
+  }
+}

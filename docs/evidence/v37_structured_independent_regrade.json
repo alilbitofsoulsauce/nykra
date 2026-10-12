@@ -1,0 +1,25 @@
+{
+  "schema": "nykra-v37-independent-live-structured-edit-docker-confirmation-v1",
+  "selected_model_response_sha256": "11a188cfee59df5ac81dce08e59c17195b1dd11227128f79e0997696649c7687",
+  "selected_patch_sha256": "7d69949dd851483e0ab525435808efcea82a9196ecd9a10b6003271a78131acd",
+  "source_trace_sha256": "fd5c3502e470c1011c515be80faecf206d0ee17417fa0e0fac5e8c4b830a1ad8",
+  "recheck_model_calls": 0,
+  "public": {
+    "status": "ok",
+    "passed": true,
+    "mode": "public",
+    "return_code": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "5f4da3a10467ed523d52edf10edfcd360269e31f5319fbb2e3c0632fb4663431",
+    "elapsed_seconds": 5.73
+  },
+  "hidden": {
+    "status": "ok",
+    "passed": true,
+    "mode": "hidden",
+    "return_code": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "0e0521ed7d2fcee382270388a1c00e4e1f0ccf95b91a3dd0450fcf866392a1ee",
+    "elapsed_seconds": 6.7
+  }
+}

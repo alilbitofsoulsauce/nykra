@@ -1,0 +1,228 @@
+{
+  "schema": "nykra-v31-independent-live-historical-issue-comparison-v1",
+  "protocol_sha256": "d50af1b42f21ebf0361a315d37fe822abe992bd5a32d88dac32cc6461f951f24",
+  "status": "completed",
+  "task_count": 3,
+  "historical_projects": [
+    "tqdm",
+    "youtube-dl"
+  ],
+  "prior_issue_reuse": true,
+  "model": "cohere/north-mini-code:free",
+  "independent_model_calls_per_arm": true,
+  "identical_first_prompt_per_issue": true,
+  "heldout_feedback_never_passed_to_model": true,
+  "reporting_units": "three paired historical issue instances, not independent attempts",
+  "arms": {
+    "baseline_depth": {
+      "hidden_verified_tasks_solved": 1,
+      "model_attempts": 8,
+      "actual_provider_calls": 8,
+      "avoided_provider_calls": 0,
+      "provider_reported_tokens": 3498,
+      "public_docker_evaluations": 8,
+      "public_docker_evaluations_reused": 0,
+      "hidden_docker_grading_sessions": 1,
+      "early_halts": 0
+    },
+    "nykra_optimized_depth": {
+      "hidden_verified_tasks_solved": 1,
+      "model_attempts": 8,
+      "actual_provider_calls": 8,
+      "avoided_provider_calls": 0,
+      "provider_reported_tokens": 3499,
+      "public_docker_evaluations": 6,
+      "public_docker_evaluations_reused": 2,
+      "hidden_docker_grading_sessions": 1,
+      "early_halts": 0
+    }
+  },
+  "comparisons": {
+    "hidden_verified_success_difference_optimized_minus_baseline": 0,
+    "public_docker_evaluations_avoided": 2,
+    "public_docker_avoidance_fraction": 0.25,
+    "actual_provider_call_difference": 0,
+    "provider_reported_token_difference_baseline_minus_optimized": -1
+  },
+  "causal_coding_accuracy_uplift_proven": false,
+  "claim_limits": [
+    "Prior Nykra-studied historical BugsInPy tasks, not unseen issues.",
+    "Only three issues across two projects; no statistical power.",
+    "One deliberately fixed low-capacity free model and one run per arm.",
+    "Both arms use depth, so this isolates operational optimizations and not adaptive exploration.",
+    "Exact request caching and two-failure early-stop had no cache hit/halt in this cohort.",
+    "Unusual same-content independent inference may reflect model/provider determinism.",
+    "No improvement in task success or model tokens was observed.",
+    "Separate public and hidden Docker graders inherit the limitations of earlier historical suites."
+  ],
+  "tasks": [
+    {
+      "task": "youtube-dl-28",
+      "project": "youtube-dl",
+      "buggy_commit": "bd1512d19649c280197729814766d590ea6c023b",
+      "raw_evidence_file": "docs/evidence/v31_live_issues/youtube-dl-28.json",
+      "raw_sha256": "3bad9903bb16c21ba039f5279f07fe679ccec9dcb5f6379db87093cd4c6ca986",
+      "hidden_reference_prevalidated_before_inference": true,
+      "arms": {
+        "baseline_depth": {
+          "model_calls": 2,
+          "provider_tokens": 1167,
+          "public_docker_evaluations": 2,
+          "public_docker_reuses": 0,
+          "hidden_verdict": "ok",
+          "task_solved": true,
+          "stop_reason": "public_pass",
+          "model_output_sha256": [
+            "ec591dc3f4297df541f1a47950d74af547b4f925b66fc9c07022cb8294f2de7c",
+            "35df50a6c57faa0e6f14228e68da49869a271e09d87c458ea95b2c3fdac58c9c"
+          ],
+          "candidate_source_sha256": [
+            "22dda4bf841c56364bd5e4dded949241cd8a5a48aace85675c73033503dee1b6",
+            "8ccd3c7a81e7cb4bba47fe9c9cbb3c71d755fe358cd31bc4158125492b2168f7"
+          ],
+          "public_grade_status": [
+            "test_failed",
+            "ok"
+          ]
+        },
+        "nykra_optimized_depth": {
+          "model_calls": 2,
+          "provider_tokens": 1167,
+          "public_docker_evaluations": 2,
+          "public_docker_reuses": 0,
+          "hidden_verdict": "ok",
+          "task_solved": true,
+          "stop_reason": "public_pass",
+          "model_output_sha256": [
+            "ec591dc3f4297df541f1a47950d74af547b4f925b66fc9c07022cb8294f2de7c",
+            "35df50a6c57faa0e6f14228e68da49869a271e09d87c458ea95b2c3fdac58c9c"
+          ],
+          "candidate_source_sha256": [
+            "22dda4bf841c56364bd5e4dded949241cd8a5a48aace85675c73033503dee1b6",
+            "8ccd3c7a81e7cb4bba47fe9c9cbb3c71d755fe358cd31bc4158125492b2168f7"
+          ],
+          "public_grade_status": [
+            "test_failed",
+            "ok"
+          ]
+        }
+      }
+    },
+    {
+      "task": "tqdm-1",
+      "project": "tqdm",
+      "buggy_commit": "8cc777fe8401a05d07f2c97e65d15e4460feab88",
+      "raw_evidence_file": "docs/evidence/v31_live_issues/tqdm-1.json",
+      "raw_sha256": "d9b97cc909be5d8040cbe4018173dc484105f2cc638041d5ddc5a1bdd5f9506f",
+      "hidden_reference_prevalidated_before_inference": true,
+      "arms": {
+        "baseline_depth": {
+          "model_calls": 3,
+          "provider_tokens": 1422,
+          "public_docker_evaluations": 3,
+          "public_docker_reuses": 0,
+          "hidden_verdict": "not_checked_no_public_pass",
+          "task_solved": false,
+          "stop_reason": "attempt_budget",
+          "model_output_sha256": [
+            "888b53e806d10c3eab736c0fb54a717eccc515c9da5bc60e1aaca86dac5ca58c",
+            "a3b38c3c2157654447f893bea553242ec341fce9721b218407ec594e1c63cfb4",
+            "a3b38c3c2157654447f893bea553242ec341fce9721b218407ec594e1c63cfb4"
+          ],
+          "candidate_source_sha256": [
+            "18a06ee78e029cb7c198dd9e7325e215c517ca74a73cda1e614de88eda7f1128",
+            "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d",
+            "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d"
+          ],
+          "public_grade_status": [
+            "test_failed",
+            "test_failed",
+            "test_failed"
+          ]
+        },
+        "nykra_optimized_depth": {
+          "model_calls": 3,
+          "provider_tokens": 1422,
+          "public_docker_evaluations": 2,
+          "public_docker_reuses": 1,
+          "hidden_verdict": "not_checked_no_public_pass",
+          "task_solved": false,
+          "stop_reason": "attempt_budget",
+          "model_output_sha256": [
+            "888b53e806d10c3eab736c0fb54a717eccc515c9da5bc60e1aaca86dac5ca58c",
+            "a3b38c3c2157654447f893bea553242ec341fce9721b218407ec594e1c63cfb4",
+            "a3b38c3c2157654447f893bea553242ec341fce9721b218407ec594e1c63cfb4"
+          ],
+          "candidate_source_sha256": [
+            "18a06ee78e029cb7c198dd9e7325e215c517ca74a73cda1e614de88eda7f1128",
+            "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d",
+            "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d"
+          ],
+          "public_grade_status": [
+            "test_failed",
+            "test_failed",
+            "test_failed"
+          ]
+        }
+      }
+    },
+    {
+      "task": "youtube-dl-43",
+      "project": "youtube-dl",
+      "buggy_commit": "cecaaf3f58ad9f544dbb79af1e565d9353fa2b2d",
+      "raw_evidence_file": "docs/evidence/v31_live_issues/youtube-dl-43.json",
+      "raw_sha256": "c86d8bd13649e295730debcf771730871e2f8ee3b9fdef67db1dfeb1cd57699a",
+      "hidden_reference_prevalidated_before_inference": true,
+      "arms": {
+        "baseline_depth": {
+          "model_calls": 3,
+          "provider_tokens": 909,
+          "public_docker_evaluations": 3,
+          "public_docker_reuses": 0,
+          "hidden_verdict": "not_checked_no_public_pass",
+          "task_solved": false,
+          "stop_reason": "attempt_budget",
+          "model_output_sha256": [
+            "2342f40a0803a7ef3851258a16f509158dc17e7bd1f15cc6d70f31e422066bde",
+            "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+            "2342f40a0803a7ef3851258a16f509158dc17e7bd1f15cc6d70f31e422066bde"
+          ],
+          "candidate_source_sha256": [
+            "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+            "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+            "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67"
+          ],
+          "public_grade_status": [
+            "test_failed",
+            "test_failed",
+            "test_failed"
+          ]
+        },
+        "nykra_optimized_depth": {
+          "model_calls": 3,
+          "provider_tokens": 910,
+          "public_docker_evaluations": 2,
+          "public_docker_reuses": 1,
+          "hidden_verdict": "not_checked_no_public_pass",
+          "task_solved": false,
+          "stop_reason": "attempt_budget",
+          "model_output_sha256": [
+            "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+            "2342f40a0803a7ef3851258a16f509158dc17e7bd1f15cc6d70f31e422066bde",
+            "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357"
+          ],
+          "candidate_source_sha256": [
+            "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+            "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+            "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df"
+          ],
+          "public_grade_status": [
+            "test_failed",
+            "test_failed",
+            "test_failed"
+          ]
+        }
+      }
+    }
+  ]
+}

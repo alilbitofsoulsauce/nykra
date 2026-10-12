@@ -1,0 +1,66 @@
+{
+  "id": "nykra-v37-new-historical-json-structured-edits-v1",
+  "frozen_before_any_v37_provider_call": true,
+  "task": "youtube-dl-32",
+  "project": "youtube-dl",
+  "origin": "BugsInPy metadata, previously unused coding benchmark issue",
+  "bug_info_sha256": "aa806dedb112d47354ce287045e4e872fb55539a5d548e73787170c21e8ad5b0",
+  "buggy_commit": "bf951c5e29548cfed80480389762edd29fcc8825",
+  "fixed_commit": "609a61e3e6fffce3d45e845f33ae2c5fa2d432ac",
+  "allowed_production_paths": [
+    "youtube_dl/extractor/npo.py",
+    "youtube_dl/utils.py"
+  ],
+  "buggy_context": [
+    {
+      "path": "youtube_dl/extractor/npo.py",
+      "buggy_context": "from __future__ import unicode_literals\n\nimport re\n\nfrom .common import InfoExtractor\nfrom ..utils import (\n    unified_strdate,\n    parse_duration,\n    qualities,\n    url_basename,\n)\n\n\nclass NPOIE(InfoExtractor):\n    IE_NAME = 'npo.nl'\n    _VALID_URL = r'https?://www\\.npo\\.nl/[^/]+/[^/]+/(?P<id>[^/?]+)'\n\n    _TESTS = [\n        {\n            'url': 'http://www.npo.nl/nieuwsuur/22-06-2014/VPWON_1220719',\n            'md5': '4b3f9c429157ec4775f2c9cb7b911016',\n            'info_dict': {\n                'id': 'VPWON_1220719',\n            \n[... intervening unchanged code ...]\n    def _get_info(self, video_id):\n        metadata = self._download_json(\n            'http://e.omroep.nl/metadata/aflevering/%s' % video_id,\n            video_id,\n            # We have to remove the javascript callback\n            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n        )\n        token_page = self._download_webpage(\n            'http://ida.omroep.nl/npoplayer/i.js',\n            video_id,\n            note='Downloading token'\n        )\n        token = self._search_regex(r'npoplayer\\.token = \"(.+?)\"', token_page, 'token')\n\n        formats = []\n        quality = qualities(['adaptive', 'wmv_sb', 'h264_sb', 'wmv_bb', 'h264_bb', 'wvc1_std', 'h264_std'])\n        for format_id in metadata['pubopties']:\n            format_info = self._download_json(\n                'http://ida.omroep.nl/odi/?prid=%s&puboptions=%s&adaptive=yes&token=%s' % (video_id, ",
+      "source_blob_sha256": "4fd3033bd9244bcf97d95930b1356418e65098528d08e0ef1e7bf183fec8bc3b"
+    },
+    {
+      "path": "youtube_dl/utils.py",
+      "buggy_context": "def strip_jsonp(code):\n    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n\n\ndef js_to_json(code):\n    def fix_kv(m):\n        v = m.group(0)\n        if v in ('true', 'false', 'null'):\n            return v\n        if v.startswith('\"'):\n            return v\n        if v.startswith(\"'\"):\n            v = v[1:-1]\n            v = re.sub(r\"\\\\\\\\|\\\\'|\\\"\", lambda m: {\n                '\\\\\\\\': '\\\\\\\\',\n                \"\\\\'\": \"'\",\n                '\"': '\\\\\"',\n            }[m.group(0)], v)\n        return '\"%s\"' % v\n\n    res = re.sub(r'''(?x)\n        \"(?:[^\"\\\\]*(?:\\\\\\\\|\\\\\")?)*\"|\n     ",
+      "source_blob_sha256": "8d402ce958651239e98e30bda3290e68fb14fc6c5dbc013b20b34f90fedb0a53"
+    }
+  ],
+  "public_fixed_commit_test": "test.test_utils.TestUtil.test_strip_jsonp",
+  "public_excerpt": "    def test_strip_jsonp(self):\n        stripped = strip_jsonp('cb ([ {\"id\":\"532cb\",\\n\\n\\n\"x\":\\n3}\\n]\\n);')\n        d = json.loads(stripped)\n        self.assertEqual(d, [{\"id\": \"532cb\", \"x\": 3}])\n\n        stripped = strip_jsonp('parseMetadata({\"STATUS\":\"OK\"})\\n\\n\\n//epc')\n        d = json.loads(stripped)\n        self.assertEqual(d, {'STATUS': 'OK'})\n",
+  "hidden_source_path": "docs/evidence/v37_hidden_npo_jsonp.py",
+  "hidden_source_sha256": "fc9a13980580d3e121c65b7d746973b14f412dad4d7ba29bf62812e29e4ed745",
+  "hidden_suite": "v37_npo_hidden",
+  "pinned_docker_image_id": "sha256:a4ae367e48252c42a50fcb5136b9fdf6fb2544e048494f4004891b3ca38e63e7",
+  "pinned_docker_image_tag": "nykra-py38-pytest:v20nose",
+  "source_patch_max_bytes": 131072,
+  "preflight": {
+    "buggy_public": "test_failed",
+    "buggy_hidden": "test_failed",
+    "reference_public": "ok",
+    "reference_hidden": "ok"
+  },
+  "arms": [
+    "baseline_raw_git_diff",
+    "nykra_structured_adapter"
+  ],
+  "arm_order": [
+    "baseline_raw_git_diff",
+    "nykra_structured_adapter"
+  ],
+  "experiment": "output_format_assembly_contrast_not_adaptive_policy_comparison",
+  "model": "gpt-5.6-luna",
+  "auth": "ChatGPT Codex OAuth",
+  "reasoning": "low",
+  "matched": [
+    "same real task",
+    "same context",
+    "same frozen public and hidden tests",
+    "same model",
+    "same first-order arm status",
+    "each allowed to revise with actual public feedback"
+  ],
+  "difference": "baseline asks model to author Git diff; structured arm asks exact JSON {edits:[{path,old,new}]} and deterministic audited adapter constructs the Git patch",
+  "hidden_is_private": true,
+  "stop": "verified hidden passing repair, provider failure, evaluator failure, or operator interruption; no arbitrary attempt budget",
+  "not_an_unbiased_causal_trial": "format prompts differ, one historical task only, samples not replicated",
+  "provider_cost": "ChatGPT plan-managed token usage, not API billed costs",
+  "no_commit_push": true
+}

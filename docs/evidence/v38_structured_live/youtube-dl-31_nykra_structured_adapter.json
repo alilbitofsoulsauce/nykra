@@ -1,0 +1,155 @@
+{
+  "schema": "nykra-v38-multiissue-structured-replication-v1",
+  "task": "youtube-dl-31",
+  "arm": "nykra_structured_adapter",
+  "model": "gpt-5.6-luna",
+  "protocol_sha256": "3370cda8492374555b2e2696a292b7be5fa9b9072dae36ff03f94a3acaa27df3",
+  "preflight_sha256": "fb335e30ecdac0f2675df28a764a5b5f30bc9784af8b43fd0edf3baf5618ef59",
+  "status": "hidden_verified",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "8c30a6664fb7305447f2fff2a3b41b80b90ba660148045b7beda4ee1dfb294ff",
+      "raw_codex_output": "{\"edits\":[{\"path\":\"youtube_dl/extractor/minhateca.py\",\"old\":\"    int_or_none,\\n    parse_filesize,\",\"new\":\"    int_or_none,\\n    parse_duration,\\n    parse_filesize,\"},{\"path\":\"youtube_dl/extractor/minhateca.py\",\"old\":\"        duration = int_or_none(self._html_search_regex(\\n            r'(?s)<p class=\\\"fileLeng[ht][th]\\\">.*?([0-9]+)\\\\s*s',\\n            webpage, 'duration', fatal=False))\",\"new\":\"        duration = parse_duration(self._html_search_regex(\\n            r'(?s)<p class=\\\"fileLeng[ht][th]\\\">.*?([^<]+)',\\n            webpage, 'duration', fatal=False))\"},{\"path\":\"youtube_dl/utils.py\",\"old\":\"    if not m:\\n        return None\\n    res = int(m.group('secs'))\",\"new\":\"    if not m:\\n        m = re.match(r'(?ix)^(?P<value>[0-9]+(?:\\\\.[0-9]+)?)\\\\s*(?:hours?|h)$', s)\\n        if m:\\n            return float(m.group('value')) * 60 * 60\\n        return None\\n    res = int(m.group('secs'))\"}]}",
+      "raw_output_sha256": "c519def1a8cf11a4fa521d4ee3f77013027e9ef45d3f5f34c5af725c4165184f",
+      "structured_adapter": {
+        "schema": "nykra-exact-edit-adapter-v1",
+        "edits": [
+          {
+            "edit": 1,
+            "path": "youtube_dl/extractor/minhateca.py",
+            "start": 190,
+            "old_bytes": 36,
+            "new_bytes": 56
+          },
+          {
+            "edit": 2,
+            "path": "youtube_dl/extractor/minhateca.py",
+            "start": 1839,
+            "old_bytes": 166,
+            "new_bytes": 164
+          },
+          {
+            "edit": 3,
+            "path": "youtube_dl/utils.py",
+            "start": 37337,
+            "old_bytes": 64,
+            "new_bytes": 212
+          }
+        ],
+        "files_changed": [
+          "youtube_dl/extractor/minhateca.py",
+          "youtube_dl/utils.py"
+        ],
+        "patch_sha256": "0c6774dd36a7bc55c31db4154ca6ebd406f393bac0f3257ab4de134fa5aa449c"
+      },
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -8,6 +8,7 @@\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -52,8 +53,8 @@\n         filesize_approx = parse_filesize(self._html_search_regex(\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([^<]+)',\n             webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"downloadsCounter\">([0-9]+)</p>',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1212,6 +1212,9 @@\n             )?\n             (?P<secs>[0-9]+)(?P<ms>\\.[0-9]+)?\\s*(?:s|secs?|seconds?)?$''', s)\n     if not m:\n+        m = re.match(r'(?ix)^(?P<value>[0-9]+(?:\\.[0-9]+)?)\\s*(?:hours?|h)$', s)\n+        if m:\n+            return float(m.group('value')) * 60 * 60\n         return None\n     res = int(m.group('secs'))\n     if m.group('mins'):\n",
+      "patch_sha256": "0c6774dd36a7bc55c31db4154ca6ebd406f393bac0f3257ab4de134fa5aa449c",
+      "model_usage": {
+        "input_tokens": 15670,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 800,
+        "reasoning_output_tokens": 516
+      },
+      "model_seconds": 23.135,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "mode": "public",
+        "return_code": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "9a95ec7a11276c4bcabff314324dc47f145c554ac5efad5569ac8d61ec6d21c3",
+        "elapsed_seconds": 6.4,
+        "diagnostic": "FAIL: test_parse_duration (test.test_utils.TestUtil)\nAssertionError: None != 180\nFAILED (failures=1)"
+      },
+      "public_called": true,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-2",
+      "parent_id": "attempt-1",
+      "policy_action": "revise",
+      "prompt_sha256": "ef7ca78854ab8cce5bd5e7917ad153bb152426d7094518ae2e18ca4dcd0e79f4",
+      "raw_codex_output": "{\"edits\":[{\"path\":\"youtube_dl/extractor/minhateca.py\",\"old\":\"    int_or_none,\\n    parse_filesize,\",\"new\":\"    int_or_none,\\n    parse_duration,\\n    parse_filesize,\"},{\"path\":\"youtube_dl/extractor/minhateca.py\",\"old\":\"        duration = int_or_none(self._html_search_regex(\\n            r'(?s)<p class=\\\"fileLeng[ht][th]\\\">.*?([0-9]+)\\\\s*s',\\n            webpage, 'duration', fatal=False))\",\"new\":\"        duration = parse_duration(self._html_search_regex(\\n            r'(?s)<p class=\\\"fileLeng[ht][th]\\\">.*?([^<]+)',\\n            webpage, 'duration', fatal=False))\"},{\"path\":\"youtube_dl/utils.py\",\"old\":\"    if not m:\\n        return None\\n    res = int(m.group('secs'))\",\"new\":\"    if not m:\\n        m = re.match(\\n            r'(?ix)^(?P<value>[0-9]+(?:\\\\.[0-9]+)?)\\\\s*'\\n            r'(?P<unit>h(?:ours?)?|m(?:ins?|inutes?)?|s(?:ecs?|econds?)?)$', s)\\n        if not m:\\n            return None\\n        value = float(m.group('value'))\\n        unit = m.group('unit').lower()\\n        return value * {'h': 3600, 'hour': 3600, 'hours': 3600,\\n                        'm': 60, 'min': 60, 'mins': 60, 'minute': 60,\\n                        'minutes': 60, 's': 1, 'sec': 1, 'secs': 1,\\n                        'second': 1, 'seconds': 1}[unit]\\n    res = int(m.group('secs'))\"}]}",
+      "raw_output_sha256": "64e5ba4234dac7569f8ca7fa8af528952663ca8722ce19264963a50bbaada47f",
+      "structured_adapter": {
+        "schema": "nykra-exact-edit-adapter-v1",
+        "edits": [
+          {
+            "edit": 1,
+            "path": "youtube_dl/extractor/minhateca.py",
+            "start": 190,
+            "old_bytes": 36,
+            "new_bytes": 56
+          },
+          {
+            "edit": 2,
+            "path": "youtube_dl/extractor/minhateca.py",
+            "start": 1839,
+            "old_bytes": 166,
+            "new_bytes": 164
+          },
+          {
+            "edit": 3,
+            "path": "youtube_dl/utils.py",
+            "start": 37337,
+            "old_bytes": 64,
+            "new_bytes": 581
+          }
+        ],
+        "files_changed": [
+          "youtube_dl/extractor/minhateca.py",
+          "youtube_dl/utils.py"
+        ],
+        "patch_sha256": "87ac07baa423f9d09bd13ec27376249110b6ec9c3e46a6be1dab8f712e30e16f"
+      },
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/minhateca.py b/youtube_dl/extractor/minhateca.py\n--- a/youtube_dl/extractor/minhateca.py\n+++ b/youtube_dl/extractor/minhateca.py\n@@ -8,6 +8,7 @@\n )\n from ..utils import (\n     int_or_none,\n+    parse_duration,\n     parse_filesize,\n )\n \n@@ -52,8 +53,8 @@\n         filesize_approx = parse_filesize(self._html_search_regex(\n             r'<p class=\"fileSize\">(.*?)</p>',\n             webpage, 'file size approximation', fatal=False))\n-        duration = int_or_none(self._html_search_regex(\n-            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n+        duration = parse_duration(self._html_search_regex(\n+            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([^<]+)',\n             webpage, 'duration', fatal=False))\n         view_count = int_or_none(self._html_search_regex(\n             r'<p class=\"downloadsCounter\">([0-9]+)</p>',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1212,7 +1212,17 @@\n             )?\n             (?P<secs>[0-9]+)(?P<ms>\\.[0-9]+)?\\s*(?:s|secs?|seconds?)?$''', s)\n     if not m:\n-        return None\n+        m = re.match(\n+            r'(?ix)^(?P<value>[0-9]+(?:\\.[0-9]+)?)\\s*'\n+            r'(?P<unit>h(?:ours?)?|m(?:ins?|inutes?)?|s(?:ecs?|econds?)?)$', s)\n+        if not m:\n+            return None\n+        value = float(m.group('value'))\n+        unit = m.group('unit').lower()\n+        return value * {'h': 3600, 'hour': 3600, 'hours': 3600,\n+                        'm': 60, 'min': 60, 'mins': 60, 'minute': 60,\n+                        'minutes': 60, 's': 1, 'sec': 1, 'secs': 1,\n+                        'second': 1, 'seconds': 1}[unit]\n     res = int(m.group('secs'))\n     if m.group('mins'):\n         res += int(m.group('mins')) * 60\n",
+      "patch_sha256": "87ac07baa423f9d09bd13ec27376249110b6ec9c3e46a6be1dab8f712e30e16f",
+      "model_usage": {
+        "input_tokens": 16026,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 652,
+        "reasoning_output_tokens": 237
+      },
+      "model_seconds": 22.095,
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b46f03e81b55c8e3e5346c92e758f4c7d14b2a8aaf448b8e37d369250f991678",
+        "elapsed_seconds": 7.21
+      },
+      "public_called": true,
+      "public_reused_from": null,
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "fab652ecc86d6b18dc2c962e6277cffc122d5f3fe3d4b4f5428aa97bf8cda112",
+        "elapsed_seconds": 6.8
+      }
+    }
+  ],
+  "provider_calls": 2,
+  "reported_usage": {
+    "input_tokens": 31696,
+    "cached_input_tokens": 13056,
+    "output_tokens": 1452,
+    "reasoning_output_tokens": 753
+  },
+  "public_docker_calls": 2,
+  "public_docker_reuses": 0,
+  "hidden_docker_calls": 1,
+  "selected_patch_sha256": "87ac07baa423f9d09bd13ec27376249110b6ec9c3e46a6be1dab8f712e30e16f",
+  "selected_attempt": "attempt-2"
+}

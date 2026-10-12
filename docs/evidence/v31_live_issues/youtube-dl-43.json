@@ -1,0 +1,254 @@
+{
+  "schema": "nykra-v31-task-live-comparison-v1",
+  "task_id": "youtube-dl-43",
+  "grader": "v21",
+  "frozen_protocol_sha256": "d50af1b42f21ebf0361a315d37fe822abe992bd5a32d88dac32cc6461f951f24",
+  "upstream_buggy_commit": "cecaaf3f58ad9f544dbb79af1e565d9353fa2b2d",
+  "upstream_fixed_commit": "d6c7a367e88096bb17e323954002c084477fe908",
+  "original_function_sha256": "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+  "model": "cohere/north-mini-code:free",
+  "model_budget_per_arm": 3,
+  "grade_public_only_during_iteration": true,
+  "status": "completed",
+  "arms": [
+    {
+      "arm": "baseline_depth",
+      "optimized": false,
+      "policy": "depth",
+      "status": "completed",
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "source_sha256": "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+          "model_raw_output_sha256": "2342f40a0803a7ef3851258a16f509158dc17e7bd1f15cc6d70f31e422066bde",
+          "model_raw_output": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)",
+          "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+          "prompt_sha256": "f1657f99311bedd7104ec6f2521f3243c1e2d1b62f03d9b53d21c717c334267b",
+          "model_response_id": "gen-1791772165-ND4V0lf5UUzohogugfXv",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 168,
+            "completion_tokens": 55,
+            "total_tokens": 223
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+                "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+              }
+            ],
+            "elapsed_seconds": 5.2,
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 18.361
+        },
+        {
+          "attempt_number": 2,
+          "source_sha256": "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+          "model_raw_output_sha256": "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+          "model_raw_output": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+          "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+          "prompt_sha256": "9b7ffa87835e9e252dabb0b9f734efb27cab2219b5fbf46e17b88baf1004232d",
+          "model_response_id": "gen-1791772183-QIogVhXPzmDo8pG4pVwX",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 287,
+            "completion_tokens": 56,
+            "total_tokens": 343
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+                "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+              }
+            ],
+            "elapsed_seconds": 4.02,
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 6.562
+        },
+        {
+          "attempt_number": 3,
+          "source_sha256": "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+          "model_raw_output_sha256": "2342f40a0803a7ef3851258a16f509158dc17e7bd1f15cc6d70f31e422066bde",
+          "model_raw_output": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)",
+          "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+          "prompt_sha256": "483d9473b5538b48ee72406cb59b01ad44bb853936d270224b48b183a82730ee",
+          "model_response_id": "gen-1791772190-7Vp7Jb9bBZInuB0ee2Fs",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 288,
+            "completion_tokens": 55,
+            "total_tokens": 343
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+                "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+              }
+            ],
+            "elapsed_seconds": 3.79,
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 5.862
+        }
+      ],
+      "model_provider_calls": 3,
+      "model_calls_avoided": 0,
+      "provider_reported_tokens": 909,
+      "public_grader_calls": 3,
+      "public_grader_reuses": 0,
+      "model_attempts": 3,
+      "stop_reason": "attempt_budget",
+      "hidden_status": "not_checked_no_public_pass",
+      "task_solved": false
+    },
+    {
+      "arm": "nykra_optimized_depth",
+      "optimized": true,
+      "policy": "depth",
+      "status": "completed",
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "source_sha256": "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+          "model_raw_output_sha256": "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+          "model_raw_output": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+          "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+          "prompt_sha256": "f1657f99311bedd7104ec6f2521f3243c1e2d1b62f03d9b53d21c717c334267b",
+          "model_response_id": "gen-1791772196-BuXhg2Kp8CnuTiXDEhGg",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 168,
+            "completion_tokens": 56,
+            "total_tokens": 224
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "0297bc1f906a770d78fd1132bdaec7134fc3483eacace612fea679441aaf1e15",
+                "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+              }
+            ],
+            "elapsed_seconds": 4.35,
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 7.734
+        },
+        {
+          "attempt_number": 2,
+          "source_sha256": "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+          "model_raw_output_sha256": "2342f40a0803a7ef3851258a16f509158dc17e7bd1f15cc6d70f31e422066bde",
+          "model_raw_output": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)",
+          "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+          "prompt_sha256": "483d9473b5538b48ee72406cb59b01ad44bb853936d270224b48b183a82730ee",
+          "model_response_id": "gen-1791772203-wsL11ffH33Gzh7MwvZ0U",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 288,
+            "completion_tokens": 55,
+            "total_tokens": 343
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+                "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+              }
+            ],
+            "elapsed_seconds": 4.09,
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 10.852
+        },
+        {
+          "attempt_number": 3,
+          "source_sha256": "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+          "model_raw_output_sha256": "2aa5e7633e9f41b4213d27f92bd676a3cafb9c8a83920964a4a06f490da2a357",
+          "model_raw_output": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+          "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+          "prompt_sha256": "9b7ffa87835e9e252dabb0b9f734efb27cab2219b5fbf46e17b88baf1004232d",
+          "model_response_id": "gen-1791772214-mI0ACbBMa86jjqCQFW0v",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 287,
+            "completion_tokens": 56,
+            "total_tokens": 343
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "0297bc1f906a770d78fd1132bdaec7134fc3483eacace612fea679441aaf1e15",
+                "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+              }
+            ],
+            "elapsed_seconds": 4.35,
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          },
+          "public_grade_reused": true,
+          "public_grade_source_attempt": 1,
+          "inference_plus_public_work_seconds": 14.057
+        }
+      ],
+      "model_provider_calls": 3,
+      "model_calls_avoided": 0,
+      "provider_reported_tokens": 910,
+      "public_grader_calls": 2,
+      "public_grader_reuses": 1,
+      "model_attempts": 3,
+      "stop_reason": "attempt_budget",
+      "hidden_status": "not_checked_no_public_pass",
+      "task_solved": false
+    }
+  ],
+  "hidden_evaluated_after_arms": true
+}

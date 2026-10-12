@@ -1,0 +1,156 @@
+{
+  "schema": "nykra-v39-cross-repository-pysnooper-real-model-repair-v1",
+  "task": "PySnooper-1",
+  "arm": "baseline_raw_git_diff",
+  "model": "gpt-5.6-luna",
+  "protocol_sha256": "0701ac0722531f7500a0d036d4052ccba60f916729160bd8d93560df4d6e637f",
+  "preflight_sha256": "ec6b3e08a3d96bd34d5d3822586bc32e20f8c691903b3f3152a9da43c14eefa8",
+  "status": "budget_exhausted",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "134fef9c16730895c2730bff0597e5e96610156d3d9f8d1d6734b19fc01194f0",
+      "raw_codex_output": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -3,10 +3,12 @@\n '''Python 2/3 compatibility'''\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+open = io.open\n \n if hasattr(abc, 'ABC'):\n     ABC = abc.ABC\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -92,7 +92,7 @@ def get_source_from_frame(frame):\n     # If we just read the source from a file, or if the loader did not\n     # apply tokenize.detect_encoding to decode the source into a\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -155,7 +155,7 @@ class FileWriter(object):\n         self.overwrite = overwrite\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False",
+      "raw_output_sha256": "fa63c717335bd8b622c6714c3c7f5b826d2207e64023d000298c05cf58c807dd",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -3,10 +3,12 @@\n '''Python 2/3 compatibility'''\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+open = io.open\n \n if hasattr(abc, 'ABC'):\n     ABC = abc.ABC\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -92,7 +92,7 @@ def get_source_from_frame(frame):\n     # If we just read the source from a file, or if the loader did not\n     # apply tokenize.detect_encoding to decode the source into a\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -155,7 +155,7 @@ class FileWriter(object):\n         self.overwrite = overwrite\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False\n",
+      "patch_sha256": "4138114bd7e23205f3d94a8761915cc226f6528bab04fa34348f0f804c6db46e",
+      "model_usage": {
+        "input_tokens": 95740,
+        "cached_input_tokens": 74496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1672,
+        "reasoning_output_tokens": 826
+      },
+      "model_seconds": 33.524,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: patch fragment without header at line 31: @@ -155,7 +155,7 @@ class FileWriter(object):"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-2",
+      "parent_id": "attempt-1",
+      "policy_action": "revise",
+      "prompt_sha256": "c3d7854e791ebe9c748b03f7ddaecc885e691fdc49c7b1467b9a449b53a556b7",
+      "raw_codex_output": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -4,9 +4,11 @@\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+open = io.open\n \n if hasattr(abc, 'ABC'):\n     ABC = abc.ABC\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -92,7 +92,7 @@ def get_source_from_frame(frame):\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -155,7 +155,8 @@ class FileWriter(object):\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False",
+      "raw_output_sha256": "407689255070fff9d224ed18edbbcb6d9d15ae4d7b75ad879c8bba2d9ee23f1d",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -4,9 +4,11 @@\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+open = io.open\n \n if hasattr(abc, 'ABC'):\n     ABC = abc.ABC\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -92,7 +92,7 @@ def get_source_from_frame(frame):\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -155,7 +155,8 @@ class FileWriter(object):\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False\n",
+      "patch_sha256": "85decfa0021222ad05838302a34c5dbc482ae42ae00cc59d535a568322c3cc87",
+      "model_usage": {
+        "input_tokens": 15982,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 430,
+        "reasoning_output_tokens": 93
+      },
+      "model_seconds": 11.03,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 28"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-3",
+      "parent_id": "attempt-2",
+      "policy_action": "revise",
+      "prompt_sha256": "70d41c2908f04356c6275d0c15151555415f61a6a486ad2f1be8dd5b839d1eaf",
+      "raw_codex_output": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -3,9 +3,11 @@\n '''Python 2/3 compatibility'''\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+open = io.open\n \n if hasattr(abc, 'ABC'):\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -89,7 +89,7 @@ def get_source_from_frame(frame):\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -152,7 +152,8 @@ class FileWriter(object):\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False",
+      "raw_output_sha256": "cff7dc1f5f3c2c61f5966b5016bbf3adfd1a05550d759480c25b857407852507",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -3,9 +3,11 @@\n '''Python 2/3 compatibility'''\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+open = io.open\n \n if hasattr(abc, 'ABC'):\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -89,7 +89,7 @@ def get_source_from_frame(frame):\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -152,7 +152,8 @@ class FileWriter(object):\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False\n",
+      "patch_sha256": "47a177a4288cf25ec2817bb39805e6bb4537faee0ca926d84e7c81e4d50ac1bb",
+      "model_usage": {
+        "input_tokens": 32320,
+        "cached_input_tokens": 15872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 710,
+        "reasoning_output_tokens": 277
+      },
+      "model_seconds": 17.204,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 28"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-4",
+      "parent_id": "attempt-3",
+      "policy_action": "revise",
+      "prompt_sha256": "b55b38ce9fca608e7a077afac049f44e077120b15214975505010f3586432eee",
+      "raw_codex_output": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -4,9 +4,11 @@\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+open = io.open\n \n if hasattr(abc, 'ABC'):\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -88,7 +88,7 @@ def get_source_from_frame(frame):\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -151,7 +151,8 @@ class FileWriter(object):\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False",
+      "raw_output_sha256": "5c3f00cfca17dff191992196e504b668592bb46fb842e1f54a8860e80567e57a",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -4,9 +4,11 @@\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+open = io.open\n \n if hasattr(abc, 'ABC'):\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -88,7 +88,7 @@ def get_source_from_frame(frame):\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -151,7 +151,8 @@ class FileWriter(object):\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False\n",
+      "patch_sha256": "c46799fef3ecd4407c96dd48b6dc0514accb48b3635a2b036126a9ec8b798c0d",
+      "model_usage": {
+        "input_tokens": 32270,
+        "cached_input_tokens": 28160,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 633,
+        "reasoning_output_tokens": 200
+      },
+      "model_seconds": 28.466,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 27"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-5",
+      "parent_id": "attempt-4",
+      "policy_action": "revise",
+      "prompt_sha256": "2727ecd006c33409f8819b6647e75a73d8e991a2e4ae14e5d2807d2b44859db6",
+      "raw_codex_output": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -3,9 +3,12 @@\n '''Python 2/3 compatibility'''\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+\n+open = io.open\n \n if hasattr(abc, 'ABC'):\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -84,7 +84,7 @@ def get_source_from_frame(frame):\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -148,7 +148,8 @@ class FileWriter(object):\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False\n",
+      "raw_output_sha256": "844061ead118a557fce090cc41dc8ff94f13c6e3cf3ba6b931b6a127e9e698f9",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/pysnooper/pycompat.py b/pysnooper/pycompat.py\n--- a/pysnooper/pycompat.py\n+++ b/pysnooper/pycompat.py\n@@ -3,9 +3,12 @@\n '''Python 2/3 compatibility'''\n \n import abc\n+import io\n import os\n import inspect\n import sys\n \n PY3 = (sys.version_info[0] == 3)\n+\n+open = io.open\n \n if hasattr(abc, 'ABC'):\ndiff --git a/pysnooper/tracer.py b/pysnooper/tracer.py\n--- a/pysnooper/tracer.py\n+++ b/pysnooper/tracer.py\n@@ -84,7 +84,7 @@ def get_source_from_frame(frame):\n     # string, then we should do that ourselves.\n     if isinstance(source[0], bytes):\n-        encoding = 'ascii'\n+        encoding = 'utf-8'\n         for line in source[:2]:\n             # File coding may be specified. Match pattern from PEP-263\n             # (https://www.python.org/dev/peps/pep-0263/)\n@@ -148,7 +148,8 @@ class FileWriter(object):\n \n     def write(self, s):\n-        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n+        with pycompat.open(self.path, 'w' if self.overwrite else 'a',\n+                           encoding='utf-8') as output_file:\n             output_file.write(s)\n         self.overwrite = False\n",
+      "patch_sha256": "844061ead118a557fce090cc41dc8ff94f13c6e3cf3ba6b931b6a127e9e698f9",
+      "model_usage": {
+        "input_tokens": 15911,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 439,
+        "reasoning_output_tokens": 99
+      },
+      "model_seconds": 10.994,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 29"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    }
+  ],
+  "provider_calls": 5,
+  "reported_usage": {
+    "input_tokens": 192223,
+    "cached_input_tokens": 144640,
+    "output_tokens": 3884,
+    "reasoning_output_tokens": 1495
+  },
+  "public_docker_calls": 0,
+  "public_docker_reuses": 0,
+  "hidden_docker_calls": 0
+}

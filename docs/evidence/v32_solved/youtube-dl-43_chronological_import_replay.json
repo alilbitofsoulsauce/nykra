@@ -1,0 +1,233 @@
+{
+  "schema": "nykra-v32-chronological-same-live-source-normalizer-replay-v1",
+  "task": "youtube-dl-43",
+  "model_source": "real separate frozen 2026-10-12 free model outputs",
+  "history_sha256": "0856530a22a4eaf828a65e0f72929811cfac06ae87fa0c22f33251ae73819524",
+  "original_historical_provider_exhaustion": "HTTP 429",
+  "new_provider_calls": 0,
+  "no_new_model_source_authored": true,
+  "normalization": "AST-based moving allowlisted top-level stdlib imports inside sole original function; original body AST unchanged",
+  "model_attempts_seen_before_429": 32,
+  "new_model_attempts_pre_429": 29,
+  "retrospectively_checked_attempts": 8,
+  "public_docker_evaluations": 4,
+  "public_reuses": 4,
+  "earliest_hidden_verified_attempt": "attempt-11",
+  "hidden_verified": true,
+  "original_live_run_was_not_terminated_at_earliest_recoverable_solution": true,
+  "not_live_randomized_comparison": true,
+  "no_general_accuracy_claim": true,
+  "raw_outcomes": [
+    {
+      "attempt_id": "attempt-4",
+      "model_response_id": "gen-1791773877-xSyX0PVQBkarpHZNR1Bo",
+      "raw_sha256": "828d2fdc66f1112bc51fa97f08d4f292b6d37fd2ddacd981a82ad47efa49a4f3",
+      "source_normalization": "normalized_stdlib_imports",
+      "imports_moved": 1,
+      "normalized_sha256": "73a7a10281f0c0eeb86e9bcb80109f7e73a2ac8a2cdfdcb89e1652d51a6219d8",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "6ddf0fe90d37cf96ea8315cdc838928ffe7c6e304ec66cdd36960b1fdb484e4a",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: 'e' != ''\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 5.81,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: 'e' != ''\nFAILED (failures=1)"
+      },
+      "public_docker_called": true,
+      "public_reused_from": null
+    },
+    {
+      "attempt_id": "attempt-5",
+      "model_response_id": "gen-1791773879-XXKggb8ol3yrphmPnYDb",
+      "raw_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "source_normalization": "normalized_stdlib_imports",
+      "imports_moved": 1,
+      "normalized_sha256": "b1db583b93240ff38830c2bdb52bfba3b6013dd44acb4cc2e41aedaaa8376b25",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 6.14,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "public_docker_called": true,
+      "public_reused_from": null
+    },
+    {
+      "attempt_id": "attempt-6",
+      "model_response_id": "gen-1791773880-FzhtAKTd2RvSxwXGZj0K",
+      "raw_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "source_normalization": "normalized_stdlib_imports",
+      "imports_moved": 1,
+      "normalized_sha256": "b1db583b93240ff38830c2bdb52bfba3b6013dd44acb4cc2e41aedaaa8376b25",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 6.14,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "public_docker_called": false,
+      "public_reused_from": "attempt-5"
+    },
+    {
+      "attempt_id": "attempt-7",
+      "model_response_id": "gen-1791773881-tepFLpMkZ0xpSUPul0a7",
+      "raw_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "source_normalization": "normalized_stdlib_imports",
+      "imports_moved": 1,
+      "normalized_sha256": "b1db583b93240ff38830c2bdb52bfba3b6013dd44acb4cc2e41aedaaa8376b25",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 6.14,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "public_docker_called": false,
+      "public_reused_from": "attempt-5"
+    },
+    {
+      "attempt_id": "attempt-8",
+      "model_response_id": "gen-1791773882-GAro5zdziuy2jIqI95DQ",
+      "raw_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "source_normalization": "normalized_stdlib_imports",
+      "imports_moved": 1,
+      "normalized_sha256": "b1db583b93240ff38830c2bdb52bfba3b6013dd44acb4cc2e41aedaaa8376b25",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 6.14,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "public_docker_called": false,
+      "public_reused_from": "attempt-5"
+    },
+    {
+      "attempt_id": "attempt-9",
+      "model_response_id": "gen-1791773883-uUzyaT3X5TgJV27Qwuo2",
+      "raw_sha256": "f8da268d5975cb85baf76952c0d70d9979d3b11de3c31fa196096ce25c3d9caa",
+      "source_normalization": "normalized_stdlib_imports",
+      "imports_moved": 1,
+      "normalized_sha256": "d6fbeb6bea2edc85bb7da5cf2422868dba946121ddd4a52b5a46e851bbf41897",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "3134302e950b90cc8fd8f589ad4297fb681272a9922f336f1bbb9260d73877c4",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: 'foo.de' != ''\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 6.05,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: 'foo.de' != ''\nFAILED (failures=1)"
+      },
+      "public_docker_called": true,
+      "public_reused_from": null
+    },
+    {
+      "attempt_id": "attempt-10",
+      "model_response_id": "gen-1791773888-kS18Tw6XI44tdMKzMenP",
+      "raw_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "source_normalization": "normalized_stdlib_imports",
+      "imports_moved": 1,
+      "normalized_sha256": "b1db583b93240ff38830c2bdb52bfba3b6013dd44acb4cc2e41aedaaa8376b25",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 6.14,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "public_docker_called": false,
+      "public_reused_from": "attempt-5"
+    },
+    {
+      "attempt_id": "attempt-11",
+      "model_response_id": "gen-1791773889-vJ6Nlx6DiXbeLLAYNFix",
+      "raw_sha256": "25d40a1d2e6d6f40d40899a5e64719235ff38691d9dda2d090c6d1db219acca2",
+      "source_normalization": "normalized_stdlib_imports",
+      "imports_moved": 1,
+      "normalized_sha256": "97695a42fa10f9f2faff7e7c0fcb6e0f0f519e2eaebcad5e544e861fc8dde743",
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045"
+          }
+        ],
+        "elapsed_seconds": 6.41
+      },
+      "public_docker_called": true,
+      "public_reused_from": null,
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "aece0b59f94004ff6484ed589e910c70269686c7290ca5a65d6577c9d53ceda1"
+          }
+        ],
+        "elapsed_seconds": 7.2
+      }
+    }
+  ]
+}

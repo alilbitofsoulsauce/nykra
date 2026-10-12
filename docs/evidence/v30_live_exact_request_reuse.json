@@ -1,0 +1,55 @@
+{
+  "schema": "nykra-v30-live-free-exact-request-reuse-v1",
+  "source": "Three live CLI invocations on the user's authorized Windows Nykra workstation using the same prompt and fixed free OpenRouter model, verified output hashes",
+  "task": "Small Python source generation; exact same request repeated three times",
+  "model": "cohere/north-mini-code:free",
+  "request_count": 3,
+  "actual_provider_calls": 1,
+  "provider_calls_avoided": 2,
+  "call_avoidance_fraction": 0.6666666666666666,
+  "actual_provider_tokens": 32,
+  "additional_provider_tokens_on_hits": 0,
+  "provider_reported_total_cost_usd": 0,
+  "first_response_id": "gen-1791770405-6viVQR70mq2SM5w9RJaD",
+  "output_sha256": "efbff440606a2d480d484d7aaad2c25abdd9973f1d94b347d33fceffa9d396a2",
+  "unique_response_ids": 1,
+  "outputs_identical_by_sha256": true,
+  "raw_prompts_or_model_source_persisted_in_public_evidence": false,
+  "first_completion_latency_seconds": 5.307,
+  "independent_model_comparison": false,
+  "task_correctness_graded": false,
+  "does_not_establish_general_savings_or_agent_accuracy": true,
+  "limitation": "Differently worded or context-enriched prompts miss the exact-request cache; no free-model provider API call is predicted for such prompts.",
+  "calls": [
+    {
+      "iteration": 1,
+      "cache_hit": false,
+      "provider_called": true,
+      "provider_calls_avoided": 0,
+      "provider_tokens_this_request": 32,
+      "provider_reported_cost_this_request": 0,
+      "output_sha256": "efbff440606a2d480d484d7aaad2c25abdd9973f1d94b347d33fceffa9d396a2",
+      "original_response_id": "gen-1791770405-6viVQR70mq2SM5w9RJaD"
+    },
+    {
+      "iteration": 2,
+      "cache_hit": true,
+      "provider_called": false,
+      "provider_calls_avoided": 1,
+      "provider_tokens_this_request": 0,
+      "provider_reported_cost_this_request": 0,
+      "output_sha256": "efbff440606a2d480d484d7aaad2c25abdd9973f1d94b347d33fceffa9d396a2",
+      "original_response_id": "gen-1791770405-6viVQR70mq2SM5w9RJaD"
+    },
+    {
+      "iteration": 3,
+      "cache_hit": true,
+      "provider_called": false,
+      "provider_calls_avoided": 1,
+      "provider_tokens_this_request": 0,
+      "provider_reported_cost_this_request": 0,
+      "output_sha256": "efbff440606a2d480d484d7aaad2c25abdd9973f1d94b347d33fceffa9d396a2",
+      "original_response_id": "gen-1791770405-6viVQR70mq2SM5w9RJaD"
+    }
+  ]
+}

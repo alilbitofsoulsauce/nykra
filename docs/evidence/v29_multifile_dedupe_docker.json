@@ -1,0 +1,269 @@
+{
+  "schema": "nykra-real-docker-duplicate-work-replay-v1",
+  "kind": "controlled deterministic trace-pattern replay, not model inference",
+  "trace_source": "v0.28 depth A,A,A and adaptive A,A,B,C",
+  "test_kind": "synthetic two-module intentionally failing Git patches",
+  "fixture_head": "59ee16a38fc53867fa4df82faea0e163e232343e",
+  "fixture_clean_after": true,
+  "docker_image_id": "sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f",
+  "test_target": "tests.test_invoice",
+  "patch_sha256": {
+    "A": "8ac947720de7d65056b2385d091e71219551416b877109a23f4a3d7aaccfca6a",
+    "B": "0ea907adaa558b60e0c72ce98550d6fe1e87b170ffe33a5a126fb83925f9d276",
+    "C": "33d7650ab3948e326d5e29aecf59794f1da490b100f53c9f6c74ecee1c172fe8"
+  },
+  "evaluator_calls_without_cache": 7,
+  "evaluator_calls_with_cache": 4,
+  "avoided_docker_evaluations": 3,
+  "avoided_fraction": 0.42857142857142855,
+  "task_success_without_cache": false,
+  "task_success_with_cache": false,
+  "same_model_attempt_budgets": true,
+  "opt_in_only": true,
+  "wall_time_confounded_by_cold_warm_startup": true,
+  "flaky_or_environment_sensitive_tests_must_not_use_cache": true,
+  "runs": [
+    {
+      "policy": "depth",
+      "dedupe_enabled": false,
+      "submitted_patches": [
+        "A",
+        "A",
+        "A"
+      ],
+      "total_submit_wall_seconds": 6.5852,
+      "public_work": {
+        "public_evaluator_calls": 3,
+        "public_evaluator_reuses": 0,
+        "model_attempts_recorded": 3
+      },
+      "attempts": [
+        {
+          "patch": "A",
+          "controller_action": "new_root",
+          "attempt_id": "attempt-1",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 2.4907
+        },
+        {
+          "patch": "A",
+          "controller_action": "revise",
+          "attempt_id": "attempt-2",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 1.9019
+        },
+        {
+          "patch": "A",
+          "controller_action": "revise",
+          "attempt_id": "attempt-3",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 2.1523
+        }
+      ],
+      "finalized_without_passing_patch": true
+    },
+    {
+      "policy": "depth",
+      "dedupe_enabled": true,
+      "submitted_patches": [
+        "A",
+        "A",
+        "A"
+      ],
+      "total_submit_wall_seconds": 2.1361,
+      "public_work": {
+        "public_evaluator_calls": 1,
+        "public_evaluator_reuses": 2,
+        "model_attempts_recorded": 3
+      },
+      "attempts": [
+        {
+          "patch": "A",
+          "controller_action": "new_root",
+          "attempt_id": "attempt-1",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 1.8276
+        },
+        {
+          "patch": "A",
+          "controller_action": "revise",
+          "attempt_id": "attempt-2",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 0,
+          "reused": true,
+          "reused_from": "attempt-1",
+          "test_exit_code": 1,
+          "submit_wall_seconds": 0.1393
+        },
+        {
+          "patch": "A",
+          "controller_action": "revise",
+          "attempt_id": "attempt-3",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 0,
+          "reused": true,
+          "reused_from": "attempt-1",
+          "test_exit_code": 1,
+          "submit_wall_seconds": 0.1337
+        }
+      ],
+      "finalized_without_passing_patch": true
+    },
+    {
+      "policy": "adaptive",
+      "dedupe_enabled": true,
+      "submitted_patches": [
+        "A",
+        "A",
+        "B",
+        "C"
+      ],
+      "total_submit_wall_seconds": 6.5878,
+      "public_work": {
+        "public_evaluator_calls": 3,
+        "public_evaluator_reuses": 1,
+        "model_attempts_recorded": 4
+      },
+      "attempts": [
+        {
+          "patch": "A",
+          "controller_action": "new_root",
+          "attempt_id": "attempt-1",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 1.939
+        },
+        {
+          "patch": "A",
+          "controller_action": "revise",
+          "attempt_id": "attempt-2",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 0,
+          "reused": true,
+          "reused_from": "attempt-1",
+          "test_exit_code": 1,
+          "submit_wall_seconds": 0.1348
+        },
+        {
+          "patch": "B",
+          "controller_action": "revise",
+          "attempt_id": "attempt-3",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 2.1405
+        },
+        {
+          "patch": "C",
+          "controller_action": "new_root",
+          "attempt_id": "attempt-4",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 2.3212
+        }
+      ],
+      "finalized_without_passing_patch": true
+    },
+    {
+      "policy": "adaptive",
+      "dedupe_enabled": false,
+      "submitted_patches": [
+        "A",
+        "A",
+        "B",
+        "C"
+      ],
+      "total_submit_wall_seconds": 8.1188,
+      "public_work": {
+        "public_evaluator_calls": 4,
+        "public_evaluator_reuses": 0,
+        "model_attempts_recorded": 4
+      },
+      "attempts": [
+        {
+          "patch": "A",
+          "controller_action": "new_root",
+          "attempt_id": "attempt-1",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 2.3144
+        },
+        {
+          "patch": "A",
+          "controller_action": "revise",
+          "attempt_id": "attempt-2",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 1.8026
+        },
+        {
+          "patch": "B",
+          "controller_action": "revise",
+          "attempt_id": "attempt-3",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 1.8146
+        },
+        {
+          "patch": "C",
+          "controller_action": "new_root",
+          "attempt_id": "attempt-4",
+          "status": "test_failed",
+          "tests_run_original": 2,
+          "tests_executed_now": 2,
+          "reused": false,
+          "reused_from": null,
+          "test_exit_code": 1,
+          "submit_wall_seconds": 2.1375
+        }
+      ],
+      "finalized_without_passing_patch": true
+    }
+  ]
+}

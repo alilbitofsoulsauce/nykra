@@ -1,0 +1,85 @@
+diff --git a/nykra/multifile_workflow.py b/nykra/multifile_workflow.py
+index f282fb2..4c948ee 100644
+--- a/nykra/multifile_workflow.py
++++ b/nykra/multifile_workflow.py
+@@ -189,24 +189,30 @@ def submit(session_id, patch_text, *, approve=False, home=None):
+             diagnostic = result.get("test_stderr_preview", "")[-900:]
+             if state["executor"] == "docker" and result["test_exit_code"] in (125, 126, 127):
+                 raise ValueError("Docker evaluator failed before running public tests")
+-            # Python unittest exits 0 even when discovery finds zero tests.
+-            # Do not call that a verified public repair.
+-            if result["tests_passed"] and not re.search(
+-                    r"(?m)^Ran [1-9][0-9]* tests? in ", diagnostic):
+-                raise ValueError("public evaluator did not report a nonzero unittest test count")
++            # Do not trust a status-only receipt or a truncated stderr preview:
++            # the transaction engine must report an explicit nonnegative count.
++            count = result.get("tests_run")
++            if type(count) is not int or count < 0:
++                raise ValueError("public evaluator missing verified nonzero unittest test count")
++            if result["tests_passed"] and count == 0:
++                raise ValueError("public evaluator reported passing with zero test count")
+         attempt_id = "attempt-" + str(len(state["attempts"]) + 1)
+         patch_file = attempt_id + ".diff"
+         target = folder / patch_file
+         with target.open("xb") as stream:
+             stream.write(patch_text.encode("utf-8"))
+             stream.flush()
+-        passed = bool(result and result["tests_passed"])
++        passed = bool(result and result["tests_passed"] and result["tests_run"]>0)
+         attempt = {
+             "id": attempt_id, "parent_attempt_id": action["parent_attempt_id"],
+             "action": action["kind"], "patch_file": patch_file,
+             "patch_sha256": hashlib.sha256(patch_text.encode("utf-8")).hexdigest(),
+-            "status": ("passed" if passed else "test_failed" if result else "invalid_patch"),
+-            "tests_passed": passed, "diagnostic": diagnostic,
++            "status": ("passed" if passed else
++                       "no_tests" if result and result["tests_run"]==0 else
++                       "test_failed" if result else "invalid_patch"),
++            "tests_passed": passed,
++            "tests_run": result["tests_run"] if result else None,
++            "diagnostic": diagnostic,
+             "test_exit_code": result["test_exit_code"] if result else None,
+             "file_count": result["file_count"] if result else 0,
+             "public_test_stdout_sha256": result["test_stdout_sha256"] if result else None,
+diff --git a/nykra/transactional_patch.py b/nykra/transactional_patch.py
+index 567bec8..6859d94 100644
+--- a/nykra/transactional_patch.py
++++ b/nykra/transactional_patch.py
+@@ -254,6 +254,17 @@ def _restore(root,snapshot):
+                 tmp.unlink(missing_ok=True)
+ 
+ 
++
++def _unittest_test_count(stderr: bytes) -> int:
++    """Count actual discovered unittest cases from the complete runner output.
++
++    A zero-exit unittest command with zero discovered tests does not verify a
++    patch. Unrecognized output is conservatively treated as zero tests.
++    """
++    lines = re.findall(rb"(?m)^Ran ([0-9]+) tests? in [0-9.]+s\r?$", stderr)
++    return int(lines[-1]) if lines else 0
++
++
+ def run_transaction(root,patch,*,allowed_paths,test_args=("-B","-m","unittest",
+                     "discover","-s","tests"),executor="docker",docker_image_id=None,
+                     allow_trusted_local_tests=False,promote=False,approve=False,
+@@ -287,16 +298,18 @@ def run_transaction(root,patch,*,allowed_paths,test_args=("-B","-m","unittest",
+             if not all(isinstance(x,str) for x in test_args):
+                 raise PatchRejected("invalid trusted test arguments")
+             test=_run([os.sys.executable,*test_args],cwd=checkout,timeout=timeout)
++        tests_run=_unittest_test_count(test.stderr)
+         evidence={"schema":"nykra-multifile-transaction-v1",
+                   "upstream_head":head,"patch_sha256":_digest(patch.encode("utf-8")),
+                   "files":changes,"file_count":len(changes),
+                   "executor":executor,"test_args":list(test_args),
+                   "test_exit_code":test.returncode,
++                  "tests_run":tests_run,
+                   "test_stdout_sha256":_digest(test.stdout),
+                   "test_stderr_sha256":_digest(test.stderr),
+                   "test_stdout_preview":test.stdout.decode("utf-8","replace")[-1200:],
+                   "test_stderr_preview":test.stderr.decode("utf-8","replace")[-1200:],
+-                  "tests_passed":test.returncode==0,
++                  "tests_passed":test.returncode==0 and tests_run>0,
+                   "promoted":False}
+         if not evidence["tests_passed"] or not promote:
+             evidence["elapsed_seconds"]=round(time.monotonic()-started,3)

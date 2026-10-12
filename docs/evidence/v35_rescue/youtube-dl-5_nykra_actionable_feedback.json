@@ -1,0 +1,95 @@
+{
+  "schema": "nykra-v35-stalled-real-codex-luna-public-feedback-repair-v1",
+  "protocol_sha256": "681f031ed5ed40c349ec1df7f29856c47a5e8d163f1f240555916dda791ed09f",
+  "status": "solved",
+  "source_v34_attempts": 10,
+  "inherited_v20_prefix_attempts": 3,
+  "new_codex_calls": 2,
+  "new_public_docker_grades": 2,
+  "new_hidden_docker_grades": 1,
+  "codex_tokens": {
+    "input_tokens": 30422,
+    "cached_input_tokens": 13056,
+    "output_tokens": 1745,
+    "reasoning_output_tokens": 1032
+  },
+  "attempts": [
+    {
+      "id": "rescue-1",
+      "raw_model_output": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n    timezone, date_str = extract_timezone(date_str)\n\n    meridiem = re.search(r'(?i)\\b(AM|PM)\\b', date_str)\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression)\n            if meridiem:\n                if meridiem.group(1).upper() == 'PM' and dt.hour < 12:\n                    dt += datetime.timedelta(hours=12)\n                elif meridiem.group(1).upper() == 'AM' and dt.hour == 12:\n                    dt -= datetime.timedelta(hours=12)\n            return calendar.timegm((dt - timezone).timetuple())\n        except ValueError:\n            pass\n\n    normalized = re.sub(r'(?i)(\\d+)(?:st|nd|rd|th)\\b', r'\\1', date_str)\n    normalized = re.sub(r'(?i)(\\d)(AM|PM)\\b', r'\\1 \\2', normalized)\n    timetuple = email.utils.parsedate_tz(normalized)\n    if timetuple:\n        dt = datetime.datetime(*timetuple[:6]) - timezone\n        return calendar.timegm(dt.timetuple())\n    return None",
+      "raw_model_sha256": "7ce0a2af1439bfcc9683519f9e025f8d2930b8b7f5a8b00caad981b8451a2c21",
+      "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n    timezone, date_str = extract_timezone(date_str)\n\n    meridiem = re.search(r'(?i)\\b(AM|PM)\\b', date_str)\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression)\n            if meridiem:\n                if meridiem.group(1).upper() == 'PM' and dt.hour < 12:\n                    dt += datetime.timedelta(hours=12)\n                elif meridiem.group(1).upper() == 'AM' and dt.hour == 12:\n                    dt -= datetime.timedelta(hours=12)\n            return calendar.timegm((dt - timezone).timetuple())\n        except ValueError:\n            pass\n\n    normalized = re.sub(r'(?i)(\\d+)(?:st|nd|rd|th)\\b', r'\\1', date_str)\n    normalized = re.sub(r'(?i)(\\d)(AM|PM)\\b', r'\\1 \\2', normalized)\n    timetuple = email.utils.parsedate_tz(normalized)\n    if timetuple:\n        dt = datetime.datetime(*timetuple[:6]) - timezone\n        return calendar.timegm(dt.timetuple())\n    return None\n",
+      "source_sha256": "092256f3715c15f3940a3bd8aa50a254053ade9bccf5d3440e963308c823afe3",
+      "normalized": "unchanged",
+      "model_usage": {
+        "input_tokens": 15182,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 839,
+        "reasoning_output_tokens": 516
+      },
+      "prompt_sha256": "a2a1dab4bf7e8d7e83248e4f9f460e028ab16ab64bf80572a8414e97158c32d3",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "exit_code": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5f6776fbccebe4bebfcf9032e6a4cd3fbe94b34836b7194ef0c0a60070f93a35",
+        "elapsed_seconds": 7.538,
+        "diagnostic": "FAIL: test_unified_timestamps (test.test_utils.TestUtil)\nAssertionError: 1455428700 != 1455471900\nFAILED (failures=1)"
+      },
+      "public_called": true,
+      "public_reused_from": null
+    },
+    {
+      "id": "rescue-2",
+      "raw_model_output": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n    timezone, date_str = extract_timezone(date_str)\n\n    meridiem = re.search(r'(?i)(AM|PM)\\b', date_str)\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression)\n            if meridiem:\n                if meridiem.group(1).upper() == 'PM' and dt.hour < 12:\n                    dt += datetime.timedelta(hours=12)\n                elif meridiem.group(1).upper() == 'AM' and dt.hour == 12:\n                    dt -= datetime.timedelta(hours=12)\n            return calendar.timegm((dt - timezone).timetuple())\n        except ValueError:\n            pass\n\n    normalized = re.sub(r'(?i)(\\d+)(?:st|nd|rd|th)\\b', r'\\1', date_str)\n    normalized = re.sub(r'(?i)(\\d)(AM|PM)\\b', r'\\1 \\2', normalized)\n    timetuple = email.utils.parsedate_tz(normalized)\n    if timetuple:\n        dt = datetime.datetime(*timetuple[:6])\n        if meridiem:\n            if meridiem.group(1).upper() == 'PM' and dt.hour < 12:\n                dt += datetime.timedelta(hours=12)\n            elif meridiem.group(1).upper() == 'AM' and dt.hour == 12:\n                dt -= datetime.timedelta(hours=12)\n        return calendar.timegm((dt - timezone).timetuple())\n    return None",
+      "raw_model_sha256": "2a3edb7b5bcc97fa2bfd8864301064d28def7cf2efbfbc114b65925a34229af8",
+      "source": "def unified_timestamp(date_str, day_first=True):\n    if date_str is None:\n        return None\n\n    date_str = date_str.replace(',', ' ')\n    timezone, date_str = extract_timezone(date_str)\n\n    meridiem = re.search(r'(?i)(AM|PM)\\b', date_str)\n    date_str = re.sub(r'(?i)\\s*(?:AM|PM)(?:\\s+[A-Z]+)?', '', date_str)\n\n    for expression in date_formats(day_first):\n        try:\n            dt = datetime.datetime.strptime(date_str, expression)\n            if meridiem:\n                if meridiem.group(1).upper() == 'PM' and dt.hour < 12:\n                    dt += datetime.timedelta(hours=12)\n                elif meridiem.group(1).upper() == 'AM' and dt.hour == 12:\n                    dt -= datetime.timedelta(hours=12)\n            return calendar.timegm((dt - timezone).timetuple())\n        except ValueError:\n            pass\n\n    normalized = re.sub(r'(?i)(\\d+)(?:st|nd|rd|th)\\b', r'\\1', date_str)\n    normalized = re.sub(r'(?i)(\\d)(AM|PM)\\b', r'\\1 \\2', normalized)\n    timetuple = email.utils.parsedate_tz(normalized)\n    if timetuple:\n        dt = datetime.datetime(*timetuple[:6])\n        if meridiem:\n            if meridiem.group(1).upper() == 'PM' and dt.hour < 12:\n                dt += datetime.timedelta(hours=12)\n            elif meridiem.group(1).upper() == 'AM' and dt.hour == 12:\n                dt -= datetime.timedelta(hours=12)\n        return calendar.timegm((dt - timezone).timetuple())\n    return None\n",
+      "source_sha256": "43dae3bfa836c64e438c4da310d58cd7c45d7fab27f5d9fa067fb144a6890182",
+      "normalized": "unchanged",
+      "model_usage": {
+        "input_tokens": 15240,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 906,
+        "reasoning_output_tokens": 516
+      },
+      "prompt_sha256": "24c5cc07f6f8537d207d8c067c1e6693dbe3ab9a07581436e67abf29477a4729",
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f874260c27f659cc75833681c85ee3a768eb472dd7257882cccc7f6904145ce7",
+        "elapsed_seconds": 7.077
+      },
+      "public_called": true,
+      "public_reused_from": null,
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "df513d39a26c4c165149d2defc2447711e512da8a6cf0167047651f632d5025b",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "75484c9fd8bab9480b07175f6bd33ec6ff22f47dcf9838e5f0f566ff36977548",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 11.59
+      }
+    }
+  ],
+  "selected_attempt": "rescue-2",
+  "selected_sha256": "43dae3bfa836c64e438c4da310d58cd7c45d7fab27f5d9fa067fb144a6890182"
+}

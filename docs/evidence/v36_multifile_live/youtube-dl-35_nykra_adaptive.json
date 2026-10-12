@@ -1,0 +1,211 @@
+{
+  "schema": "nykra-v36-new-upstream-multifile-live-v1",
+  "task": "youtube-dl-35",
+  "arm": "nykra_adaptive",
+  "model": "gpt-5.6-luna",
+  "protocol_sha256": "b7532405c50fcdd077a00d4fd6a295cdeb5aa275095da4a9ea0af13925aaaad4",
+  "preflight_sha256": "a7ceb95b1866befed7aeb8cf44c2299d5916bd26070fbd30c43efaf9ccda4c88",
+  "status": "hidden_verified",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "59c216a2e201b5aef6a7d8fee1ba0c3c607b9829532f8ec819b723c1839240c8",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,3 +1,3 @@\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,4 @@\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',",
+      "raw_output_sha256": "e58aa8f971b477b8290fb7c457b8f20122631a1d57a92b6887986b2c061f128d",
+      "patch": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,3 +1,3 @@\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,3 +1,4 @@\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n",
+      "patch_sha256": "9a692c94741a5e99748129dd5bc7371b847c3a80cbdb64d9170e1dd768a2ce61",
+      "model_usage": {
+        "input_tokens": 15208,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 609,
+        "reasoning_output_tokens": 384
+      },
+      "model_seconds": 18.373,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 8"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-2",
+      "parent_id": "attempt-1",
+      "policy_action": "revise",
+      "prompt_sha256": "98055bbf516af065f36f1dd86408b4d1df27cc615003877a6ad09f606bcdb0a9",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,7 +1,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,7 +1,8 @@\n     format_expressions = [\n         '%d %B %Y',\n         '%d %b %Y',\n         '%B %d %Y',\n         '%b %d %Y',\n         '%b %dst %Y %I:%M%p',\n         '%b %dnd %Y %I:%M%p',\n         '%b %dth %Y %I:%M%p',\n@@ -1,5 +1,6 @@\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n         '%Y-%m-%dT%H:%M:%SZ',",
+      "raw_output_sha256": "7a2e953404e820c7ceb6e7d3358ebf085a034d9c45ae26945dd5c2ba352462b5",
+      "patch": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,7 +1,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,7 +1,8 @@\n     format_expressions = [\n         '%d %B %Y',\n         '%d %b %Y',\n         '%B %d %Y',\n         '%b %d %Y',\n         '%b %dst %Y %I:%M%p',\n         '%b %dnd %Y %I:%M%p',\n         '%b %dth %Y %I:%M%p',\n@@ -1,5 +1,6 @@\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n         '%Y-%m-%dT%H:%M:%SZ',\n",
+      "patch_sha256": "dc5f0bd6d674fdc64d8de54c707980adfa7d86ce70ee4e3110570c7d459b4d54",
+      "model_usage": {
+        "input_tokens": 15476,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 705,
+        "reasoning_output_tokens": 310
+      },
+      "model_seconds": 12.604,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 26"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-3",
+      "parent_id": "attempt-2",
+      "policy_action": "revise",
+      "prompt_sha256": "5103e307c5c09859c725ce448788ab055b9367225ea4ef20393a1780694a1f2e",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -6,7 +6,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -24,6 +24,7 @@\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n         '%Y-%m-%dT%H:%M:%SZ',\n",
+      "raw_output_sha256": "fb98a53b59de06c7470a92905d28fb5ce70ee5fedaa6e7a16e876e37de28c3fc",
+      "patch": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -6,7 +6,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -24,6 +24,7 @@\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n         '%Y-%m-%dT%H:%M:%SZ',\n",
+      "patch_sha256": "fb98a53b59de06c7470a92905d28fb5ce70ee5fedaa6e7a16e876e37de28c3fc",
+      "model_usage": {
+        "input_tokens": 15642,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 553,
+        "reasoning_output_tokens": 251
+      },
+      "model_seconds": 11.395,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 24"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-4",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "2e7fb022ffbab972b0a608279c745929c9bc3e72c7431df434b85c34c60a63d1",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,7 +1,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,7 +1,7 @@\n     format_expressions = [\n         '%d %B %Y',\n         '%d %b %Y',\n         '%B %d %Y',\n         '%b %d %Y',\n         '%b %dst %Y %I:%M%p',\n         '%b %dnd %Y %I:%M%p',\n@@ -12,6 +12,7 @@\n         '%Y/%m/%d',\n         '%d.%m.%Y',\n         '%d/%m/%Y',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d/%m/%y',\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n",
+      "raw_output_sha256": "1808045f09fdf3152256e137ea75ac78d177cf63a793a8db8a4352584a64401d",
+      "patch": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,7 +1,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,7 +1,7 @@\n     format_expressions = [\n         '%d %B %Y',\n         '%d %b %Y',\n         '%B %d %Y',\n         '%b %d %Y',\n         '%b %dst %Y %I:%M%p',\n         '%b %dnd %Y %I:%M%p',\n@@ -12,6 +12,7 @@\n         '%Y/%m/%d',\n         '%d.%m.%Y',\n         '%d/%m/%Y',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d/%m/%y',\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n",
+      "patch_sha256": "1808045f09fdf3152256e137ea75ac78d177cf63a793a8db8a4352584a64401d",
+      "model_usage": {
+        "input_tokens": 15263,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 850,
+        "reasoning_output_tokens": 453
+      },
+      "model_seconds": 25.829,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 25"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-5",
+      "parent_id": "attempt-4",
+      "policy_action": "revise",
+      "prompt_sha256": "5de7adc5299fa2936877e75f5a13127faf83697768bcaa4596d34d9aa38877a7",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,7 +1,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,13 +1,14 @@\n     format_expressions = [\n         '%d %B %Y',\n         '%d %b %Y',\n         '%B %d %Y',\n         '%b %d %Y',\n         '%b %dst %Y %I:%M%p',\n         '%b %dnd %Y %I:%M%p',\n         '%b %dth %Y %I:%M%p',\n         '%Y-%m-%d',\n         '%Y/%m/%d',\n         '%d.%m.%Y',\n         '%d/%m/%Y',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d/%m/%y',\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n",
+      "raw_output_sha256": "af6b9ceb90c9f37e8ea5164446c9d1599e8ec10afbf7123880bbecc29076fe92",
+      "patch": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,7 +1,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,13 +1,14 @@\n     format_expressions = [\n         '%d %B %Y',\n         '%d %b %Y',\n         '%B %d %Y',\n         '%b %d %Y',\n         '%b %dst %Y %I:%M%p',\n         '%b %dnd %Y %I:%M%p',\n         '%b %dth %Y %I:%M%p',\n         '%Y-%m-%d',\n         '%Y/%m/%d',\n         '%d.%m.%Y',\n         '%d/%m/%Y',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d/%m/%y',\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n",
+      "patch_sha256": "af6b9ceb90c9f37e8ea5164446c9d1599e8ec10afbf7123880bbecc29076fe92",
+      "model_usage": {
+        "input_tokens": 15642,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 832,
+        "reasoning_output_tokens": 424
+      },
+      "model_seconds": 13.614,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: patch failed: youtube_dl/extractor/arte.py:1\nerror: youtube_dl/extractor/arte.py: patch does not apply\nerror: patch failed: youtube_dl/utils.py:1\nerror: youtube_dl/utils.py: patch does not apply"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-6",
+      "parent_id": "attempt-5",
+      "policy_action": "revise",
+      "prompt_sha256": "61e472361ca2df3137db71e0a6080b9bab3adf68667533d483c8377d8f50770f",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,7 +1,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,18 +1,19 @@\n     format_expressions = [\n         '%d %B %Y',\n         '%d %b %Y',\n         '%B %d %Y',\n         '%b %d %Y',\n         '%b %dst %Y %I:%M%p',\n         '%b %dnd %Y %I:%M%p',\n         '%b %dth %Y %I:%M%p',\n         '%Y-%m-%d',\n         '%Y/%m/%d',\n         '%d.%m.%Y',\n         '%d/%m/%Y',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d/%m/%y',\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n         '%Y-%m-%dT%H:%M:%SZ',\n         '%Y-%m-%dT%H:%M:%S.%fZ',\n         '%Y-%m-%dT%H:%M:%S.%f0Z',\n        '%Y-%m-%dT%H:%M:%S',\n        '%Y-%m-%dT%H:%M:%S.%f',\n        '%Y-%m-%dT%H:%M',\n    ]",
+      "raw_output_sha256": "19ebefc3743378b08d082d60d9f2b0e7597905be6a98426ee95c3380eb61d301",
+      "patch": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -1,7 +1,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1,18 +1,19 @@\n     format_expressions = [\n         '%d %B %Y',\n         '%d %b %Y',\n         '%B %d %Y',\n         '%b %d %Y',\n         '%b %dst %Y %I:%M%p',\n         '%b %dnd %Y %I:%M%p',\n         '%b %dth %Y %I:%M%p',\n         '%Y-%m-%d',\n         '%Y/%m/%d',\n         '%d.%m.%Y',\n         '%d/%m/%Y',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d/%m/%y',\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n         '%d.%m.%Y %H:%M',\n         '%d.%m.%Y %H.%M',\n         '%Y-%m-%dT%H:%M:%SZ',\n         '%Y-%m-%dT%H:%M:%S.%fZ',\n         '%Y-%m-%dT%H:%M:%S.%f0Z',\n        '%Y-%m-%dT%H:%M:%S',\n        '%Y-%m-%dT%H:%M:%S.%f',\n        '%Y-%m-%dT%H:%M',\n    ]\n",
+      "patch_sha256": "923b2e61ea36256f71ccd7f3dc6e95787c620062d486d34dc2ecfb4c585dcadf",
+      "model_usage": {
+        "input_tokens": 110891,
+        "cached_input_tokens": 82688,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1854,
+        "reasoning_output_tokens": 946
+      },
+      "model_seconds": 62.416,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: patch failed: youtube_dl/extractor/arte.py:1\nerror: youtube_dl/extractor/arte.py: patch does not apply\nerror: patch failed: youtube_dl/utils.py:1\nerror: youtube_dl/utils.py: patch does not apply"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-7",
+      "parent_id": "attempt-6",
+      "policy_action": "revise",
+      "prompt_sha256": "c1eb97ff387a4144d657644566f09e64c3880de8f6a64e1c237eb24aa8d29c3c",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -70,7 +70,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -940,6 +940,7 @@\n         '%Y/%m/%d',\n         '%d.%m.%Y',\n         '%d/%m/%Y',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d/%m/%y',\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',",
+      "raw_output_sha256": "2f85387c1b1b43ddc0f3ba8badab1c21ad524449c16a5543b86763695dde91db",
+      "patch": "diff --git a/youtube_dl/extractor/arte.py b/youtube_dl/extractor/arte.py\n--- a/youtube_dl/extractor/arte.py\n+++ b/youtube_dl/extractor/arte.py\n@@ -70,7 +70,7 @@\n         info_dict = {\n             'id': player_info['VID'],\n             'title': player_info['VTI'],\n             'description': player_info.get('VDE'),\n-            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n+            'upload_date': unified_strdate(player_info.get('shootingDate') or player_info.get('VDA', '').split(' ')[0]),\n             'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n         }\n \ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -940,6 +940,7 @@\n         '%Y/%m/%d',\n         '%d.%m.%Y',\n         '%d/%m/%Y',\n+        '%d/%m/%Y %H:%M:%S',\n         '%d/%m/%y',\n         '%Y/%m/%d %H:%M:%S',\n         '%Y-%m-%d %H:%M:%S',\n",
+      "patch_sha256": "57ecfe56776c360ca9ee470f9658f5c12deadde792327d01e8be5b96907a8dd4",
+      "model_usage": {
+        "input_tokens": 15800,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 811,
+        "reasoning_output_tokens": 516
+      },
+      "model_seconds": 14.899,
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "42bb4a31114240a4608ac793c9368b604bdd5a7a866cc23fe47d666333cf0747",
+        "elapsed_seconds": 7.15
+      },
+      "public_called": true,
+      "public_reused_from": null,
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5196898f5e266052047e0275fc1254e6ec679d0602a422599e6d46428d997ace",
+        "elapsed_seconds": 6.51
+      }
+    }
+  ],
+  "provider_calls": 7,
+  "reported_usage": {
+    "input_tokens": 203922,
+    "cached_input_tokens": 149760,
+    "output_tokens": 6214,
+    "reasoning_output_tokens": 3284
+  },
+  "public_docker_calls": 1,
+  "public_docker_reuses": 0,
+  "hidden_docker_calls": 1,
+  "selected_patch_sha256": "57ecfe56776c360ca9ee470f9658f5c12deadde792327d01e8be5b96907a8dd4",
+  "selected_attempt": "attempt-7"
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "nykra-v35-codex-luna-recovered-fix-independent-confirmation-v1",
+  "historical_task": "youtube-dl-5",
+  "model": "gpt-5.6-luna",
+  "source_trace_sha256": "1269e8cb74e0fac0ba60ddad6503737a490f184c1180a8adc394378d6a5b21e8",
+  "source_sha256": "43dae3bfa836c64e438c4da310d58cd7c45d7fab27f5d9fa067fb144a6890182",
+  "new_model_calls_during_verification": 0,
+  "standalone_official_v20_public": {
+    "status": "ok",
+    "passed": true,
+    "checks": [
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_sha256": "097d9b2aad1519c2f54ee647c9e2319ef2b9cb222b6b3fa3d51f78377b5aa20a",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_preview": null
+      }
+    ],
+    "mode": "public",
+    "elapsed_seconds": 8.01
+  },
+  "standalone_official_v20_hidden": {
+    "status": "ok",
+    "passed": true,
+    "checks": [
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_sha256": "b471e0173800029b6e7b8db55a2b2b7b522f08cbb211e0263ec2ff5f3aff6cf6",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_preview": null
+      },
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_sha256": "7eeb77c1a0f84e18f114d2783f0189440332643e90aba720ffe9af33bc6914b6",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_preview": null
+      }
+    ],
+    "mode": "hidden",
+    "elapsed_seconds": 8.19
+  },
+  "no_hidden_test_content_in_prompts": true,
+  "pass": true
+}

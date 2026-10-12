@@ -1,0 +1,164 @@
+{
+  "schema": "nykra-v34-codex-luna-real-hard-fork-v1",
+  "protocol_sha256": "c0c877adde092e4a5a10bcd933dbd82f3ab5505d843b03bcebbc682a56727304",
+  "issue": "youtube-dl-3",
+  "arm": "nykra_adaptive",
+  "provider": "native Codex ChatGPT OAuth",
+  "model": "gpt-5.6-luna",
+  "initial_3_failures_from_historical_Codex_shared_prefix": true,
+  "public_excerpt_sha256": "d3c828e5e153b5e9685c2e5f19130c11e4f73e9bc11508a485c1686cdca31f96",
+  "status": "solved",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)",
+      "source_sha256": "8734f00fb2c60bafdbf26b921d212fb2dd5abc475e40be38603ff3618e0278e5",
+      "parent_id": null,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 11.37
+      },
+      "provider": "historical v20 pre-fork Codex",
+      "public_called": true,
+      "public_reused": false,
+      "inherited": true
+    },
+    {
+      "id": "attempt-2",
+      "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)\n",
+      "source_sha256": "ab877ec4adabf6aaa69a70e3df52ae9166b63131920b14b6229bf37cc52b82b4",
+      "parent_id": "attempt-1",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 7.89
+      },
+      "provider": "historical v20 pre-fork Codex",
+      "public_called": true,
+      "public_reused": false,
+      "inherited": true
+    },
+    {
+      "id": "attempt-3",
+      "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n\n    return re.sub(\n        r'&([^;]+;)', lambda m: _htmlentity_transform(m.group(1)), s)\n",
+      "source_sha256": "ab877ec4adabf6aaa69a70e3df52ae9166b63131920b14b6229bf37cc52b82b4",
+      "parent_id": "attempt-2",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "efb33dc69ce4bbf91eb0f7be130e0bfbb62eb12a2fcd1e4e2619316d3cb481ab",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 9.93
+      },
+      "provider": "historical v20 pre-fork Codex",
+      "public_called": true,
+      "public_reused": false,
+      "inherited": true
+    },
+    {
+      "id": "attempt-4",
+      "inherited": false,
+      "parent_id": null,
+      "policy_action": "new_root",
+      "source": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n    return re.sub(r'&([^&;]*;)', lambda m: _htmlentity_transform(m.group(1)), s)\n",
+      "source_sha256": "8fff53ad169dd574b2c2d33d138b0dde25d13920efdf83b50e680bf1bd14e90a",
+      "raw_codex_output": "def unescapeHTML(s):\n    if s is None:\n        return None\n    assert type(s) == compat_str\n    return re.sub(r'&([^&;]*;)', lambda m: _htmlentity_transform(m.group(1)), s)",
+      "raw_sha256": "5a3b311cc6c0aec2b7946afec434172eebb6445aeed10d36b4a616ab442cd328",
+      "prompt_sha256": "bbbad0984f8dd52b871fd6dee296c39c7f7021aa4e4c22142215494c5a685e34",
+      "normalization": "unchanged",
+      "codex_receipt": {
+        "status": "ok",
+        "usage": {
+          "input_tokens": 14499,
+          "cached_input_tokens": 2816,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 400,
+          "reasoning_output_tokens": 342
+        },
+        "errors": [],
+        "tool_activity": [],
+        "exit_code": 0,
+        "wall_seconds": 15.245
+      },
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "4b9b146ae36a496519f370bcc17f1594a6af95ae45364cab45c7b6e79b6148c1",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 8.3
+      },
+      "public_called": true,
+      "public_reused": false,
+      "public_reused_from": null,
+      "hidden_receipt": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "740db4a084b7cce6557a4ecc8258820c57689ef73c29298f23cbf67c43a77bf8",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "4b9b146ae36a496519f370bcc17f1594a6af95ae45364cab45c7b6e79b6148c1",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 9.51
+      }
+    }
+  ],
+  "hidden_runs": 1,
+  "codex_completions": 1,
+  "codex_reported_usage": {
+    "input_tokens": 14499,
+    "cached_input_tokens": 2816,
+    "output_tokens": 400,
+    "reasoning_output_tokens": 342
+  },
+  "selected_id": "attempt-4",
+  "selected_sha256": "8fff53ad169dd574b2c2d33d138b0dde25d13920efdf83b50e680bf1bd14e90a"
+}

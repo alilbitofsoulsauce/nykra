@@ -1,0 +1,504 @@
+Repair historical more-itertools issue #1134, pinned pre-feature source.
+Write correct Python for *both modules*: new exported functions
+running_min(iterable, *, maxlen=None), running_max(iterable, *, maxlen=None),
+running_statistics(iterable, *, maxlen=None), with immutable hashable slot-based
+non-iterable Stats(size,minimum,median,maximum,mean), and replace
+recipes.running_mean(iterable) to add maxlen sliding windows.
+New functions must return lazy iterators and detect noniterable/invalid
+maxlen early. Preserve numerical types for Fraction/Decimal/complex mean.
+Existing running_median supports maxlen, can be reused.
+
+ONLY return these TWO sections, no commentary, no markdown, no fenced blocks:
+===MORE===
+Complete Python code for new helpers, imports and classes to append to
+more_itertools/more.py. Existing exported __all__ names will be augmented by
+a deterministic patch adapter. You can import from recipes and itertools.
+===MEAN===
+Complete replacement function def running_mean(iterable, *, maxlen=None)
+including correct sliding mean and default all-items-running mean.
+The adapter itself will not implement any algorithms and treats both arms equally.
+No official reference fix or hidden tests are available.
+
+Relevant existing more.py imports:
+import math
+
+from collections import Counter, defaultdict, deque
+from collections.abc import Sequence
+from contextlib import suppress
+from functools import cached_property, partial, wraps
+from heapq import heapify, heapreplace
+from itertools import (
+    chain,
+    combinations,
+    compress,
+    count,
+    cycle,
+    dropwhile,
+    groupby,
+    islice,
+    permutations,
+    repeat,
+    starmap,
+    takewhile,
+    tee,
+    zip_longest,
+    product,
+)
+from math import comb, e, exp, factorial, floor, fsum, log, log1p, perm, tau
+from math import ceil, prod
+from queue import Empty, Queue
+from random import random, randrange, shuffle, uniform
+from operator import (
+    attrgetter,
+    getitem,
+    is_not,
+    itemgetter,
+    lt,
+    neg,
+    sub,
+    gt,
+)
+from sys import maxsize
+from time import monotonic
+from threading import Lock
+
+from .recipes import (
+    _marker,
+    consume,
+    first_true,
+    flatten,
+    is_prime,
+    nth,
+    powerset,
+    sieve,
+    take,
+    unique_everseen,
+    all_equal,
+    batched,
+)
+
+__all__ = [
+    'AbortThread',
+    'SequenceView',
+Existing recipes.py imports:
+"""Imported from the recipes section of the itertools documentation.
+
+All functions taken from the recipes section of the itertools library docs
+[1]_.
+Some backward-compatible usability improvements have been made.
+
+.. [1] http://docs.python.org/library/itertools.html#recipes
+
+"""
+
+import random
+
+from bisect import bisect_left, insort
+from collections import deque
+from contextlib import suppress
+from functools import lru_cache, reduce
+from heapq import heappush, heappushpop
+from itertools import (
+    accumulate,
+    chain,
+    combinations,
+    compress,
+    count,
+    cycle,
+    groupby,
+    islice,
+    pairwise,
+    product,
+    repeat,
+    starmap,
+    takewhile,
+    tee,
+    zip_longest,
+)
+from math import prod, comb, isqrt, gcd
+from operator import mul, getitem, index, is_, itemgetter, truediv
+from random import randrange, sample, choice, shuffle
+from sys import hexversion
+
+__all__ = [
+    'all_equal',
+    'batched',
+    'before_and_after',
+Existing recipes.running_median:
+def running_median(iterable, *, maxlen=None):
+    """Cumulative median of values seen so far or values in a sliding window.
+
+    Set *maxlen* to a positive integer to specify the maximum size
+    of the sliding window.  The default of *None* is equivalent to
+    an unbounded window.
+
+    For example:
+
+        >>> list(running_median([5.0, 9.0, 4.0, 12.0, 8.0, 9.0]))
+        [5.0, 7.0, 5.0, 7.0, 8.0, 8.5]
+        >>> list(running_median([5.0, 9.0, 4.0, 12.0, 8.0, 9.0], maxlen=3))
+        [5.0, 7.0, 5.0, 9.0, 8.0, 9.0]
+
+    Supports numeric types such as int, float, Decimal, and Fraction,
+    but not complex numbers which are unorderable.
+
+    On version Python 3.13 and prior, max-heaps are simulated with
+    negative values. The negation causes Decimal inputs to apply context
+    rounding, making the results slightly different than that obtained
+    by statistics.median().
+    """
+
+    iterator = iter(iterable)
+
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        return _running_median_windowed(iterator, maxlen)
+
+    if not _max_heap_available:
+        return _running_median_minheap_only(iterator)  # pragma: no cover
+
+    return _running_median_minheap_and_maxheap(iterator)  # pragma: no cover
+
+
+Existing recipes.running_mean:
+def running_mean(iterable):
+    """Yield the average of all values seen so far.
+
+    >>> iterable = [100, 200, 600]
+    >>> all_means = running_mean(iterable)
+    >>> next(all_means)
+    100.0
+    >>> next(all_means)
+    150.0
+    >>> next(all_means)
+    300.0
+    """
+    return map(truediv, accumulate(iterable), count(1))
+
+
+Frozen public requirements:
+"""Frozen public issue #1134 requirements; no reference solution."""
+from decimal import Decimal
+from fractions import Fraction
+from statistics import median
+import unittest
+import more_itertools as mi
+
+class PublicRunningStatistics(unittest.TestCase):
+    def test_minmax_prefix(self):
+        self.assertEqual(list(mi.running_min([4,3,7,0,8])),[4,3,3,0,0])
+        self.assertEqual(list(mi.running_max([4,3,7,0,8])),[4,4,7,7,8])
+
+    def test_minmax_window(self):
+        self.assertEqual(list(mi.running_min([8,7,9,3,5],maxlen=2)),[8,7,7,3,3])
+        self.assertEqual(list(mi.running_max([8,7,9,3,5],maxlen=2)),[8,8,9,9,5])
+
+    def test_running_mean_window(self):
+        data=[4,3,7,0,8,1]
+        self.assertEqual(list(mi.running_mean(data,maxlen=3)),
+                         [4.0,3.5,14/3,10/3,5.0,3.0])
+
+    def test_statistics_unbounded(self):
+        data=[4,3,7,0,8]
+        rows=list(mi.running_statistics(data))
+        self.assertEqual(len(rows),5)
+        self.assertEqual(rows[0],mi.Stats(size=1,minimum=4,median=4,maximum=4,mean=4.0))
+        self.assertEqual(rows[-1],mi.Stats(size=5,minimum=0,median=4,maximum=8,mean=4.4))
+
+    def test_statistics_window(self):
+        data=[4,3,7,0,8]
+        rows=list(mi.running_statistics(data,maxlen=3))
+        self.assertEqual(rows[2],mi.Stats(size=3,minimum=3,median=4,maximum=7,mean=14/3))
+        self.assertEqual(rows[3],mi.Stats(size=3,minimum=0,median=3,maximum=7,mean=10/3))
+        self.assertEqual(rows[4],mi.Stats(size=3,minimum=0,median=7,maximum=8,mean=5.0))
+
+    def test_invalid_window(self):
+        for fn in [mi.running_min,mi.running_max,mi.running_mean,mi.running_statistics]:
+            with self.subTest(name=fn.__name__):
+                with self.assertRaises(ValueError):
+                    list(fn([1,2,3],maxlen=0))
+
+
+REVISION 2: Your prior original proposal below was applied and failed the PUBLIC tests. Fix all observed defects. Retain the required TWO sections exactly; do not output prose.
+
+PUBLIC ERROR DIAGNOSTIC:
+---------------------------------
+Traceback (most recent call last):
+  File "/repo/tests/test_nykra_public.py", line 19, in test_running_mean_window
+    self.assertEqual(list(mi.running_mean(data,maxlen=3)),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     [4.0,3.5,14/3,10/3,5.0,3.0])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [4.666666666666667, 3.6666666666666665, 4.0, 4.333333333333333] != [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]
+
+First differing element 0:
+4.666666666666667
+4.0
+
+Second list contains 2 additional elements.
+First extra element 4:
+5.0
+
+- [4.666666666666667, 3.6666666666666665, 4.0, 4.333333333333333]
++ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.034s
+
+FAILED (failures=1, errors=5)
+
+
+YOUR PREVIOUS CODE:
+===MORE===
+from collections import deque
+from collections.abc import Sequence
+from contextlib import suppress
+from functools import cached_property, partial, wraps
+from heapq import heapify, heapreplace
+from itertools import (
+    chain,
+    combinations,
+    compress,
+    count,
+    cycle,
+    dropwhile,
+    groupby,
+    islice,
+    permutations,
+    repeat,
+    starmap,
+    takewhile,
+    tee,
+    zip_longest,
+    product,
+)
+from math import comb, e, exp, factorial, floor, fsum, log, log1p, perm, tau
+from math import ceil, prod
+from operator import (
+    attrgetter,
+    getitem,
+    is_not,
+    itemgetter,
+    lt,
+    neg,
+    sub,
+    gt,
+)
+from sys import maxsize
+from time import monotonic
+from threading import Lock
+
+from .recipes import (
+    _marker,
+    consume,
+    first_true,
+    flatten,
+    is_prime,
+    nth,
+    powerset,
+    sieve,
+    take,
+    unique_everseen,
+    all_equal,
+    batched,
+)
+
+class Stats:
+    __slots__ = ('size', 'minimum', 'median', 'maximum', 'mean')
+    def __init__(self, size, minimum, median, maximum, mean):
+        self.size = size
+        self.minimum = minimum
+        self.median = median
+        self.maximum = maximum
+        self.mean = mean
+    def __repr__(self):
+        return f"Stats(size={self.size},minimum={self.minimum},median={self.median},maximum={self.maximum},mean={self.mean})"
+    def __eq__(self, other):
+        return (
+            isinstance(other, Stats)
+            and self.size == other.size
+            and self.minimum == other.minimum
+            and self.median == other.median
+            and self.maximum == other.maximum
+            and self.mean == other.mean
+        )
+
+def running_min(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        return _running_min_windowed(iterable, maxlen)
+    it = iter(iterable)
+    try:
+        current = next(it)
+    except StopIteration:
+        return
+    yield current
+    for val in it:
+        if val < current:
+            current = val
+        yield current
+
+def running_max(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        return _running_max_windowed(iterable, maxlen)
+    it = iter(iterable)
+    try:
+        current = next(it)
+    except StopIteration:
+        return
+    yield current
+    for val in it:
+        if val > current:
+            current = val
+        yield current
+
+def running_statistics(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        return _running_statistics_windowed(iterable, maxlen)
+    it = iter(iterable)
+    from statistics import median
+    from math import fsum
+    from fractions import Fraction
+    from decimal import Decimal
+    import numbers
+    seen = []
+    sums = 0.0
+    total = 0
+    minv = None
+    maxv = None
+    for val in it:
+        seen.append(val)
+        total += 1
+        if minv is None or val < minv:
+            minv = val
+        if maxv is None or val > maxv:
+            maxv = val
+        if isinstance(val, (int, float)):
+            sums = fsum([s if isinstance(s, (int, float)) else float(s) for s in seen])
+        elif isinstance(val, Fraction):
+            sums = sum(seen, Fraction(0,1))
+        elif isinstance(val, Decimal):
+            sums = sum(seen, Decimal(0))
+        else:
+            sums = sum(seen)
+        med = median(seen)
+        mean = sums / total if total else 0
+        yield Stats(total, minv, med, maxv, mean)
+
+def _running_min_windowed(iterable, maxlen):
+    d = deque(maxlen=maxlen)
+    it = iter(iterable)
+    for val in it:
+        d.append(val)
+        if len(d) == maxlen:
+            break
+    if not d:
+        return
+    current = min(d)
+    yield current
+    for val in it:
+        d.append(val)
+        if val < current:
+            current = val
+        yield current
+
+def _running_max_windowed(iterable, maxlen):
+    d = deque(maxlen=maxlen)
+    it = iter(iterable)
+    for val in it:
+        d.append(val)
+        if len(d) == maxlen:
+            break
+    if not d:
+        return
+    current = max(d)
+    yield current
+    for val in it:
+        d.append(val)
+        if val > current:
+            current = val
+        yield current
+
+def _running_statistics_windowed(iterable, maxlen):
+    from statistics import median
+    from math import fsum
+    from fractions import Fraction
+    from decimal import Decimal
+    d = deque(maxlen=maxlen)
+    it = iter(iterable)
+    for val in it:
+        d.append(val)
+        if len(d) == maxlen:
+            break
+    if not d:
+        return
+    seen = list(d)
+    total = len(seen)
+    minv = min(seen)
+    maxv = max(seen)
+    med = median(seen)
+    if isinstance(seen[0], (int, float)):
+        sums = fsum(seen)
+    elif isinstance(seen[0], Fraction):
+        sums = sum(seen, Fraction(0,1))
+    elif isinstance(seen[0], Decimal):
+        sums = sum(seen, Decimal(0))
+    else:
+        sums = sum(seen)
+    mean = sums / total
+    yield Stats(total, minv, med, maxv, mean)
+    for val in it:
+        d.append(val)
+        seen = list(d)
+        total = len(seen)
+        minv = min(seen)
+        maxv = max(seen)
+        med = median(seen)
+        if isinstance(seen[0], (int, float)):
+            sums = fsum(seen)
+        elif isinstance(seen[0], Fraction):
+            sums = sum(seen, Fraction(0,1))
+        elif isinstance(seen[0], Decimal):
+            sums = sum(seen, Decimal(0))
+        else:
+            sums = sum(seen)
+        mean = sums / total
+        yield Stats(total, minv, med, maxv, mean)
+
+===MEAN===
+def running_mean(iterable, *, maxlen=None):
+    from itertools import accumulate, count
+    from operator import truediv
+    if maxlen is None:
+        return map(truediv, accumulate(iterable), count(1))
+    maxlen = index(maxlen)
+    if maxlen <= 0:
+        raise ValueError('Window size should be positive')
+    from collections import deque
+    d = deque(maxlen=maxlen)
+    it = iter(iterable)
+    for val in it:
+        d.append(val)
+        if len(d) == maxlen:
+            break
+    if not d:
+        return
+    total = sum(d)
+    count = len(d)
+    mean = total / count
+    yield mean
+    for val in it:
+        d.append(val)
+        total += val - d[0]
+        mean = total / maxlen
+        yield mean

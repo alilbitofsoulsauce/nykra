@@ -1,0 +1,929 @@
+{
+  "schema": "nykra-v32-solving-session-v1",
+  "protocol_sha256": "06c611da5df7b48143409e1bd477707eacd834c17b21ecf82ce81e8b87b64502",
+  "issue": "youtube-dl-43",
+  "arm": "baseline_depth",
+  "source_protocol": "v31 historical failed prefix",
+  "status": "provider_excluded",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+      "source_sha256": "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 5.2,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "original_v31": true,
+      "provider_response_id": "gen-1791772165-ND4V0lf5UUzohogugfXv",
+      "provider_tokens": {
+        "prompt_tokens": 168,
+        "completion_tokens": 55,
+        "total_tokens": 223
+      },
+      "reported_provider_cost": 0,
+      "public_reused": false,
+      "public_reused_from": null,
+      "public_docker_called": true,
+      "candidate_prompt_sha256": "f1657f99311bedd7104ec6f2521f3243c1e2d1b62f03d9b53d21c717c334267b"
+    },
+    {
+      "id": "attempt-2",
+      "parent_id": "attempt-1",
+      "policy_action": "revise",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 4.02,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "original_v31": true,
+      "provider_response_id": "gen-1791772183-QIogVhXPzmDo8pG4pVwX",
+      "provider_tokens": {
+        "prompt_tokens": 287,
+        "completion_tokens": 56,
+        "total_tokens": 343
+      },
+      "reported_provider_cost": 0,
+      "public_reused": false,
+      "public_reused_from": null,
+      "public_docker_called": true,
+      "candidate_prompt_sha256": "9b7ffa87835e9e252dabb0b9f734efb27cab2219b5fbf46e17b88baf1004232d"
+    },
+    {
+      "id": "attempt-3",
+      "parent_id": "attempt-2",
+      "policy_action": "revise",
+      "source": "def url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+      "source_sha256": "21030d9b968dd3eb188cbc25d6b1b3d6ffb9f7228c652041df85973c2a3b4e67",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "2bb638413df9d004ee567c7cc4f35afe7562c104ee8a8cd2b2211fcf7daaef43",
+            "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+          }
+        ],
+        "elapsed_seconds": 3.79,
+        "diagnostic": "FAIL: test_url_basename (test.test_utils.TestUtil)\nAssertionError: '' != 'trailer.mp4'\nFAILED (failures=1)"
+      },
+      "original_v31": true,
+      "provider_response_id": "gen-1791772190-7Vp7Jb9bBZInuB0ee2Fs",
+      "provider_tokens": {
+        "prompt_tokens": 288,
+        "completion_tokens": 55,
+        "total_tokens": 343
+      },
+      "reported_provider_cost": 0,
+      "public_reused": false,
+      "public_reused_from": null,
+      "public_docker_called": true,
+      "candidate_prompt_sha256": "483d9473b5538b48ee72406cb59b01ad44bb853936d270224b48b183a82730ee"
+    },
+    {
+      "id": "attempt-4",
+      "parent_id": "attempt-3",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Match scheme, domain, optional path segments, capture the last segment before query or fragment\n    m = re.match(r'^(?:https?://)?[^/?#]+(?:/[^/?#]*)?/?(?:[^/?#]+/)?([^/?#]+)', url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+      "source_sha256": "828d2fdc66f1112bc51fa97f08d4f292b6d37fd2ddacd981a82ad47efa49a4f3",
+      "model_raw_output_sha256": "5235f85370ae79b1011195b0f3b04f7e51463436e21c7f542968b773b5486abe",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Match scheme, domain, optional path segments, capture the last segment before query or fragment\n    m = re.match(r'^(?:https?://)?[^/?#]+(?:/[^/?#]*)?/?(?:[^/?#]+/)?([^/?#]+)', url)\n    if not m:\n        return ''\n    return m.group(1)",
+      "candidate_prompt_sha256": "b5ed3e1261b013c46f2a06c332a8ffc2489c09b3b061428032feb6e21bc2c93e",
+      "provider_response_id": "gen-1791773877-xSyX0PVQBkarpHZNR1Bo",
+      "provider_tokens": {
+        "prompt_tokens": 609,
+        "completion_tokens": 82,
+        "total_tokens": 691
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 2.519
+    },
+    {
+      "id": "attempt-5",
+      "parent_id": "attempt-4",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "e40ad385d1194823b86ab131945edf335516da9acd3149135f5cc83779632ac7",
+      "provider_response_id": "gen-1791773879-XXKggb8ol3yrphmPnYDb",
+      "provider_tokens": {
+        "prompt_tokens": 581,
+        "completion_tokens": 59,
+        "total_tokens": 640
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.066
+    },
+    {
+      "id": "attempt-6",
+      "parent_id": "attempt-5",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "964f46b70a0dcb0fee0a41c803b1102efb682b7d169d9754f59a3a4fc545ca1f",
+      "provider_response_id": "gen-1791773880-FzhtAKTd2RvSxwXGZj0K",
+      "provider_tokens": {
+        "prompt_tokens": 558,
+        "completion_tokens": 59,
+        "total_tokens": 617
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.049
+    },
+    {
+      "id": "attempt-7",
+      "parent_id": "attempt-6",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "c7bd209be05ffcb6bdf2fcf2feb05c9a0c188236b49916196dfb3d7054eeed09",
+      "provider_response_id": "gen-1791773881-tepFLpMkZ0xpSUPul0a7",
+      "provider_tokens": {
+        "prompt_tokens": 665,
+        "completion_tokens": 59,
+        "total_tokens": 724
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.273
+    },
+    {
+      "id": "attempt-8",
+      "parent_id": "attempt-7",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "d27482e7b84f9f888c75decb9e454fba3becb44829f4fe420aa358910b7df873",
+      "provider_response_id": "gen-1791773882-GAro5zdziuy2jIqI95DQ",
+      "provider_tokens": {
+        "prompt_tokens": 665,
+        "completion_tokens": 59,
+        "total_tokens": 724
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 0.957
+    },
+    {
+      "id": "attempt-9",
+      "parent_id": "attempt-8",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional trailing slash\n    # Remove scheme (http:// or https://) and netloc\n    # Use a more robust regex to capture the last path segment before query or fragment\n    # Pattern: after scheme and netloc, capture the last non-empty segment of the path\n    # Allow optional trailing slash and optional query/fragment\n    pattern = r'^(?:https?://)?[^/?#]+/(?:[^/?#]*/)*([^/?#]+)(?:/|[?#]|$)'\n    m = re.match(pattern, url)\n    if not m:\n        return ''\n    return m.group(1)\n",
+      "source_sha256": "f8da268d5975cb85baf76952c0d70d9979d3b11de3c31fa196096ce25c3d9caa",
+      "model_raw_output_sha256": "879f184678a25f590bca84a24d557bb51e86955ae1f93ea0ecbf1a33d88316ce",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional trailing slash\n    # Remove scheme (http:// or https://) and netloc\n    # Use a more robust regex to capture the last path segment before query or fragment\n    # Pattern: after scheme and netloc, capture the last non-empty segment of the path\n    # Allow optional trailing slash and optional query/fragment\n    pattern = r'^(?:https?://)?[^/?#]+/(?:[^/?#]*/)*([^/?#]+)(?:/|[?#]|$)'\n    m = re.match(pattern, url)\n    if not m:\n        return ''\n    return m.group(1)",
+      "candidate_prompt_sha256": "33005c8bd8986b8e856b607cbb312793722167edf8aa54306b3762308528b4a9",
+      "provider_response_id": "gen-1791773883-uUzyaT3X5TgJV27Qwuo2",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 144,
+        "total_tokens": 851
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 4.589
+    },
+    {
+      "id": "attempt-10",
+      "parent_id": "attempt-9",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "da3fd49875c5d5eaa9b9b50ebe87e0b0bca3aca0d3e1654570f4bb9881372950",
+      "provider_response_id": "gen-1791773888-kS18Tw6XI44tdMKzMenP",
+      "provider_tokens": {
+        "prompt_tokens": 723,
+        "completion_tokens": 59,
+        "total_tokens": 782
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 0.922
+    },
+    {
+      "id": "attempt-11",
+      "parent_id": "attempt-10",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional www\n    # Remove scheme (http:// or https://)\n    if url.startswith('http://'):\n        rest = url[7:]\n    elif url.startswith('https://'):\n        rest = url[8:]\n    else:\n        rest = url\n\n    # Split on first '/' to get host and path\n    parts = rest.split('/', 1)\n    if len(parts) == 1:\n        return u''\n    path = parts[1]\n\n    # Remove query and fragment\n    path = path.split('?')[0].split('#')[0]\n\n    # Split path into components\n    components = path.split('/')\n    # Filter out empty components (e.g., from leading/trailing slashes)\n    non_empty = [c for c in components if c]\n\n    if not non_empty:\n        return u''\n    return non_empty[-1]\n",
+      "source_sha256": "25d40a1d2e6d6f40d40899a5e64719235ff38691d9dda2d090c6d1db219acca2",
+      "model_raw_output_sha256": "aa11ea186c8dbc401aee573f603047d75de16a27fc17353345c872f78dfd1cbf",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional www\n    # Remove scheme (http:// or https://)\n    if url.startswith('http://'):\n        rest = url[7:]\n    elif url.startswith('https://'):\n        rest = url[8:]\n    else:\n        rest = url\n\n    # Split on first '/' to get host and path\n    parts = rest.split('/', 1)\n    if len(parts) == 1:\n        return u''\n    path = parts[1]\n\n    # Remove query and fragment\n    path = path.split('?')[0].split('#')[0]\n\n    # Split path into components\n    components = path.split('/')\n    # Filter out empty components (e.g., from leading/trailing slashes)\n    non_empty = [c for c in components if c]\n\n    if not non_empty:\n        return u''\n    return non_empty[-1]",
+      "candidate_prompt_sha256": "f0bf112b29d3a39eb752220ef8f4b5fb742afed315dc8ded72b17a3c7e2337e4",
+      "provider_response_id": "gen-1791773889-vJ6Nlx6DiXbeLLAYNFix",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 190,
+        "total_tokens": 897
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 2.642
+    },
+    {
+      "id": "attempt-12",
+      "parent_id": "attempt-11",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "d6c99dd80033c3fc6d089f1ab2b0892e75181925db0a37f77521358bbbea6f61",
+      "provider_response_id": "gen-1791773891-EDO4PO8Sms34lLPaMlfu",
+      "provider_tokens": {
+        "prompt_tokens": 769,
+        "completion_tokens": 59,
+        "total_tokens": 828
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.22
+    },
+    {
+      "id": "attempt-13",
+      "parent_id": "attempt-12",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional trailing slash\n    # Remove scheme if present\n    if url.startswith('http://'):\n        rest = url[7:]\n    elif url.startswith('https://'):\n        rest = url[8:]\n    else:\n        rest = url\n    # Split on '/' to get path components\n    parts = rest.split('/')\n    # Filter out empty parts (caused by leading/trailing slashes)\n    non_empty = [p for p in parts if p]\n    if not non_empty:\n        return ''\n    # The basename is the last non-empty component before any '?' or '#'\n    last = non_empty[-1]\n    # Strip query and fragment if present\n    if '?' in last:\n        last = last.split('?')[0]\n    if '#' in last:\n        last = last.split('#')[0]\n    return last\n",
+      "source_sha256": "c529032e85ca4613df1d19d972399f0b560240c5c5a795fe49aab26da664da8e",
+      "model_raw_output_sha256": "56d7d83cfb8f6288714018e933a18c8b71bd5f236e4abe8cebc5bd9b709b9d0d",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional trailing slash\n    # Remove scheme if present\n    if url.startswith('http://'):\n        rest = url[7:]\n    elif url.startswith('https://'):\n        rest = url[8:]\n    else:\n        rest = url\n    # Split on '/' to get path components\n    parts = rest.split('/')\n    # Filter out empty parts (caused by leading/trailing slashes)\n    non_empty = [p for p in parts if p]\n    if not non_empty:\n        return ''\n    # The basename is the last non-empty component before any '?' or '#'\n    last = non_empty[-1]\n    # Strip query and fragment if present\n    if '?' in last:\n        last = last.split('?')[0]\n    if '#' in last:\n        last = last.split('#')[0]\n    return last",
+      "candidate_prompt_sha256": "275332a571e161f15d6aa3e084de4ca48044072a3a1db432111df0176e803ab0",
+      "provider_response_id": "gen-1791773893-ofen3Edw9wqKl5HWfmzI",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 184,
+        "total_tokens": 891
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 2.087
+    },
+    {
+      "id": "attempt-14",
+      "parent_id": "attempt-13",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "00f4fb2378db3211d4bba5574df2e5e59049bd00ee02a8ad268b2647c9a46b99",
+      "provider_response_id": "gen-1791773895-tNMoZ4gZjgSVtoXU6TnW",
+      "provider_tokens": {
+        "prompt_tokens": 764,
+        "completion_tokens": 59,
+        "total_tokens": 823
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 0.967
+    },
+    {
+      "id": "attempt-15",
+      "parent_id": "attempt-14",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional trailing slash\n    # Remove scheme and netloc, then split path\n    # Use urllib.parse for robust parsing\n    from urllib.parse import urlparse\n\n    parsed = urlparse(url)\n    path = parsed.path.rstrip('/')\n    if not path:\n        return u''\n    # Get the last non-empty segment of the path\n    segments = [seg for seg in path.split('/') if seg]\n    if not segments:\n        return u''\n    return segments[-1] + (parsed.query and '?' + parsed.query or '') + (parsed.fragment and '#' + parsed.fragment or '')\n",
+      "source_sha256": "7f96ded39d8f3d5675c561953cbc4c80c0c4235f6ff40abbcd7f8b1535bb86f7",
+      "model_raw_output_sha256": "8704e8901d5e29c994b8c863424317f9ffb6fa9afb84fdf2d0b64b68fb7b77ae",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional trailing slash\n    # Remove scheme and netloc, then split path\n    # Use urllib.parse for robust parsing\n    from urllib.parse import urlparse\n\n    parsed = urlparse(url)\n    path = parsed.path.rstrip('/')\n    if not path:\n        return u''\n    # Get the last non-empty segment of the path\n    segments = [seg for seg in path.split('/') if seg]\n    if not segments:\n        return u''\n    return segments[-1] + (parsed.query and '?' + parsed.query or '') + (parsed.fragment and '#' + parsed.fragment or '')",
+      "candidate_prompt_sha256": "c3f4b88debd63ad999f06587164d715295a4612ffba1d2182c24d49cc8c9351e",
+      "provider_response_id": "gen-1791773896-Dy6ymwErc7m0tZ9RyBuq",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 136,
+        "total_tokens": 843
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 2.522
+    },
+    {
+      "id": "attempt-16",
+      "parent_id": "attempt-15",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "aed2c5324ba04f42be1ec5d9bde1941f94274aaed6030c55558c7e2e9bf831a6",
+      "provider_response_id": "gen-1791773898-6Cn1O1zBCDZVZw4IVPbL",
+      "provider_tokens": {
+        "prompt_tokens": 716,
+        "completion_tokens": 59,
+        "total_tokens": 775
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 0.851
+    },
+    {
+      "id": "attempt-17",
+      "parent_id": "attempt-16",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and netloc\n    # Remove scheme if present\n    if url.startswith('http://'):\n        rest = url[7:]\n    elif url.startswith('https://'):\n        rest = url[8:]\n    else:\n        rest = url\n    # Split on first '/' to separate netloc and path\n    parts = rest.split('/', 1)\n    if len(parts) == 1:\n        return ''\n    path = parts[1]\n    # Remove query and fragment\n    path = path.split('?')[0].split('#')[0]\n    # Strip trailing slashes\n    path = path.rstrip('/')\n    if not path:\n        return ''\n    # Get the last segment\n    return path.split('/')[-1]\n",
+      "source_sha256": "60a3ef4ef6e5d2d1c52e139b0de9610862b6eef5b0307e57b277ffee8ed028b9",
+      "model_raw_output_sha256": "88cdf94b3e346585aef6f2bd991093e8be47f753066be3b6b45608cf61801967",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and netloc\n    # Remove scheme if present\n    if url.startswith('http://'):\n        rest = url[7:]\n    elif url.startswith('https://'):\n        rest = url[8:]\n    else:\n        rest = url\n    # Split on first '/' to separate netloc and path\n    parts = rest.split('/', 1)\n    if len(parts) == 1:\n        return ''\n    path = parts[1]\n    # Remove query and fragment\n    path = path.split('?')[0].split('#')[0]\n    # Strip trailing slashes\n    path = path.rstrip('/')\n    if not path:\n        return ''\n    # Get the last segment\n    return path.split('/')[-1]",
+      "candidate_prompt_sha256": "04396f39369250695d9a5829a2fec3508dc10af983bfb75cdda0a3f720aaea02",
+      "provider_response_id": "gen-1791773899-DDFrU0POL86NRU2nPH8R",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 162,
+        "total_tokens": 869
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 3.1
+    },
+    {
+      "id": "attempt-18",
+      "parent_id": "attempt-17",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "dc4d579acc6a4cac1faa481d361084dad8b6bea383a907b4f0ea6b7e89fdd3bf",
+      "provider_response_id": "gen-1791773902-ZVBHd8Jbm3id03HNHmOv",
+      "provider_tokens": {
+        "prompt_tokens": 741,
+        "completion_tokens": 59,
+        "total_tokens": 800
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.437
+    },
+    {
+      "id": "attempt-19",
+      "parent_id": "attempt-18",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional www\n    # Remove scheme if present\n    if url.startswith('http://'):\n        url = url[7:]\n    elif url.startswith('https://'):\n        url = url[8:]\n    # Remove leading // if present (e.g., //example.com/path)\n    if url.startswith('//'):\n        url = url[2:]\n    # Split by '/' to get path components\n    parts = url.split('/')\n    # Filter out empty parts and query/fragment\n    path_parts = []\n    for part in parts:\n        if '?' in part or '#' in part:\n            part = part.split('?')[0].split('#')[0]\n        if part:\n            path_parts.append(part)\n    # The basename is the last non-empty path component\n    if not path_parts:\n        return ''\n    return path_parts[-1]\n",
+      "source_sha256": "65ce4d3347d486bfbb17caf3fcc9475551bbaeac438a2c3c0a81af08c6a01ba6",
+      "model_raw_output_sha256": "14a6f7990c0e9d31c6404d39095ab0aad7408765435bcf18a03b560b4a9510c9",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional www\n    # Remove scheme if present\n    if url.startswith('http://'):\n        url = url[7:]\n    elif url.startswith('https://'):\n        url = url[8:]\n    # Remove leading // if present (e.g., //example.com/path)\n    if url.startswith('//'):\n        url = url[2:]\n    # Split by '/' to get path components\n    parts = url.split('/')\n    # Filter out empty parts and query/fragment\n    path_parts = []\n    for part in parts:\n        if '?' in part or '#' in part:\n            part = part.split('?')[0].split('#')[0]\n        if part:\n            path_parts.append(part)\n    # The basename is the last non-empty path component\n    if not path_parts:\n        return ''\n    return path_parts[-1]",
+      "candidate_prompt_sha256": "25c8641aecdeb3f0864ecdc6ece4f941e8da2917ef9b228d56110f9f71bd2b38",
+      "provider_response_id": "gen-1791773904-lRYRZGiAWunrMjIgE2LV",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 185,
+        "total_tokens": 892
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 2.166
+    },
+    {
+      "id": "attempt-20",
+      "parent_id": "attempt-19",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "af402e292a6342f759fee7534d36398bd3c2cb2fa66223b332fdbcd1df72897e",
+      "provider_response_id": "gen-1791773906-ZJTkPGOYng1LCmhmorsD",
+      "provider_tokens": {
+        "prompt_tokens": 764,
+        "completion_tokens": 59,
+        "total_tokens": 823
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.035
+    },
+    {
+      "id": "attempt-21",
+      "parent_id": "attempt-20",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and netloc\n    if '://' in url:\n        # Split scheme and rest\n        _, rest = url.split('://', 1)\n    else:\n        rest = url\n    # Find the first '/' after netloc\n    slash_pos = rest.find('/')\n    if slash_pos == -1:\n        return ''\n    # Path starts after the first slash\n    path = rest[slash_pos + 1:]\n    # Remove query and fragment\n    for sep in ('?', '#'):\n        idx = path.find(sep)\n        if idx != -1:\n            path = path[:idx]\n    # Split path into components\n    parts = path.split('/')\n    # Filter out empty parts\n    non_empty = [p for p in parts if p]\n    if not non_empty:\n        return ''\n    return non_empty[-1]\n",
+      "source_sha256": "c36e2146ddfb7443a12d27575ecfa1f4b0d7d2947215a2037fc5df352a982af9",
+      "model_raw_output_sha256": "7166ca1f9925c2d87aae88d1de90545d4413058af0707ed48350444ae9339c51",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and netloc\n    if '://' in url:\n        # Split scheme and rest\n        _, rest = url.split('://', 1)\n    else:\n        rest = url\n    # Find the first '/' after netloc\n    slash_pos = rest.find('/')\n    if slash_pos == -1:\n        return ''\n    # Path starts after the first slash\n    path = rest[slash_pos + 1:]\n    # Remove query and fragment\n    for sep in ('?', '#'):\n        idx = path.find(sep)\n        if idx != -1:\n            path = path[:idx]\n    # Split path into components\n    parts = path.split('/')\n    # Filter out empty parts\n    non_empty = [p for p in parts if p]\n    if not non_empty:\n        return ''\n    return non_empty[-1]",
+      "candidate_prompt_sha256": "775d7eb0e2f951dca8436d4a565b42df48d00d0e6eb5d4d60a40aaa6a93aa848",
+      "provider_response_id": "gen-1791773907-lfFPT5Qy6Fu2BUGz0cXU",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 188,
+        "total_tokens": 895
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 3.03
+    },
+    {
+      "id": "attempt-22",
+      "parent_id": "attempt-21",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "018ea3cb63200e027659676f77b3b87e76519b793a751c482d8fd4996a3c95d9",
+      "provider_response_id": "gen-1791773910-dmKwBUAhnNXsYSX5Amkg",
+      "provider_tokens": {
+        "prompt_tokens": 767,
+        "completion_tokens": 59,
+        "total_tokens": 826
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.88
+    },
+    {
+      "id": "attempt-23",
+      "parent_id": "attempt-22",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional trailing slash\n    # Remove scheme (http:// or https://) if present\n    if url.startswith('http://'):\n        rest = url[7:]\n    elif url.startswith('https://'):\n        rest = url[8:]\n    else:\n        rest = url\n    # Split on '/' to get path components\n    parts = rest.split('/')\n    # Filter out empty parts and query/fragment\n    path_parts = []\n    for part in parts:\n        if '?' in part or '#' in part:\n            part = part.split('?')[0].split('#')[0]\n        if part:\n            path_parts.append(part)\n    # The basename is the last non-empty path component\n    if not path_parts:\n        return ''\n    return path_parts[-1]\n",
+      "source_sha256": "53bb6dec0cf405872827be1b10b52c06c8a041cc571a5e431d709339d62d9c41",
+      "model_raw_output_sha256": "3879b8d9eee0f1003fae1082a8de6bbdf50804adbeb22b9a039e14fd7b52b676",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional trailing slash\n    # Remove scheme (http:// or https://) if present\n    if url.startswith('http://'):\n        rest = url[7:]\n    elif url.startswith('https://'):\n        rest = url[8:]\n    else:\n        rest = url\n    # Split on '/' to get path components\n    parts = rest.split('/')\n    # Filter out empty parts and query/fragment\n    path_parts = []\n    for part in parts:\n        if '?' in part or '#' in part:\n            part = part.split('?')[0].split('#')[0]\n        if part:\n            path_parts.append(part)\n    # The basename is the last non-empty path component\n    if not path_parts:\n        return ''\n    return path_parts[-1]",
+      "candidate_prompt_sha256": "394e08e5217c2de7a55fe87764621122ae1986f222e0f6f27f2fece27aaab03c",
+      "provider_response_id": "gen-1791773912-1QpQHOgElhE9XI5MDl5R",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 172,
+        "total_tokens": 879
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 3.039
+    },
+    {
+      "id": "attempt-24",
+      "parent_id": "attempt-23",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "5be0c81ddee478b8d9d9d0214cb26dd727439d347dcf55f0e676da864220640d",
+      "provider_response_id": "gen-1791773915-CJl0EWyDb7C6NpBLosga",
+      "provider_tokens": {
+        "prompt_tokens": 751,
+        "completion_tokens": 59,
+        "total_tokens": 810
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.084
+    },
+    {
+      "id": "attempt-25",
+      "parent_id": "attempt-24",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and netloc\n    if not url.startswith(('http://', 'https://')):\n        return ''\n    # Strip scheme\n    rest = url.split('://', 1)[1]\n    # Split on first '/' to get netloc and path\n    parts = rest.split('/', 1)\n    if len(parts) == 1:\n        return ''\n    path = parts[1]\n    # Remove query and fragment\n    path = path.split('?', 1)[0].split('#', 1)[0]\n    # Split path into components\n    components = path.split('/')\n    # Return the last non-empty component\n    for comp in reversed(components):\n        if comp:\n            return comp\n    return ''\n",
+      "source_sha256": "adff9713be62f5450afd2af4cc2eb07e6cc65d8638339b36e864b288c6f2f31f",
+      "model_raw_output_sha256": "7a92825aa7188697d7ae9500c64449d2d7e058273fe58695c5ed256e94df3f21",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and netloc\n    if not url.startswith(('http://', 'https://')):\n        return ''\n    # Strip scheme\n    rest = url.split('://', 1)[1]\n    # Split on first '/' to get netloc and path\n    parts = rest.split('/', 1)\n    if len(parts) == 1:\n        return ''\n    path = parts[1]\n    # Remove query and fragment\n    path = path.split('?', 1)[0].split('#', 1)[0]\n    # Split path into components\n    components = path.split('/')\n    # Return the last non-empty component\n    for comp in reversed(components):\n        if comp:\n            return comp\n    return ''",
+      "candidate_prompt_sha256": "89fe7d0034358935d3e750777dbd583eea0dcafbe2f5e12e445c507dbe4a6452",
+      "provider_response_id": "gen-1791773916-Zmw4LPzEfm9PpvQeIGyo",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 162,
+        "total_tokens": 869
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.567
+    },
+    {
+      "id": "attempt-26",
+      "parent_id": "attempt-25",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "ddc3f758ba73ba403eb154e5ae2408d13adac6df2294b526f519a7f7e30cbd84",
+      "provider_response_id": "gen-1791773917-DGukMNpAkvGoWU05rIqm",
+      "provider_tokens": {
+        "prompt_tokens": 741,
+        "completion_tokens": 59,
+        "total_tokens": 800
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.072
+    },
+    {
+      "id": "attempt-27",
+      "parent_id": "attempt-26",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional www\n    # Remove scheme and netloc, keep path\n    # Use urllib.parse for robust parsing\n    from urllib.parse import urlparse, unquote\n    parsed = urlparse(url)\n    path = unquote(parsed.path)\n    # Remove trailing slash\n    if path.endswith('/'):\n        path = path.rstrip('/')\n    # Split path into components\n    parts = path.split('/')\n    # Return last non-empty component if exists, else empty string\n    if parts and parts[-1]:\n        return parts[-1]\n    return ''\n",
+      "source_sha256": "91b246013a802589469c46a58be66dedc2a4677fea004e481f420e2623c7147f",
+      "model_raw_output_sha256": "fbd8dcd13074386cf498cc392aef32e987ea91eac80a6e34f32e7da1904cfa53",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme and optional www\n    # Remove scheme and netloc, keep path\n    # Use urllib.parse for robust parsing\n    from urllib.parse import urlparse, unquote\n    parsed = urlparse(url)\n    path = unquote(parsed.path)\n    # Remove trailing slash\n    if path.endswith('/'):\n        path = path.rstrip('/')\n    # Split path into components\n    parts = path.split('/')\n    # Return last non-empty component if exists, else empty string\n    if parts and parts[-1]:\n        return parts[-1]\n    return ''",
+      "candidate_prompt_sha256": "dbf2d1be1b240e628aa9d8a637247c59a3740a73b1258913e557497167a6ace4",
+      "provider_response_id": "gen-1791773918-s34n4n1WGv7nnEwT01vO",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 128,
+        "total_tokens": 835
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.837
+    },
+    {
+      "id": "attempt-28",
+      "parent_id": "attempt-27",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "9f37ab0f27d564b25ff7f798782206edff62ff16b3ff0b772f1c53641743ec5e",
+      "provider_response_id": "gen-1791773920-Vfavy30MrWbB0QPok1et",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 59,
+        "total_tokens": 766
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.059
+    },
+    {
+      "id": "attempt-29",
+      "parent_id": "attempt-28",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\nfrom urllib.parse import urlparse\n\ndef url_basename(url):\n    parsed = urlparse(url)\n    path = parsed.path\n    if not path:\n        return ''\n    parts = path.split('/')\n    basename = parts[-1]\n    if basename == '':\n        if len(parts) >= 2:\n            basename = parts[-2]\n        else:\n            return ''\n    return basename\n",
+      "source_sha256": "75c55f58023e8c2c6dbb09e471fbedff2c4e17d44eae64bb8acb82955c0872e1",
+      "model_raw_output_sha256": "217a34d10bc267a71a9165357f0f06f2edd05acb87e81377a46e529ed7642cae",
+      "model_raw_output": "import re\nfrom urllib.parse import urlparse\n\ndef url_basename(url):\n    parsed = urlparse(url)\n    path = parsed.path\n    if not path:\n        return ''\n    parts = path.split('/')\n    basename = parts[-1]\n    if basename == '':\n        if len(parts) >= 2:\n            basename = parts[-2]\n        else:\n            return ''\n    return basename",
+      "candidate_prompt_sha256": "59a891dbd65d8ab29839e2ef4f720a795fdc2d92c9f98c51d8d5b977b486e8d7",
+      "provider_response_id": "gen-1791773921-XEr6VbdBhadhA3DFa7Kc",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 80,
+        "total_tokens": 787
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.307
+    },
+    {
+      "id": "attempt-30",
+      "parent_id": "attempt-29",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\nfrom urllib.parse import urlparse\n\ndef url_basename(url):\n    parsed = urlparse(url)\n    path = parsed.path\n    if not path:\n        return ''\n    parts = path.split('/')\n    basename = parts[-1]\n    if basename == '':\n        if len(parts) >= 2:\n            basename = parts[-2]\n        else:\n            return ''\n    return basename\n",
+      "source_sha256": "75c55f58023e8c2c6dbb09e471fbedff2c4e17d44eae64bb8acb82955c0872e1",
+      "model_raw_output_sha256": "217a34d10bc267a71a9165357f0f06f2edd05acb87e81377a46e529ed7642cae",
+      "model_raw_output": "import re\nfrom urllib.parse import urlparse\n\ndef url_basename(url):\n    parsed = urlparse(url)\n    path = parsed.path\n    if not path:\n        return ''\n    parts = path.split('/')\n    basename = parts[-1]\n    if basename == '':\n        if len(parts) >= 2:\n            basename = parts[-2]\n        else:\n            return ''\n    return basename",
+      "candidate_prompt_sha256": "8b08a90c40504d8571cd3be3067c09458d85cb72de08ef6fc6ca0777d07631c0",
+      "provider_response_id": "gen-1791773923-ao6XHSJyF55kNRauvQBe",
+      "provider_tokens": {
+        "prompt_tokens": 660,
+        "completion_tokens": 80,
+        "total_tokens": 740
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 2.145
+    },
+    {
+      "id": "attempt-31",
+      "parent_id": "attempt-30",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)\n",
+      "source_sha256": "e50f17b2bcd289381bbf48f3ebc498b5379a41bc8bf5979bfbeb52acc173fd41",
+      "model_raw_output_sha256": "5a7f2c78c06462a7cf4e98a792f516dbdda31165cfc407d3ebf7f762efdb4de1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    m = re.match(r'(?:https?:|)//[^/]+/(?:[^/?#]+/)?([^/?#]+)/?(?:[?#]|$)', url)\n    if not m:\n        return u''\n    return m.group(1)",
+      "candidate_prompt_sha256": "88f9affbd0a877ea4a6f85187c17551a23c40dd90b372c16a7c1114b5162a76e",
+      "provider_response_id": "gen-1791773925-lIPvd8C2LIybHUWdraBf",
+      "provider_tokens": {
+        "prompt_tokens": 729,
+        "completion_tokens": 59,
+        "total_tokens": 788
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.375
+    },
+    {
+      "id": "attempt-32",
+      "parent_id": "attempt-31",
+      "policy_action": "revise",
+      "original_v31": false,
+      "source": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme variations and ensure consistent parsing\n    if not url.startswith(('http://', 'https://')):\n        url = 'http://' + url\n    # Use urllib.parse to parse the URL into components\n    from urllib.parse import urlparse\n    parsed = urlparse(url)\n    # Extract path and split into segments\n    path = parsed.path.rstrip('/')\n    if not path:\n        return ''\n    # Return the last non-empty segment\n    return path.split('/')[-1] if path.split('/')[-1] else ''\n",
+      "source_sha256": "d918f3babaa5ce4bcb6656c3dbad8a7c58139727b2a8af329a04a98768821cdf",
+      "model_raw_output_sha256": "d1cd8f0d9035400e53fd91a7488ce09268754cb4bc0bd7121e6563920d61e8f1",
+      "model_raw_output": "import re\n\ndef url_basename(url):\n    # Normalize URL to handle scheme variations and ensure consistent parsing\n    if not url.startswith(('http://', 'https://')):\n        url = 'http://' + url\n    # Use urllib.parse to parse the URL into components\n    from urllib.parse import urlparse\n    parsed = urlparse(url)\n    # Extract path and split into segments\n    path = parsed.path.rstrip('/')\n    if not path:\n        return ''\n    # Return the last non-empty segment\n    return path.split('/')[-1] if path.split('/')[-1] else ''",
+      "candidate_prompt_sha256": "a49ec3ff1092d2e356f882b6b3961452058fac3c4dec5f247d6464b746fb0fa2",
+      "provider_response_id": "gen-1791773926-pTOPjebCxQQhKuaq4VH4",
+      "provider_tokens": {
+        "prompt_tokens": 707,
+        "completion_tokens": 121,
+        "total_tokens": 828
+      },
+      "reported_provider_cost": 0,
+      "provider_cache_hit": false,
+      "public": {
+        "status": "model_invalid_contract",
+        "passed": false,
+        "diagnostic": "exactly one top-level replacement function is required"
+      },
+      "public_docker_called": false,
+      "public_reused": false,
+      "public_reused_from": null,
+      "request_plus_public_wall_seconds": 1.498
+    }
+  ],
+  "hidden_checks_performed": 0,
+  "selected_source_sha256": null,
+  "model": "cohere/north-mini-code:free",
+  "original_three_attempts_provenance_sha256": "c86d8bd13649e295730debcf771730871e2f8ee3b9fdef67db1dfeb1cd57699a",
+  "provider_error": "model provider HTTP 429"
+}

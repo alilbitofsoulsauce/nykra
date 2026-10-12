@@ -4,6 +4,7 @@ This is conservative hygiene, not a professional credential scanner.
 Run after staging, and on CI for every commit.
 """
 from __future__ import annotations
+import argparse
 import pathlib
 import re
 import subprocess
@@ -25,15 +26,26 @@ SUSPICIOUS=[
 ]
 
 
-def main():
-    result=subprocess.run(["git","ls-files","-z"],cwd=ROOT,capture_output=True,check=True)
-    paths=[pathlib.PurePosixPath(x.decode("utf-8"))
-           for x in result.stdout.split(b"\x00") if x]
-    names={p.as_posix() for p in paths}
+def _git_paths(*args):
+    result=subprocess.run(["git","ls-files","-z",*args],cwd=ROOT,
+                          capture_output=True,check=True)
+    return {pathlib.PurePosixPath(x.decode("utf-8"))
+            for x in result.stdout.split(b"\x00") if x}
+
+
+def main(argv=None):
+    parser=argparse.ArgumentParser(description="Audit files eligible for a public Nykra release")
+    parser.add_argument("--include-untracked",action="store_true",
+                        help="also scan non-ignored untracked release candidates before staging")
+    args=parser.parse_args(argv)
+    tracked=_git_paths("--cached")
+    paths=tracked | (_git_paths("--others","--exclude-standard")
+                     if args.include_untracked else set())
+    names={p.as_posix() for p in tracked}
     errors=[]
     for needed in sorted(REQUIRED-names):
         errors.append(f"required OSS source not tracked: {needed}")
-    for item in paths:
+    for item in sorted(paths):
         path=ROOT/item
         suffix=item.suffix.lower()
         if set(x.lower() for x in item.parts)&FORBIDDEN_SEGMENTS:
@@ -41,7 +53,7 @@ def main():
         if (item.name.startswith(".env") or suffix in (".pem",".key",".p12",".pfx",
                 ".sqlite",".sqlite3",".db") or item.name in ("id_rsa","id_ed25519")):
             errors.append(f"potentially private file staged: {item}")
-        if not path.is_file() or path.is_symlink():
+        if path.is_symlink() or not path.is_file():
             errors.append(f"tracked non-regular file: {item}")
             continue
         if path.stat().st_size>20*1024*1024:
@@ -56,8 +68,9 @@ def main():
         for entry in errors:
             print("ERROR:",entry,file=sys.stderr)
         return 1
-    print(f"Nykra OSS tracked-release hygiene passed: {len(paths)} files, "
-          f"{len(REQUIRED)} required artifacts, no known credential signatures")
+    scope="tracked + untracked candidates" if args.include_untracked else "tracked"
+    print(f"Nykra OSS {scope} hygiene passed: {len(paths)} files, "
+          f"{len(REQUIRED)} required tracked artifacts, no known credential signatures")
     return 0
 
 

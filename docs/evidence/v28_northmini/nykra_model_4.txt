@@ -1,0 +1,136 @@
+===MORE===
+from collections import deque
+from itertools import islice, tee, accumulate
+from statistics import median
+from decimal import Decimal
+from fractions import Fraction
+from numbers import Complex
+
+__all__ = ['Stats', 'running_min', 'running_max', 'running_mean', 'running_statistics']
+
+class Stats:
+    __slots__ = ('size', 'minimum', 'median', 'maximum', 'mean')
+    def __init__(self, size, minimum, median, maximum, mean):
+        self.size = size
+        self.minimum = minimum
+        self.median = median
+        self.maximum = maximum
+        self.mean = mean
+
+    def __hash__(self):
+        return hash((self.size, self.minimum, self.median, self.maximum, self.mean))
+
+    def __eq__(self, other):
+        if not isinstance(other, Stats):
+            return NotImplemented
+        return (self.size == other.size and
+                self.minimum == other.minimum and
+                self.median == other.median and
+                self.maximum == other.maximum and
+                self.mean == other.mean)
+
+    def __repr__(self):
+        return (f"Stats(size={self.size}, minimum={self.minimum}, median={self.median}, "
+                f"maximum={self.maximum}, mean={self.mean})")
+
+def running_min(iterable, *, maxlen=None):
+    if maxlen is not None:
+        if not isinstance(maxlen, int) or maxlen <= 0:
+            raise ValueError("maxlen must be a positive integer")
+        d = deque(maxlen=maxlen)
+    else:
+        d = []
+    it = iter(iterable)
+    for x in it:
+        if maxlen is None:
+            d.append(x)
+        else:
+            d.append(x)
+        yield min(d)
+
+def running_max(iterable, *, maxlen=None):
+    if maxlen is not None:
+        if not isinstance(maxlen, int) or maxlen <= 0:
+            raise ValueError("maxlen must be a positive integer")
+        d = deque(maxlen=maxlen)
+    else:
+        d = []
+    it = iter(iterable)
+    for x in it:
+        if maxlen is None:
+            d.append(x)
+        else:
+            d.append(x)
+        yield max(d)
+
+def running_mean(iterable, *, maxlen=None):
+    if maxlen is not None:
+        if not isinstance(maxlen, int) or maxlen <= 0:
+            raise ValueError("maxlen must be a positive integer")
+        d = deque(maxlen=maxlen)
+        total = 0
+        count = 0
+    else:
+        d = []
+        total = 0
+        count = 0
+    it = iter(iterable)
+    for x in it:
+        if maxlen is None:
+            d.append(x)
+            total += x
+            count += 1
+        else:
+            d.append(x)
+            total += x
+            count += 1
+            if count > maxlen:
+                total -= d[0]
+        yield total / count if count else 0
+
+def running_statistics(iterable, *, maxlen=None):
+    if maxlen is not None:
+        if not isinstance(maxlen, int) or maxlen <= 0:
+            raise ValueError("maxlen must be a positive integer")
+        d = deque(maxlen=maxlen)
+    else:
+        d = []
+    it = iter(iterable)
+    for x in it:
+        if maxlen is None:
+            d.append(x)
+        else:
+            d.append(x)
+        size = len(d)
+        minimum = min(d)
+        maximum = max(d)
+        sorted_d = sorted(d)
+        median_val = median(sorted_d)
+        mean_val = sum(d) / size if size else 0
+        yield Stats(size, minimum, median_val, maximum, mean_val)
+
+===MEAN===
+def running_mean(iterable, *, maxlen=None):
+    if maxlen is not None:
+        if not isinstance(maxlen, int) or maxlen <= 0:
+            raise ValueError("maxlen must be a positive integer")
+        d = deque(maxlen=maxlen)
+        total = 0
+        count = 0
+    else:
+        d = []
+        total = 0
+        count = 0
+    it = iter(iterable)
+    for x in it:
+        if maxlen is None:
+            d.append(x)
+            total += x
+            count += 1
+        else:
+            d.append(x)
+            total += x
+            count += 1
+            if count > maxlen:
+                total -= d[0]
+        yield total / count if count else 0

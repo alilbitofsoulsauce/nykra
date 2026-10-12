@@ -1,0 +1,12 @@
+{
+  "schema": "nykra-v39-new-model-same-provider-smoke-protocol-v1",
+  "frozen_before_second_model_probe": true,
+  "cli": "C:/Users/admin/.codex/plugins/.plugin-appserver/codex.exe",
+  "model": "gpt-5.6-terra",
+  "model_provider": "OpenAI Codex with ChatGPT plan authentication",
+  "not_an_independent_provider": true,
+  "prompt": "Reply with only the exact token READY",
+  "reasoning": "low",
+  "policy": "one bounded probe only, no source code execution or Git changes",
+  "interpretation": "If successful proves distinct Codex-listed model can reply, not evidence of coding improvement or second-provider support"
+}

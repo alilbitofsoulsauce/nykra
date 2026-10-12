@@ -1,0 +1,52 @@
+{
+  "schema": "nykra-v36-preinference-frozen-upstream-checks-v1",
+  "task": "youtube-dl-35",
+  "graded_before_any_model_proposal": true,
+  "eligible": true,
+  "expected_statuses": {
+    "buggy_public": "test_failed",
+    "buggy_hidden": "test_failed",
+    "reference_public": "ok",
+    "reference_hidden": "ok"
+  },
+  "results": {
+    "buggy_public": {
+      "status": "test_failed",
+      "passed": false,
+      "mode": "public",
+      "return_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7177ed5dc7ee5b4bd2b70d5ec281669107f2ac231a63a67e493106dd84007fce",
+      "elapsed_seconds": 23.94,
+      "diagnostic": "FAIL: test_unified_dates (test.test_utils.TestUtil)\nAssertionError: None != '20140128'\nFAILED (failures=1)"
+    },
+    "buggy_hidden": {
+      "status": "test_failed",
+      "passed": false,
+      "mode": "hidden",
+      "return_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9b81357a5d7803c8761565abf773f5deb14ca7ec251a827a09b002b766d7b661",
+      "elapsed_seconds": 5.57
+    },
+    "reference_public": {
+      "status": "ok",
+      "passed": true,
+      "mode": "public",
+      "return_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "208430b573e6c56d48b924af48d236b76771bf0ec5d0cbc7e72c4fcd1388d2da",
+      "elapsed_seconds": 6.41
+    },
+    "reference_hidden": {
+      "status": "ok",
+      "passed": true,
+      "mode": "hidden",
+      "return_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "58b4d9eb44aad1a09eb5e592d39a7ddd513e13e4a1683a0188871d505d90f68b",
+      "elapsed_seconds": 5.63
+    }
+  },
+  "protocol_sha256": "b7532405c50fcdd077a00d4fd6a295cdeb5aa275095da4a9ea0af13925aaaad4"
+}

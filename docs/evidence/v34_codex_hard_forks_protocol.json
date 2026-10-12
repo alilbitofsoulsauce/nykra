@@ -1,0 +1,48 @@
+{
+  "schema": "nykra-v34-codex-luna-hard-historical-forks-v1",
+  "frozen_before_new_v34_inference": true,
+  "model": "gpt-5.6-luna",
+  "authentication": "ChatGPT Codex OAuth, no API key",
+  "reasoning": "low",
+  "both_arms_same_historical_failed_prefix": true,
+  "historical_prefix_from": "real previously recorded v20 Codex model outputs, not current gpt-5.6-luna",
+  "arms": [
+    "baseline_depth",
+    "nykra_adaptive"
+  ],
+  "arm_order_by_task": [
+    [
+      "baseline_depth",
+      "nykra_adaptive"
+    ],
+    [
+      "nykra_adaptive",
+      "baseline_depth"
+    ]
+  ],
+  "first_fork": "depth revision of third failed patch vs adaptive new independent root",
+  "stop": "independent Docker hidden verified, genuine provider failure, evaluator error, or operator interruption; no arbitrary number of failures",
+  "public_test": "fixed commit's registered upstream public test only, same both arms",
+  "hidden_test": "existing v20 private checks and additional upstream hidden tests, not shown to either model",
+  "source_normalizer": "same safe stdlib import adapter both arms",
+  "no_git_changes": true,
+  "limits": [
+    "historical tasks reused by prior Nykra studies",
+    "small sample",
+    "Luna capability can dominate policy effect"
+  ],
+  "tasks": [
+    {
+      "id": "youtube-dl-3",
+      "prefix_sha256": "a03a097cd35a6934f61ccee08f3c71d37f0faaa3c308aebe6c98a315a0fd4231",
+      "historical_protocol": "v20",
+      "historical_prefix_length": 3
+    },
+    {
+      "id": "youtube-dl-5",
+      "prefix_sha256": "65ebaf1317b48be8f0a121dd77deb9a9898c087d37987e4ee6a4fc8e2b3af918",
+      "historical_protocol": "v20",
+      "historical_prefix_length": 3
+    }
+  ]
+}

@@ -198,6 +198,32 @@ def build_parser() -> argparse.ArgumentParser:
                              help="After passing tests, atomically replace exact tested file bytes in the clean original worktree")
     transaction.add_argument("--approve", action="store_true")
     transaction.add_argument("--timeout", type=int, default=90)
+    provider = sub.add_parser("provider-probe", help="Approval-gated external agent CLI readiness; no paid model invocation by Nykra")
+    provider.add_argument("--expect", default="READY")
+    provider.add_argument("--timeout", type=int, default=30)
+    provider.add_argument("--runs", type=int, default=1)
+    provider.add_argument("--approve", action="store_true")
+    provider.add_argument("--cwd", type=Path, default=None)
+    provider.add_argument("argv", nargs=argparse.REMAINDER,
+                          help="Executable and arguments after --; no shell or API key handling")
+    multi = sub.add_parser("multi-workflow", help="Portable approved multi-file agent proposals using disposable Git tests")
+    multi.add_argument("action", choices=["start", "next", "submit", "finalize", "summary", "abort"])
+    multi.add_argument("--repository", type=Path, default=None)
+    multi.add_argument("--task", default=None)
+    multi.add_argument("--allow", action="append", dest="allowed_paths", default=None)
+    multi.add_argument("--policy", choices=["breadth", "depth", "adaptive"], default="depth")
+    multi.add_argument("--budget", type=int, default=4)
+    multi.add_argument("--session", default=None)
+    multi.add_argument("--candidate-file", type=Path, default=None)
+    multi.add_argument("--test-target", default=None)
+    multi.add_argument("--docker-image-id", default=None)
+    multi.add_argument("--trusted-local-tests", action="store_true")
+    multi.add_argument("--dedupe-public", action="store_true",
+                       help="Opt in to same-session exact failed-patch public receipt reuse")
+    multi.add_argument("--halt-on-repeat-failure", action="store_true",
+                       help="Opt in to pause new model requests after identical consecutive failed patches")
+    multi.add_argument("--timeout", type=int, default=90)
+    multi.add_argument("--approve", action="store_true")
     workflow = sub.add_parser("workflow", help="Rel.AI-hosted real Git repair sessions with portable proposal protocol")
     workflow.add_argument("action", choices=["tasks", "start", "next", "submit", "reuse", "finalize", "summary", "abort", "auto"])
     workflow.add_argument("--task", default=None)
@@ -247,6 +273,13 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "integrations":
             _output(scan_drivers())
             return 0
+        if args.command == "provider-probe":
+            from .provider_preflight import probe_repeated
+            argv = args.argv[1:] if args.argv and args.argv[0] == "--" else args.argv
+            _output(probe_repeated(argv, runs=args.runs, expect=args.expect,
+                                   timeout=args.timeout, approve=args.approve,
+                                   cwd=args.cwd))
+            return 0
         if args.command == "patch-transaction":
             from .transactional_patch import run_transaction, PatchRejected
             import re
@@ -266,6 +299,38 @@ def main(argv: list[str] | None = None) -> int:
                                     allow_trusted_local_tests=args.trusted_local_tests,
                                     promote=args.promote, approve=args.approve,
                                     timeout=args.timeout))
+            return 0
+        if args.command == "multi-workflow":
+            from . import multifile_workflow as mw
+            if args.action == "start":
+                if args.repository is None or args.task is None or not args.allowed_paths:
+                    raise NykraError("multi-workflow start requires --repository, --task and --allow")
+                _output(mw.start(repository=args.repository, task=args.task,
+                                 allowed_paths=args.allowed_paths, policy=args.policy,
+                                 budget=args.budget, docker_image_id=args.docker_image_id,
+                                 trusted_local_tests=args.trusted_local_tests,
+                                 test_target=args.test_target, timeout=args.timeout,
+                                 dedupe_public=args.dedupe_public,
+                                 halt_on_repeat_failure=args.halt_on_repeat_failure,
+                                 approve=args.approve, home=args.home))
+            else:
+                if args.session is None:
+                    raise NykraError("multi-workflow action requires --session")
+                if args.action == "next":
+                    _output(mw.next_request(args.session, home=args.home))
+                elif args.action == "submit":
+                    if args.candidate_file is None:
+                        raise NykraError("multi-workflow submit requires --candidate-file")
+                    if args.candidate_file.stat().st_size > 128 * 1024:
+                        raise NykraError("candidate patch exceeds 128 KiB")
+                    _output(mw.submit(args.session, args.candidate_file.read_text(encoding="utf-8"),
+                                      approve=args.approve, home=args.home))
+                elif args.action == "finalize":
+                    _output(mw.finalize(args.session, approve=args.approve, home=args.home))
+                elif args.action == "abort":
+                    _output(mw.abort(args.session, approve=args.approve, home=args.home))
+                else:
+                    _output(mw.summary(args.session, home=args.home))
             return 0
         if args.command == "workflow":
             from . import agent_workflow as wf

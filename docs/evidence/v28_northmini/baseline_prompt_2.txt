@@ -1,0 +1,521 @@
+Repair historical more-itertools issue #1134, pinned pre-feature source.
+Write correct Python for *both modules*: new exported functions
+running_min(iterable, *, maxlen=None), running_max(iterable, *, maxlen=None),
+running_statistics(iterable, *, maxlen=None), with immutable hashable slot-based
+non-iterable Stats(size,minimum,median,maximum,mean), and replace
+recipes.running_mean(iterable) to add maxlen sliding windows.
+New functions must return lazy iterators and detect noniterable/invalid
+maxlen early. Preserve numerical types for Fraction/Decimal/complex mean.
+Existing running_median supports maxlen, can be reused.
+
+ONLY return these TWO sections, no commentary, no markdown, no fenced blocks:
+===MORE===
+Complete Python code for new helpers, imports and classes to append to
+more_itertools/more.py. Existing exported __all__ names will be augmented by
+a deterministic patch adapter. You can import from recipes and itertools.
+===MEAN===
+Complete replacement function def running_mean(iterable, *, maxlen=None)
+including correct sliding mean and default all-items-running mean.
+The adapter itself will not implement any algorithms and treats both arms equally.
+No official reference fix or hidden tests are available.
+
+Relevant existing more.py imports:
+import math
+
+from collections import Counter, defaultdict, deque
+from collections.abc import Sequence
+from contextlib import suppress
+from functools import cached_property, partial, wraps
+from heapq import heapify, heapreplace
+from itertools import (
+    chain,
+    combinations,
+    compress,
+    count,
+    cycle,
+    dropwhile,
+    groupby,
+    islice,
+    permutations,
+    repeat,
+    starmap,
+    takewhile,
+    tee,
+    zip_longest,
+    product,
+)
+from math import comb, e, exp, factorial, floor, fsum, log, log1p, perm, tau
+from math import ceil, prod
+from queue import Empty, Queue
+from random import random, randrange, shuffle, uniform
+from operator import (
+    attrgetter,
+    getitem,
+    is_not,
+    itemgetter,
+    lt,
+    neg,
+    sub,
+    gt,
+)
+from sys import maxsize
+from time import monotonic
+from threading import Lock
+
+from .recipes import (
+    _marker,
+    consume,
+    first_true,
+    flatten,
+    is_prime,
+    nth,
+    powerset,
+    sieve,
+    take,
+    unique_everseen,
+    all_equal,
+    batched,
+)
+
+__all__ = [
+    'AbortThread',
+    'SequenceView',
+Existing recipes.py imports:
+"""Imported from the recipes section of the itertools documentation.
+
+All functions taken from the recipes section of the itertools library docs
+[1]_.
+Some backward-compatible usability improvements have been made.
+
+.. [1] http://docs.python.org/library/itertools.html#recipes
+
+"""
+
+import random
+
+from bisect import bisect_left, insort
+from collections import deque
+from contextlib import suppress
+from functools import lru_cache, reduce
+from heapq import heappush, heappushpop
+from itertools import (
+    accumulate,
+    chain,
+    combinations,
+    compress,
+    count,
+    cycle,
+    groupby,
+    islice,
+    pairwise,
+    product,
+    repeat,
+    starmap,
+    takewhile,
+    tee,
+    zip_longest,
+)
+from math import prod, comb, isqrt, gcd
+from operator import mul, getitem, index, is_, itemgetter, truediv
+from random import randrange, sample, choice, shuffle
+from sys import hexversion
+
+__all__ = [
+    'all_equal',
+    'batched',
+    'before_and_after',
+Existing recipes.running_median:
+def running_median(iterable, *, maxlen=None):
+    """Cumulative median of values seen so far or values in a sliding window.
+
+    Set *maxlen* to a positive integer to specify the maximum size
+    of the sliding window.  The default of *None* is equivalent to
+    an unbounded window.
+
+    For example:
+
+        >>> list(running_median([5.0, 9.0, 4.0, 12.0, 8.0, 9.0]))
+        [5.0, 7.0, 5.0, 7.0, 8.0, 8.5]
+        >>> list(running_median([5.0, 9.0, 4.0, 12.0, 8.0, 9.0], maxlen=3))
+        [5.0, 7.0, 5.0, 9.0, 8.0, 9.0]
+
+    Supports numeric types such as int, float, Decimal, and Fraction,
+    but not complex numbers which are unorderable.
+
+    On version Python 3.13 and prior, max-heaps are simulated with
+    negative values. The negation causes Decimal inputs to apply context
+    rounding, making the results slightly different than that obtained
+    by statistics.median().
+    """
+
+    iterator = iter(iterable)
+
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        return _running_median_windowed(iterator, maxlen)
+
+    if not _max_heap_available:
+        return _running_median_minheap_only(iterator)  # pragma: no cover
+
+    return _running_median_minheap_and_maxheap(iterator)  # pragma: no cover
+
+
+Existing recipes.running_mean:
+def running_mean(iterable):
+    """Yield the average of all values seen so far.
+
+    >>> iterable = [100, 200, 600]
+    >>> all_means = running_mean(iterable)
+    >>> next(all_means)
+    100.0
+    >>> next(all_means)
+    150.0
+    >>> next(all_means)
+    300.0
+    """
+    return map(truediv, accumulate(iterable), count(1))
+
+
+Frozen public requirements:
+"""Frozen public issue #1134 requirements; no reference solution."""
+from decimal import Decimal
+from fractions import Fraction
+from statistics import median
+import unittest
+import more_itertools as mi
+
+class PublicRunningStatistics(unittest.TestCase):
+    def test_minmax_prefix(self):
+        self.assertEqual(list(mi.running_min([4,3,7,0,8])),[4,3,3,0,0])
+        self.assertEqual(list(mi.running_max([4,3,7,0,8])),[4,4,7,7,8])
+
+    def test_minmax_window(self):
+        self.assertEqual(list(mi.running_min([8,7,9,3,5],maxlen=2)),[8,7,7,3,3])
+        self.assertEqual(list(mi.running_max([8,7,9,3,5],maxlen=2)),[8,8,9,9,5])
+
+    def test_running_mean_window(self):
+        data=[4,3,7,0,8,1]
+        self.assertEqual(list(mi.running_mean(data,maxlen=3)),
+                         [4.0,3.5,14/3,10/3,5.0,3.0])
+
+    def test_statistics_unbounded(self):
+        data=[4,3,7,0,8]
+        rows=list(mi.running_statistics(data))
+        self.assertEqual(len(rows),5)
+        self.assertEqual(rows[0],mi.Stats(size=1,minimum=4,median=4,maximum=4,mean=4.0))
+        self.assertEqual(rows[-1],mi.Stats(size=5,minimum=0,median=4,maximum=8,mean=4.4))
+
+    def test_statistics_window(self):
+        data=[4,3,7,0,8]
+        rows=list(mi.running_statistics(data,maxlen=3))
+        self.assertEqual(rows[2],mi.Stats(size=3,minimum=3,median=4,maximum=7,mean=14/3))
+        self.assertEqual(rows[3],mi.Stats(size=3,minimum=0,median=3,maximum=7,mean=10/3))
+        self.assertEqual(rows[4],mi.Stats(size=3,minimum=0,median=7,maximum=8,mean=5.0))
+
+    def test_invalid_window(self):
+        for fn in [mi.running_min,mi.running_max,mi.running_mean,mi.running_statistics]:
+            with self.subTest(name=fn.__name__):
+                with self.assertRaises(ValueError):
+                    list(fn([1,2,3],maxlen=0))
+
+
+REVISION 2: Your prior original proposal below was applied and failed the PUBLIC tests. Fix all observed defects. Retain the required TWO sections exactly; do not output prose.
+
+PUBLIC ERROR DIAGNOSTIC:
+---------------------------------------------
+Traceback (most recent call last):
+  File "/repo/tests/test_nykra_public.py", line 19, in test_running_mean_window
+    self.assertEqual(list(mi.running_mean(data,maxlen=3)),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     [4.0,3.5,14/3,10/3,5.0,3.0])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [4.0,[18 chars]66667, 4.666666666666667, 7.333333333333333, 7.666666666666667] != [4.0,[18 chars]66667, 3.3333333333333335, 5.0, 3.0]
+
+First differing element 3:
+4.666666666666667
+3.3333333333333335
+
++ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]
+- [4.0,
+-  3.5,
+-  4.666666666666667,
+-  4.666666666666667,
+-  7.333333333333333,
+-  7.666666666666667]
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.030s
+
+FAILED (failures=1, errors=5)
+
+
+YOUR PREVIOUS CODE:
+===MORE===
+from collections import deque
+from heapq import heappush, heappop, heapreplace
+from math import fsum
+from statistics import median as _median
+from typing import Generic, TypeVar, Optional, Iterator, List, Tuple, Union
+from fractions import Fraction
+from decimal import Decimal
+from numbers import Complex, Real
+
+T = TypeVar('T', bound=Union[int, float, Fraction, Decimal, complex])
+
+class Stats:
+    __slots__ = ('size', 'minimum', 'median', 'maximum', 'mean')
+    def __init__(self, size: int, minimum: T, median: T, maximum: T, mean: T):
+        self.size = size
+        self.minimum = minimum
+        self.median = median
+        self.maximum = maximum
+        self.mean = mean
+
+    def __eq__(self, other):
+        return (
+            isinstance(other, Stats) and
+            self.size == other.size and
+            self.minimum == other.minimum and
+            self.median == other.median and
+            self.maximum == other.maximum and
+            self.mean == other.mean
+        )
+
+    def __repr__(self):
+        return (
+            f'Stats(size={self.size}, minimum={self.minimum}, '
+            f'median={self.median}, maximum={self.maximum}, mean={self.mean})'
+        )
+
+def running_min(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        d = deque(maxlen=maxlen)
+        it = iter(iterable)
+        for x in it:
+            d.append(x)
+            yield min(d)
+        for _ in range(len(d), maxlen):
+            yield d[0]
+    else:
+        it = iter(iterable)
+        try:
+            current_min = next(it)
+        except StopIteration:
+            return
+        yield current_min
+        for x in it:
+            if x < current_min:
+                current_min = x
+            yield current_min
+
+def running_max(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        d = deque(maxlen=maxlen)
+        it = iter(iterable)
+        for x in it:
+            d.append(x)
+            yield max(d)
+        for _ in range(len(d), maxlen):
+            yield d[0]
+    else:
+        it = iter(iterable)
+        try:
+            current_max = next(it)
+        except StopIteration:
+            return
+        yield current_max
+        for x in it:
+            if x > current_max:
+                current_max = x
+            yield current_max
+
+def running_statistics(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        min_deque = deque(maxlen=maxlen)
+        max_deque = deque(maxlen=maxlen)
+        window = deque(maxlen=maxlen)
+        sum_deque = deque(maxlen=maxlen)
+        it = iter(iterable)
+        for x in it:
+            window.append(x)
+            sum_deque.append(x)
+            # maintain min_deque
+            while min_deque and min_deque[-1] > x:
+                min_deque.pop()
+            min_deque.append(x)
+            # maintain max_deque
+            while max_deque and max_deque[-1] < x:
+                max_deque.pop()
+            max_deque.append(x)
+            yield Stats(
+                size=len(window),
+                minimum=min_deque[0],
+                median=_median(window),
+                maximum=max_deque[0],
+                mean=fsum(sum_deque) / len(window)
+            )
+        # fill remaining windows
+        for _ in range(len(window), maxlen):
+            yield Stats(
+                size=len(window),
+                minimum=min_deque[0],
+                median=_median(window),
+                maximum=max_deque[0],
+                mean=fsum(sum_deque) / len(window)
+            )
+    else:
+        min_deque = []
+        max_deque = []
+        window = []
+        sum_deque = 0.0
+        it = iter(iterable)
+        for x in it:
+            window.append(x)
+            sum_deque += x
+            while min_deque and min_deque[-1] > x:
+                min_deque.pop()
+            min_deque.append(x)
+            while max_deque and max_deque[-1] < x:
+                max_deque.pop()
+            max_deque.append(x)
+            yield Stats(
+                size=len(window),
+                minimum=min_deque[0],
+                median=_median(window),
+                maximum=max_deque[0],
+                mean=sum_deque / len(window)
+            )
+
+def _running_median_windowed(iterator, maxlen):
+    from heapq import heappush, heappop
+    lo = []  # max-heap (store negatives)
+    hi = []  # min-heap
+    for _ in range(maxlen):
+        try:
+            val = next(iterator)
+        except StopIteration:
+            break
+        if not lo or val <= -lo[0]:
+            heappush(lo, -val)
+        else:
+            heappush(hi, val)
+        # balance sizes
+        if len(lo) > len(hi) + 1:
+            heappush(hi, -heappop(lo))
+        elif len(hi) > len(lo):
+            heappush(lo, -heappop(hi))
+    # yield median for first window
+    if lo:
+        yield -lo[0]
+    else:
+        yield hi[0]
+    # slide window
+    for val in iterator:
+        # remove oldest element
+        if lo and val <= -lo[0]:
+            # val is in lo, need to remove oldest from lo
+            # we can't efficiently remove arbitrary element, so we rebuild
+            # but for simplicity, we just push and rebalance
+            heappush(lo, -val)
+            out = -heappop(lo)
+        else:
+            out = heappop(hi)
+        # add new val
+        if not lo or val <= -lo[0]:
+            heappush(lo, -val)
+        else:
+            heappush(hi, val)
+        # rebalance
+        if len(lo) > len(hi) + 1:
+            heappush(hi, -heappop(lo))
+        elif len(hi) > len(lo):
+            heappush(lo, -heappop(hi))
+        # median
+        if lo:
+            yield -lo[0]
+        else:
+            yield hi[0]
+
+def _running_median_minheap_and_maxheap(iterator):
+    from heapq import heappush, heappop
+    lo = []  # max-heap (negatives)
+    hi = []  # min-heap
+    for val in iterator:
+        if not lo or val <= -lo[0]:
+            heappush(lo, -val)
+        else:
+            heappush(hi, val)
+        # balance sizes
+        if len(lo) > len(hi) + 1:
+            heappush(hi, -heappop(lo))
+        elif len(hi) > len(lo):
+            heappush(lo, -heappop(hi))
+        # median
+        if lo:
+            yield -lo[0]
+        else:
+            yield hi[0]
+
+def _running_median_minheap_only(iterator):
+    from heapq import heappush, heappop
+    heap = []
+    for val in iterator:
+        heappush(heap, val)
+        # median is the smallest element (since we only have min-heap)
+        yield heap[0]
+
+def running_mean(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        window = deque(maxlen=maxlen)
+        total = 0.0
+        for x in iterable:
+            window.append(x)
+            total += x
+            yield total / len(window)
+        # fill remaining windows
+        for _ in range(len(window), maxlen):
+            yield total / len(window)
+    else:
+        total = 0.0
+        count = 0
+        for x in iterable:
+            total += x
+            count += 1
+            yield total / count
+
+===MEAN===
+def running_mean(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        window = deque(maxlen=maxlen)
+        total = 0.0
+        for x in iterable:
+            window.append(x)
+            total += x
+            yield total / len(window)
+        # fill remaining windows
+        for _ in range(len(window), maxlen):
+            yield total / len(window)
+    else:
+        total = 0.0
+        count = 0
+        for x in iterable:
+            total += x
+            count += 1
+            yield total / count

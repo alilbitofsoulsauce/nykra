@@ -1,0 +1,125 @@
+"""Explicitly approved and free-route-only OpenRouter inference for supervised Nykra trials.
+
+This is an optional adapter, not an automatically enabled background agent.
+Requires an environment-injected OpenRouter API key. Never logs key or raw
+provider messages; caller is responsible for retaining model-authored source.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import re
+import time
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+
+API_URL = "https://openrouter.ai/api/v1/chat/completions"
+FREE_MODEL = re.compile(r"^[a-z0-9][a-z0-9._-]*/[a-z0-9][a-z0-9._-]*:free$")
+
+
+class FreeModelError(RuntimeError):
+    pass
+
+
+def generate(prompt: str, *, model: str, max_tokens: int = 1800,
+             timeout: int = 90, approve: bool = False,
+             token: str | None = None) -> dict:
+    if approve is not True:
+        raise FreeModelError("inference requires explicit approval")
+    if not isinstance(model, str) or not FREE_MODEL.fullmatch(model):
+        raise FreeModelError("model must be a fixed provider/model:free route")
+    if type(max_tokens) is not int or not 128 <= max_tokens <= 4096:
+        raise FreeModelError("max_tokens must be 128-4096")
+    if type(timeout) is not int or not 10 <= timeout <= 180:
+        raise FreeModelError("timeout must be 10-180 seconds")
+    if not isinstance(prompt, str) or not 1 <= len(prompt) <= 30000:
+        raise FreeModelError("prompt length must be 1-30000 characters")
+    token = token if token is not None else os.environ.get("OPENROUTER_API_KEY", "")
+    if not token:
+        raise FreeModelError("OPENROUTER_API_KEY must be set")
+    payload = {
+        "model": model, "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": max_tokens, "temperature": 0.2,
+        "provider": {"allow_fallbacks": False},
+        "reasoning": {"enabled": False},
+        "stream": False,
+    }
+    request = urllib.request.Request(
+        API_URL, json.dumps(payload).encode("utf-8"),
+        {"Authorization": "Bearer " + token,
+         "Content-Type": "application/json",
+         "User-Agent": "Nykra-supervised-free-proposal/1.0"},
+        method="POST",
+    )
+    started = time.monotonic()
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            document = json.loads(response.read(1_500_000).decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        # Do not preserve backend exception text; it might include secrets.
+        raise FreeModelError(f"model provider HTTP {exc.code}") from None
+    except (TimeoutError, OSError) as exc:
+        raise FreeModelError(f"model provider connection {type(exc).__name__}") from None
+    except (ValueError, UnicodeError, KeyError, TypeError) as exc:
+        raise FreeModelError(f"malformed model response {type(exc).__name__}") from None
+
+    usage = document.get("usage") or {}
+    if usage.get("cost") is not None and float(usage["cost"]) != 0:
+        raise FreeModelError("nonzero provider-reported cost; proposal refused")
+    choices = document.get("choices") or []
+    if not choices:
+        raise FreeModelError("missing model choices")
+    message = choices[0].get("message") or {}
+    output = message.get("content") or ""
+    if not isinstance(output, str) or not output.strip():
+        raise FreeModelError("empty model content; reasoning-only output is not a proposal")
+    actual = str(document.get("model") or "")
+    if actual and actual != model:
+        raise FreeModelError("provider changed requested free model identity")
+    return {
+        "text": output,
+        "receipt": {
+            "model": model,
+            "response_id": str(document.get("id", ""))[:128],
+            "sha256": hashlib.sha256(output.encode("utf-8")).hexdigest(),
+            "chars": len(output),
+            "elapsed_seconds": round(time.monotonic() - started, 3),
+            "tokens": {k: usage.get(k) for k in
+                       ("prompt_tokens", "completion_tokens", "total_tokens")},
+            "cost": usage.get("cost"),
+            "finish_reason": choices[0].get("finish_reason"),
+            "free_route_checked": True,
+            "independently_verified_free_pricing": False,
+        },
+    }
+
+
+def cli(argv=None):
+    import argparse
+    parser = argparse.ArgumentParser(description="One authorized free-route coding inference")
+    parser.add_argument("--model", required=True)
+    parser.add_argument("--prompt-file", type=Path, required=True)
+    parser.add_argument("--output-file", type=Path, required=True)
+    parser.add_argument("--max-tokens", type=int, default=1800)
+    parser.add_argument("--timeout", type=int, default=90)
+    parser.add_argument("--approve", action="store_true")
+    args = parser.parse_args(argv)
+    try:
+        if args.output_file.exists():
+            raise FreeModelError("refusing to overwrite existing model proposal")
+        result = generate(args.prompt_file.read_text(encoding="utf-8"),
+                          model=args.model, max_tokens=args.max_tokens,
+                          timeout=args.timeout, approve=args.approve)
+        args.output_file.write_text(result["text"], encoding="utf-8", newline="\n")
+        print(json.dumps(result["receipt"], sort_keys=True))
+        return 0
+    except (FreeModelError, OSError, UnicodeError) as exc:
+        print(json.dumps({"ready": False, "error": str(exc)}))
+        return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(cli())

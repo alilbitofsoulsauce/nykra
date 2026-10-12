@@ -1,0 +1,309 @@
+diff --git a/more_itertools/more.py b/more_itertools/more.py
+index 12b4942..0c90784 100644
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -56,6 +56,10 @@ from .recipes import (
+ )
+ 
+ __all__ = [
++    'Stats',
++    'running_min',
++    'running_max',
++    'running_statistics',
+     'AbortThread',
+     'SequenceView',
+     'adjacent',
+@@ -5441,3 +5445,248 @@ class _concurrent_tee:
+                     link[1] = [None, None]
+         value, self.link = link
+         return value
++
++
++from collections import deque
++from heapq import heappush, heappop, heapreplace
++from math import fsum
++from statistics import median as _median
++from typing import Generic, TypeVar, Optional, Iterator, List, Tuple, Union
++from fractions import Fraction
++from decimal import Decimal
++from numbers import Complex, Real
++
++T = TypeVar('T', bound=Union[int, float, Fraction, Decimal, complex])
++
++class Stats:
++    __slots__ = ('size', 'minimum', 'median', 'maximum', 'mean')
++    def __init__(self, size: int, minimum: T, median: T, maximum: T, mean: T):
++        self.size = size
++        self.minimum = minimum
++        self.median = median
++        self.maximum = maximum
++        self.mean = mean
++
++    def __eq__(self, other):
++        return (
++            isinstance(other, Stats) and
++            self.size == other.size and
++            self.minimum == other.minimum and
++            self.median == other.median and
++            self.maximum == other.maximum and
++            self.mean == other.mean
++        )
++
++    def __repr__(self):
++        return (
++            f'Stats(size={self.size}, minimum={self.minimum}, '
++            f'median={self.median}, maximum={self.maximum}, mean={self.mean})'
++        )
++
++def running_min(iterable, *, maxlen=None):
++    if maxlen is not None:
++        maxlen = index(maxlen)
++        if maxlen <= 0:
++            raise ValueError('Window size should be positive')
++        d = deque(maxlen=maxlen)
++        it = iter(iterable)
++        for x in it:
++            d.append(x)
++            yield min(d)
++        for _ in range(len(d), maxlen):
++            yield d[0]
++    else:
++        it = iter(iterable)
++        try:
++            current_min = next(it)
++        except StopIteration:
++            return
++        yield current_min
++        for x in it:
++            if x < current_min:
++                current_min = x
++            yield current_min
++
++def running_max(iterable, *, maxlen=None):
++    if maxlen is not None:
++        maxlen = index(maxlen)
++        if maxlen <= 0:
++            raise ValueError('Window size should be positive')
++        d = deque(maxlen=maxlen)
++        it = iter(iterable)
++        for x in it:
++            d.append(x)
++            yield max(d)
++        for _ in range(len(d), maxlen):
++            yield d[0]
++    else:
++        it = iter(iterable)
++        try:
++            current_max = next(it)
++        except StopIteration:
++            return
++        yield current_max
++        for x in it:
++            if x > current_max:
++                current_max = x
++            yield current_max
++
++def running_statistics(iterable, *, maxlen=None):
++    if maxlen is not None:
++        maxlen = index(maxlen)
++        if maxlen <= 0:
++            raise ValueError('Window size should be positive')
++        min_deque = deque(maxlen=maxlen)
++        max_deque = deque(maxlen=maxlen)
++        window = deque(maxlen=maxlen)
++        sum_deque = deque(maxlen=maxlen)
++        it = iter(iterable)
++        for x in it:
++            window.append(x)
++            sum_deque.append(x)
++            # maintain min_deque
++            while min_deque and min_deque[-1] > x:
++                min_deque.pop()
++            min_deque.append(x)
++            # maintain max_deque
++            while max_deque and max_deque[-1] < x:
++                max_deque.pop()
++            max_deque.append(x)
++            yield Stats(
++                size=len(window),
++                minimum=min_deque[0],
++                median=_median(window),
++                maximum=max_deque[0],
++                mean=fsum(sum_deque) / len(window)
++            )
++        # fill remaining windows
++        for _ in range(len(window), maxlen):
++            yield Stats(
++                size=len(window),
++                minimum=min_deque[0],
++                median=_median(window),
++                maximum=max_deque[0],
++                mean=fsum(sum_deque) / len(window)
++            )
++    else:
++        min_deque = []
++        max_deque = []
++        window = []
++        sum_deque = 0.0
++        it = iter(iterable)
++        for x in it:
++            window.append(x)
++            sum_deque += x
++            while min_deque and min_deque[-1] > x:
++                min_deque.pop()
++            min_deque.append(x)
++            while max_deque and max_deque[-1] < x:
++                max_deque.pop()
++            max_deque.append(x)
++            yield Stats(
++                size=len(window),
++                minimum=min_deque[0],
++                median=_median(window),
++                maximum=max_deque[0],
++                mean=sum_deque / len(window)
++            )
++
++def _running_median_windowed(iterator, maxlen):
++    from heapq import heappush, heappop
++    lo = []  # max-heap (store negatives)
++    hi = []  # min-heap
++    for _ in range(maxlen):
++        try:
++            val = next(iterator)
++        except StopIteration:
++            break
++        if not lo or val <= -lo[0]:
++            heappush(lo, -val)
++        else:
++            heappush(hi, val)
++        # balance sizes
++        if len(lo) > len(hi) + 1:
++            heappush(hi, -heappop(lo))
++        elif len(hi) > len(lo):
++            heappush(lo, -heappop(hi))
++    # yield median for first window
++    if lo:
++        yield -lo[0]
++    else:
++        yield hi[0]
++    # slide window
++    for val in iterator:
++        # remove oldest element
++        if lo and val <= -lo[0]:
++            # val is in lo, need to remove oldest from lo
++            # we can't efficiently remove arbitrary element, so we rebuild
++            # but for simplicity, we just push and rebalance
++            heappush(lo, -val)
++            out = -heappop(lo)
++        else:
++            out = heappop(hi)
++        # add new val
++        if not lo or val <= -lo[0]:
++            heappush(lo, -val)
++        else:
++            heappush(hi, val)
++        # rebalance
++        if len(lo) > len(hi) + 1:
++            heappush(hi, -heappop(lo))
++        elif len(hi) > len(lo):
++            heappush(lo, -heappop(hi))
++        # median
++        if lo:
++            yield -lo[0]
++        else:
++            yield hi[0]
++
++def _running_median_minheap_and_maxheap(iterator):
++    from heapq import heappush, heappop
++    lo = []  # max-heap (negatives)
++    hi = []  # min-heap
++    for val in iterator:
++        if not lo or val <= -lo[0]:
++            heappush(lo, -val)
++        else:
++            heappush(hi, val)
++        # balance sizes
++        if len(lo) > len(hi) + 1:
++            heappush(hi, -heappop(lo))
++        elif len(hi) > len(lo):
++            heappush(lo, -heappop(hi))
++        # median
++        if lo:
++            yield -lo[0]
++        else:
++            yield hi[0]
++
++def _running_median_minheap_only(iterator):
++    from heapq import heappush, heappop
++    heap = []
++    for val in iterator:
++        heappush(heap, val)
++        # median is the smallest element (since we only have min-heap)
++        yield heap[0]
++
++def running_mean(iterable, *, maxlen=None):
++    if maxlen is not None:
++        maxlen = index(maxlen)
++        if maxlen <= 0:
++            raise ValueError('Window size should be positive')
++        window = deque(maxlen=maxlen)
++        total = 0.0
++        for x in iterable:
++            window.append(x)
++            total += x
++            yield total / len(window)
++        # fill remaining windows
++        for _ in range(len(window), maxlen):
++            yield total / len(window)
++    else:
++        total = 0.0
++        count = 0
++        for x in iterable:
++            total += x
++            count += 1
++            yield total / count
+diff --git a/more_itertools/recipes.py b/more_itertools/recipes.py
+index 9f46be3..54331df 100644
+--- a/more_itertools/recipes.py
++++ b/more_itertools/recipes.py
+@@ -1408,19 +1408,27 @@ def running_median(iterable, *, maxlen=None):
+     return _running_median_minheap_and_maxheap(iterator)  # pragma: no cover
+ 
+ 
+-def running_mean(iterable):
+-    """Yield the average of all values seen so far.
+-
+-    >>> iterable = [100, 200, 600]
+-    >>> all_means = running_mean(iterable)
+-    >>> next(all_means)
+-    100.0
+-    >>> next(all_means)
+-    150.0
+-    >>> next(all_means)
+-    300.0
+-    """
+-    return map(truediv, accumulate(iterable), count(1))
++def running_mean(iterable, *, maxlen=None):
++    if maxlen is not None:
++        maxlen = index(maxlen)
++        if maxlen <= 0:
++            raise ValueError('Window size should be positive')
++        window = deque(maxlen=maxlen)
++        total = 0.0
++        for x in iterable:
++            window.append(x)
++            total += x
++            yield total / len(window)
++        # fill remaining windows
++        for _ in range(len(window), maxlen):
++            yield total / len(window)
++    else:
++        total = 0.0
++        count = 0
++        for x in iterable:
++            total += x
++            count += 1
++            yield total / count
+ 
+ 
+ def random_derangement(iterable):

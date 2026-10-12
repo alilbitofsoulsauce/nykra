@@ -2,7 +2,7 @@
   "name": "nykra-observer",
   "displayName": "Nykra Passive Observer",
   "publisher": "nykra",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "description": "Local-first, privacy-minimized editor execution observations for Nykra.",
   "license": "MIT",
   "engines": {
