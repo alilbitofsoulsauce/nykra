@@ -1,6 +1,7 @@
 """Offline integrity checks for v39–v40 real cross-repo and second-model receipts."""
 import hashlib
 import json
+import shutil
 import unittest
 from pathlib import Path
 
@@ -94,13 +95,10 @@ class CrossRepoModelEvidenceTests(unittest.TestCase):
             self.assertEqual(a["policy_action"],"new_root")
             self.assertEqual(a["public"]["status"],"ok")
             self.assertEqual(a["hidden"]["status"],"ok")
-            original={name:git_blob(proto["buggy_commit"],name,"PySnooper-1")
-                      for name in proto["allowed_production_paths"]}
-            patch,receipt=exact_edits_to_diff(a["raw_codex_output"],originals=original,
-                  allowed_paths=proto["allowed_production_paths"])
-            self.assertEqual(patch,a["patch"])
-            self.assertEqual(receipt["files_changed"],proto["allowed_production_paths"])
-            self.assertEqual(hashlib.sha256(patch.encode()).hexdigest(),a["patch_sha256"])
+            self.assertEqual(a["structured_adapter"]["files_changed"],
+                             proto["allowed_production_paths"])
+            self.assertEqual(hashlib.sha256(a["patch"].encode()).hexdigest(),
+                             a["patch_sha256"])
             p[arm]=a["prompt_sha256"]
         self.assertEqual(p["structured_depth"],p["structured_adaptive"])
         regrade=read("docs/evidence/v40_independent_regrade.json")
@@ -109,6 +107,24 @@ class CrossRepoModelEvidenceTests(unittest.TestCase):
             self.assertEqual(record["public"]["status"],"ok")
             self.assertEqual(record["hidden"]["status"],"ok")
             self.assertEqual(record["extra_provider_calls"],0)
+
+
+    def test_terra_structured_patches_reconstruct_with_pinned_upstream_checkout(self):
+        from nykra.v20_grader import REPOS
+        upstream=REPOS.get("PySnooper",ROOT/"experiments/bench-source/pysnooper")
+        if shutil.which("git") is None or not (upstream/".git").exists():
+            self.skipTest("requires Git and separately provisioned PySnooper upstream checkout")
+        proto=read("docs/evidence/v40_terra_policy_protocol.json")
+        for arm in ("structured_depth","structured_adaptive"):
+            data=read("docs/evidence/v40_terra_policy_live/PySnooper-1_"+arm+".json")
+            attempt=data["attempts"][0]
+            originals={name:git_blob(proto["buggy_commit"],name,"PySnooper-1")
+                       for name in proto["allowed_production_paths"]}
+            patch,receipt=exact_edits_to_diff(attempt["raw_codex_output"],
+                    originals=originals,allowed_paths=proto["allowed_production_paths"])
+            self.assertEqual(patch,attempt["patch"])
+            self.assertEqual(receipt["files_changed"],proto["allowed_production_paths"])
+            self.assertEqual(receipt["patch_sha256"],attempt["patch_sha256"])
 
 
 if __name__=="__main__":

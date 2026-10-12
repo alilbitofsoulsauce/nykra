@@ -1288,7 +1288,7 @@
     {
       "id": "v26_internal_zero_suite_frozen_public_tests",
       "path": "tests/test_zero_count_public.py",
-      "sha256": "9b15cac25cb581016f6c5d874c3bee7db1a588853087f2397b283c327180d5e8",
+      "sha256": "a3241b2334f11fa7b6aaf44d3203089589894c1a81318465a5ecd58621112ccf",
       "runner": "pinned_python313_docker",
       "comparison": "six_public_tests_frozen_before_model_patch"
     },
@@ -2107,7 +2107,7 @@
     {
       "id": "v37_real_codex_hidden_verified_provenance_tests",
       "path": "tests/test_v37_structured_live.py",
-      "sha256": "948f45fdef7b2f71db65b983b649c4c046a94645d9b8bf05965448fa67a62e38",
+      "sha256": "3b0955a3bfd87c89ae47c3cdb52ea32ed92842b89e925af19efce114049e0ef1",
       "runner": "ChatGPT_OAuth_Codex_Luna_bounded_source_edit_adapter_pinned_offline_Docker",
       "comparison": "previously_unused_historical_BugsInPy32_12_raw_diff_invalid_then_operator_paused_vs_one_structured_hidden_verified;no_adaptive_policy_claim"
     },
@@ -2387,7 +2387,7 @@
     {
       "id": "v40_crossrepo_evidence_offline_tests",
       "path": "tests/test_v39_v40_crossrepo_evidence.py",
-      "sha256": "3822fde56208ceeb119d2489724baf2bacf559c7681cc6afd05e30fce030c578",
+      "sha256": "7f8e5cd5056cb9bfe94bf140e75007acc6d5f629849b4ad2f544b9408bc1cf54",
       "runner": "real_PySnooper_BugsInPy_multifile_ChatGPT_Codex_Luna_Terra_and_pinned_offline_Docker",
       "comparison": "v39_old_public_structured_PySnooper_failed_hidden;v40_posthoc_Terra_new_stronger_public_both_structured_policies_success_at_first_call_no_adaptive_fork;external_provider_unavailable"
     }

@@ -14,6 +14,8 @@ from nykra.ide import package_vsix
 
 ROOT=Path(__file__).resolve().parents[1]
 EXPECTED_ARCHIVES={
+    "docs/evidence/v26_original_zero_count_public_tests.py.txt":
+        "9b15cac25cb581016f6c5d874c3bee7db1a588853087f2397b283c327180d5e8",
     "docs/evidence/v37_original_structured_edit_adapter.py":
         "adac639e6aa7f473c33718651bf81d56c82d5393b18f812082ac7caf9fea9f87",
     "docs/evidence/v37_original_structured_edit_tests.py":
@@ -22,6 +24,10 @@ EXPECTED_ARCHIVES={
         "9b0bf1fdab42b05a4ac501878eec979455eb15c894865299ef48f1dec4c3f9f3",
     "docs/evidence/v32_original_recovery_evidence_tests.py.txt":
         "642f3719e51105fb6f759943747c5b87845b41173edb83168a9ab97786ea2c92",
+    "docs/evidence/v37_original_live_evidence_tests.py.txt":
+        "948f45fdef7b2f71db65b983b649c4c046a94645d9b8bf05965448fa67a62e38",
+    "docs/evidence/v40_original_crossrepo_evidence_tests.py.txt":
+        "3822fde56208ceeb119d2489724baf2bacf559c7681cc6afd05e30fce030c578",
 }
 
 
@@ -42,7 +48,7 @@ class ReleaseCandidateTests(unittest.TestCase):
                                  __version__)
                 self.assertIn(__version__,archive.read("extension.vsixmanifest").decode("utf-8"))
 
-    def test_pre_hardening_benchmark_snapshots_are_byte_preserved(self):
+    def test_original_benchmark_and_ci_source_snapshots_are_byte_preserved(self):
         for relative,digest in EXPECTED_ARCHIVES.items():
             with self.subTest(path=relative):
                 self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),digest)

@@ -1,10 +1,12 @@
 """Offline integrity checks for real v37 Codex Luna adapter evidence."""
 import hashlib
 import json
+import shutil
 import unittest
 from pathlib import Path
 
 from nykra.structured_edit_adapter import exact_edits_to_diff
+from nykra.v20_grader import REPOS
 from nykra.v37_multifile_grader import load_protocol,git_blob
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -54,6 +56,16 @@ class V37EvidenceTests(unittest.TestCase):
                          hashlib.sha256(a["raw_codex_output"].encode()).hexdigest())
         self.assertEqual(a["structured_adapter"]["files_changed"],
                          p["allowed_production_paths"])
+        self.assertEqual(a["patch_sha256"],hashlib.sha256(a["patch"].encode()).hexdigest())
+
+    def test_adapter_rebuilds_patch_only_with_pinned_upstream_checkout(self):
+        # A public clean clone lacks ignored historical upstream Git sources.
+        # Raw receipt integrity above is mandatory; reproduction is optional.
+        if shutil.which("git") is None or not (REPOS["youtube-dl"] / ".git").exists():
+            self.skipTest("requires Git and separately provisioned historical upstream checkout")
+        p=load_protocol()
+        n=read("docs/evidence/v37_structured_live/youtube-dl-32_nykra_structured_adapter.json")
+        a=n["attempts"][0]
         originals={path:git_blob(p["buggy_commit"],path)
                    for path in p["allowed_production_paths"]}
         derived,receipt=exact_edits_to_diff(
@@ -61,7 +73,6 @@ class V37EvidenceTests(unittest.TestCase):
             allowed_paths=p["allowed_production_paths"])
         self.assertEqual(derived,a["patch"])
         self.assertEqual(receipt["patch_sha256"],a["patch_sha256"])
-        self.assertEqual(a["patch_sha256"],hashlib.sha256(derived.encode()).hexdigest())
 
     def test_real_independent_second_public_and_hidden_docker_receipts(self):
         final=read("docs/evidence/v37_structured_independent_regrade.json")
