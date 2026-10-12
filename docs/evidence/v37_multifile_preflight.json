@@ -1,0 +1,45 @@
+{
+  "schema": "nykra-v37-real-new-BugsInPy-32-source-preinference-preflight-v1",
+  "protocol_sha256": "77965e4d6d27afb580f4c128744df3a5ad420b514a5ef18da11f91babfe985e6",
+  "before_any_v37_codex_model_call": true,
+  "eligible": true,
+  "receipts": {
+    "buggy_public": {
+      "status": "test_failed",
+      "passed": false,
+      "mode": "public",
+      "return_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2a522a185491297ca414f49b3dc972c4e39c3a80c89581cd714bb6999e87b601",
+      "elapsed_seconds": 24.46,
+      "diagnostic": "ERROR: test_strip_jsonp (test.test_utils.TestUtil)\nFAILED (errors=1)"
+    },
+    "buggy_hidden": {
+      "status": "test_failed",
+      "passed": false,
+      "mode": "hidden",
+      "return_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3cb82603e4963ff5337007f3b11dce6924614ada16d3df459908ab9249e9a32e",
+      "elapsed_seconds": 8.89
+    },
+    "reference_public": {
+      "status": "ok",
+      "passed": true,
+      "mode": "public",
+      "return_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045",
+      "elapsed_seconds": 7.12
+    },
+    "reference_hidden": {
+      "status": "ok",
+      "passed": true,
+      "mode": "hidden",
+      "return_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b239cb802c6bc6d9ba4284369dadc72cdfc8201c3596d22e6bb578cf11427b3b",
+      "elapsed_seconds": 6.81
+    }
+  }
+}

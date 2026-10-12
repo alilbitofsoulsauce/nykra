@@ -1,0 +1,156 @@
+{
+  "schema": "nykra-v38-multiissue-structured-replication-v1",
+  "task": "youtube-dl-33",
+  "arm": "baseline_raw_git_diff",
+  "model": "gpt-5.6-luna",
+  "protocol_sha256": "3370cda8492374555b2e2696a292b7be5fa9b9072dae36ff03f94a3acaa27df3",
+  "preflight_sha256": "fb335e30ecdac0f2675df28a764a5b5f30bc9784af8b43fd0edf3baf5618ef59",
+  "status": "budget_exhausted",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "67c1880407b1f1c0e80bc365b1615607382639a47d4ea83cd4dc421dffba0d1b",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -191,6 +191,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 hours=sign * int(m.group('hours')),\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'\\.[0-9]+', '', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())",
+      "raw_output_sha256": "48b91240e828e3903dd89e75f8bc9fa5675b5259795c591c60a7df790d0299a1",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -191,6 +191,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 hours=sign * int(m.group('hours')),\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'\\.[0-9]+', '', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())\n",
+      "patch_sha256": "cabb4d46e2d178c1f9f8e814774c84027a01721f85d2b68811468b23686f5a16",
+      "model_usage": {
+        "input_tokens": 79413,
+        "cached_input_tokens": 73472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1138,
+        "reasoning_output_tokens": 441
+      },
+      "model_seconds": 23.887,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 24"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-2",
+      "parent_id": "attempt-1",
+      "policy_action": "revise",
+      "prompt_sha256": "056b9fde00c5715add454b920a58ea258aa7163852520c47fd32d9e0ee09d72c",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -191,6 +191,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 hours=sign * int(m.group('hours')),\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'\\.[0-9]+', '', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())",
+      "raw_output_sha256": "48b91240e828e3903dd89e75f8bc9fa5675b5259795c591c60a7df790d0299a1",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -191,6 +191,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 hours=sign * int(m.group('hours')),\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'\\.[0-9]+', '', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())\n",
+      "patch_sha256": "cabb4d46e2d178c1f9f8e814774c84027a01721f85d2b68811468b23686f5a16",
+      "model_usage": {
+        "input_tokens": 15581,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 410,
+        "reasoning_output_tokens": 141
+      },
+      "model_seconds": 11.308,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 24"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-3",
+      "parent_id": "attempt-2",
+      "policy_action": "revise",
+      "prompt_sha256": "056b9fde00c5715add454b920a58ea258aa7163852520c47fd32d9e0ee09d72c",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -191,6 +191,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 hours=sign * int(m.group('hours')),\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'(\\d{2})\\.[0-9]+', r'\\1', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())",
+      "raw_output_sha256": "89ec7cd0484a4587eb054f8ea3b789c60234034b377be5c90ca8e31c6d8cf4d8",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -191,6 +191,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 hours=sign * int(m.group('hours')),\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'(\\d{2})\\.[0-9]+', r'\\1', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())\n",
+      "patch_sha256": "65721cfd39c6cb6709fd315104f19793745ee6871af0a4fdf5d8297819acbfe5",
+      "model_usage": {
+        "input_tokens": 15587,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 394,
+        "reasoning_output_tokens": 116
+      },
+      "model_seconds": 14.952,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 24"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-4",
+      "parent_id": "attempt-3",
+      "policy_action": "revise",
+      "prompt_sha256": "25f6457cec4916126518cdb9f13f336bb462975f74f4ecc975c92557ecb7471a",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -194,6 +194,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'\\.[0-9]+$', '', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())",
+      "raw_output_sha256": "af0d4dd305665f5516f366677ab3003195ece2abc6c950ed10c7b3117a418262",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -194,6 +194,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'\\.[0-9]+$', '', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())\n",
+      "patch_sha256": "71e7708b3c41b837a211d53786b22671ed8f105cffe7ef52c1b3df0cf44c89b7",
+      "model_usage": {
+        "input_tokens": 15590,
+        "cached_input_tokens": 2816,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 357,
+        "reasoning_output_tokens": 99
+      },
+      "model_seconds": 16.062,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 23"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    },
+    {
+      "id": "attempt-5",
+      "parent_id": "attempt-4",
+      "policy_action": "revise",
+      "prompt_sha256": "4684d8e67ec5e97cd1393c445e1e7751c4c4e1f7049d7331c5014c9029739b4d",
+      "raw_codex_output": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -193,6 +193,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 hours=sign * int(m.group('hours')),\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'\\.[0-9]+$', '', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())",
+      "raw_output_sha256": "b684765f82ab9190341bc8bf2efe5a623debf0217960d59566c245cdaccab48a",
+      "structured_adapter": null,
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/drtv.py b/youtube_dl/extractor/drtv.py\n--- a/youtube_dl/extractor/drtv.py\n+++ b/youtube_dl/extractor/drtv.py\n@@ -42,7 +42,7 @@ class DRTVIE(SubtitlesInfoExtractor):\n \n         title = data['Title']\n         description = data['Description']\n-        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n+        timestamp = parse_iso8601(data['CreatedTime'])\n \n         thumbnail = None\n         duration = None\n\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -193,6 +193,7 @@ def parse_iso8601(date_str, delimiter='T'):\n                 hours=sign * int(m.group('hours')),\n                 minutes=sign * int(m.group('minutes')))\n     date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n+    date_str = re.sub(r'\\.[0-9]+$', '', date_str)\n     dt = datetime.datetime.strptime(date_str, date_format) - timezone\n     return calendar.timegm(dt.timetuple())\n",
+      "patch_sha256": "ae3a8764d890ae26f117a739640f506a2b1217873d569121ac1ebd3d1cecf914",
+      "model_usage": {
+        "input_tokens": 15570,
+        "cached_input_tokens": 13056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 370,
+        "reasoning_output_tokens": 101
+      },
+      "model_seconds": 10.204,
+      "public": {
+        "status": "invalid_patch",
+        "passed": false,
+        "diagnostic": "error: corrupt patch at line 24"
+      },
+      "public_called": false,
+      "public_reused_from": null
+    }
+  ],
+  "provider_calls": 5,
+  "reported_usage": {
+    "input_tokens": 141741,
+    "cached_input_tokens": 102400,
+    "output_tokens": 2669,
+    "reasoning_output_tokens": 898
+  },
+  "public_docker_calls": 0,
+  "public_docker_reuses": 0,
+  "hidden_docker_calls": 0
+}

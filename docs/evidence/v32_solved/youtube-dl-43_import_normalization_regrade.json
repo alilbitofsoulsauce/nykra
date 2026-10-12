@@ -1,0 +1,38 @@
+{
+  "schema": "nykra-v32-recovered-free-model-candidate-v1",
+  "task": "youtube-dl-43",
+  "original_v32_attempt_id": "attempt-29",
+  "original_provider_response_id": "gen-1791773921-XEr6VbdBhadhA3DFa7Kc",
+  "original_generated_sha256": "75c55f58023e8c2c6dbb09e471fbedff2c4e17d44eae64bb8acb82955c0872e1",
+  "normalization": "top-level standard library import-only preamble moved inside function; no behavior guidance from test",
+  "import_statements_moved": 2,
+  "normalized_source_sha256": "93f58957760e5db3e62c38044caa5134089473ab8be0c96f3b54e03149bd094b",
+  "normalized_source": "def url_basename(url):\n    import re\n    from urllib.parse import urlparse\n    parsed = urlparse(url)\n    path = parsed.path\n    if not path:\n        return ''\n    parts = path.split('/')\n    basename = parts[-1]\n    if basename == '':\n        if len(parts) >= 2:\n            basename = parts[-2]\n        else:\n            return ''\n    return basename\n",
+  "public": {
+    "status": "ok",
+    "passed": true,
+    "checks": [
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045"
+      }
+    ],
+    "elapsed_seconds": 18.55
+  },
+  "hidden": {
+    "status": "ok",
+    "passed": true,
+    "checks": [
+      {
+        "status": "ok",
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c"
+      }
+    ],
+    "elapsed_seconds": 5.64
+  },
+  "new_model_calls_during_regrading": 0
+}

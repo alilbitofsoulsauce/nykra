@@ -1,0 +1,97 @@
+{
+  "schema": "nykra-v27-provider-readiness-exclusion-v1",
+  "date": "2026-10-12",
+  "workspace_branch": "feat/nykra-v026-supervised-multifile",
+  "objective": "Independent, equal-budget free-model coding proposals for depth baseline and Nykra adaptive on more-itertools historical feature issue 1134",
+  "external_issue": "https://github.com/more-itertools/more-itertools/issues/1134",
+  "upstream_buggy_commit": "9210d54527ddfa63ebe75cd5b5daa0201902c674",
+  "frozen_repo_snapshot": "0b3343e95899beae90e1ed6b22973531407daf03",
+  "public_tests_sha256": "e882cde666ca3e775e5d8fe02d26af25ec0ea3077d4a8ceef5990cf8a67614b8",
+  "withheld_tests_sha256": "7f3edd5ee7eece9531532996e1d198d0cdd5d7caed0862d2c15d84f841a96058",
+  "initial_prompt_sha256": "c671e54c2647b098797ea82cff4a5564ab851d9d78526c972651e1896faa0af7",
+  "max_coding_attempts_per_arm": 4,
+  "model_probe_observations": [
+    {
+      "backend": "OpenCode CLI",
+      "version": "1.4.3",
+      "mode": "advertised-free native OpenCode model",
+      "result": "no model content before CLI deadline",
+      "examples": [
+        {
+          "model": "opencode/mimo-v2.6-flash-free",
+          "timeout_seconds": 86
+        },
+        {
+          "model": "opencode/ling-3.1-flash-free",
+          "timeout_seconds": 42
+        }
+      ]
+    },
+    {
+      "backend": "OpenCode temporary isolated npm installation",
+      "version": "1.19.0",
+      "result": "npm install timed out after 120 seconds; partial executable files would not launch; global CLI unchanged"
+    },
+    {
+      "backend": "OpenCode Zen API (direct)",
+      "model": "mimo-v2.6-flash-free",
+      "result": "HTTP 403 FreeTierError: requires requests from within OpenCode; not used for scored generation"
+    },
+    {
+      "backend": "OpenRouter direct API",
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "result": "HTTP 200 READY on one-word probe, reported cost 0",
+      "elapsed_seconds": 2.31,
+      "prompt_tokens": 25,
+      "completion_tokens": 42
+    },
+    {
+      "backend": "OpenRouter direct API",
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "result": "First real coding generation request produced no result before 110-second host execution deadline; no patch or usage receipt; no scoring",
+      "max_tokens_requested": 6000,
+      "prompt_characters": 7105
+    },
+    {
+      "backend": "OpenRouter direct API",
+      "model": "nvidia/nemotron-3.5-lightning:free",
+      "result": "HTTP 200 with no text content; max 90 generated tokens all accounted as reasoning; reported cost 0",
+      "elapsed_seconds": 2.08,
+      "prompt_tokens": 21,
+      "completion_tokens": 90,
+      "reasoning_tokens": 90
+    }
+  ],
+  "control_arm": {
+    "policy": "depth",
+    "session_id": "8c97cca03bfd46f78c50d0f2731f3d58",
+    "status": "aborted",
+    "scored_attempts": 0,
+    "public_test_runs": 0,
+    "hidden_test_runs": 0
+  },
+  "nykra_arm": {
+    "policy": "adaptive",
+    "session_id": "630b7a09435049f9822a8f1c1e77dc7a",
+    "status": "aborted",
+    "scored_attempts": 0,
+    "public_test_runs": 0,
+    "hidden_test_runs": 0
+  },
+  "comparison_state": "excluded_before_model_proposal_due_to_provider_output_unavailability",
+  "baseline_task_score": null,
+  "nykra_task_score": null,
+  "coding_success_rate_difference": null,
+  "adaptive_policy_fork_observed": false,
+  "causal_uplift_established": false,
+  "provider_api_key_saved": false,
+  "provider_pricing_proof": "Reported free model cost zero only for successful tiny probes; no coding generation success or authenticated independent completion.",
+  "new_local_capability": "Approval-gated provider-neutral provider-probe subprocess readiness, no API credential handling or automatic model calls",
+  "provider_preflight_unit_tests": 9,
+  "limitations": [
+    "Readiness of a one-word prompt does not establish reliable long model generation.",
+    "Not a controlled trial: both arms excluded, no proposal exists.",
+    "Global OpenCode CLI unchanged; isolated upgrade download incomplete.",
+    "No general model coding uplift or zero-cost end-to-end inference demonstrated."
+  ]
+}

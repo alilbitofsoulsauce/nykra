@@ -1,0 +1,18 @@
+{
+  "schema": "nykra-v35-diagnostic-feedback-rescue-v1",
+  "frozen_before_v35_codex_calls": true,
+  "observed_v34_stall": [
+    "ten failed Codex Luna attempts on v34 Nykra adaptive, no public passes",
+    "old v20 public grader returned no assertion diagnostic to agent"
+  ],
+  "history_sha256": "0cb479b8e506e5dfc8c389c5654bc7c7d87e4545d1025d01bf71781a707700d6",
+  "public_only_diagnostic_sha256": "a107b0b189d81d0bab435eb22d3b30c0267bde2f02a6d937f2d2d4bb38af6153",
+  "model": "gpt-5.6-luna",
+  "auth": "ChatGPT Codex OAuth",
+  "intervention": "public-only sanitized failed assertion message (max 900 chars) supplied to same model; Nykra closed-loop recurrence with pinned restricted Docker real public tests",
+  "entry": "continued from the 10 previously completed v34 optimized Codex attempts; old source/grading retained in separate history",
+  "stop": "hidden verified upstream fix or genuine provider/evaluator failure, not fixed attempts",
+  "comparison_limitation": "posthoc pilot after observing failure; no independent randomized baseline or policy success-rate uplift claim",
+  "hidden_checks_never_in_prompt": true,
+  "no_commit_or_push": true
+}

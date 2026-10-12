@@ -1,0 +1,30 @@
+{
+  "schema": "nykra-v30-immutable-source-artifact-path-migration-v1",
+  "reason": "v28 and v29 mistakenly manifest-registered mutable live source; later development must not invalidate older evidence hashes",
+  "manifest_sha256_before_change": "60fe50d8d7c550d70862fca854ba0b4881f0e7bae5b25227ddb6ae395ddcb3fd",
+  "entries_with_location_migrated": [
+    {
+      "entry_id": "v28_free_model_client_py",
+      "former_mutable_source_path": "nykra/free_model_client.py",
+      "frozen_historical_path": "docs/evidence/v30_frozen_source_history/v28_free_model_client.py.txt",
+      "unchanged_sha256": "2e79868ca8a2d9465d662615dec6fa48cd6a80d57159898b2e1ca840c04c2173"
+    },
+    {
+      "entry_id": "v29_multifile_dedupe_workflow_source",
+      "former_mutable_source_path": "nykra/multifile_workflow.py",
+      "frozen_historical_path": "docs/evidence/v30_frozen_source_history/v29_multifile_workflow.py.txt",
+      "unchanged_sha256": "e860a3cc0f3a89159e159c0b27f6ddbaf4486f72708960e5149e092d5eaf91de"
+    },
+    {
+      "entry_id": "v29_multifile_dedupe_workflow_tests",
+      "former_mutable_source_path": "tests/test_multifile_workflow.py",
+      "frozen_historical_path": "docs/evidence/v30_frozen_source_history/v29_multifile_workflow_tests.py.txt",
+      "unchanged_sha256": "330225d5a0aa5100bafcf5b99329c513b54023c270bc99b47c18359fa3004b29"
+    }
+  ],
+  "entries_historical_hash_values_changed": 0,
+  "source_snapshot_provenance": "Reconstructed by exactly reversing the known v0.30 source insertions; each reconstructed SHA-256 was checked against its original v28/v29 evidence manifest value",
+  "new_current_source_fingerprints_registered_separately": true,
+  "other_222_older_manifest_entries_untouched": true,
+  "no_historical_benchmark_claim_or_outcome_changed": true
+}

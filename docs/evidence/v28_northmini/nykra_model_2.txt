@@ -1,0 +1,251 @@
+===MORE===
+from collections import deque
+from collections.abc import Sequence
+from contextlib import suppress
+from functools import cached_property, partial, wraps
+from heapq import heapify, heapreplace
+from itertools import (
+    chain,
+    combinations,
+    compress,
+    count,
+    cycle,
+    dropwhile,
+    groupby,
+    islice,
+    permutations,
+    repeat,
+    starmap,
+    takewhile,
+    tee,
+    zip_longest,
+    product,
+)
+from math import comb, e, exp, factorial, floor, fsum, log, log1p, perm, tau
+from math import ceil, prod
+from operator import (
+    attrgetter,
+    getitem,
+    is_not,
+    itemgetter,
+    lt,
+    neg,
+    sub,
+    gt,
+)
+from sys import maxsize
+from time import monotonic
+from threading import Lock
+
+from .recipes import (
+    _marker,
+    consume,
+    first_true,
+    flatten,
+    is_prime,
+    nth,
+    powerset,
+    sieve,
+    take,
+    unique_everseen,
+    all_equal,
+    batched,
+)
+
+class Stats:
+    __slots__ = ('size', 'minimum', 'median', 'maximum', 'mean')
+    def __init__(self, size, minimum, median, maximum, mean):
+        self.size = size
+        self.minimum = minimum
+        self.median = median
+        self.maximum = maximum
+        self.mean = mean
+    def __repr__(self):
+        return f"Stats(size={self.size},minimum={self.minimum},median={self.median},maximum={self.maximum},mean={self.mean})"
+    def __eq__(self, other):
+        return (
+            isinstance(other, Stats)
+            and self.size == other.size
+            and self.minimum == other.minimum
+            and self.median == other.median
+            and self.maximum == other.maximum
+            and self.mean == other.mean
+        )
+
+def running_min(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        return _running_min_windowed(iterable, maxlen)
+    it = iter(iterable)
+    try:
+        current = next(it)
+    except StopIteration:
+        return
+    yield current
+    for val in it:
+        if val < current:
+            current = val
+        yield current
+
+def running_max(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        return _running_max_windowed(iterable, maxlen)
+    it = iter(iterable)
+    try:
+        current = next(it)
+    except StopIteration:
+        return
+    yield current
+    for val in it:
+        if val > current:
+            current = val
+        yield current
+
+def running_statistics(iterable, *, maxlen=None):
+    if maxlen is not None:
+        maxlen = index(maxlen)
+        if maxlen <= 0:
+            raise ValueError('Window size should be positive')
+        return _running_statistics_windowed(iterable, maxlen)
+    it = iter(iterable)
+    from statistics import median
+    from math import fsum
+    from fractions import Fraction
+    from decimal import Decimal
+    import numbers
+    seen = []
+    sums = 0.0
+    total = 0
+    minv = None
+    maxv = None
+    for val in it:
+        seen.append(val)
+        total += 1
+        if minv is None or val < minv:
+            minv = val
+        if maxv is None or val > maxv:
+            maxv = val
+        if isinstance(val, (int, float)):
+            sums = fsum([s if isinstance(s, (int, float)) else float(s) for s in seen])
+        elif isinstance(val, Fraction):
+            sums = sum(seen, Fraction(0,1))
+        elif isinstance(val, Decimal):
+            sums = sum(seen, Decimal(0))
+        else:
+            sums = sum(seen)
+        med = median(seen)
+        mean = sums / total if total else 0
+        yield Stats(total, minv, med, maxv, mean)
+
+def _running_min_windowed(iterable, maxlen):
+    d = deque(maxlen=maxlen)
+    it = iter(iterable)
+    for val in it:
+        d.append(val)
+        if len(d) == maxlen:
+            break
+    if not d:
+        return
+    current = min(d)
+    yield current
+    for val in it:
+        d.append(val)
+        if val < current:
+            current = val
+        yield current
+
+def _running_max_windowed(iterable, maxlen):
+    d = deque(maxlen=maxlen)
+    it = iter(iterable)
+    for val in it:
+        d.append(val)
+        if len(d) == maxlen:
+            break
+    if not d:
+        return
+    current = max(d)
+    yield current
+    for val in it:
+        d.append(val)
+        if val > current:
+            current = val
+        yield current
+
+def _running_statistics_windowed(iterable, maxlen):
+    from statistics import median
+    from math import fsum
+    from fractions import Fraction
+    from decimal import Decimal
+    d = deque(maxlen=maxlen)
+    it = iter(iterable)
+    for val in it:
+        d.append(val)
+        if len(d) == maxlen:
+            break
+    if not d:
+        return
+    seen = list(d)
+    total = len(seen)
+    minv = min(seen)
+    maxv = max(seen)
+    med = median(seen)
+    if isinstance(seen[0], (int, float)):
+        sums = fsum(seen)
+    elif isinstance(seen[0], Fraction):
+        sums = sum(seen, Fraction(0,1))
+    elif isinstance(seen[0], Decimal):
+        sums = sum(seen, Decimal(0))
+    else:
+        sums = sum(seen)
+    mean = sums / total
+    yield Stats(total, minv, med, maxv, mean)
+    for val in it:
+        d.append(val)
+        seen = list(d)
+        total = len(seen)
+        minv = min(seen)
+        maxv = max(seen)
+        med = median(seen)
+        if isinstance(seen[0], (int, float)):
+            sums = fsum(seen)
+        elif isinstance(seen[0], Fraction):
+            sums = sum(seen, Fraction(0,1))
+        elif isinstance(seen[0], Decimal):
+            sums = sum(seen, Decimal(0))
+        else:
+            sums = sum(seen)
+        mean = sums / total
+        yield Stats(total, minv, med, maxv, mean)
+
+===MEAN===
+def running_mean(iterable, *, maxlen=None):
+    from itertools import accumulate, count
+    from operator import truediv
+    if maxlen is None:
+        return map(truediv, accumulate(iterable), count(1))
+    maxlen = index(maxlen)
+    if maxlen <= 0:
+        raise ValueError('Window size should be positive')
+    from collections import deque
+    d = deque(maxlen=maxlen)
+    it = iter(iterable)
+    for val in it:
+        d.append(val)
+        if len(d) == maxlen:
+            break
+    if not d:
+        return
+    total = sum(d)
+    count = len(d)
+    mean = total / count
+    yield mean
+    for val in it:
+        d.append(val)
+        total += val - d[0]
+        mean = total / maxlen
+        yield mean

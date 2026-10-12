@@ -1,0 +1,20 @@
+{
+  "schema": "nykra-v38-utf8-cli-harness-failure-v1",
+  "task": "youtube-dl-33",
+  "arm": "baseline_raw_git_diff",
+  "failure_stage": "Codex CLI subprocess output decode in earlier v33 helper; native cp1252 UnicodeDecodeError",
+  "applicable_patch_recorded": false,
+  "provider_usage_unknown": true,
+  "excluded_from_paired_coding_sample": true,
+  "frozen_task_protocol_changed": false,
+  "fix": "v38-only Codex subprocess runner uses encoding='utf-8',errors='replace'",
+  "restarted_from_stored_checkpoint_calls": 0,
+  "possible_unmetered_codex_completion": "yes; don't present as zero provider usage",
+  "subsequent_grader_configuration_error": {
+    "error": "KeyError: source_patch_max_bytes after a successfully decoded provider response",
+    "response_unrecorded": true,
+    "unknown_extra_Codex_usage": true,
+    "fix": "read frozen protocol max_candidate_patch_bytes; save v38 pending model completion before entering evaluator"
+  },
+  "unreconciled_invocations": 2
+}

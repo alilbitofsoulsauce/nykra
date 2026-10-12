@@ -1,0 +1,130 @@
+{
+  "schema": "nykra-v38-live-structured-adapter-replication-v1",
+  "protocol_sha256": "3370cda8492374555b2e2696a292b7be5fa9b9072dae36ff03f94a3acaa27df3",
+  "preflight_sha256": "fb335e30ecdac0f2675df28a764a5b5f30bc9784af8b43fd0edf3baf5618ef59",
+  "independent_regrade_sha256": "edc89b7d0d30db40ee2111939da6196833e11444c8c3cb0233f8bcb18394b20a",
+  "pretrial_harness_incident_sha256": "320e145a4ae72ce11bafbb28afc8dc86ecb24849ea7124a9a39d210f3aeab800",
+  "cohort": [
+    "youtube-dl-33",
+    "youtube-dl-31"
+  ],
+  "matrix": {
+    "youtube-dl-33": {
+      "baseline_raw_git_diff": {
+        "sha256": "00dfcd8b92395a0c752785fcde916aa977c69b7cb6e3c3052e6d77f93c07dde9",
+        "status": "budget_exhausted",
+        "calls": 5,
+        "public_statuses": [
+          "invalid_patch",
+          "invalid_patch",
+          "invalid_patch",
+          "invalid_patch",
+          "invalid_patch"
+        ],
+        "usage": {
+          "input_tokens": 141741,
+          "cached_input_tokens": 102400,
+          "output_tokens": 2669,
+          "reasoning_output_tokens": 898
+        },
+        "hidden_verified": false,
+        "public_docker_calls": 0,
+        "hidden_docker_calls": 0,
+        "model_wall_seconds": 76.413
+      },
+      "nykra_structured_adapter": {
+        "sha256": "ba0bedb700c5a6094ef9d820a6b3d0fdec1a7d67a301c25757b18700d1ef2295",
+        "status": "hidden_verified",
+        "calls": 1,
+        "public_statuses": [
+          "ok"
+        ],
+        "usage": {
+          "input_tokens": 15327,
+          "cached_input_tokens": 13056,
+          "output_tokens": 512,
+          "reasoning_output_tokens": 352
+        },
+        "hidden_verified": true,
+        "public_docker_calls": 1,
+        "hidden_docker_calls": 1,
+        "model_wall_seconds": 14.38
+      }
+    },
+    "youtube-dl-31": {
+      "baseline_raw_git_diff": {
+        "sha256": "540789a47a044446dc295aa47a4a273ffcafe85592a32a87e918994f0fb35e98",
+        "status": "budget_exhausted",
+        "calls": 5,
+        "public_statuses": [
+          "invalid_patch",
+          "invalid_patch",
+          "invalid_patch",
+          "invalid_patch",
+          "invalid_patch"
+        ],
+        "usage": {
+          "input_tokens": 164942,
+          "cached_input_tokens": 120576,
+          "output_tokens": 5448,
+          "reasoning_output_tokens": 1985
+        },
+        "hidden_verified": false,
+        "public_docker_calls": 0,
+        "hidden_docker_calls": 0,
+        "model_wall_seconds": 129.87
+      },
+      "nykra_structured_adapter": {
+        "sha256": "cd4257e536a4dd465951c3204df31484de8576050263d92dd901e2febfbfa84a",
+        "status": "hidden_verified",
+        "calls": 2,
+        "public_statuses": [
+          "test_failed",
+          "ok"
+        ],
+        "usage": {
+          "input_tokens": 31696,
+          "cached_input_tokens": 13056,
+          "output_tokens": 1452,
+          "reasoning_output_tokens": 753
+        },
+        "hidden_verified": true,
+        "public_docker_calls": 2,
+        "hidden_docker_calls": 1,
+        "model_wall_seconds": 45.23
+      }
+    }
+  },
+  "summary": {
+    "baseline_raw_git_diff": {
+      "calls": 10,
+      "input_tokens": 306683,
+      "output_tokens": 8117,
+      "hidden_verified": 0,
+      "invalid_patch": 10,
+      "public_docker": 0,
+      "hidden_docker": 0,
+      "model_wall_seconds": 206.28300000000002
+    },
+    "nykra_structured_adapter": {
+      "calls": 3,
+      "input_tokens": 47023,
+      "output_tokens": 1964,
+      "hidden_verified": 2,
+      "invalid_patch": 0,
+      "public_docker": 3,
+      "hidden_docker": 2,
+      "model_wall_seconds": 59.61
+    }
+  },
+  "comparison": "5-call-capped real Codex Luna, depth policy both; baseline raw Git diff vs Nykra bounded JSON structured edits",
+  "measured_verified_2_vs_0": true,
+  "cautions": [
+    "2 prior harness failures may have consumed model usage without attributable token receipts",
+    "Baseline arms capped unsolved; no measured solve-to-solve time or cost savings",
+    "Different output format prompts by design; not adaptive search policy experiment",
+    "Historical upstream issue and locally frozen hidden cases, not third-party blind benchmark",
+    "n=2; no generalizable success-rate conclusion"
+  ],
+  "no_commit_push": true
+}

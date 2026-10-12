@@ -1,0 +1,63 @@
+{
+  "protocol": "nykra-more-itertools-1134-v1",
+  "upstream": "https://github.com/more-itertools/more-itertools",
+  "upstream_buggy_sha": "9210d54527ddfa63ebe75cd5b5daa0201902c674",
+  "upstream_reference_sha": "18c57c720fc5a7672439ea45a5393a8c1ff40d1e",
+  "upstream_reference_used_by_agents": false,
+  "buggy_snapshot_commit": "344c1cb2e418ffe04226967be80bd645a7c84d51",
+  "public_sha256": "e882cde666ca3e775e5d8fe02d26af25ec0ea3077d4a8ceef5990cf8a67614b8",
+  "hidden_sha256": "7f3edd5ee7eece9531532996e1d198d0cdd5d7caed0862d2c15d84f841a96058",
+  "public_module": "tests.test_nykra_public",
+  "hidden_file": "test_heldout_issue.py",
+  "allowed_files": [
+    "more_itertools/more.py",
+    "more_itertools/recipes.py"
+  ],
+  "budget_per_arm": 4,
+  "model": "GPT-6 ChatGPT, single shared first candidate in this conversation",
+  "provider_cost_policy": "advertised-free-model-only",
+  "policy_baseline": "depth",
+  "policy_nykra": "adaptive",
+  "common_prefix": true,
+  "docker_image_id": "sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f",
+  "no_reference_diff_exposed": true,
+  "free_opencode_provider_preflights": [
+    {
+      "model": "opencode/mimo-v2.6-flash-free",
+      "result": "no output after 86s; execution timed out"
+    },
+    {
+      "model": "opencode/ling-3.1-flash-free",
+      "result": "no output after 42s; execution timed out"
+    }
+  ],
+  "paired_model_inference_claim": false,
+  "same_model_independent_sessions": false,
+  "control_intervention": "depth selects previous candidate vs adaptive restart on 3 stalled attempts; common-prefix proposal evaluated in both arms",
+  "exclusion_note": "Amended before coding proposals because two advertised-free OpenCode providers could not return READY. No paid providers used. Comparability limited by single shared ChatGPT agent, possible contamination and no independent session.",
+  "source_eol_amendment": {
+    "reason": "Nykra parse_patch explicitly refuses CRLF patches, external upstream two Python blobs contain CRLF",
+    "applied_before_any_scored_candidate": true,
+    "normalization": "CRLF to LF only in both source paths, benchmark snapshot separately committed",
+    "files": [
+      {
+        "path": "more_itertools/more.py",
+        "before_sha256": "53d630b62342ee2d45dba940de125e0c663d0d34931c99dbcdf0dffe420a4f15",
+        "after_sha256": "b2a9b31ff0225d96045ea33a18e4cb317846af002d59f8ba41f7da6c6fa7d93e",
+        "removed_crlf": 5443,
+        "only_crlf_changed": true
+      },
+      {
+        "path": "more_itertools/recipes.py",
+        "before_sha256": "4f64397c8a938718c19b3f1b92fd3540449002e143d0f8597a26a8e0aa1e2406",
+        "after_sha256": "1de96e0e5f41da34974a536e4181dea28b37e13334764ece8906aac47b7bfeae",
+        "removed_crlf": 1442,
+        "only_crlf_changed": true
+      }
+    ],
+    "amended_snapshot_sha": "344c1cb2e418ffe04226967be80bd645a7c84d51",
+    "original_upstream_sha_preserved": true,
+    "candidate_semantic_code_unchanged": true
+  },
+  "candidate_patch_rebased_sha256": "02c641ea363eef18dac1837198b3a1300b7eb6a149fa9fc8e87fddd18bb324b5"
+}

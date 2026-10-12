@@ -1,0 +1,45 @@
+{
+  "schema": "nykra-v40-real-Terra-posthoc-preinference-frozen-Docker-gates-v1",
+  "protocol_sha256": "be63c8920d383660fb2fc76f1637661dbf77edaa4974a84ace863132b5e7978e",
+  "frozen_before_new_Terra_coding_proposal": true,
+  "eligible": true,
+  "receipts": {
+    "buggy_public": {
+      "status": "test_failed",
+      "passed": false,
+      "mode": "public",
+      "return_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "177ec1b75a4aec80950bd92e43f33518d071afafc3779f4d57c5b0085e1252b1",
+      "elapsed_seconds": 15.06,
+      "diagnostic": "ERROR: test_compatibility_flags_coherent (v40_public_pysnooper_terra.PublicCompatibility)\nAttributeError: module 'pysnooper.pycompat' has no attribute 'PY2'\nFAIL: test_source_is_utf8_without_explicit_header (v40_public_pysnooper_terra.PublicCompatibility)\nAssertionError: '# \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd' != '# \u5931\u8d25'\nFAIL: test_utf8_output_is_explicit (v40_public_pysnooper_terra.PublicCompatibility)\nAssertionError: Lists differ: [None] != ['utf-8']\nFAILED (failures=2, errors=1)"
+    },
+    "buggy_hidden": {
+      "status": "test_failed",
+      "passed": false,
+      "mode": "hidden",
+      "return_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ab2ff1e20c8fa08c95a7b37ebfcbfbdf06c384bc5b777176cab04ff9df9546c1",
+      "elapsed_seconds": 2.46
+    },
+    "reference_public": {
+      "status": "ok",
+      "passed": true,
+      "mode": "public",
+      "return_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c",
+      "elapsed_seconds": 2.7
+    },
+    "reference_hidden": {
+      "status": "ok",
+      "passed": true,
+      "mode": "hidden",
+      "return_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "61dad650608d0c1cac41a1ca37208581fc401b7c7b37e8508217a525ecb73303",
+      "elapsed_seconds": 3.07
+    }
+  }
+}

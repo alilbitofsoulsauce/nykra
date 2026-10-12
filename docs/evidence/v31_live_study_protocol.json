@@ -1,0 +1,93 @@
+{
+  "schema": "nykra-v31-three-historical-issue-free-model-efficiency-v1",
+  "study_frozen_before_any_v31_model_call": true,
+  "task_order": [
+    "youtube-dl-28",
+    "tqdm-1",
+    "youtube-dl-43"
+  ],
+  "arms": [
+    "baseline_depth",
+    "nykra_optimized_depth"
+  ],
+  "arm_execution_order_by_task": [
+    [
+      "baseline_depth",
+      "nykra_optimized_depth"
+    ],
+    [
+      "nykra_optimized_depth",
+      "baseline_depth"
+    ],
+    [
+      "baseline_depth",
+      "nykra_optimized_depth"
+    ]
+  ],
+  "model": "cohere/north-mini-code:free",
+  "model_max_tokens": 1500,
+  "model_timeout_seconds": 90,
+  "reasoning_enabled": false,
+  "temperature": 0.2,
+  "free_only": true,
+  "provider_fallbacks": false,
+  "budget_model_calls_per_arm_per_task": 3,
+  "public_grading": "actual upstream frozen BugsInPy bug source + fixed-commit regression in pinned Docker; no untrusted source executed Windows host",
+  "hidden_grading": "separate evaluator-owned Docker hidden suite only after eligible public-passing candidates; no hidden feedback",
+  "baseline": "depth with capped enriched public feedback, no cache, no early halt, no repeated public grader cache",
+  "optimized": "depth same prompt construction, optin exact request cache in private per-arm scope; reuse identical failed candidate public-grade receipts within arm; halt BEFORE next model request after 2 consecutive exact failed proposals; remaining budget not spent",
+  "model_first_prompt_equal_per_task_across_arms": true,
+  "root_prompts_no_reference_implementation_or_hidden_tests": true,
+  "treat_infra_error_as_exclusion": true,
+  "report_model_invalid_separately": true,
+  "tasks_historical_and_previously_studied_by_nykra": true,
+  "task_count": 3,
+  "different_projects": 2,
+  "no_new_bug_discovery_claim": true,
+  "no_accuracy_uplift_prejudged": true,
+  "no_commits_push_or_workspace_promotion": true,
+  "tasks": [
+    {
+      "id": "youtube-dl-28",
+      "project": "youtube-dl",
+      "buggy_commit": "bd1512d19649c280197729814766d590ea6c023b",
+      "fixed_commit": "7aefc49c4013efb5056b2c1237e22c52cb5d3c49",
+      "target_function": "_htmlentity_transform",
+      "original_function_sha256": "22dda4bf841c56364bd5e4dded949241cd8a5a48aace85675c73033503dee1b6",
+      "original_function_chars": 629,
+      "public_test": "test.test_utils.TestUtil.test_unescape_html",
+      "grader": "v21",
+      "preregistered_protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+      "reference_preflight_sha256": "d5dd994895e74cda64ee317ebf2ff6a45d2bffe656b931059217280a5884e371",
+      "reference_preflight_eligible": true
+    },
+    {
+      "id": "tqdm-1",
+      "project": "tqdm",
+      "buggy_commit": "8cc777fe8401a05d07f2c97e65d15e4460feab88",
+      "fixed_commit": "c0dcf39b046d1b4ff6de14ac99ad9a1b10487512",
+      "target_function": "tenumerate",
+      "original_function_sha256": "18a06ee78e029cb7c198dd9e7325e215c517ca74a73cda1e614de88eda7f1128",
+      "original_function_chars": 577,
+      "public_test": "tqdm/tests/tests_contrib.py::test_enumerate",
+      "grader": "v20",
+      "preregistered_protocol_sha256": "9eec931522e43e5c3afadeaa592e0a9cbd1b1c7c7639153ad7219b6ad731c2ab",
+      "reference_preflight_sha256": "76a9889a3288e3fc59bad066770d559924fee9db60efec3f9038f0efefae0b24",
+      "reference_preflight_eligible": true
+    },
+    {
+      "id": "youtube-dl-43",
+      "project": "youtube-dl",
+      "buggy_commit": "cecaaf3f58ad9f544dbb79af1e565d9353fa2b2d",
+      "fixed_commit": "d6c7a367e88096bb17e323954002c084477fe908",
+      "target_function": "url_basename",
+      "original_function_sha256": "877a670f2e1154d304eb9b1097a2f17f61433a83012a5ca2eb29ab2d40f8b9df",
+      "original_function_chars": 159,
+      "public_test": "test.test_utils.TestUtil.test_url_basename",
+      "grader": "v21",
+      "preregistered_protocol_sha256": "a7810b151938e8149125fed61905ccc086c8513a78cb0882de508ce61a5d456d",
+      "reference_preflight_sha256": "d5dd994895e74cda64ee317ebf2ff6a45d2bffe656b931059217280a5884e371",
+      "reference_preflight_eligible": true
+    }
+  ]
+}

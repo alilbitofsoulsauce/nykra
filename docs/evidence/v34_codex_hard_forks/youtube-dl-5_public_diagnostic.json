@@ -1,0 +1,17 @@
+{
+  "schema": "nykra-v35-actionable-public-only-debug-check-v1",
+  "source_attempt": "attempt-13",
+  "source_sha256": "cf0dfa28df185696fd9c3e94cbaf6590fcf54bba85d16cd16573215269aeda42",
+  "raw_history_status": "active",
+  "live_provider_calls_prior": 10,
+  "mode": "public only",
+  "result": {
+    "status": "test_failed",
+    "passed": false,
+    "exit_code": 1,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "37a8cd99b9d841cab435bb8b710e2621dec2625b8b8b45587154919a97bbae76",
+    "elapsed_seconds": 7.264,
+    "diagnostic": "FAIL: test_unified_timestamps (test.test_utils.TestUtil)\nAssertionError: 1455428700 != 1455471900\nFAILED (failures=1)"
+  }
+}

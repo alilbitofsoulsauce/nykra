@@ -1,0 +1,94 @@
+{
+  "schema": "nykra-v26-external-matched-one-issue-trial-v1",
+  "external_repository": "https://github.com/more-itertools/more-itertools",
+  "issue": "more-itertools #1134: add running_statistics (feature request, not a bug fix)",
+  "upstream_buggy_commit": "9210d54527ddfa63ebe75cd5b5daa0201902c674",
+  "upstream_reference_commit": "18c57c720fc5a7672439ea45a5393a8c1ff40d1e",
+  "benchmark_source_snapshot": "344c1cb2e418ffe04226967be80bd645a7c84d51",
+  "source_amended_eol_only": true,
+  "public_tests_sha256": "e882cde666ca3e775e5d8fe02d26af25ec0ea3077d4a8ceef5990cf8a67614b8",
+  "hidden_tests_sha256": "7f3edd5ee7eece9531532996e1d198d0cdd5d7caed0862d2c15d84f841a96058",
+  "protocol_sha256": "ad5b500347dfc71adbfeedb0a46da94e83c0afb7ec1113587f625fe33abcc5dd",
+  "free_opencode_connectivity_checks_timed_out": true,
+  "model_proposals": "one shared GPT-6 ChatGPT supervised coding proposal, source identical in both arms",
+  "independent_model_sessions": false,
+  "baseline_policy": "depth",
+  "nykra_policy": "adaptive",
+  "max_attempts_per_arm": 4,
+  "common_attempts": 1,
+  "total_unique_model_proposals": 1,
+  "total_public_evaluator_executions": 2,
+  "controller_policy_divergence": false,
+  "baseline": {
+    "attempts_used": 1,
+    "public_passed": 6,
+    "public_total": 6,
+    "withheld_passed": 10,
+    "withheld_total": 10,
+    "source_files": 2,
+    "patch_sha256": "02c641ea363eef18dac1837198b3a1300b7eb6a149fa9fc8e87fddd18bb324b5",
+    "public_docker_seconds": 10.998
+  },
+  "nykra": {
+    "attempts_used": 1,
+    "public_passed": 6,
+    "public_total": 6,
+    "withheld_passed": 10,
+    "withheld_total": 10,
+    "source_files": 2,
+    "patch_sha256": "02c641ea363eef18dac1837198b3a1300b7eb6a149fa9fc8e87fddd18bb324b5",
+    "public_docker_seconds": 1.856
+  },
+  "win_loss_tie": "tie",
+  "task_success_rate_uplift_observed": 0,
+  "policy_causal_effect_identified": false,
+  "general_improvement_proven": false,
+  "wall_time_speedup_claim": false,
+  "baseline_candidate_source_generated_separately": false,
+  "public_hidden_ref_validated": true,
+  "buggy_public_exit": 1,
+  "buggy_hidden_exit": 1,
+  "upstream_reference_public_exit": 0,
+  "upstream_reference_hidden_exit": 0,
+  "upstream_broad_regression": {
+    "exit": 1,
+    "count_reported": 867,
+    "failures_reported": 1,
+    "errors_reported": 3,
+    "skipped_reported": 5,
+    "notes": "Nonzero and NOT passed. Diagnostic includes Docker pids-limited 'can't start new thread' in callback_iter; cannot establish whether all failures unrelated to patch. Not counted as a clean suite."
+  },
+  "targeted_existing_upstream_tests": [
+    {
+      "revision": "upstream_reference",
+      "exit": 0,
+      "test_count": 5
+    },
+    {
+      "revision": "shared_candidate",
+      "exit": 0,
+      "test_count": 4
+    }
+  ],
+  "evidence_paths": {
+    "protocol": "docs/evidence/v26_external_moreitertools_1134_protocol.json",
+    "model_patch": "docs/evidence/v26_external_moreitertools_1134_model_patch.diff",
+    "public_test": "docs/evidence/v26_external_moreitertools_1134_public.py",
+    "withheld_test": "docs/evidence/v26_external_moreitertools_1134_heldout.py",
+    "arm_receipts": "docs/evidence/v26_external_moreitertools_1134_arm_receipts.json",
+    "preflight": "docs/evidence/v26_external_moreitertools_1134_preflight.json",
+    "broad_regression": "docs/evidence/v26_external_moreitertools_1134_upstream_regression.json",
+    "targeted_regression": "docs/evidence/v26_external_moreitertools_1134_targeted_regression.json"
+  },
+  "no_git_publish_or_promotion": true,
+  "limitations": [
+    "One historical external feature issue, not a new unknown defect",
+    "Free OpenCode inference provider timed out twice, one shared ChatGPT candidate reused for both arms; not independent model completions",
+    "Policy never diverged because first proposal passed",
+    "Target files CRLF normalized to LF to meet transaction parser",
+    "Public and withheld tests curated by same supervisor, not third-party blind evaluation",
+    "Full upstream suite did not pass under constrained Docker; preserved as failure rather than ignored",
+    "Docker setup/warmup dominates observed unequal wall-clock time",
+    "No statistical or causal proof of coding improvement"
+  ]
+}

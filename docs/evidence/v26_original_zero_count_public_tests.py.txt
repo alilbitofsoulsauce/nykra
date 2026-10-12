@@ -1,0 +1,89 @@
+"""Frozen public issue tests: zero discovered tests must not equal verified success."""
+from __future__ import annotations
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+from nykra import transactional_patch as tx
+from nykra import multifile_workflow as mw
+
+PATCH = ("diff --git a/module_a.py b/module_a.py\n"
+         "--- a/module_a.py\n"
+         "+++ b/module_a.py\n"
+         "@@ -1 +1 @@\n"
+         "-x\n+y\n")
+
+def verdict(returncode, count):
+    return subprocess.CompletedProcess(
+        args=["python","-m","unittest"],returncode=returncode,
+        stdout=b"",stderr=(
+            "----------------------------------------------------------------------\n"
+            f"Ran {count} tests in 0.003s\n\n"
+            + ("OK\n" if returncode == 0 else "FAILED\n")).encode())
+
+class UnittestVerdictRegression(unittest.TestCase):
+    def trial(self, returncode, count):
+        with patch.object(tx, "_repository", return_value=(Path("/repo"),"abcd")), \
+             patch.object(tx, "_preflight"), \
+             patch.object(tx, "_trial", return_value=(Path("/repo"),Path("/tmp/f"),{"module_a.py":{"operation":"modify"}})), \
+             patch.object(tx, "_run_docker", return_value=verdict(returncode,count)):
+            return tx.run_transaction("/repo",PATCH,allowed_paths=("module_a.py",),
+                executor="docker",docker_image_id="sha256"+"a"*64,approve=True)
+
+    def test_zero_tests_and_exit_zero_cannot_claim_success(self):
+        result=self.trial(0,0)
+        self.assertEqual(result["tests_run"],0)
+        self.assertFalse(result["tests_passed"])
+
+    def test_actual_unittest_success_reports_exact_count(self):
+        result=self.trial(0,3)
+        self.assertEqual(result["tests_run"],3)
+        self.assertTrue(result["tests_passed"])
+
+    def test_failed_tests_preserve_count_and_failure(self):
+        result=self.trial(1,2)
+        self.assertEqual(result["tests_run"],2)
+        self.assertFalse(result["tests_passed"])
+
+class SupervisorReceiptsRegression(unittest.TestCase):
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory(prefix="nykra-zero-count-")
+        self.addCleanup(self.temp.cleanup)
+        self.home=Path(self.temp.name)
+
+    def start(self):
+        with patch.object(mw, "_repository", return_value=(Path("/repo"),"abcd")):
+            return mw.start(repository="/repo",task="Confirm public unittest actually ran",
+                allowed_paths=("module_a.py",),budget=2,approve=True,
+                docker_image_id="sha256:"+"a"*64,home=self.home)["session_id"]
+
+    def submit(self, session, count, passed, *, omit_count=False):
+        result=dict(tests_passed=passed,test_exit_code=0,file_count=1,
+            test_stderr_preview=f"Ran {count} tests in 0.001s\n\nOK\n",
+            test_stdout_sha256="x"*64,test_stderr_sha256="y"*64,elapsed_seconds=0.1)
+        if not omit_count:
+            result["tests_run"]=count
+        with patch.object(mw, "_repository", return_value=(Path("/repo"),"abcd")), \
+             patch.object(mw,"run_transaction",return_value=result):
+            return mw.submit(session,PATCH,approve=True,home=self.home)
+
+    def test_zero_count_is_a_recorded_failure_with_feedback(self):
+        session=self.start()
+        outcome=self.submit(session,0,False)
+        self.assertEqual(outcome["evaluated"]["tests_run"],0)
+        self.assertEqual(outcome["evaluated"]["status"],"no_tests")
+        self.assertFalse(outcome["evaluated"]["tests_passed"])
+        self.assertTrue(outcome["next"]["agent_required"])
+
+    def test_verified_positive_count_is_recorded(self):
+        session=self.start()
+        outcome=self.submit(session,3,True)
+        self.assertEqual(outcome["evaluated"]["tests_run"],3)
+        self.assertTrue(outcome["evaluated"]["tests_passed"])
+
+    def test_missing_test_count_must_not_be_verified(self):
+        session=self.start()
+        with self.assertRaisesRegex(ValueError,"test count"):
+            self.submit(session,1,True,omit_count=True)
+        self.assertEqual(mw.summary(session,home=self.home)["attempts"],[])

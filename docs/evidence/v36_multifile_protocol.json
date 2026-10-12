@@ -1,0 +1,70 @@
+{
+  "id": "nykra-v36-previously-unused-bugsinpy-multisource-repair-v1",
+  "created_before_live_v36_model_calls": true,
+  "task": "youtube-dl-35",
+  "origin": "BugsInPy official bug metadata for historical upstream youtube-dl commit; issue not previously used in Nykra evidence",
+  "historical_bug_info_sha256": "e3a717bdab1a097bb7df0b874c1a1bd08210cf70846c07eedef11ae58996ee9e",
+  "git_source": "experiments/bench-source/youtube-dl",
+  "buggy_commit": "89294b5f50462ede8ba83463ff262eb2c5219e1b",
+  "fixed_commit": "99b67fecc5ab6c57eada1e1678034dd71c57e338",
+  "public_fixed_commit_test": "test.test_utils.TestUtil.test_unified_dates",
+  "public_test_source_sha256": "de2d0ef45d1d651079d3165a4749360825ad44146550d7ffe12245b775f50ec1",
+  "public_excerpt": "    def test_unified_dates(self):\n        self.assertEqual(unified_strdate('December 21, 2010'), '20101221')\n        self.assertEqual(unified_strdate('8/7/2009'), '20090708')\n        self.assertEqual(unified_strdate('Dec 14, 2012'), '20121214')\n        self.assertEqual(unified_strdate('2012/10/11 01:56:38 +0000'), '20121011')\n        self.assertEqual(unified_strdate('1968-12-10'), '19681210')\n        self.assertEqual(unified_strdate('28/01/2014 21:00:00 +0100'), '20140128')",
+  "allowed_production_paths": [
+    "youtube_dl/extractor/arte.py",
+    "youtube_dl/utils.py"
+  ],
+  "buggy_context": [
+    {
+      "path": "youtube_dl/extractor/arte.py",
+      "line_hint": 85,
+      "buggy_context": "    def _extract_from_json_url(self, json_url, video_id, lang):\n        info = self._download_json(json_url, video_id)\n        player_info = info['videoJsonPlayer']\n\n        info_dict = {\n            'id': player_info['VID'],\n            'title': player_info['VTI'],\n            'description': player_info.get('VDE'),\n            'upload_date': unified_strdate(player_info.get('VDA', '').split(' ')[0]),\n            'thumbnail': player_info.get('programImage') or player_info.get('VTU', {}).get('IUR'),\n        }\n\n        all_formats = player_info['VSR'].values()\n        # Some formats use the m3u8 protocol\n        all_formats = list(filter(lambda f: f.get('videoFormat') != 'M3U8', all_formats))\n        def _match_lang(f):\n            if f.get('versionCode') is None:\n                return True\n            # Return true if that format is in the language of the url\n            if lang == 'fr':\n                l = 'F'\n            elif lang == 'de':\n                l = 'A'\n            else:\n                l = lang\n            regexes = [r'VO?",
+      "full_buggy_file_sha256": "0b2acb6af664c8af02d38e9aaf09bf336dc4c966d6d5aba7e03de6cf88bcf90c"
+    },
+    {
+      "path": "youtube_dl/utils.py",
+      "line_hint": 868,
+      "buggy_context": "def unified_strdate(date_str):\n    \"\"\"Return a string with the date in the format YYYYMMDD\"\"\"\n\n    if date_str is None:\n        return None\n\n    upload_date = None\n    #Replace commas\n    date_str = date_str.replace(',', ' ')\n    # %z (UTC offset) is only supported in python>=3.2\n    date_str = re.sub(r' ?(\\+|-)[0-9]{2}:?[0-9]{2}$', '', date_str)\n    format_expressions = [\n        '%d %B %Y',\n        '%d %b %Y',\n        '%B %d %Y',\n        '%b %d %Y',\n        '%b %dst %Y %I:%M%p',\n        '%b %dnd %Y %I:%M%p',\n        '%b %dth %Y %I:%M%p',\n        '%Y-%m-%d',\n        '%Y/%m/%d',\n        '%d.%m.%Y',\n        '%d/%m/%Y',\n        '%d/%m/%y',\n        '%Y/%m/%d %H:%M:%S',\n        '%Y-%m-%d %H:%M:%S',\n        '%d.%m.%Y %H:%M',\n        '%d.%m.%Y %H.%M',\n        '%Y-%m-%dT%H:%M:%SZ',\n        '%Y-%m-%dT%H:%M:%S.%fZ',\n        '%Y-%m-%dT%H:%M:%S.%f0Z',\n        '%Y-%m-%dT%H:%M:%S',\n        '%Y-%m-%dT%H:%M:%S.%f',\n        '%Y-%m-%dT%H:%M',\n    ]\n    for expression in format_expressions:\n        try:\n            upload_date = datetime.datetime.strptime(date_str, expression).strftime('%Y%m%d')\n        except ValueError:\n            pass\n    if upload_date is None:\n        timetuple = email.utils.parsedate_tz(date_str)\n        if timetuple:\n      ",
+      "full_buggy_file_sha256": "fdf891d9c0a438ba0c52d6681ddd1694b2304f0060dbca125845dc0a8b162f9c"
+    }
+  ],
+  "hidden_source_path": "docs/evidence/v36_hidden_arte_dates.py",
+  "hidden_source_sha256": "a53ffe6f1fa582cf1e1d53e429b2eb2c787e4a1f9680331e85bf41f4ab44e3cb",
+  "hidden_suite": "test_nykra_v36_hidden_arte_dates",
+  "pinned_docker_image_id": "sha256:a4ae367e48252c42a50fcb5136b9fdf6fb2544e048494f4004891b3ca38e63e7",
+  "pinned_docker_image_tag": "nykra-py38-pytest:v20nose",
+  "eligible_only_if_prevalidation": {
+    "buggy_public": "test_failed",
+    "buggy_hidden": "test_failed",
+    "upstream_fixed_public": "ok",
+    "upstream_fixed_hidden": "ok"
+  },
+  "arms": [
+    "baseline_depth",
+    "nykra_adaptive"
+  ],
+  "arm_order": [
+    "baseline_depth",
+    "nykra_adaptive"
+  ],
+  "model": "gpt-5.6-luna",
+  "auth": "existing ChatGPT Codex OAuth",
+  "reasoning": "low",
+  "model_edits": "model must return strict Git unified patch to one or both allowlisted production files; no tests or hidden file edits",
+  "source_patch_max_bytes": 131072,
+  "prefix": "no previous proposals; both arms independently sample identical first prompt",
+  "public_feedback": "same full bounded sanitized upstream public regression failure and same public test case to each arm",
+  "hidden_only_after_public_pass": true,
+  "hidden_tests_never_given_to_model": true,
+  "stop": "continue each until hidden verified solution or provider/evaluator hard blocker; no arbitrary fixed attempt count",
+  "same_model_per_arm": true,
+  "model_controls": "read-only Codex sandbox, no agent tools requested, output Git patch only; evaluator runs untrusted source only in pinned offline restricted Docker",
+  "limits": [
+    "One task across two production files; results not statistically generalizable",
+    "Historical BugsInPy issue may be in model pretraining",
+    "Reference patch is used only to prevalidate evaluator, not exposed to either arm",
+    "Nykra's adaptive restart differs only after prolonged failed attempts",
+    "Docker is constrained but not a certified hostile-code sandbox"
+  ],
+  "git_commit_push": false
+}

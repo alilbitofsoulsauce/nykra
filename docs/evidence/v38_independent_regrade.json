@@ -1,0 +1,53 @@
+{
+  "schema": "nykra-v38-new-historical-multifile-independent-recheck-v1",
+  "records": [
+    {
+      "task": "youtube-dl-33",
+      "source_trace_sha256": "ba0bedb700c5a6094ef9d820a6b3d0fdec1a7d67a301c25757b18700d1ef2295",
+      "winning_patch_sha256": "3f7a14355bc9a7fa3608ac2b77002b8bfe5684433da8f99d1bceba203b95ecca",
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f9c0c83189828993eab554594a2ec44973138e1dfdca3493c69194bf06273943",
+        "elapsed_seconds": 8.48
+      },
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "6d9c2a77dc636c1f976299ad65da76028e4da8366db2b9620ddd63636f55cb96",
+        "elapsed_seconds": 7.21
+      },
+      "additional_model_calls": 0
+    },
+    {
+      "task": "youtube-dl-31",
+      "source_trace_sha256": "cd4257e536a4dd465951c3204df31484de8576050263d92dd901e2febfbfa84a",
+      "winning_patch_sha256": "87ac07baa423f9d09bd13ec27376249110b6ec9c3e46a6be1dab8f712e30e16f",
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b46f03e81b55c8e3e5346c92e758f4c7d14b2a8aaf448b8e37d369250f991678",
+        "elapsed_seconds": 8.69
+      },
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5b0210d78373b00a027b14d182c1b454bd50a259287fd9631a7e98cd76a4fcc0",
+        "elapsed_seconds": 7.24
+      },
+      "additional_model_calls": 0
+    }
+  ]
+}

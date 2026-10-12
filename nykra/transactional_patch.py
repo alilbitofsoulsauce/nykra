@@ -254,6 +254,17 @@ def _restore(root,snapshot):
                 tmp.unlink(missing_ok=True)
 
 
+
+def _unittest_test_count(stderr: bytes) -> int:
+    """Count actual discovered unittest cases from the complete runner output.
+
+    A zero-exit unittest command with zero discovered tests does not verify a
+    patch. Unrecognized output is conservatively treated as zero tests.
+    """
+    lines = re.findall(rb"(?m)^Ran ([0-9]+) tests? in [0-9.]+s\r?$", stderr)
+    return int(lines[-1]) if lines else 0
+
+
 def run_transaction(root,patch,*,allowed_paths,test_args=("-B","-m","unittest",
                     "discover","-s","tests"),executor="docker",docker_image_id=None,
                     allow_trusted_local_tests=False,promote=False,approve=False,
@@ -287,16 +298,18 @@ def run_transaction(root,patch,*,allowed_paths,test_args=("-B","-m","unittest",
             if not all(isinstance(x,str) for x in test_args):
                 raise PatchRejected("invalid trusted test arguments")
             test=_run([os.sys.executable,*test_args],cwd=checkout,timeout=timeout)
+        tests_run=_unittest_test_count(test.stderr)
         evidence={"schema":"nykra-multifile-transaction-v1",
                   "upstream_head":head,"patch_sha256":_digest(patch.encode("utf-8")),
                   "files":changes,"file_count":len(changes),
                   "executor":executor,"test_args":list(test_args),
                   "test_exit_code":test.returncode,
+                  "tests_run":tests_run,
                   "test_stdout_sha256":_digest(test.stdout),
                   "test_stderr_sha256":_digest(test.stderr),
                   "test_stdout_preview":test.stdout.decode("utf-8","replace")[-1200:],
                   "test_stderr_preview":test.stderr.decode("utf-8","replace")[-1200:],
-                  "tests_passed":test.returncode==0,
+                  "tests_passed":test.returncode==0 and tests_run>0,
                   "promoted":False}
         if not evidence["tests_passed"] or not promote:
             evidence["elapsed_seconds"]=round(time.monotonic()-started,3)

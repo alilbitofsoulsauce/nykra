@@ -1,0 +1,254 @@
+{
+  "schema": "nykra-v31-task-live-comparison-v1",
+  "task_id": "tqdm-1",
+  "grader": "v20",
+  "frozen_protocol_sha256": "d50af1b42f21ebf0361a315d37fe822abe992bd5a32d88dac32cc6461f951f24",
+  "upstream_buggy_commit": "8cc777fe8401a05d07f2c97e65d15e4460feab88",
+  "upstream_fixed_commit": "c0dcf39b046d1b4ff6de14ac99ad9a1b10487512",
+  "original_function_sha256": "18a06ee78e029cb7c198dd9e7325e215c517ca74a73cda1e614de88eda7f1128",
+  "model": "cohere/north-mini-code:free",
+  "model_budget_per_arm": 3,
+  "grade_public_only_during_iteration": true,
+  "status": "completed",
+  "arms": [
+    {
+      "arm": "nykra_optimized_depth",
+      "optimized": true,
+      "policy": "depth",
+      "status": "completed",
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "source_sha256": "18a06ee78e029cb7c198dd9e7325e215c517ca74a73cda1e614de88eda7f1128",
+          "model_raw_output_sha256": "888b53e806d10c3eab736c0fb54a717eccc515c9da5bc60e1aaca86dac5ca58c",
+          "model_raw_output": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start, **tqdm_kwargs))",
+          "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start, **tqdm_kwargs))\n",
+          "prompt_sha256": "61db92ac8532b98c39234fa94b6193a9e4e6d5b383a7ec351e2d40913f38d5e1",
+          "model_response_id": "gen-1791772108-CJHFmkpL6716hvrro2LQ",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 243,
+            "completion_tokens": 130,
+            "total_tokens": 373
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "b95dbf8be5fe8000c950eea81cdedb521a5423a1277a9d6702d4e82f8e6c789f",
+                "stderr_preview": null
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 4.6
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 7.249
+        },
+        {
+          "attempt_number": 2,
+          "source_sha256": "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d",
+          "model_raw_output_sha256": "a3b38c3c2157654447f893bea553242ec341fce9721b218407ec594e1c63cfb4",
+          "model_raw_output": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))",
+          "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))\n",
+          "prompt_sha256": "f07ad67b273e3abf52461e72f8e32be39803978d0b744ea9d80cfbd5e694d2df",
+          "model_response_id": "gen-1791772114-6yOkqWDWepIF3ppX9J1G",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 393,
+            "completion_tokens": 131,
+            "total_tokens": 524
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "0a16bee1b2215ebfd7685a933e723ce28a091d38791a7585dba0adb67fff6753",
+                "stderr_preview": null
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 3.28
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 5.018
+        },
+        {
+          "attempt_number": 3,
+          "source_sha256": "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d",
+          "model_raw_output_sha256": "a3b38c3c2157654447f893bea553242ec341fce9721b218407ec594e1c63cfb4",
+          "model_raw_output": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))",
+          "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))\n",
+          "prompt_sha256": "d43f852ad278cff6c6494e8a5dbd2779aa12ff4cfb7f3128d9d2a326a902012e",
+          "model_response_id": "gen-1791772119-F6fBz6RIdM0oLUHLIGv5",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 394,
+            "completion_tokens": 131,
+            "total_tokens": 525
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "0a16bee1b2215ebfd7685a933e723ce28a091d38791a7585dba0adb67fff6753",
+                "stderr_preview": null
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 3.28
+          },
+          "public_grade_reused": true,
+          "public_grade_source_attempt": 2,
+          "inference_plus_public_work_seconds": 1.424
+        }
+      ],
+      "model_provider_calls": 3,
+      "model_calls_avoided": 0,
+      "provider_reported_tokens": 1422,
+      "public_grader_calls": 2,
+      "public_grader_reuses": 1,
+      "model_attempts": 3,
+      "stop_reason": "attempt_budget",
+      "hidden_status": "not_checked_no_public_pass",
+      "task_solved": false
+    },
+    {
+      "arm": "baseline_depth",
+      "optimized": false,
+      "policy": "depth",
+      "status": "completed",
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "source_sha256": "18a06ee78e029cb7c198dd9e7325e215c517ca74a73cda1e614de88eda7f1128",
+          "model_raw_output_sha256": "888b53e806d10c3eab736c0fb54a717eccc515c9da5bc60e1aaca86dac5ca58c",
+          "model_raw_output": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start, **tqdm_kwargs))",
+          "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start, **tqdm_kwargs))\n",
+          "prompt_sha256": "61db92ac8532b98c39234fa94b6193a9e4e6d5b383a7ec351e2d40913f38d5e1",
+          "model_response_id": "gen-1791772121-I6BJaY6LN3W5walD6xvb",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 243,
+            "completion_tokens": 130,
+            "total_tokens": 373
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "8e251c1ad6c7f70bcc110e78cda6563e7f5dfa2ebde1e2158a9c86cb24d75245",
+                "stderr_preview": null
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 4.16
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 5.659
+        },
+        {
+          "attempt_number": 2,
+          "source_sha256": "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d",
+          "model_raw_output_sha256": "a3b38c3c2157654447f893bea553242ec341fce9721b218407ec594e1c63cfb4",
+          "model_raw_output": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))",
+          "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))\n",
+          "prompt_sha256": "f07ad67b273e3abf52461e72f8e32be39803978d0b744ea9d80cfbd5e694d2df",
+          "model_response_id": "gen-1791772126-LTJc2pxrug7cHbuiXSVk",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 393,
+            "completion_tokens": 131,
+            "total_tokens": 524
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "629e0d730aa3cde7842ae3c377787edca01fa143148b095d4215fc9d66548594",
+                "stderr_preview": null
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 3.49
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 5.073
+        },
+        {
+          "attempt_number": 3,
+          "source_sha256": "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d",
+          "model_raw_output_sha256": "a3b38c3c2157654447f893bea553242ec341fce9721b218407ec594e1c63cfb4",
+          "model_raw_output": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))",
+          "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))\n",
+          "prompt_sha256": "d43f852ad278cff6c6494e8a5dbd2779aa12ff4cfb7f3128d9d2a326a902012e",
+          "model_response_id": "gen-1791772131-tr15uetuu7hWOiZ0vSYu",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 394,
+            "completion_tokens": 131,
+            "total_tokens": 525
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "ba50f267a6983bc32eb1b62f0d1a4984747e344d9d3c391811e4a6802c54280d",
+                "stderr_preview": null
+              }
+            ],
+            "mode": "public",
+            "elapsed_seconds": 3.28
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 5.54
+        }
+      ],
+      "model_provider_calls": 3,
+      "model_calls_avoided": 0,
+      "provider_reported_tokens": 1422,
+      "public_grader_calls": 3,
+      "public_grader_reuses": 0,
+      "model_attempts": 3,
+      "stop_reason": "attempt_budget",
+      "hidden_status": "not_checked_no_public_pass",
+      "task_solved": false
+    }
+  ],
+  "hidden_evaluated_after_arms": true
+}

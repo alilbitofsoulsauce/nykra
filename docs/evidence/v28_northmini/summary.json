@@ -1,0 +1,370 @@
+{
+  "schema": "nykra-v28-independent-free-model-comparison-v1",
+  "task": "historical more-itertools GitHub issue #1134 (feature request) two-module implementation",
+  "upstream_buggy_commit": "9210d54527ddfa63ebe75cd5b5daa0201902c674",
+  "upstream_fixed_reference_commit": "18c57c720fc5a7672439ea45a5393a8c1ff40d1e",
+  "benchmark_source_head": "b1ecd895e2c97928cb53406fe3aa58d1fd923ab4",
+  "public_source_sha256": "e882cde666ca3e775e5d8fe02d26af25ec0ea3077d4a8ceef5990cf8a67614b8",
+  "heldout_source_sha256": "7f3edd5ee7eece9531532996e1d198d0cdd5d7caed0862d2c15d84f841a96058",
+  "docker_image_id": "sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f",
+  "provider": "OpenRouter; fixed explicit free route only",
+  "model": "cohere/north-mini-code:free",
+  "inference_settings": {
+    "reasoning_enabled": false,
+    "max_tokens_per_call": 3000,
+    "temperature": 0.2,
+    "provider_fallbacks": false
+  },
+  "independent_model_responses": true,
+  "initial_prompt_identical": true,
+  "budget_per_arm": 4,
+  "branches_diverged_at_attempt": 4,
+  "arms": {
+    "baseline": {
+      "policy": "depth",
+      "model_calls": 4,
+      "public_evaluations": 3,
+      "public_passing": 0,
+      "final_task_success": false,
+      "attempts": [
+        {
+          "call": 1,
+          "response_id": "gen-1791766305-m1ZPWEtjEcx3m0LqABpj",
+          "model_response": {
+            "path": "docs/evidence/v28_northmini/baseline_model_1.txt",
+            "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+            "size_bytes": 8034
+          },
+          "model_response_sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+          "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+          "controller_action": "new_root",
+          "public_status": "test_failed",
+          "public_tests_run": 6,
+          "public_passed": false,
+          "duplicate_previous": false,
+          "model_reported_cost_usd": 0,
+          "tokens": {
+            "prompt": 1779,
+            "completion": 1928,
+            "total": 3707
+          },
+          "generation_seconds": 19.094
+        },
+        {
+          "call": 2,
+          "response_id": "gen-1791766560-UYZJhgrMVCCViRZ7SPip",
+          "model_response": {
+            "path": "docs/evidence/v28_northmini/baseline_model_2.txt",
+            "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+            "size_bytes": 8034
+          },
+          "model_response_sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+          "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+          "controller_action": "revise",
+          "public_status": "test_failed",
+          "public_tests_run": 6,
+          "public_passed": false,
+          "duplicate_previous": true,
+          "model_reported_cost_usd": 0,
+          "tokens": {
+            "prompt": 4051,
+            "completion": 1928,
+            "total": 5979
+          },
+          "generation_seconds": 18.945
+        },
+        {
+          "call": 3,
+          "response_id": "gen-1791766676-RrqWyNLUtY1JRfn5owyX",
+          "model_response": {
+            "path": "docs/evidence/v28_northmini/baseline_model_3.txt",
+            "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+            "size_bytes": 8034
+          },
+          "model_response_sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+          "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+          "controller_action": "revise",
+          "public_status": "test_failed",
+          "public_tests_run": 6,
+          "public_passed": false,
+          "duplicate_previous": true,
+          "model_reported_cost_usd": 0,
+          "tokens": {
+            "prompt": 3076,
+            "completion": 1928,
+            "total": 5004
+          },
+          "generation_seconds": 10.431
+        },
+        {
+          "call": 4,
+          "response_id": "gen-1791766808-FJSpvSV7B1de5JjargFV",
+          "model_response": {
+            "path": "docs/evidence/v28_northmini/baseline_model_4.txt",
+            "sha256": "a77c175cb65232b0f846baacbbb2861fdc7a38a909b4044c06e364632ea94647",
+            "size_bytes": 5060
+          },
+          "model_response_sha256": "a77c175cb65232b0f846baacbbb2861fdc7a38a909b4044c06e364632ea94647",
+          "patch_sha256": null,
+          "controller_action": "revise",
+          "public_status": "invalid_format",
+          "public_tests_run": 0,
+          "public_passed": false,
+          "duplicate_previous": false,
+          "model_reported_cost_usd": 0,
+          "tokens": {
+            "prompt": 2890,
+            "completion": 1145,
+            "total": 4035
+          },
+          "generation_seconds": 13.777
+        }
+      ]
+    },
+    "nykra": {
+      "policy": "adaptive",
+      "model_calls": 4,
+      "public_evaluations": 4,
+      "public_passing": 0,
+      "final_task_success": false,
+      "attempts": [
+        {
+          "call": 1,
+          "response_id": "gen-1791766450-GKazrew1Wn1ZMhavDfl7",
+          "model_response": {
+            "path": "docs/evidence/v28_northmini/nykra_model_1.txt",
+            "sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+            "size_bytes": 6501
+          },
+          "model_response_sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+          "patch_sha256": "a5c266793d8392c85b7d091f8e67131a3f9199a41a6e2fb2ebb5c9d9e5ce110e",
+          "controller_action": "new_root",
+          "public_status": "test_failed",
+          "public_tests_run": 6,
+          "public_passed": false,
+          "duplicate_previous": false,
+          "model_reported_cost_usd": 0,
+          "tokens": {
+            "prompt": 1779,
+            "completion": 1619,
+            "total": 3398
+          },
+          "generation_seconds": 12.842
+        },
+        {
+          "call": 2,
+          "response_id": "gen-1791766579-OD78CS1XCFBb3rwPOLtJ",
+          "model_response": {
+            "path": "docs/evidence/v28_northmini/nykra_model_2.txt",
+            "sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+            "size_bytes": 6501
+          },
+          "model_response_sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+          "patch_sha256": "a5c266793d8392c85b7d091f8e67131a3f9199a41a6e2fb2ebb5c9d9e5ce110e",
+          "controller_action": "revise",
+          "public_status": "test_failed",
+          "public_tests_run": 6,
+          "public_passed": false,
+          "duplicate_previous": true,
+          "model_reported_cost_usd": 0,
+          "tokens": {
+            "prompt": 3740,
+            "completion": 1619,
+            "total": 5359
+          },
+          "generation_seconds": 11.563
+        },
+        {
+          "call": 3,
+          "response_id": "gen-1791766687-17ruy9n8oemO1DaYLCFm",
+          "model_response": {
+            "path": "docs/evidence/v28_northmini/nykra_model_3.txt",
+            "sha256": "39653cfcf6c17d9c0e12565e5ff8a5cc3ddd9d532ae09d6dba5dc18613847669",
+            "size_bytes": 7625
+          },
+          "model_response_sha256": "39653cfcf6c17d9c0e12565e5ff8a5cc3ddd9d532ae09d6dba5dc18613847669",
+          "patch_sha256": "4795451b13be77b92abe417d3cf0cd46ccdacb318a6cf64bda568e768e4391f6",
+          "controller_action": "revise",
+          "public_status": "test_failed",
+          "public_tests_run": 6,
+          "public_passed": false,
+          "duplicate_previous": false,
+          "model_reported_cost_usd": 0,
+          "tokens": {
+            "prompt": 2765,
+            "completion": 1908,
+            "total": 4673
+          },
+          "generation_seconds": 10.653
+        },
+        {
+          "call": 4,
+          "response_id": "gen-1791766822-llyarq8a7jik8QHOkoqC",
+          "model_response": {
+            "path": "docs/evidence/v28_northmini/nykra_model_4.txt",
+            "sha256": "f74dd200e12f50dc9141d070eed463f5147b627ed37d40c18ee59e8dd787810b",
+            "size_bytes": 3952
+          },
+          "model_response_sha256": "f74dd200e12f50dc9141d070eed463f5147b627ed37d40c18ee59e8dd787810b",
+          "patch_sha256": "99eabc63eff8f2aed713980c76cac4c119d5e13428bfb4e63b8b20a2b29e15a3",
+          "controller_action": "new_root",
+          "public_status": "test_failed",
+          "public_tests_run": 6,
+          "public_passed": false,
+          "duplicate_previous": false,
+          "model_reported_cost_usd": 0,
+          "tokens": {
+            "prompt": 813,
+            "completion": 944,
+            "total": 1757
+          },
+          "generation_seconds": 10.118
+        }
+      ]
+    }
+  },
+  "model_total_tokens_per_arm": {
+    "baseline": 18725,
+    "nykra": 15187
+  },
+  "model_reported_cost_usd_per_arm": {
+    "baseline": 0,
+    "nykra": 0
+  },
+  "result": "tie",
+  "solved_tasks": {
+    "baseline": 0,
+    "nykra": 0
+  },
+  "selected_patches": {
+    "baseline": null,
+    "nykra": null
+  },
+  "hidden_checks_performed": 0,
+  "hidden_not_used_as_feedback": true,
+  "initial_preprotocol_provider_failures": "Two reasoning-enabled long calls returned empty content and were excluded before paired scored attempts; adapter disabled reasoning before the matched run",
+  "limitations": [
+    "One previously published historical feature request; training contamination unknown",
+    "Public regression suite is small and authored by same supervisor, not official benchmark grader",
+    "No public passing candidates; withheld tests intentionally not run, full correctness unknown",
+    "No success-rate uplift or causal benefit despite policy fork",
+    "Different root versus revise prompts are intrinsic to policy but can also affect model stochastic outputs",
+    "Model provider free route reported zero cost; this is not a guarantee of future quota or pricing",
+    "The CLI patch adapter assembled Python sections into two source files; agent not asked to generate Git diffs directly",
+    "Baseline fourth proposal had an empty second source section and was counted as model-invalid, not evaluator failure"
+  ],
+  "files": {
+    "protocol": {
+      "path": "docs/evidence/v28_northmini/protocol.json",
+      "sha256": "195d122ea6c4449529b3d5d0868f5766834d6a623c78140f04c346e3e45895e5",
+      "size_bytes": 644
+    },
+    "original_prompt": {
+      "path": "docs/evidence/v28_northmini/initial_prompt.txt",
+      "sha256": "d581896758b5f325c025766cccf299ab26d7a49c9869aca620fa4eca8de27bb4",
+      "size_bytes": 6875
+    },
+    "sessions": {
+      "path": "docs/evidence/v28_northmini/sessions.json",
+      "sha256": "3e0510e1a4a4ad9074fd8a96718fd13b0c1cc3a8fec2921a8a1845463ece1da1",
+      "size_bytes": 10224
+    },
+    "finalization": {
+      "path": "docs/evidence/v28_northmini/finalization.json",
+      "sha256": "0df07e5d6fb0e5cfd4d4d6bc96d83ebbe2239aa108b485150f1e51f91a149808",
+      "size_bytes": 6450
+    },
+    "baseline_model_1": {
+      "path": "docs/evidence/v28_northmini/baseline_model_1.txt",
+      "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+      "size_bytes": 8034
+    },
+    "baseline_model_2": {
+      "path": "docs/evidence/v28_northmini/baseline_model_2.txt",
+      "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+      "size_bytes": 8034
+    },
+    "baseline_prompt_2": {
+      "path": "docs/evidence/v28_northmini/baseline_prompt_2.txt",
+      "sha256": "d31b533302858ddbe173f56b5a119407023b49ec7f1ca16f485e08b4eb96c0f4",
+      "size_bytes": 16036
+    },
+    "baseline_model_3": {
+      "path": "docs/evidence/v28_northmini/baseline_model_3.txt",
+      "sha256": "91522e7c391336e28a916b016718f3bce315a9aa41bd3ac1b8dfee947d436d3f",
+      "size_bytes": 8034
+    },
+    "baseline_prompt_3": {
+      "path": "docs/evidence/v28_northmini/baseline_prompt_3.txt",
+      "sha256": "96420fb16e2b64a53d23598604c60425a55546230cd32246828a56cc520043d1",
+      "size_bytes": 12031
+    },
+    "baseline_model_4": {
+      "path": "docs/evidence/v28_northmini/baseline_model_4.txt",
+      "sha256": "a77c175cb65232b0f846baacbbb2861fdc7a38a909b4044c06e364632ea94647",
+      "size_bytes": 5060
+    },
+    "baseline_prompt_4": {
+      "path": "docs/evidence/v28_northmini/baseline_prompt_4.txt",
+      "sha256": "93216f3c861737fe301ff630b1712ca832903622314c704c5ec2e6b004e87a9a",
+      "size_bytes": 11313
+    },
+    "nykra_model_1": {
+      "path": "docs/evidence/v28_northmini/nykra_model_1.txt",
+      "sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+      "size_bytes": 6501
+    },
+    "nykra_model_2": {
+      "path": "docs/evidence/v28_northmini/nykra_model_2.txt",
+      "sha256": "62d7882251ec5727433ffce88cc195658925fd937b0948b483b892f8858e83ec",
+      "size_bytes": 6501
+    },
+    "nykra_prompt_2": {
+      "path": "docs/evidence/v28_northmini/nykra_prompt_2.txt",
+      "sha256": "52cc8ffc48c5c9a5dd87f0ab38fbba101a61c9a8801139c1490fab73e3403804",
+      "size_bytes": 14503
+    },
+    "nykra_model_3": {
+      "path": "docs/evidence/v28_northmini/nykra_model_3.txt",
+      "sha256": "39653cfcf6c17d9c0e12565e5ff8a5cc3ddd9d532ae09d6dba5dc18613847669",
+      "size_bytes": 7625
+    },
+    "nykra_prompt_3": {
+      "path": "docs/evidence/v28_northmini/nykra_prompt_3.txt",
+      "sha256": "e0fd5454ed1122e60a591dd10383097852edb7ab267754ce14c3fc8c5ee632a7",
+      "size_bytes": 10498
+    },
+    "nykra_model_4": {
+      "path": "docs/evidence/v28_northmini/nykra_model_4.txt",
+      "sha256": "f74dd200e12f50dc9141d070eed463f5147b627ed37d40c18ee59e8dd787810b",
+      "size_bytes": 3952
+    },
+    "nykra_prompt_4": {
+      "path": "docs/evidence/v28_northmini/nykra_prompt_4.txt",
+      "sha256": "2f1c20dee3f664137b6895ab98b2bd15b084834d8f423b4861abe7d3a3b9f14d",
+      "size_bytes": 2953
+    },
+    "baseline_patch_1": {
+      "path": "docs/evidence/v28_northmini/baseline_patch_1.diff",
+      "sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+      "size_bytes": 9464
+    },
+    "nykra_patch_1": {
+      "path": "docs/evidence/v28_northmini/nykra_patch_1.diff",
+      "sha256": "a5c266793d8392c85b7d091f8e67131a3f9199a41a6e2fb2ebb5c9d9e5ce110e",
+      "size_bytes": 7915
+    },
+    "nykra_patch_3": {
+      "path": "docs/evidence/v28_northmini/nykra_patch_3.diff",
+      "sha256": "4795451b13be77b92abe417d3cf0cd46ccdacb318a6cf64bda568e768e4391f6",
+      "size_bytes": 16703
+    },
+    "nykra_patch_4": {
+      "path": "docs/evidence/v28_northmini/nykra_patch_4.diff",
+      "sha256": "99eabc63eff8f2aed713980c76cac4c119d5e13428bfb4e63b8b20a2b29e15a3",
+      "size_bytes": 5251
+    }
+  },
+  "git_commit": false,
+  "git_push": false
+}

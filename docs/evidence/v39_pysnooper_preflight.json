@@ -1,0 +1,37 @@
+{
+  "schema": "nykra-v39-real-pysnooper-preinference-source-grade-v1",
+  "protocol_sha256": "0701ac0722531f7500a0d036d4052ccba60f916729160bd8d93560df4d6e637f",
+  "before_live_model_proposals": true,
+  "eligible": false,
+  "receipts": {
+    "buggy_public": {
+      "status": "test_failed",
+      "passed": false,
+      "mode": "public",
+      "return_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c8101252964bba6b6bd8079df1914d3b198f17fa78f7f20f2a94519654a3f1d9",
+      "elapsed_seconds": 36.96,
+      "diagnostic": "FAIL: test_utf8_source_without_coding_header (v39_public_pysnooper1.UnicodeSourcePublic)\nAssertionError: '# \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd' != '# \u5931\u8d25'\nFAILED (failures=1)"
+    },
+    "buggy_hidden": {
+      "status": "test_failed",
+      "passed": false,
+      "mode": "hidden",
+      "return_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "855f6c6608d1f487173acfe3b5e42fd4faec4fbca7ca08517982827ac4bc090d",
+      "elapsed_seconds": 8.99
+    },
+    "reference_public": {
+      "status": "setup_error",
+      "passed": false,
+      "error_type": "ValueError"
+    },
+    "reference_hidden": {
+      "status": "setup_error",
+      "passed": false,
+      "error_type": "TimeoutExpired"
+    }
+  }
+}

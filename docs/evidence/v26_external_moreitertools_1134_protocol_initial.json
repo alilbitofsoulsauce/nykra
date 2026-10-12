@@ -1,0 +1,24 @@
+{
+  "protocol": "nykra-more-itertools-1134-v1",
+  "upstream": "https://github.com/more-itertools/more-itertools",
+  "upstream_buggy_sha": "9210d54527ddfa63ebe75cd5b5daa0201902c674",
+  "upstream_reference_sha": "18c57c720fc5a7672439ea45a5393a8c1ff40d1e",
+  "upstream_reference_used_by_agents": false,
+  "buggy_snapshot_commit": "7a79c2b44019b209208e95604530d44f6380deb8",
+  "public_sha256": "e882cde666ca3e775e5d8fe02d26af25ec0ea3077d4a8ceef5990cf8a67614b8",
+  "hidden_sha256": "7f3edd5ee7eece9531532996e1d198d0cdd5d7caed0862d2c15d84f841a96058",
+  "public_module": "tests.test_nykra_public",
+  "hidden_file": "test_heldout_issue.py",
+  "allowed_files": [
+    "more_itertools/more.py",
+    "more_itertools/recipes.py"
+  ],
+  "budget_per_arm": 4,
+  "model": "opencode/mimo-v2.6-flash-free",
+  "provider_cost_policy": "advertised-free-model-only",
+  "policy_baseline": "depth",
+  "policy_nykra": "adaptive",
+  "common_prefix": true,
+  "docker_image_id": "sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f",
+  "no_reference_diff_exposed": true
+}

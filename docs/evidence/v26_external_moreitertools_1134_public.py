@@ -1,0 +1,40 @@
+"""Frozen public issue #1134 requirements; no reference solution."""
+from decimal import Decimal
+from fractions import Fraction
+from statistics import median
+import unittest
+import more_itertools as mi
+
+class PublicRunningStatistics(unittest.TestCase):
+    def test_minmax_prefix(self):
+        self.assertEqual(list(mi.running_min([4,3,7,0,8])),[4,3,3,0,0])
+        self.assertEqual(list(mi.running_max([4,3,7,0,8])),[4,4,7,7,8])
+
+    def test_minmax_window(self):
+        self.assertEqual(list(mi.running_min([8,7,9,3,5],maxlen=2)),[8,7,7,3,3])
+        self.assertEqual(list(mi.running_max([8,7,9,3,5],maxlen=2)),[8,8,9,9,5])
+
+    def test_running_mean_window(self):
+        data=[4,3,7,0,8,1]
+        self.assertEqual(list(mi.running_mean(data,maxlen=3)),
+                         [4.0,3.5,14/3,10/3,5.0,3.0])
+
+    def test_statistics_unbounded(self):
+        data=[4,3,7,0,8]
+        rows=list(mi.running_statistics(data))
+        self.assertEqual(len(rows),5)
+        self.assertEqual(rows[0],mi.Stats(size=1,minimum=4,median=4,maximum=4,mean=4.0))
+        self.assertEqual(rows[-1],mi.Stats(size=5,minimum=0,median=4,maximum=8,mean=4.4))
+
+    def test_statistics_window(self):
+        data=[4,3,7,0,8]
+        rows=list(mi.running_statistics(data,maxlen=3))
+        self.assertEqual(rows[2],mi.Stats(size=3,minimum=3,median=4,maximum=7,mean=14/3))
+        self.assertEqual(rows[3],mi.Stats(size=3,minimum=0,median=3,maximum=7,mean=10/3))
+        self.assertEqual(rows[4],mi.Stats(size=3,minimum=0,median=7,maximum=8,mean=5.0))
+
+    def test_invalid_window(self):
+        for fn in [mi.running_min,mi.running_max,mi.running_mean,mi.running_statistics]:
+            with self.subTest(name=fn.__name__):
+                with self.assertRaises(ValueError):
+                    list(fn([1,2,3],maxlen=0))

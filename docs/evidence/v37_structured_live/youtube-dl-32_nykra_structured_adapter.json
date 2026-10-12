@@ -1,0 +1,93 @@
+{
+  "schema": "nykra-v37-structured-edits-vs-raw-git-diff-v1",
+  "task": "youtube-dl-32",
+  "arm": "nykra_structured_adapter",
+  "model": "gpt-5.6-luna",
+  "protocol_sha256": "77965e4d6d27afb580f4c128744df3a5ad420b514a5ef18da11f91babfe985e6",
+  "preflight_sha256": "f98d0a248c82b68210d3ff1b31c5b59b67b71a4df5c939a3f5c3113ba8579912",
+  "status": "hidden_verified",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "parent_id": null,
+      "policy_action": "new_root",
+      "prompt_sha256": "f2ad48b86af9d9065497c851259ff0d7e27cc718506f801afce752fe62dc2371",
+      "raw_codex_output": "{\"edits\":[{\"path\":\"youtube_dl/utils.py\",\"old\":\"def strip_jsonp(code):\\n    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\\\s*\\\\(\\\\s*(.*)\\\\);?\\\\s*?\\\\s*$', r'\\\\1', code)\",\"new\":\"def strip_jsonp(code):\\n    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\\\s*\\\\(\\\\s*(.*)\\\\);?\\\\s*(?://.*)?$', r'\\\\1', code)\"},{\"path\":\"youtube_dl/extractor/npo.py\",\"old\":\"    url_basename,\\n)\",\"new\":\"    url_basename,\\n    strip_jsonp,\\n)\"},{\"path\":\"youtube_dl/extractor/npo.py\",\"old\":\"            transform_source=lambda j: re.sub(r'parseMetadata\\\\((.*?)\\\\);\\\\n//.*$', r'\\\\1', j)\",\"new\":\"            transform_source=strip_jsonp\"}]}",
+      "raw_output_sha256": "11a188cfee59df5ac81dce08e59c17195b1dd11227128f79e0997696649c7687",
+      "structured_adapter": {
+        "schema": "nykra-exact-edit-adapter-v1",
+        "edits": [
+          {
+            "edit": 1,
+            "path": "youtube_dl/utils.py",
+            "start": 41939,
+            "old_bytes": 100,
+            "new_bytes": 105
+          },
+          {
+            "edit": 2,
+            "path": "youtube_dl/extractor/npo.py",
+            "start": 164,
+            "old_bytes": 19,
+            "new_bytes": 36
+          },
+          {
+            "edit": 3,
+            "path": "youtube_dl/extractor/npo.py",
+            "start": 2087,
+            "old_bytes": 90,
+            "new_bytes": 40
+          }
+        ],
+        "files_changed": [
+          "youtube_dl/extractor/npo.py",
+          "youtube_dl/utils.py"
+        ],
+        "patch_sha256": "7d69949dd851483e0ab525435808efcea82a9196ecd9a10b6003271a78131acd"
+      },
+      "adapter_failure": null,
+      "patch": "diff --git a/youtube_dl/extractor/npo.py b/youtube_dl/extractor/npo.py\n--- a/youtube_dl/extractor/npo.py\n+++ b/youtube_dl/extractor/npo.py\n@@ -8,6 +8,7 @@\n     parse_duration,\n     qualities,\n     url_basename,\n+    strip_jsonp,\n )\n \n \n@@ -63,7 +64,7 @@\n             'http://e.omroep.nl/metadata/aflevering/%s' % video_id,\n             video_id,\n             # We have to remove the javascript callback\n-            transform_source=lambda j: re.sub(r'parseMetadata\\((.*?)\\);\\n//.*$', r'\\1', j)\n+            transform_source=strip_jsonp\n         )\n         token_page = self._download_webpage(\n             'http://ida.omroep.nl/npoplayer/i.js',\ndiff --git a/youtube_dl/utils.py b/youtube_dl/utils.py\n--- a/youtube_dl/utils.py\n+++ b/youtube_dl/utils.py\n@@ -1331,7 +1331,7 @@\n \n \n def strip_jsonp(code):\n-    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*?\\s*$', r'\\1', code)\n+    return re.sub(r'(?s)^[a-zA-Z0-9_]+\\s*\\(\\s*(.*)\\);?\\s*(?://.*)?$', r'\\1', code)\n \n \n def js_to_json(code):\n",
+      "patch_sha256": "7d69949dd851483e0ab525435808efcea82a9196ecd9a10b6003271a78131acd",
+      "model_usage": {
+        "input_tokens": 15140,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 711,
+        "reasoning_output_tokens": 488
+      },
+      "model_seconds": 12.619,
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "445221b98f22d14309aaea4fee1a9f41c9659ced4c922d71fbc0dcbbde571045",
+        "elapsed_seconds": 20.37
+      },
+      "public_called": true,
+      "public_reused_from": null,
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "42323e3a58e86c1b70470246e403250412b1f56fb1288dce101f7b2dd0a82302",
+        "elapsed_seconds": 7.25
+      }
+    }
+  ],
+  "provider_calls": 1,
+  "reported_usage": {
+    "input_tokens": 15140,
+    "cached_input_tokens": 0,
+    "output_tokens": 711,
+    "reasoning_output_tokens": 488
+  },
+  "public_docker_calls": 1,
+  "public_docker_reuses": 0,
+  "hidden_docker_calls": 1,
+  "selected_patch_sha256": "7d69949dd851483e0ab525435808efcea82a9196ecd9a10b6003271a78131acd",
+  "selected_attempt": "attempt-1"
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "revision": "buggy",
+    "suite": "public",
+    "exit": 1,
+    "elapsed": 10.114,
+    "tail": "istics_unbounded)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 24, in test_statistics_unbounded\n    rows=list(mi.running_statistics(data))\n              ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'more_itertools' has no attribute 'running_statistics'\n\n======================================================================\nERROR: test_statistics_window (tests.test_nykra_public.PublicRunningStatistics.test_statistics_window)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 31, in test_statistics_window\n    rows=list(mi.running_statistics(data,maxlen=3))\n              ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'more_itertools' has no attribute 'running_statistics'\n\n----------------------------------------------------------------------\nRan 6 tests in 0.014s\n\nFAILED (errors=6)\n"
+  },
+  {
+    "revision": "buggy",
+    "suite": "hidden",
+    "exit": 1,
+    "elapsed": 1.123,
+    "tail": "tatistics_window_and_even_median)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/heldout/test_heldout_issue.py\", line 33, in test_statistics_window_and_even_median\n    vals=list(mi.running_statistics(data,maxlen=k))\n              ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'more_itertools' has no attribute 'running_statistics'\n\n======================================================================\nERROR: test_stats_behavior (test_heldout_issue.HiddenRunningStatistics.test_stats_behavior)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/heldout/test_heldout_issue.py\", line 53, in test_stats_behavior\n    st=mi.Stats(size=2,minimum=1,median=1.5,maximum=2,mean=1.5)\n       ^^^^^^^^\nAttributeError: module 'more_itertools' has no attribute 'Stats'\n\n----------------------------------------------------------------------\nRan 10 tests in 0.012s\n\nFAILED (errors=9)\n"
+  },
+  {
+    "revision": "reference",
+    "suite": "public",
+    "exit": 0,
+    "elapsed": 1.046,
+    "tail": "----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n"
+  },
+  {
+    "revision": "reference",
+    "suite": "hidden",
+    "exit": 0,
+    "elapsed": 1.072,
+    "tail": "----------------------------------------------------------------------\nRan 10 tests in 0.002s\n\nOK\n"
+  }
+]

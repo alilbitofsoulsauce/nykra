@@ -142,8 +142,11 @@ def prepare_repository(task: dict, parent_dir: Path, *, mutate: bool = True) -> 
          "-c", "user.email=benchmark@localhost", "commit", "-qm", "Frozen start"],
     ]
     for command in commands:
+        # Staging may exceed 12 seconds under Windows CI disk/antivirus load.
+        # Keep the operation bounded while allowing slower fresh-clone hosts.
+        timeout = 60 if command[:2] == ["git", "add"] else 12
         result = subprocess.run(command, cwd=destination, capture_output=True,
-                                text=True, timeout=12)
+                                text=True, timeout=timeout)
         if result.returncode:
             raise RuntimeError("disposable Git setup failed")
     return destination

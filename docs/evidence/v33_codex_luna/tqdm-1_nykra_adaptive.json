@@ -1,0 +1,171 @@
+{
+  "schema": "nykra-v33-codex-luna-real-issue-comparison-v1",
+  "protocol_sha256": "32e7c61b82d9833941cf8954bd01ef371837611ca65924340dd1f5fea152394f",
+  "issue": "tqdm-1",
+  "arm": "nykra_adaptive",
+  "provider": "native Codex ChatGPT OAuth",
+  "model": "gpt-5.6-luna",
+  "initial_3_failures_from_prior_model": true,
+  "public_excerpt_sha256": "751275c5a6cb29f0aeebdf997ca5765287beb66ed4193af4f3e5f1f2c5fe4c2d",
+  "status": "solved",
+  "attempts": [
+    {
+      "id": "attempt-1",
+      "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start, **tqdm_kwargs))\n",
+      "source_sha256": "18a06ee78e029cb7c198dd9e7325e215c517ca74a73cda1e614de88eda7f1128",
+      "parent_id": null,
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "b95dbf8be5fe8000c950eea81cdedb521a5423a1277a9d6702d4e82f8e6c789f",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 4.6
+      },
+      "provider": "OpenRouter free earlier prefix",
+      "public_called": true,
+      "public_reused": false,
+      "inherited": true
+    },
+    {
+      "id": "attempt-2",
+      "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))\n",
+      "source_sha256": "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d",
+      "parent_id": "attempt-1",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "0a16bee1b2215ebfd7685a933e723ce28a091d38791a7585dba0adb67fff6753",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 3.28
+      },
+      "provider": "OpenRouter free earlier prefix",
+      "public_called": true,
+      "public_reused": false,
+      "inherited": true
+    },
+    {
+      "id": "attempt-3",
+      "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, start=start, **tqdm_kwargs))\n",
+      "source_sha256": "32c9b0fe48b4fe04a862b15c47b321aa7c53b05abdf2b78cbcd6c6148490686d",
+      "parent_id": "attempt-2",
+      "public": {
+        "status": "test_failed",
+        "passed": false,
+        "checks": [
+          {
+            "status": "test_failed",
+            "exit_code": 1,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "0a16bee1b2215ebfd7685a933e723ce28a091d38791a7585dba0adb67fff6753",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 3.28
+      },
+      "provider": "OpenRouter free earlier prefix",
+      "public_called": false,
+      "public_reused": true,
+      "inherited": true
+    },
+    {
+      "id": "attempt-4",
+      "inherited": false,
+      "parent_id": null,
+      "policy_action": "new_root",
+      "source": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, **tqdm_kwargs), start)\n",
+      "source_sha256": "b8839d7ecc8c2dc12130a4a4a5169692654d4827c3d9adacf0da40b2a196b6d8",
+      "raw_codex_output": "def tenumerate(iterable, start=0, total=None, tqdm_class=tqdm_auto,\n               **tqdm_kwargs):\n    \"\"\"\n    Equivalent of `numpy.ndenumerate` or builtin `enumerate`.\n\n    Parameters\n    ----------\n    tqdm_class  : [default: tqdm.auto.tqdm].\n    \"\"\"\n    try:\n        import numpy as np\n    except ImportError:\n        pass\n    else:\n        if isinstance(iterable, np.ndarray):\n            return tqdm_class(np.ndenumerate(iterable),\n                              total=total or len(iterable), **tqdm_kwargs)\n    return enumerate(tqdm_class(iterable, **tqdm_kwargs), start)",
+      "raw_sha256": "1baccbfb4af6cdb329e39465ba846cf0ee30ec60db6192bbb70d133f9b851f55",
+      "prompt_sha256": "0baebb3cd28747a955b729deeb032bd099c0c2a59704909407b0c0a7a56c8172",
+      "normalization": "unchanged",
+      "codex_receipt": {
+        "status": "ok",
+        "usage": {
+          "input_tokens": 14523,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 361,
+          "reasoning_output_tokens": 216
+        },
+        "errors": [],
+        "tool_activity": [],
+        "exit_code": 0,
+        "wall_seconds": 10.159
+      },
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "70f492c4c38090676dd420bda4bd43fc8c04e0a092c1d9ed0b2e95dcd8ad02bb",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "public",
+        "elapsed_seconds": 2.97
+      },
+      "public_called": true,
+      "public_reused": false,
+      "public_reused_from": null,
+      "hidden_receipt": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_preview": null
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "52bfa097d6c1c8fc2b1ea99195b5efd7b3da5f7efb5a4ee77192503f160735c0",
+            "stderr_preview": null
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "f260752d1a43396fd4c29d6d4c59c5ca24767c751df2c3a124113b7c535df0f1",
+            "stderr_preview": null
+          }
+        ],
+        "mode": "hidden",
+        "elapsed_seconds": 5.26
+      }
+    }
+  ],
+  "hidden_runs": 1,
+  "codex_completions": 1,
+  "codex_reported_usage": {
+    "input_tokens": 14523,
+    "cached_input_tokens": 0,
+    "output_tokens": 361,
+    "reasoning_output_tokens": 216
+  },
+  "selected_id": "attempt-4",
+  "selected_sha256": "b8839d7ecc8c2dc12130a4a4a5169692654d4827c3d9adacf0da40b2a196b6d8"
+}

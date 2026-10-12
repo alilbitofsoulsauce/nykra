@@ -1,0 +1,222 @@
+{
+  "schema": "nykra-v31-task-live-comparison-v1",
+  "task_id": "youtube-dl-28",
+  "grader": "v21",
+  "frozen_protocol_sha256": "d50af1b42f21ebf0361a315d37fe822abe992bd5a32d88dac32cc6461f951f24",
+  "upstream_buggy_commit": "bd1512d19649c280197729814766d590ea6c023b",
+  "upstream_fixed_commit": "7aefc49c4013efb5056b2c1237e22c52cb5d3c49",
+  "original_function_sha256": "22dda4bf841c56364bd5e4dded949241cd8a5a48aace85675c73033503dee1b6",
+  "model": "cohere/north-mini-code:free",
+  "model_budget_per_arm": 3,
+  "grade_public_only_during_iteration": true,
+  "status": "completed",
+  "arms": [
+    {
+      "arm": "baseline_depth",
+      "optimized": false,
+      "policy": "depth",
+      "status": "completed",
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "source_sha256": "22dda4bf841c56364bd5e4dded949241cd8a5a48aace85675c73033503dee1b6",
+          "model_raw_output_sha256": "ec591dc3f4297df541f1a47950d74af547b4f925b66fc9c07022cb8294f2de7c",
+          "model_raw_output": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        return compat_chr(int(numstr, base))\n\n    # Unknown entity in name, return its literal representation\n    return ('&%s;' % entity)",
+          "source": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        return compat_chr(int(numstr, base))\n\n    # Unknown entity in name, return its literal representation\n    return ('&%s;' % entity)\n",
+          "prompt_sha256": "01426f2efd4bf44a4b819e338189b3e3170d2ff68344ba4394177c26ec241e7b",
+          "model_response_id": "gen-1791771959-EhPgsjES1Sy3VVXdbqlK",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 283,
+            "completion_tokens": 164,
+            "total_tokens": 447
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "02e17a54283a1b769c15223548d309c6d9708ac3e6fc002afc28b2883c097e6f",
+                "diagnostic": "ERROR: test_unescape_html (test.test_utils.TestUtil)\nValueError: chr() arg not in range(0x110000)\nFAILED (errors=1)"
+              }
+            ],
+            "elapsed_seconds": 26.2,
+            "diagnostic": "ERROR: test_unescape_html (test.test_utils.TestUtil)\nValueError: chr() arg not in range(0x110000)\nFAILED (errors=1)"
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 40.257
+        },
+        {
+          "attempt_number": 2,
+          "source_sha256": "8ccd3c7a81e7cb4bba47fe9c9cbb3c71d755fe358cd31bc4158125492b2168f7",
+          "model_raw_output_sha256": "35df50a6c57faa0e6f14228e68da49869a271e09d87c458ea95b2c3fdac58c9c",
+          "model_raw_output": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        codepoint = int(numstr, base)\n        if 0 <= codepoint <= 0x10FFFF:\n            return compat_chr(codepoint)\n        # Invalid numeric entity, return literal representation\n        return ('&%s;' % entity)\n\n    # Unknown entity in name, return its literal representation\n    return ('&%s;' % entity)",
+          "source": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        codepoint = int(numstr, base)\n        if 0 <= codepoint <= 0x10FFFF:\n            return compat_chr(codepoint)\n        # Invalid numeric entity, return literal representation\n        return ('&%s;' % entity)\n\n    # Unknown entity in name, return its literal representation\n    return ('&%s;' % entity)\n",
+          "prompt_sha256": "037012a85e2c0412c25c5742d903a311ecc02d0061fcaa2c54d50c539c712bff",
+          "model_response_id": "gen-1791771993-Adxw8IHNoO6w0fz184ke",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 514,
+            "completion_tokens": 206,
+            "total_tokens": 720
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "ok",
+            "passed": true,
+            "checks": [
+              {
+                "status": "ok",
+                "exit_code": 0,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "82c2d7a91dbf922157b74dd101d34bfd74045bbc9d40b36a0b6b20f69392c9fd"
+              }
+            ],
+            "elapsed_seconds": 8.49
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 29.687
+        }
+      ],
+      "model_provider_calls": 2,
+      "model_calls_avoided": 0,
+      "provider_reported_tokens": 1167,
+      "public_grader_calls": 2,
+      "public_grader_reuses": 0,
+      "model_attempts": 2,
+      "stop_reason": "public_pass",
+      "hidden_status": "ok",
+      "hidden_checks": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "afbfdc4444d7b6c8d8dde3a26b355202e1d2f4ea2955de591acd7646cde6768c"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "e30ddd48012021d8e16572b246e56f3e50ee36877720e4c28f8816dd7783d958"
+          }
+        ],
+        "elapsed_seconds": 6.91
+      },
+      "task_solved": true,
+      "hidden_selected_attempt": 2
+    },
+    {
+      "arm": "nykra_optimized_depth",
+      "optimized": true,
+      "policy": "depth",
+      "status": "completed",
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "source_sha256": "22dda4bf841c56364bd5e4dded949241cd8a5a48aace85675c73033503dee1b6",
+          "model_raw_output_sha256": "ec591dc3f4297df541f1a47950d74af547b4f925b66fc9c07022cb8294f2de7c",
+          "model_raw_output": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        return compat_chr(int(numstr, base))\n\n    # Unknown entity in name, return its literal representation\n    return ('&%s;' % entity)",
+          "source": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        return compat_chr(int(numstr, base))\n\n    # Unknown entity in name, return its literal representation\n    return ('&%s;' % entity)\n",
+          "prompt_sha256": "01426f2efd4bf44a4b819e338189b3e3170d2ff68344ba4394177c26ec241e7b",
+          "model_response_id": "gen-1791772023-IgCuPkrv6J4OajHVW3FS",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 283,
+            "completion_tokens": 164,
+            "total_tokens": 447
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "test_failed",
+            "passed": false,
+            "checks": [
+              {
+                "status": "test_failed",
+                "exit_code": 1,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "33d98b5c52a13eee4271364807bcf0e71ccc0489b3c7d72ea201ea048e13e8bf",
+                "diagnostic": "ERROR: test_unescape_html (test.test_utils.TestUtil)\nValueError: chr() arg not in range(0x110000)\nFAILED (errors=1)"
+              }
+            ],
+            "elapsed_seconds": 6.66,
+            "diagnostic": "ERROR: test_unescape_html (test.test_utils.TestUtil)\nValueError: chr() arg not in range(0x110000)\nFAILED (errors=1)"
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 15.884
+        },
+        {
+          "attempt_number": 2,
+          "source_sha256": "8ccd3c7a81e7cb4bba47fe9c9cbb3c71d755fe358cd31bc4158125492b2168f7",
+          "model_raw_output_sha256": "35df50a6c57faa0e6f14228e68da49869a271e09d87c458ea95b2c3fdac58c9c",
+          "model_raw_output": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        codepoint = int(numstr, base)\n        if 0 <= codepoint <= 0x10FFFF:\n            return compat_chr(codepoint)\n        # Invalid numeric entity, return literal representation\n        return ('&%s;' % entity)\n\n    # Unknown entity in name, return its literal representation\n    return ('&%s;' % entity)",
+          "source": "def _htmlentity_transform(entity):\n    \"\"\"Transforms an HTML entity to a character.\"\"\"\n    # Known non-numeric HTML entity\n    if entity in compat_html_entities.name2codepoint:\n        return compat_chr(compat_html_entities.name2codepoint[entity])\n\n    mobj = re.match(r'#(x[0-9a-fA-F]+|[0-9]+)', entity)\n    if mobj is not None:\n        numstr = mobj.group(1)\n        if numstr.startswith('x'):\n            base = 16\n            numstr = '0%s' % numstr\n        else:\n            base = 10\n        codepoint = int(numstr, base)\n        if 0 <= codepoint <= 0x10FFFF:\n            return compat_chr(codepoint)\n        # Invalid numeric entity, return literal representation\n        return ('&%s;' % entity)\n\n    # Unknown entity in name, return its literal representation\n    return ('&%s;' % entity)\n",
+          "prompt_sha256": "037012a85e2c0412c25c5742d903a311ecc02d0061fcaa2c54d50c539c712bff",
+          "model_response_id": "gen-1791772035-7jdR13KxIyvLjKUcdybq",
+          "model_provider_reported_tokens": {
+            "prompt_tokens": 514,
+            "completion_tokens": 206,
+            "total_tokens": 720
+          },
+          "model_provider_reported_cost": 0,
+          "model_cache_hit": false,
+          "public": {
+            "status": "ok",
+            "passed": true,
+            "checks": [
+              {
+                "status": "ok",
+                "exit_code": 0,
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stderr_sha256": "82c2d7a91dbf922157b74dd101d34bfd74045bbc9d40b36a0b6b20f69392c9fd"
+              }
+            ],
+            "elapsed_seconds": 6.19
+          },
+          "public_grade_reused": false,
+          "public_grade_source_attempt": null,
+          "inference_plus_public_work_seconds": 8.415
+        }
+      ],
+      "model_provider_calls": 2,
+      "model_calls_avoided": 0,
+      "provider_reported_tokens": 1167,
+      "public_grader_calls": 2,
+      "public_grader_reuses": 0,
+      "model_attempts": 2,
+      "stop_reason": "public_pass",
+      "hidden_status": "ok",
+      "hidden_checks": {
+        "status": "ok",
+        "passed": true,
+        "checks": [
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "afbfdc4444d7b6c8d8dde3a26b355202e1d2f4ea2955de591acd7646cde6768c"
+          },
+          {
+            "status": "ok",
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "e30ddd48012021d8e16572b246e56f3e50ee36877720e4c28f8816dd7783d958"
+          }
+        ],
+        "elapsed_seconds": 7.07
+      },
+      "task_solved": true,
+      "hidden_selected_attempt": 2
+    }
+  ],
+  "hidden_evaluated_after_arms": true
+}

@@ -1,0 +1,92 @@
+{
+  "baseline": {
+    "operation": "summary",
+    "receipt": {
+      "schema": "nykra-supervised-multifile-v1",
+      "id": "a5a7f93246724580a00816d30de33b90",
+      "task": "Implement more-itertools historical issue #1134 running statistics and sliding running_mean in exactly two production modules",
+      "repository": "C:\\Users\\admin\\AppData\\Local\\Temp\\rel-ai-mcp-ephemeral\\c92aaefaa18254d9\\cdee6f7a66d203e7b121b0dcce3d7fb2\\paired-north-mini-v1\\issue",
+      "head": "b1ecd895e2c97928cb53406fe3aa58d1fd923ab4",
+      "allowed_paths": [
+        "more_itertools/more.py",
+        "more_itertools/recipes.py"
+      ],
+      "policy": "depth",
+      "budget": 4,
+      "status": "aborted",
+      "executor": "docker",
+      "trusted_local_tests": false,
+      "test_target": "tests.test_nykra_public",
+      "timeout": 100,
+      "attempts": [
+        {
+          "id": "attempt-1",
+          "parent_attempt_id": null,
+          "action": "new_root",
+          "patch_file": "attempt-1.diff",
+          "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+          "status": "test_failed",
+          "tests_passed": false,
+          "tests_run": 6,
+          "diagnostic": "---------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.0,[18 chars]66667, 4.666666666666667, 7.333333333333333, 7.666666666666667] != [4.0,[18 chars]66667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 3:\n4.666666666666667\n3.3333333333333335\n\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n- [4.0,\n-  3.5,\n-  4.666666666666667,\n-  4.666666666666667,\n-  7.333333333333333,\n-  7.666666666666667]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.030s\n\nFAILED (failures=1, errors=5)\n",
+          "test_exit_code": 1,
+          "file_count": 2,
+          "public_test_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "public_test_stderr_sha256": "4c03bf423568721f9b6c136c6451e96595f8bf75549c954f461c78f233d6ad14",
+          "elapsed_seconds": 10.573
+        },
+        {
+          "id": "attempt-2",
+          "parent_attempt_id": "attempt-1",
+          "action": "revise",
+          "patch_file": "attempt-2.diff",
+          "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+          "status": "test_failed",
+          "tests_passed": false,
+          "tests_run": 6,
+          "diagnostic": "---------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.0,[18 chars]66667, 4.666666666666667, 7.333333333333333, 7.666666666666667] != [4.0,[18 chars]66667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 3:\n4.666666666666667\n3.3333333333333335\n\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n- [4.0,\n-  3.5,\n-  4.666666666666667,\n-  4.666666666666667,\n-  7.333333333333333,\n-  7.666666666666667]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.032s\n\nFAILED (failures=1, errors=5)\n",
+          "test_exit_code": 1,
+          "file_count": 2,
+          "public_test_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "public_test_stderr_sha256": "a77ae404112dadc256fad49c5343d1a91904128dbf5cffdbf7a69368475363d9",
+          "elapsed_seconds": 2.053
+        },
+        {
+          "id": "attempt-3",
+          "parent_attempt_id": "attempt-2",
+          "action": "revise",
+          "patch_file": "attempt-3.diff",
+          "patch_sha256": "b3b4e873b76bc31baa722a576d3a2630c233cb7b9e5ec387ffd433a67491aaf9",
+          "status": "test_failed",
+          "tests_passed": false,
+          "tests_run": 6,
+          "diagnostic": "---------------------------------------------\nTraceback (most recent call last):\n  File \"/repo/tests/test_nykra_public.py\", line 19, in test_running_mean_window\n    self.assertEqual(list(mi.running_mean(data,maxlen=3)),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     [4.0,3.5,14/3,10/3,5.0,3.0])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [4.0,[18 chars]66667, 4.666666666666667, 7.333333333333333, 7.666666666666667] != [4.0,[18 chars]66667, 3.3333333333333335, 5.0, 3.0]\n\nFirst differing element 3:\n4.666666666666667\n3.3333333333333335\n\n+ [4.0, 3.5, 4.666666666666667, 3.3333333333333335, 5.0, 3.0]\n- [4.0,\n-  3.5,\n-  4.666666666666667,\n-  4.666666666666667,\n-  7.333333333333333,\n-  7.666666666666667]\n\n----------------------------------------------------------------------\nRan 6 tests in 0.029s\n\nFAILED (failures=1, errors=5)\n",
+          "test_exit_code": 1,
+          "file_count": 2,
+          "public_test_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "public_test_stderr_sha256": "e6cf6c31c6907e17fcc67caa4a33e60ee73a55e80dfc1114a238afbc42ece7f4",
+          "elapsed_seconds": 2.613
+        }
+      ],
+      "selected_attempt_id": null,
+      "hidden_evaluations": 0,
+      "original_repo_modified": false
+    }
+  },
+  "nykra": {
+    "operation": "finalize",
+    "receipt": {
+      "session_id": "b52dfc09ebdc48e38497a22762300935",
+      "status": "finalized",
+      "public_tests_passed": false,
+      "selected_attempt_id": null,
+      "selected_patch_file": null,
+      "selected_patch_sha256": null,
+      "hidden_verified": false,
+      "hidden_evaluations": 0,
+      "promoted": false,
+      "original_repo_modified": false,
+      "note": "Separate explicit patch-transaction --promote --approve is required to change the repository."
+    }
+  }
+}

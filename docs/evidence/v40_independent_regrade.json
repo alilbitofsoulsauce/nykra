@@ -1,0 +1,53 @@
+{
+  "schema": "nykra-v40-independent-model-source-regrade-v1",
+  "records": [
+    {
+      "arm": "structured_depth",
+      "source_trace_sha256": "efb258f2fc5d93b7fd6b5ab74d6e1486886b98998f3bf61cf95d3be9285af65c",
+      "winning_patch_sha256": "4b75424df04d3a4c8ea876a119b0069d41c2652b785a8f27656679152386fd9b",
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "50e0b0587dce90871df6ee215b272b51bb1e2c66169a78bd07fa35f55e12b4b2",
+        "elapsed_seconds": 3.04
+      },
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "50e0b0587dce90871df6ee215b272b51bb1e2c66169a78bd07fa35f55e12b4b2",
+        "elapsed_seconds": 2.84
+      },
+      "extra_provider_calls": 0
+    },
+    {
+      "arm": "structured_adaptive",
+      "source_trace_sha256": "ccdc4451f80a92268f04b91c46a174598d329bf1070aa64144b7900571cc8d22",
+      "winning_patch_sha256": "7686daa77f03717b858c98de5a68b9dc0ae872414beb813e1419c0675a451a46",
+      "public": {
+        "status": "ok",
+        "passed": true,
+        "mode": "public",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f5c935b3dddff28ae23b0e7411e28bde8da20cb9e3127f2e5a48a4cd718e9c8c",
+        "elapsed_seconds": 2.39
+      },
+      "hidden": {
+        "status": "ok",
+        "passed": true,
+        "mode": "hidden",
+        "return_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "50e0b0587dce90871df6ee215b272b51bb1e2c66169a78bd07fa35f55e12b4b2",
+        "elapsed_seconds": 2.4
+      },
+      "extra_provider_calls": 0
+    }
+  ]
+}

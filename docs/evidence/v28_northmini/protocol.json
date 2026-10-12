@@ -1,0 +1,15 @@
+{
+  "model": "cohere/north-mini-code:free",
+  "provider": "OpenRouter",
+  "prompt_sha256": "d581896758b5f325c025766cccf299ab26d7a49c9869aca620fa4eca8de27bb4",
+  "prompt_chars": 6875,
+  "source_snapshot": "b1ecd895e2c97928cb53406fe3aa58d1fd923ab4",
+  "max_attempts": 4,
+  "model_call_max_output_tokens": 3000,
+  "public_tests_sha256": "e882cde666ca3e775e5d8fe02d26af25ec0ea3077d4a8ceef5990cf8a67614b8",
+  "heldout_tests_sha256": "7f3edd5ee7eece9531532996e1d198d0cdd5d7caed0862d2c15d84f841a96058",
+  "two_separate_model_generations": true,
+  "same_first_prompt": true,
+  "no_promotion": true,
+  "pricing_route_suffix_free": true
+}

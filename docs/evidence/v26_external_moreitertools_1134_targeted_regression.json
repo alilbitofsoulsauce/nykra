@@ -1,0 +1,16 @@
+[
+  {
+    "revision": "upstream_reference",
+    "exit": 0,
+    "elapsed_seconds": 2.798,
+    "stderr_tail": "----------------------------------------------------------------------\nRan 5 tests in 0.832s\n\nOK\n",
+    "stderr_sha256": "e4ed32af7806cd2c65ab162586cb2ac5afe580fcf02b809cc9e4bb1572633d6d"
+  },
+  {
+    "revision": "shared_candidate",
+    "exit": 0,
+    "elapsed_seconds": 2.141,
+    "stderr_tail": "----------------------------------------------------------------------\nRan 4 tests in 0.664s\n\nOK\n",
+    "stderr_sha256": "41df619bd0026074bb5ff6033cccb957e4748f0d6d4ec586a685c09bdc1e0bd9"
+  }
+]

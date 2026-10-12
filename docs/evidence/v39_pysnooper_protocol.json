@@ -1,0 +1,54 @@
+{
+  "schema": "nykra-v39-cross-repository-historical-two-source-protocol-v1",
+  "pre_inference_frozen": true,
+  "project": "PySnooper",
+  "issue": "PySnooper-1",
+  "origin": "Original BugsInPy source commits, locally cloned PySnooper repository",
+  "bug_info_sha256": "199b770bd6551117a00f9c7ce2c674d7ddb818e3bb5dc344371340e75e52296e",
+  "buggy_commit": "e21a31162f4c54be693d8ca8260e42393b39abd3",
+  "fixed_commit": "56f22f8ffe1c6b2be4d2cf3ad1987fdb66113da2",
+  "allowed_production_paths": [
+    "pysnooper/pycompat.py",
+    "pysnooper/tracer.py"
+  ],
+  "buggy_context": [
+    {
+      "path": "pysnooper/pycompat.py",
+      "original_sha256": "c4192c8b86d6ea4ceeaab631d59665497325470f636d617bd9aa73cdebd6edc2",
+      "buggy_context": "# Copyright 2019 Ram Rachum and collaborators.\n# This program is distributed under the MIT license.\n'''Python 2/3 compatibility'''\n\nimport abc\nimport os\nimport inspect\nimport sys\n\nPY3 = (sys.version_info[0] == 3)\n\nif hasattr(abc, 'ABC'):\n    ABC = abc.ABC\nelse:\n    class ABC(object):\n        \"\"\"Helper class that provides a standard way to create an ABC using\n        inheritance.\n        \"\"\"\n        __metaclass__ = abc.ABCMeta\n        __slots__ = ()\n\n\nif hasattr(os, 'PathLike'):\n    PathLike = os.PathLike\nelse:\n    class PathLike(ABC):\n        \"\"\"Abstract base class for implementing the file system path protocol.\"\"\"\n\n        @abc.abstractmethod\n        def __fspath__(self):\n            \"\"\"Return the file system path representation of the obj"
+    },
+    {
+      "path": "pysnooper/tracer.py",
+      "original_sha256": "a3659fb6d0f1edfd71d11e573c8af2b90c3ff8dd4766849bbb1c95706c50f3e4",
+      "buggy_context": "# Copyright 2019 Ram Rachum and collaborators.\n# This program is distributed under the MIT license.\n\nimport functools\nimport inspect\nimport opcode\nimport sys\nimport re\nimport collections\nimport datetime as datetime_module\nimport itertools\nimport threading\nimport traceback\n\nfrom .variables import CommonVariable, Exploding, BaseVariable\nfrom . import utils, pycompat\n\n\nipython_filename_pattern = re.compile('^<ipython-input-([0-9]+)-.*>$')\n\n\ndef get_local_reprs(frame, watch=()):\n    code = frame.f_c\n[... other source omitted ...]\ndef get_source_from_frame(frame):\n    globs = frame.f_globals or {}\n    module_name = globs.get('__name__')\n    file_name = frame.f_code.co_filename\n    cache_key = (module_name, file_name)\n    try:\n        return source_cache[cache_key]\n    except KeyError:\n        pass\n    loader = globs.get('__loader__')\n\n    source = None\n    if hasattr(loader, 'get_source'):\n        try:\n            source = loader.get_source(module_name)\n        except ImportError:\n            pass\n        if source is not None:\n            source = source.splitlines()\n    if source is None:\n        ipython_filename_match = ipython_filename_pattern.match(file_name)\n        if ipython_filename_match:\n            entry_number = int(ipython_filename_match.group(1))\n            try:\n                import IPython\n                ipython_shell = IPython.get_ipython()\n                ((_, _, source_chunk),) = ipython_shell.history_manager. \\\n                                  get_range(0, entry_number, entry_number + 1)\n                source = source_chunk.splitlines()\n            except Exception:\n                pass\n        else:\n            try:\n                with open(file_name, 'rb') as fp:\n                    source = fp.read().splitlines()\n            except utils.file_reading_errors:\n                pass\n    if source is None:\n        source = UnavailableSource()\n\n    # If we just read the source from a file, or if the loader did not\n    # apply tokenize.detect_encoding to decode the source into a\n    # string, then we should do that ourselves.\n    if isinstance(source[0], bytes):\n        encoding = 'ascii'\n        for line in source[:2]:\n            # File coding may be specified. Match pattern from PEP-263\n            # (https://www.python.org/dev/peps/pep-0263/)\n            match = re.search(br'coding[:=]\\s*([-\\w.]+)', line)\n            if match:\n                encoding = match.group(1).decode('ascii')\n                break\n        source = [pycompat.text_type(sline, encoding, 'replace') for sline in\n                  source]\n\n    source_cache[cache_key] = source\n    return source\n\n\ndef get_write_function(output, overwrite):\n    is_path = isinstance(output, (pycompat.PathLike, str))\n    if overwrite and not is_path:\n        raise Exception('`overwrite=True` can only be used when writing '\n                        'content to file.')\n    if output is None:\n        def write(s):\n\n[... other source omitted ...]\nclass FileWriter(object):\n    def __init__(self, path, overwrite):\n        self.path = pycompat.text_type(path)\n        self.overwrite = overwrite\n\n    def write(self, s):\n        with open(self.path, 'w' if self.overwrite else 'a') as output_file:\n            output_file.write(s)\n        self.overwrite = False\n\n\nthread_global = threading.local()\n\n\nclass Tracer:\n    '''\n    Snoop on the function, writing everything it's doing to stderr.\n\n    This is useful for debugging.\n\n    When you decorate a function with `@pysnooper.snoop()`\n    or wrap a block of code in `with pysnooper.snoop():`, you'll"
+    }
+  ],
+  "issue_summary": "PySnooper non-ASCII Chinese source line decoding and deterministic UTF-8 trace file output; maintain Python 2/3 compatibility flag",
+  "public_source_path": "docs/evidence/v39_public_pysnooper1.py",
+  "public_source_sha256": "0439c8417d3e448a7ff1d46364e1d83a0c1ecd7489683f097095b4295f1ef7a1",
+  "public_suite": "v39_public_pysnooper1",
+  "hidden_source_path": "docs/evidence/v39_hidden_pysnooper1.py",
+  "hidden_source_sha256": "db4e77f603dcbf44ddcd0e08b6d4a9ae303644b44c36fe2d07efd2b34898d812",
+  "hidden_suite": "v39_hidden_pysnooper1",
+  "pinned_image_id": "sha256:a4ae367e48252c42a50fcb5136b9fdf6fb2544e048494f4004891b3ca38e63e7",
+  "pinned_image_tag": "nykra-py38-pytest:v20nose",
+  "arm_order": [
+    "baseline_raw_git_diff",
+    "nykra_structured_adapter"
+  ],
+  "model": "gpt-5.6-luna",
+  "model_access": "native Codex via ChatGPT OAuth",
+  "reasoning": "low",
+  "policy": "depth",
+  "call_limit_per_arm": 5,
+  "public_feedback": "identical public fixture, bounded diagnostic, hidden suite invisible to models",
+  "allowed_output": "baseline model-authored Git patch vs adapter JSON exact edits",
+  "preflight_requirements": {
+    "buggy_public": "test_failed",
+    "buggy_hidden": "test_failed",
+    "reference_public": "ok",
+    "reference_hidden": "ok"
+  },
+  "privacy_and_limits": "test runner offline in pinned read-only networkless Docker. No host execution of model code. One historical different repository, no generalization",
+  "no_commit_or_push": true
+}

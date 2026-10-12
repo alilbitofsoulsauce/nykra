@@ -1,0 +1,159 @@
+{
+  "schema": "nykra-v35-codex-luna-true-hidden-verification-and-feedback-rescue-v1",
+  "date": "2026-10-12",
+  "authenticated": "ChatGPT Codex OAuth (not key-billed API)",
+  "codex_binary_verified": true,
+  "model": "gpt-5.6-luna",
+  "protocols": {
+    "v33": "32e7c61b82d9833941cf8954bd01ef371837611ca65924340dd1f5fea152394f",
+    "v34": "c0c877adde092e4a5a10bcd933dbd82f3ab5505d843b03bcebbc682a56727304",
+    "v35": "681f031ed5ed40c349ec1df7f29856c47a5e8d163f1f240555916dda791ed09f"
+  },
+  "matched_real_historical_tasks": [
+    "tqdm-1",
+    "youtube-dl-43",
+    "youtube-dl-3"
+  ],
+  "matched_study_results": {
+    "tqdm-1_baseline_depth": {
+      "file": "docs/evidence/v33_codex_luna/tqdm-1_baseline_depth.json",
+      "sha256": "cf9f9af855bd05edb2d5974efec8f7ff9b69473a26d415b768173eb9c311e330",
+      "calls": 1,
+      "usage": {
+        "input_tokens": 14660,
+        "cached_input_tokens": 2816,
+        "output_tokens": 278,
+        "reasoning_output_tokens": 133
+      },
+      "action": "revise",
+      "public_status": "ok",
+      "hidden_status": "ok"
+    },
+    "tqdm-1_nykra_adaptive": {
+      "file": "docs/evidence/v33_codex_luna/tqdm-1_nykra_adaptive.json",
+      "sha256": "c039cc2e1905857bd94fd1e4f12a1174f0d4c81da1f07a6364e55de02840a42a",
+      "calls": 1,
+      "usage": {
+        "input_tokens": 14523,
+        "cached_input_tokens": 0,
+        "output_tokens": 361,
+        "reasoning_output_tokens": 216
+      },
+      "action": "new_root",
+      "public_status": "ok",
+      "hidden_status": "ok"
+    },
+    "youtube-dl-43_baseline_depth": {
+      "file": "docs/evidence/v33_codex_luna/youtube-dl-43_baseline_depth.json",
+      "sha256": "0fe7c95ca858973997e725570bff8f755528212155e154a9377ee74670822071",
+      "calls": 1,
+      "usage": {
+        "input_tokens": 14623,
+        "cached_input_tokens": 2816,
+        "output_tokens": 369,
+        "reasoning_output_tokens": 298
+      },
+      "action": "revise",
+      "public_status": "ok",
+      "hidden_status": "ok"
+    },
+    "youtube-dl-43_nykra_adaptive": {
+      "file": "docs/evidence/v33_codex_luna/youtube-dl-43_nykra_adaptive.json",
+      "sha256": "f3ed35b6f4553ae51d79060ff56ca0e408ea82473757f9eb0bbb026b8edf61b5",
+      "calls": 1,
+      "usage": {
+        "input_tokens": 14561,
+        "cached_input_tokens": 0,
+        "output_tokens": 464,
+        "reasoning_output_tokens": 396
+      },
+      "action": "new_root",
+      "public_status": "ok",
+      "hidden_status": "ok"
+    },
+    "youtube-dl-3_baseline_depth": {
+      "file": "docs/evidence/v34_codex_hard_forks/youtube-dl-3_baseline_depth.json",
+      "sha256": "428873877edb09a10c5b57a47d38efb2da71b250836d4e56a00d47ff43263ea2",
+      "calls": 1,
+      "usage": {
+        "input_tokens": 14553,
+        "cached_input_tokens": 2816,
+        "output_tokens": 156,
+        "reasoning_output_tokens": 96
+      },
+      "action": "revise",
+      "public_status": "ok",
+      "hidden_status": "ok"
+    },
+    "youtube-dl-3_nykra_adaptive": {
+      "file": "docs/evidence/v34_codex_hard_forks/youtube-dl-3_nykra_adaptive.json",
+      "sha256": "eee2e4ec297106569b36c5173216aa3e72fb474056a2f4b44c48e983ada942af",
+      "calls": 1,
+      "usage": {
+        "input_tokens": 14499,
+        "cached_input_tokens": 2816,
+        "output_tokens": 400,
+        "reasoning_output_tokens": 342
+      },
+      "action": "new_root",
+      "public_status": "ok",
+      "hidden_status": "ok"
+    }
+  },
+  "matched_summary": {
+    "baseline_depth": {
+      "hidden_verified_solved": 3,
+      "calls": 3,
+      "input": 43836,
+      "output": 803
+    },
+    "nykra_adaptive": {
+      "hidden_verified_solved": 3,
+      "calls": 3,
+      "input": 43583,
+      "output": 1225
+    }
+  },
+  "matched_adaptive_accuracy_uplift_observed": false,
+  "matched_model_call_saving_observed": false,
+  "hard_task": "youtube-dl-5",
+  "hard_stall": {
+    "file": "docs/evidence/v34_codex_hard_forks/youtube-dl-5_nykra_adaptive.json",
+    "sha256": "0cb479b8e506e5dfc8c389c5654bc7c7d87e4545d1025d01bf71781a707700d6",
+    "calls": 10,
+    "usage": {
+      "input_tokens": 151023,
+      "cached_input_tokens": 57856,
+      "output_tokens": 7945,
+      "reasoning_output_tokens": 5642
+    },
+    "public_failures": 10,
+    "interrupted_due_to_evaluator_feedback_deficit": true,
+    "status": "not_solved"
+  },
+  "hard_task_rescue": {
+    "source_file": "docs/evidence/v35_rescue/youtube-dl-5_nykra_actionable_feedback.json",
+    "source_sha256": "1269e8cb74e0fac0ba60ddad6503737a490f184c1180a8adc394378d6a5b21e8",
+    "new_codex_completions_after_feedback": 2,
+    "new_public_docker_grades": 2,
+    "new_hidden_docker_grades": 1,
+    "provider_input_tokens_rescue": 30422,
+    "provider_output_tokens_rescue": 1745,
+    "public_pass": true,
+    "hidden_pass": true,
+    "independent_confirmation_sha256": "2ef3e5c775833390a0b6bf2f0f13226d244a83773d66d3b95d040303f2bd298d",
+    "cumulative_new_codex_calls_in_this_optimized_trajectory": 12,
+    "feedback_intervention_after_seeing_10_failures": true,
+    "not_a_preregistered_matched_intervention": true,
+    "causal_adaptive_policy_uplift_proven": false
+  },
+  "cost_interpretation": "ChatGPT Codex credits are plan-managed, API published price is only a reference; no actual USD billed receipts obtained",
+  "capability_interpretation": "verified Codex provider adapter + actual Nykra policy forks and Docker hidden success; actionable public feedback supports real completion; broad adaptive uplift unproved",
+  "important_limits": [
+    "historical previously researched issues (not unseen)",
+    "three paired solves after shared prefix all on first new Luna call",
+    "one hardest issue rescue added diagnostics posthoc and had no separate matching baseline continuation",
+    "public feedback changed during failure analysis, cannot attribute 2-call recovery solely to Nykra adaptive policy",
+    "no commit or push"
+  ]
+}

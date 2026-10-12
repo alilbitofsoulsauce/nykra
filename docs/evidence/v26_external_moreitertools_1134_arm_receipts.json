@@ -1,0 +1,52 @@
+{
+  "baseline": {
+    "policy": "depth",
+    "session_id": "4ffb84e1177248c5b1f4a60ec770f700",
+    "source_head": "344c1cb2e418ffe04226967be80bd645a7c84d51",
+    "attempts": [
+      {
+        "attempt_number": 1,
+        "patch_sha256": "02c641ea363eef18dac1837198b3a1300b7eb6a149fa9fc8e87fddd18bb324b5",
+        "action": "new_root",
+        "parent_attempt_id": null,
+        "tests_passed": true,
+        "tests_run": 6,
+        "test_exit_code": 0,
+        "public_docker_elapsed_seconds": 10.998,
+        "status": "passed",
+        "public_stderr_sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371"
+      }
+    ],
+    "selected_patch_sha256": "02c641ea363eef18dac1837198b3a1300b7eb6a149fa9fc8e87fddd18bb324b5",
+    "terminal_hidden_test_count": 10,
+    "terminal_hidden_passed": 10,
+    "terminal_hidden_exit": 0,
+    "terminal_hidden_elapsed_seconds": 1.88,
+    "hidden_not_used_for_agent_feedback": true
+  },
+  "nykra": {
+    "policy": "adaptive",
+    "session_id": "832fe46eb1a545d8bf89d69d1a337a0c",
+    "source_head": "344c1cb2e418ffe04226967be80bd645a7c84d51",
+    "attempts": [
+      {
+        "attempt_number": 1,
+        "patch_sha256": "02c641ea363eef18dac1837198b3a1300b7eb6a149fa9fc8e87fddd18bb324b5",
+        "action": "new_root",
+        "parent_attempt_id": null,
+        "tests_passed": true,
+        "tests_run": 6,
+        "test_exit_code": 0,
+        "public_docker_elapsed_seconds": 1.856,
+        "status": "passed",
+        "public_stderr_sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371"
+      }
+    ],
+    "selected_patch_sha256": "02c641ea363eef18dac1837198b3a1300b7eb6a149fa9fc8e87fddd18bb324b5",
+    "terminal_hidden_test_count": 10,
+    "terminal_hidden_passed": 10,
+    "terminal_hidden_exit": 0,
+    "terminal_hidden_elapsed_seconds": 1.329,
+    "hidden_not_used_for_agent_feedback": true
+  }
+}

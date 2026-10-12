@@ -1,0 +1,84 @@
+{
+  "schema": "nykra-v26-internal-real-defect-supervised-repair-v1",
+  "task": "Reject falsely successful Python unittest evaluations with zero discovered tests",
+  "scope": "Actual defect in existing Nykra code, independently reproduced in Python 3.8 Docker; NOT an external unseen GitHub issue.",
+  "workspace_original_main_sha": "9e8ea9941a2ea76eba1560e3ffe1e6b13e7ed960",
+  "disposable_dev_snapshot_sha": "09f7e2b7557ab92198963d2c217826d13ea9c3ff",
+  "session_id": "51a8dd495b55445b948ec85b04007ed8",
+  "model_proposal_origin": "GPT-6 ChatGPT in supervised Rel.AI workstation conversation; Nykra itself performed no model inference",
+  "agent_task_calls": 1,
+  "external_codex_api_calls": 0,
+  "policy": "adaptive",
+  "attempt_budget": 6,
+  "attempts_used": 1,
+  "proposed_patch_files": [
+    "nykra/multifile_workflow.py",
+    "nykra/transactional_patch.py"
+  ],
+  "patch_sha256": "7979dc87f4f443ade255691eb7b1909ecaad4cb15b451dedd65bc4f257b56e8f",
+  "patch_path": "docs/evidence/v26_zero_unittest_agent_patch.diff",
+  "public_test_source_sha256": "9b15cac25cb581016f6c5d874c3bee7db1a588853087f2397b283c327180d5e8",
+  "public_test_path": "tests/test_zero_count_public.py",
+  "post_proposal_check_sha256": "b93c3fcea237157a8045759ef247d01be38ac05deb7adf0722bcf2ec66d1f896",
+  "post_proposal_check_path": "docs/evidence/v26_zero_unittest_independent_checks.py",
+  "preproposal_public_tests": {
+    "run": 6,
+    "passed": 0,
+    "failures": 1,
+    "errors": 5,
+    "isolated_docker_exit_code": 1
+  },
+  "afterproposal_public_tests": {
+    "run": 6,
+    "passed": 6,
+    "failed": 0,
+    "isolated_docker_exit_code": 0,
+    "public_eval_elapsed_seconds": 2.872
+  },
+  "additional_postproposal_checks": {
+    "run": 12,
+    "passed": 12,
+    "failed": 0,
+    "docker_exit_code": 0,
+    "not_used_for_model_feedback": true,
+    "externally_blinded": false
+  },
+  "actual_docker_false_positive_before": {
+    "image_id": "sha256:e191a71397fd61fbddb6712cd43ef9a2c17df0b5e7ba67607128554cd6bff267",
+    "python_major_minor": "3.8",
+    "tests_run": 0,
+    "exit_code": 0,
+    "incorrect_tests_passed": true
+  },
+  "actual_docker_trials_after": [
+    {
+      "type": "empty_unittest_suite",
+      "image_id": "sha256:e191a71397fd61fbddb6712cd43ef9a2c17df0b5e7ba67607128554cd6bff267",
+      "tests_run": 0,
+      "exit_code": 0,
+      "tests_passed": false,
+      "elapsed_seconds": 1.685
+    },
+    {
+      "type": "single_passing_unittest",
+      "image_id": "sha256:e191a71397fd61fbddb6712cd43ef9a2c17df0b5e7ba67607128554cd6bff267",
+      "tests_run": 1,
+      "exit_code": 0,
+      "tests_passed": true,
+      "elapsed_seconds": 1.333
+    }
+  ],
+  "public_and_additional_test_image_id": "sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f",
+  "full_working_repository_tests": {
+    "count": 289,
+    "passed": 289,
+    "failed": 0,
+    "elapsed_seconds": 199.518
+  },
+  "original_disposable_repository_unchanged_by_workflow": true,
+  "nykra_workflow_terminal_hidden_verified": false,
+  "automatic_promote_or_git_publish": false,
+  "general_agent_coding_improvement_proven": false,
+  "valid_same_model_control_present": false,
+  "limitations": "Single internally discovered issue, synthetic probe repos to exercise real Docker engine, model author also designed frozen public tests, additional checks written after proposal, no independent blinded task or same-model control. Unittest output-count parsing mitigates accidental false positives but does not attest against malicious code forging stderr."
+}

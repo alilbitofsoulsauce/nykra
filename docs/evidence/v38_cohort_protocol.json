@@ -1,0 +1,106 @@
+{
+  "id": "nykra-v38-multiissue-structured-replication-v1",
+  "frozen_before_model_calls": true,
+  "cohort_count": 2,
+  "tasks": [
+    {
+      "id": "youtube-dl-33",
+      "project": "youtube-dl",
+      "bug_id": 33,
+      "buggy_commit": "50c8266ef0b2b6d011257a909f47fd623dda8eb2",
+      "fixed_commit": "6ad4013d40e839211e2896129eed05ccd40ee963",
+      "allowed_production_paths": [
+        "youtube_dl/extractor/drtv.py",
+        "youtube_dl/utils.py"
+      ],
+      "buggy_context": [
+        {
+          "path": "youtube_dl/extractor/drtv.py",
+          "buggy_context": "from __future__ import unicode_literals\n\nimport re\n\nfrom .subtitles import SubtitlesInfoExtractor\nfrom .common import ExtractorError\nfrom ..utils import parse_iso8601\n\n\nclass DRTVIE(SubtitlesInfoExtractor):\n    _VALID_URL = r'http://(?:www\\.)?dr\\.dk/tv/se/(?:[\n[... unchanged source omitted ...]\ndr\\.dk/tv/se/(?:[^/]+/)+(?P<id>[\\da-z-]+)(?:[/#?]|$)'\n\n    _TEST = {\n        'url': 'http://www.dr.dk/tv/se/partiets-mand/partiets-mand-7-8',\n        'md5': '4a7e1dd65cdb2643500a3f753c942f25',\n        'info_dict': {\n            'id': 'partiets-mand-7-8',\n            'ext': 'mp4',\n            'title': 'Partiets mand (7:8)',\n            'description': 'md5:a684b90a8f9336cd4aab94b7647d7862',\n            'timestamp': 1403047940,\n            'upload_date': '20140617',\n            'duration': 1299.040,\n        },\n    }\n\n    def _real_extract(self, url):\n        mobj = re.match(self._VALID_URL, url)\n        video_id = mobj.group('id')\n\n        programcard = self._download_json(\n            'http://www.dr.dk/mu/programcard/expanded/%s' % video_id, video_id, 'Downloading video JSON')\n\n        data = programcard['Data'][0]\n\n        title = data['Title']\n        description = data['Description']\n        timestamp = parse_iso8601(data['CreatedTime'][:-5])\n\n        thumbnail = None\n        duration = None\n\n        restricted_to_denmark = False\n\n        formats = []\n        subtitles = {}\n\n        for asset in data['Assets']:\n            if asset['Kind'] == 'Image':\n                thumbnail = asset['Uri']\n            elif asset['Kind'] == 'VideoResource':\n                duration = asset['DurationInMilliseconds'] / 1000.0\n                restricted_to_denmark = asset['RestrictedToDenmark']\n                for link in asset['Links']:\n                    target = link['Target']\n                    uri = link['Uri']\n                    formats.append({\n                        'url': uri + '?hdcore=3.3.0&plugin=aasp-3.3.0.99.43' if target == 'HDS' else uri,\n                        'format_id': target,\n      ",
+          "original_sha256": "156ceb7a6410beda7d0899678b23646a4646b3d6e2ce6a3efd0009fb116d55db"
+        },
+        {
+          "path": "youtube_dl/utils.py",
+          "buggy_context": "def parse_iso8601(date_str, delimiter='T'):\n    \"\"\" Return a UNIX timestamp from the given date \"\"\"\n\n    if date_str is None:\n        return None\n\n    m = re.search(\n        r'Z$| ?(?P<sign>\\+|-)(?P<hours>[0-9]{2}):?(?P<minutes>[0-9]{2})$',\n        date_str)\n    if not m:\n        timezone = datetime.timedelta()\n    else:\n        date_str = date_str[:-len(m.group(0))]\n        if not m.group('sign'):\n            timezone = datetime.timedelta()\n        else:\n            sign = 1 if m.group('sign') == '+' else -1\n            timezone = datetime.timedelta(\n                hours=sign * int(m.group('hours')),\n                minutes=sign * int(m.group('minutes')))\n    date_format =  '%Y-%m-%d{0}%H:%M:%S'.format(delimiter)\n    dt = datetime.datetime.strptime(date_str, date_format) - timezone\n    return calendar.timegm(dt.timetuple())\n\n\ndef unified_strdate(date_str):\n    \"\"\"Return a string with the date in the format YYYYMMDD\"\"\"\n\n    if date_str is None:\n",
+          "original_sha256": "46dcd5c10ccd9e7f63ede7269bd4819080b57871c9237fa6cc141bd0ae0fed3e"
+        }
+      ],
+      "issue_summary": "Danish television timestamps have fractional seconds with timezone; extractor and general ISO timestamp helper must handle them coherently",
+      "public_fixed_commit_test": "test.test_utils.TestUtil.test_parse_iso8601",
+      "public_excerpt": "    def test_parse_iso8601(self):\n        self.assertEqual(parse_iso8601('2014-03-23T23:04:26+0100'), 1395612266)\n        self.assertEqual(parse_iso8601('2014-03-23T22:04:26+0000'), 1395612266)\n        self.assertEqual(parse_iso8601('2014-03-23T22:04:26Z'), 1395612266)\n        self.assertEqual(parse_iso8601('2014-03-23T22:04:26.1234Z'), 1395612266)\n",
+      "hidden_source_path": "docs/evidence/v38_hidden_drtv_33.py",
+      "hidden_sha256": "7cceb4db384a91cd50ccc0a51cb8258adfaefd4f62e86e1d82cea1422ad13b2e",
+      "hidden_suite": "v38_hidden_33"
+    },
+    {
+      "id": "youtube-dl-31",
+      "project": "youtube-dl",
+      "bug_id": 31,
+      "buggy_commit": "ab07963b5cc79812c6fb7e4f9e363533d8123830",
+      "fixed_commit": "e8df5cee12378acd708b6686130a73c5edc06f0e",
+      "allowed_production_paths": [
+        "youtube_dl/extractor/minhateca.py",
+        "youtube_dl/utils.py"
+      ],
+      "buggy_context": [
+        {
+          "path": "youtube_dl/extractor/minhateca.py",
+          "buggy_context": "# coding: utf-8\nfrom __future__ import unicode_literals\n\nfrom .common import InfoExtractor\nfrom ..compat import (\n    compat_urllib_parse,\n    compat_urllib_request,\n)\nfrom ..utils import (\n    int_or_none,\n    parse_filesize,\n)\n\n\nclass MinhatecaIE(InfoExtract\n[... unchanged source omitted ...]\n?://minhateca\\.com\\.br/[^?#]+,(?P<id>[0-9]+)\\.'\n    _TEST = {\n        'url': 'http://minhateca.com.br/pereba/misc/youtube-dl+test+video,125848331.mp4(video)',\n        'info_dict': {\n            'id': '125848331',\n            'ext': 'mp4',\n            'title': 'youtube-dl test video',\n            'thumbnail': 're:^https?://.*\\.jpg$',\n            'filesize_approx': 1530000,\n            'duration': 9,\n            'view_count': int,\n        }\n    }\n\n    def _real_extract(self, url):\n        video_id = self._match_id(url)\n        webpage = self._download_webpage(url, video_id)\n\n        token = self._html_search_regex(\n            r'<input name=\"__RequestVerificationToken\".*?value=\"([^\"]+)\"',\n            webpage, 'request token')\n        token_data = [\n            ('fileId', video_id),\n            ('__RequestVerificationToken', token),\n        ]\n        req = compat_urllib_request.Request(\n            'http://minhateca.com.br/action/License/Download',\n            data=compat_urllib_parse.urlencode(token_data))\n        req.add_header('Content-Type', 'application/x-www-form-urlencoded')\n        data = self._download_json(\n            req, video_id, note='Downloading metadata')\n\n        video_url = data['redirectUrl']\n        title_str = self._html_search_regex(\n            r'<h1.*?>(.*?)</h1>', webpage, 'title')\n        title, _, ext = title_str.rpartition('.')\n        filesize_approx = parse_filesize(self._html_search_regex(\n            r'<p class=\"fileSize\">(.*?)</p>',\n            webpage, 'file size approximation', fatal=False))\n        duration = int_or_none(self._html_search_regex(\n            r'(?s)<p class=\"fileLeng[ht][th]\">.*?([0-9]+)\\s*s',\n            webpage, 'duration', fatal=False))\n        view_count = int_or_none(self._html_search_regex(\n            r'<p class=\"d",
+          "original_sha256": "9a882ea9dedb9abb53039a7bcb4681a902dd4e8d702f2a07635d695a058bb181"
+        },
+        {
+          "path": "youtube_dl/utils.py",
+          "buggy_context": "one \"\"\"\n    if int_str is None:\n        return None\n    int_str = re.sub(r'[,\\.\\+]', '', int_str)\n    return int(int_str)\n\n\ndef float_or_none(v, scale=1, invscale=1, default=None):\n    return default if v is None else (float(v) * invscale / scale)\n\n\ndef parse_duration(s):\n    if s is None:\n        return None\n\n    s = s.strip()\n\n    m = re.match(\n        r'''(?ix)T?\n            (?:\n                (?:(?P<hours>[0-9]+)\\s*(?:[:h]|hours?)\\s*)?\n                (?P<mins>[0-9]+)\\s*(?:[:m]|mins?|minutes?)\\s*\n            )?\n            (?P<secs>[0-9]+)(?P<ms>\\.[0-9]+)?\\s*(?:s|secs?|seconds?)?$''', s)\n    if not m:\n        return None\n    res = int(m.group('secs'))\n    if m.group('mins'):\n        res += int(m.group('mins')) * 60\n        if m.group('hours'):\n            res += int(m.group('hours')) * 60 * 60\n    if m.group('ms'):\n        res += float(m.group('ms'))\n    return res\n\n\ndef prepend_extension(filename, ext):\n    name, real_ext = os.path.splitext(filename)\n    return '{0}.{1}{2}'.format(name, ext, real_ext)\n\n\ndef check_executable(exe, args=[]):\n    \"\"\" Checks if the given binary is installed somewhere in PATH, and returns its name.\n    args can be a list of arguments for a short output (like -version) \"\"\"\n    try:\n        subprocess.Popen([exe] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()\n    except OSEr",
+          "original_sha256": "79a418d4e67c7f71e22c24d1e7311d1892d68522e377f4225daaef5a37301ff0"
+        }
+      ],
+      "issue_summary": "Duration utility parses varied time unit expressions; Minhateca video file length HTML should use shared duration handling",
+      "public_fixed_commit_test": "test.test_utils.TestUtil.test_parse_duration",
+      "public_excerpt": "    def test_parse_duration(self):\n        self.assertEqual(parse_duration(None), None)\n        self.assertEqual(parse_duration('1'), 1)\n        self.assertEqual(parse_duration('1337:12'), 80232)\n        self.assertEqual(parse_duration('9:12:43'), 33163)\n        self.assertEqual(parse_duration('12:00'), 720)\n        self.assertEqual(parse_duration('00:01:01'), 61)\n        self.assertEqual(parse_duration('x:y'), None)\n        self.assertEqual(parse_duration('3h11m53s'), 11513)\n        self.assertEqual(parse_duration('3h 11m 53s'), 11513)\n        self.assertEqual(parse_duration('3 hours 11 minutes 53 seconds'), 11513)\n        self.assertEqual(parse_duration('3 hours 11 mins 53 secs'), 11513)\n        self.assertEqual(parse_duration('62m45s'), 3765)\n        self.assertEqual(parse_duration('6m59s'), 419)\n        self.assertEqual(parse_duration('49s'), 49)\n        self.assertEqual(parse_duration('0h0m0s'), 0)\n        self.assertEqual(parse_duration('0m0s'), 0)\n        self.assertEqual(parse_duration('0s'), 0)\n        self.assertEqual(parse_duration('01:02:03.05'), 3723.05)\n        self.assertEqual(parse_duration('T30M38S'), 1838)\n        self.assertEqual(parse_duration('5 s'), 5)\n        self.assertEqual(parse_duration('3 min'), 180)\n        self.assertEqual(parse_duration('2.5 hours'), 9000)\n",
+      "hidden_source_path": "docs/evidence/v38_hidden_minhateca_31.py",
+      "hidden_sha256": "ca77170c572d8a7730c98db019731a647c8f493964fdc0322e0ebf9a2d75879b",
+      "hidden_suite": "v38_hidden_31"
+    }
+  ],
+  "upstream_repository": "experiments/bench-source/youtube-dl",
+  "source": "Official BugsInPy local metadata + historical commits, previously unused task IDs 31 and 33 in Nykra coding evidence",
+  "baseline": "raw Git diff authored by model; depth revision; strict allowlist",
+  "intervention": "model outputs bounded exact JSON source edits converted with existing v37 structured_edit_adapter; depth revision",
+  "provider": "native Codex GPT-5.6 Luna, existing ChatGPT authentication",
+  "reasoning": "low",
+  "identical_constraints": [
+    "same underlying source",
+    "same case-specific public upstream test",
+    "same independently frozen hidden tests",
+    "same CodeX model and auth",
+    "same code context",
+    "same max five new model calls per arm",
+    "no hidden failures shown to either model"
+  ],
+  "stop_policy": "run up to 5 new real completions per arm per issue; stop early on public+hidden verification, provider hard blocker, or evaluator hard blocker; incomplete results censored, never counted as solved",
+  "arm_order": [
+    {
+      "task": "youtube-dl-33",
+      "order": [
+        "baseline_raw_git_diff",
+        "nykra_structured_adapter"
+      ]
+    },
+    {
+      "task": "youtube-dl-31",
+      "order": [
+        "nykra_structured_adapter",
+        "baseline_raw_git_diff"
+      ]
+    }
+  ],
+  "live_call_limit": 5,
+  "max_candidate_patch_bytes": 131072,
+  "pinned_docker_image_id": "sha256:a4ae367e48252c42a50fcb5136b9fdf6fb2544e048494f4004891b3ca38e63e7",
+  "pinned_docker_image_tag": "nykra-py38-pytest:v20nose",
+  "upstream_public_replaces_test_file_with_fixed_commit_test_only": true,
+  "hidden_not_shown_to_provider": true,
+  "output_adapter_same_as_v37_without_changes": true,
+  "claims_limit": "two previously unused historical issues only; format prompt differs by design, possible training data; fixed 5-call quota bound must be reported; not a proof adaptive policy superiority",
+  "no_commit_push": true
+}
