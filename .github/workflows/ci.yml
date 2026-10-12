@@ -63,6 +63,8 @@ jobs:
           python -m unittest discover -s tests -p test_store.py -v
           python -m unittest discover -s tests -p test_replay.py -v
           python -m unittest discover -s tests -p test_exploration_policy.py -v
+      - name: Verify disposable Git staging portability
+        run: python -m unittest discover -s tests -p test_repository_setup_portability.py -v
       - name: Verify evidence registry
         run: python -m unittest discover -s tests -p test_evidence_registry.py -v
       - name: Check release scanner regressions
