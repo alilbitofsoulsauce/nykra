@@ -1638,7 +1638,7 @@
     {
       "id": "v30_repeat_failure_workflow_tests",
       "path": "tests/test_multifile_workflow.py",
-      "sha256": "9b0bf1fdab42b05a4ac501878eec979455eb15c894865299ef48f1dec4c3f9f3",
+      "sha256": "9afd4204a459de4b62fba439eda33499d51cd12ebaec0a52fb6e6d7bb402afa1",
       "runner": "jervis_home_supervised_live_free_provider_or_offline_unittest",
       "comparison": "exact_model_request_replay_proved;repeat_failure_early_halt_optin_no_accuracy_claim"
     },
@@ -1799,7 +1799,7 @@
     {
       "id": "v32_live_recovery_provenance_tests",
       "path": "tests/test_v32_solve_recovery.py",
-      "sha256": "642f3719e51105fb6f759943747c5b87845b41173edb83168a9ab97786ea2c92",
+      "sha256": "72360a0d1afb5e293cd5efc5acb022ebb093a79bd2dafc61eb35fa2e36d993e7",
       "runner": "real_independent_free_model_pinned_docker_hidden_checked_and_recovered",
       "comparison": "historical_baseline_provider429_vs_counterfactual_import_adapter_replay_no_adaptive_uplift"
     },

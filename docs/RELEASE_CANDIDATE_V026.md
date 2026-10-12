@@ -1,12 +1,12 @@
 # Nykra 0.26.0 — local release-candidate checklist
 
-**Status: local working-tree candidate; NOT committed, pushed, tagged, or published.** The only published repository tag at preparation time was `v0.25.0`.
+**Status: release-candidate branch pushed to GitHub for CI review; NOT merged into `main`, tagged, or published as a release.** The latest published tag remains `v0.25.0`.
 
 ## Release scope
 
 - Core: approval-gated multi-file transactions, supervised Git/Docker public-evaluation workflow, exact-request/public-result reuse, and strict JSON source-edit to diff conversion.
 - Agent independence: model proposals are user-supplied or explicitly delegated; no required paid model, automatic provider installation or unrestricted unattended execution.
-- Evidence: historical benchmark and raw receipts through v0.40, including unfavorable or inconclusive adaptive-policy results. Original v0.37 adapter/test files are archived byte-for-byte; active source is separately hardened against malformed Unicode.
+- Evidence: historical benchmark and raw receipts through v0.40, including unfavorable or inconclusive adaptive-policy results. Original v0.37 adapter/test files and the pre-portability-fix v0.30/v0.32 CI tests are archived byte-for-byte with verified SHA-256 digests; active source is separately hardened against malformed Unicode.
 - Product metadata: Python distribution, `nykra.__version__`, and VS Code observer extension all identify as `0.26.0`.
 
 ## Verify on a clean release candidate
@@ -33,7 +33,8 @@ The GitHub Actions matrix defined in `.github/workflows/ci.yml` is **the actual 
 - **Linux, Python 3.13:** five offline commands passed inside a networkless, read-only, nonroot Docker container against an isolated candidate copy: version, synthetic demo, release-candidate test module, source-normalizer tests, and free-model-client tests. The local Python slim image lacks Git, so this was **not** the complete Linux CI job.
 - **Release package:** the `nykra-0.26.0-py3-none-any.whl` wheel built offline without dependencies, contained 84 entries, and independently installed and executed the CLI version and demo; embedded VS Code extension version was checked.
 - **Git candidate:** 509 eligible files scanned for known credential signatures, no matches; `git add --dry-run -A` identified 182 pending staging actions without staging or committing anything. Both counts were observed before final documentation edits and are not immutable release identifiers.
-- **Outstanding:** Python 3.10, macOS and the actual hosted GitHub Actions matrix remain unverified. The unrestricted historical test discovery exceeded 180 seconds in a prior run, and does not replace the explicit clean-clone test list.
+- **First hosted matrix run:** [GitHub Actions run 38225963342](https://github.com/alilbitofsoulsauce/nykra/actions/runs/38225963342) against commit `755c305` confirmed the release-hygiene job passed but the six OS/Python matrix jobs failed because two historical test assertions assumed more than a clean clone guarantees. On Python 3.10, an empty `unittest` discovery can exit 0; Nykra correctly marks `tests_run == 0` as failure, so the test no longer assumes an exit code. Other jobs lacked ignored upstream Git checkouts; the optional external source replay test now explicitly skips without its prerequisites while other frozen evidence tests still run. This is an honest record of the unsuccessful first CI run, not a successful release gate.
+- **Retest status:** Follow-up corrections were verified on Windows (24 supervised workflow tests) and Linux Python 3.13 (recovery module with one explicit optional-checkout skip, plus release-candidate tests). The exact follow-up GitHub CI must still pass before release. The unrestricted historical test discovery exceeded 180 seconds in a prior run and does not replace the explicit clean-clone test list.
 
 ## Release publication gate
 

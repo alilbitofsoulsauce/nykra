@@ -156,12 +156,13 @@ class MultiFileWorkflowTests(unittest.TestCase):
         try:
             actual = mw.submit(session, self.patch, approve=True, home=self.home)
         except ValueError as exc:
-            # Some unittest versions exit 0 with no tests; reject that too.
+            # A strict no-tests guard may reject the public evaluator outright.
             self.assertIn("nonzero unittest", str(exc))
         else:
-            # Python 3.13's unittest instead returns exit code 5.
+            # Python unittest returns either 0 or 5 for zero discovered tests,
+            # depending on interpreter version. Both must remain failed work.
             self.assertFalse(actual["evaluated"]["tests_passed"])
-            self.assertNotEqual(actual["evaluated"]["test_exit_code"], 0)
+            self.assertEqual(actual["evaluated"]["tests_run"], 0)
         self.assertEqual(git(self.repo, "status", "--porcelain"), "")
         # Older/faulty evaluators might return exit 0 for zero tests; the
         # workflow must still refuse to credit the claimed passing repair.

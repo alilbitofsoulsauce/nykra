@@ -1,11 +1,13 @@
 """Read-only v0.32 real-provider solve-to-verification evidence checks."""
 import hashlib
 import json
+import shutil
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from nykra.model_source_normalizer import normalize_function_imports
-from nykra.v20_grader import function_at
+from nykra.v20_grader import REPOS, function_at
 from nykra.v21_grader import manifest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +49,11 @@ class V32RecoveryEvidenceTests(unittest.TestCase):
     def test_imported_function_keeps_model_body_and_reference_signature(self):
         history = json.loads((BASE / "youtube-dl-43_baseline_depth.json").read_text())
         case = next(t for t in manifest()[0]["tasks"] if t["id"] == "youtube-dl-43")
+        # The original Git blob lives only in the ignored external benchmark
+        # checkout. Clean-clone CI verifies the frozen evidence independently;
+        # this additional source-replay check runs only where it is provisioned.
+        if shutil.which("git") is None or not (REPOS[case["project"]] / ".git").exists():
+            self.skipTest("requires Git and a separately provisioned ignored upstream checkout")
         original = function_at(case, case["buggy_commit"])
         candidate = history["attempts"][10]["source"]
         converted = normalize_function_imports(
@@ -59,6 +66,17 @@ class V32RecoveryEvidenceTests(unittest.TestCase):
                         if a["attempt_id"] == "attempt-11")
         self.assertEqual(output_digest, recorded["normalized_sha256"])
         self.assertEqual(recorded["raw_sha256"], history["attempts"][10]["source_sha256"])
+
+    def test_source_replay_explicitly_skips_when_upstream_missing(self):
+        # Even a provisioned developer workstation must simulate a clean clone.
+        with patch.dict(REPOS, {"youtube-dl": ROOT / "missing-v32-external-checkout"}):
+            with self.assertRaises(unittest.SkipTest):
+                self.test_imported_function_keeps_model_body_and_reference_signature()
+
+    def test_source_replay_explicitly_skips_when_git_unavailable(self):
+        with patch.object(shutil, "which", return_value=None):
+            with self.assertRaises(unittest.SkipTest):
+                self.test_imported_function_keeps_model_body_and_reference_signature()
 
     def test_independent_confirmatory_hidden_pass(self):
         direct = json.loads(

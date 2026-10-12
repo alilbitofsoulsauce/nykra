@@ -18,6 +18,10 @@ EXPECTED_ARCHIVES={
         "adac639e6aa7f473c33718651bf81d56c82d5393b18f812082ac7caf9fea9f87",
     "docs/evidence/v37_original_structured_edit_tests.py":
         "99bb2d05dd15de8e840c3039b0792233cbb72fedb1fe577a50be921c8f0d1c53",
+    "docs/evidence/v30_original_multifile_workflow_tests.py.txt":
+        "9b0bf1fdab42b05a4ac501878eec979455eb15c894865299ef48f1dec4c3f9f3",
+    "docs/evidence/v32_original_recovery_evidence_tests.py.txt":
+        "642f3719e51105fb6f759943747c5b87845b41173edb83168a9ab97786ea2c92",
 }
 
 
